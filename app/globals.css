@@ -1,36 +1,33 @@
 @import "tailwindcss";
 
 /*
-  OneRound — launch site design system (v4 · "Brisbane gig-poster").
-  LIGHT / white site: airy white canvas, navy text, blue accent. Now with real
-  personality — big characterful Bricolage Grotesque display type, mono micro-
-  labels, a highlight-swipe on accent words, grain on dark blocks, one marquee
-  seam. Bold where it counts, calm everywhere else.
-  A persistent audience toggle swaps the accent in place:
-    Users      → blue  (#1e88f3)
-    For Venues → navy  (#020031)
-  Both audiences stay on the same light base — only accent + content change.
+  OneRound — "AFTER DARK" editorial broadsheet system (v5).
+  A kinetic nightlife culture-paper: massive Fraunces serif headlines, a strict
+  hairline grid, an issue/index numbering system, monospace listings metadata,
+  hard-cut colour SLABS (white / navy / blue — no soft fades), and a running
+  ticker as the connective thread.
+  Strictly navy #020031 + blue #1e88f3 + white. Nothing else.
+  Audience toggle still flips the accent in place: Users → blue, Venues → navy.
 */
 
 :root {
-  /* Brand values — exact */
-  --navy: #020031; /* primary dark: text, venue accent, navy logo */
-  --blue: #1e88f3; /* bright accent: CTAs, links, consumer accent */
+  --navy: #020031;
+  --blue: #1e88f3;
   --white: #ffffff;
-  --offwhite: #f6f7fb; /* soft section background */
+  --offwhite: #f4f5fb;
 
-  /* Text — slightly deepened for sharper contrast / more confidence */
-  --ink: #020031; /* headlines / body on light */
-  --ink-soft: #41415a; /* secondary copy */
-  --ink-faint: #82829a; /* labels / fine print */
-  --line: rgba(2, 0, 49, 0.1); /* hairline borders */
+  --ink: #020031;
+  --ink-soft: #3a3a55;
+  --ink-faint: #75758e;
 
-  /* Audience accent — default Going out (blue) */
+  /* Hairline rule colour — overridden inside dark slabs via .on-dark */
+  --rule: rgba(2, 0, 49, 0.16);
+
+  /* Audience accent — default Users (blue) */
   --accent: var(--blue);
-  --accent-deep: #0f6fd6; /* hover for blue accent */
+  --accent-deep: #0f6fd6;
 }
 
-/* For Venues side → navy accent */
 [data-audience="venue"] {
   --accent: var(--navy);
   --accent-deep: #0a083f;
@@ -46,14 +43,11 @@
   --color-accent: var(--accent);
   --color-accent-deep: var(--accent-deep);
 
-  --font-sans: var(--font-sans); /* Hanken Grotesk — body / UI */
-  --font-display: var(--font-display); /* Bricolage Grotesque — headlines */
-  --font-mono: var(--font-mono); /* Space Mono — micro-labels */
+  --font-display: var(--font-display); /* Fraunces */
+  --font-sans: var(--font-sans); /* Hanken Grotesk */
+  --font-mono: var(--font-mono); /* Space Mono */
 }
 
-/* Base element styles live in @layer base so Tailwind utilities (text-white,
-   bg-*, etc.) reliably win over them — unlayered rules would otherwise override
-   layered utilities under CSS cascade layers. */
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -69,123 +63,130 @@
     overflow-x: hidden;
   }
 
-  /* Headlines wear the display face by default — characterful, tight, confident.
-     Components still set size/weight; this just guarantees the right family. */
+  /* Headlines wear Fraunces — high-contrast display serif, tight and large. */
   h1,
   h2,
   h3 {
-    font-family: var(--font-display), system-ui, sans-serif;
-    letter-spacing: -0.02em;
+    font-family: var(--font-display), Georgia, serif;
+    font-optical-sizing: auto;
+    letter-spacing: -0.018em;
+    line-height: 1;
+    /* guard against descenders being clipped by tight line boxes */
+    padding-bottom: 0.04em;
   }
 
   a {
     color: inherit;
   }
+
+  /* Visible focus for keyboard users (accessibility). */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
 }
 
-/* Explicit helpers (so non-heading display/mono text can opt in). */
+/* ----------------------------------------------------------------------
+   Type helpers
+   ---------------------------------------------------------------------- */
 .font-display {
-  font-family: var(--font-display), system-ui, sans-serif;
+  font-family: var(--font-display), Georgia, serif;
 }
 .font-mono {
   font-family: var(--font-mono), ui-monospace, monospace;
 }
 
-/* Mono micro-label — the repeated kicker/eyebrow, now ticket-stub flavour. */
+/* Accent helpers — smoothly retint when the audience toggles. */
+.accent-text {
+  color: var(--accent);
+  transition: color 0.35s ease;
+}
+.accent-fill {
+  background-color: var(--accent);
+  transition: background-color 0.35s ease;
+}
+.accent-border {
+  border-color: var(--accent);
+  transition: border-color 0.35s ease;
+}
+
+/* Monospace listings label — the recurring metadata voice. */
 .kicker {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
+}
+
+/* Oversized editorial index numeral (01 — 08). Light weight, set huge. */
+.index-num {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 0.8;
+  letter-spacing: -0.03em;
 }
 
 /* ----------------------------------------------------------------------
-   Accent word — the signature headline hit. The word sits in the display
-   font with a solid, slightly-skewed colour bar swiping in behind it (a
-   marker/highlighter). Replaces the old brush-script accent.
-   Control per use:
-     --swipe      → bar colour (default navy)
-     --swipe-ink  → text colour over the bar (default white)
-     --swipe-d    → entrance delay
+   Signature accent — the editorial italic. The accent word is set in Fraunces
+   italic with a brand rule that draws in beneath it. Replaces the brush script.
+     --rule-color  → underline colour (default blue)
+     --d           → draw delay
    ---------------------------------------------------------------------- */
-.accent-swipe {
+.accent-ital {
+  font-family: var(--font-display), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
   position: relative;
-  display: inline-block;
-  font-family: var(--font-display), system-ui, sans-serif;
-  color: var(--swipe-ink, #fff);
-  padding: 0 0.14em;
   white-space: nowrap;
-  isolation: isolate;
+  padding: 0 0.04em;
 }
-.accent-swipe::before {
+.accent-ital::after {
   content: "";
   position: absolute;
-  inset: 0.1em -0.02em 0.12em;
-  z-index: -1;
-  border-radius: 0.1em;
-  background: var(--swipe, var(--navy));
-  transform: skew(-7deg) scaleX(0);
+  left: 0;
+  right: 0;
+  bottom: 0.04em;
+  height: 0.07em;
+  background: var(--rule-color, var(--blue));
+  transform: scaleX(0);
   transform-origin: left center;
-  animation: swipe-in 0.62s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: var(--swipe-d, 0.6s);
+  animation: rule-draw 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--d, 0.65s);
 }
-@keyframes swipe-in {
+@keyframes rule-draw {
   to {
-    transform: skew(-7deg) scaleX(1);
+    transform: scaleX(1);
   }
 }
 
-/* Smooth accent transitions when the audience toggles */
-.accent-fill {
-  background-color: var(--accent);
-  transition: background-color 0.4s ease;
-}
-.accent-text {
-  color: var(--accent);
-  transition: color 0.4s ease;
-}
-.accent-border {
-  border-color: var(--accent);
-  transition: border-color 0.4s ease;
-}
-
 /* ----------------------------------------------------------------------
-   Soft blue bloom — used VERY sparingly behind the hero photo for depth.
-   Light-site version: faint, not a SaaS gradient blob.
+   Slabs — hard-cut full-bleed colour fields. No gradients, no rounding on the
+   field itself. Dark slabs flip the hairline + body ink to light.
    ---------------------------------------------------------------------- */
-.bloom {
-  position: absolute;
-  border-radius: 9999px;
-  pointer-events: none;
-  filter: blur(70px);
-  background: radial-gradient(
-    circle at center,
-    color-mix(in srgb, var(--accent) 38%, transparent) 0%,
-    transparent 70%
-  );
+.on-dark {
+  --rule: rgba(255, 255, 255, 0.2);
+  --ink-soft: rgba(255, 255, 255, 0.72);
+  --ink-faint: rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+
+/* Hairline helpers */
+.hair-t {
+  border-top: 1px solid var(--rule);
+}
+.hair-b {
+  border-bottom: 1px solid var(--rule);
+}
+.hair-l {
+  border-left: 1px solid var(--rule);
 }
 
 /* ----------------------------------------------------------------------
-   Grain / noise overlay — gives dark blocks (navy, navy→blue gradient) a
-   crafted, printed texture instead of a flat SaaS gradient. Drop inside any
-   relatively-positioned dark container as <span aria-hidden className="grain"/>.
-   ---------------------------------------------------------------------- */
-.grain {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.5;
-  mix-blend-mode: soft-light;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 160px 160px;
-}
-
-/* ----------------------------------------------------------------------
-   Marquee seam — the signature device. A bold display-font ticker that
-   scrolls horizontally. Used ONCE as a section seam. The track is duplicated
-   so the loop is seamless; translateX(-50%) lands exactly on the copy.
+   Ticker — the connective thread. A bold mixed serif/mono strip that scrolls at
+   slab seams. Duplicated track → seamless loop; pauses on hover.
    ---------------------------------------------------------------------- */
 .marquee {
   overflow: hidden;
@@ -194,80 +195,141 @@
 .marquee__track {
   display: inline-flex;
   align-items: center;
-  will-change: transform;
-  animation: marquee 26s linear infinite;
+  animation: marquee 30s linear infinite;
+}
+.marquee--rev .marquee__track {
+  animation-name: marquee-rev;
 }
 .marquee:hover .marquee__track {
   animation-play-state: paused;
 }
 @keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
   to {
     transform: translateX(-50%);
   }
 }
+@keyframes marquee-rev {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
 
 /* ----------------------------------------------------------------------
-   Entrance + scroll reveals — light, CSS-first, staggered.
+   Motion kit — crafted, not default fade slop.
+   - .rise        : staggered load reveal (hero)
+   - .mask/.mask>i: line-mask wipe for headlines
+   - .on-scroll   : refined clip+rise on scroll (via ScrollReveal → .is-visible)
+   - .on-scroll-card : editorial wipe-up for grid items, staggered
    ---------------------------------------------------------------------- */
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(22px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.1rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  opacity: 0;
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation-delay: var(--d, 0s);
 }
 
-/* Clip reveal — the big hero headline wipes up from behind a mask. */
-@keyframes clip-up {
-  from { opacity: 0; clip-path: inset(0 0 100% 0); transform: translateY(8px); }
-  to { opacity: 1; clip-path: inset(0 0 0 0); transform: translateY(0); }
+.mask {
+  display: block;
+  overflow: hidden;
+  /* Room for deep display-serif descenders (g, y, p, j, q) so the wipe mask
+     never clips them; the negative margin keeps line spacing tight. */
+  padding-bottom: 0.22em;
+  margin-bottom: -0.12em;
 }
-.reveal-clip {
-  opacity: 0;
-  animation: clip-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+.mask > i {
+  display: block;
+  font-style: inherit;
+  transform: translateY(120%);
+  animation: mask-in 1.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   animation-delay: var(--d, 0s);
 }
-.reveal {
-  opacity: 0;
-  animation: fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: var(--d, 0s);
+@keyframes mask-in {
+  to {
+    transform: none;
+  }
 }
 
 .on-scroll {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  clip-path: inset(0 0 10% 0);
+  transform: translateY(1.1rem);
+  transition:
+    opacity 0.6s ease,
+    clip-path 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--d, 0s);
 }
 .on-scroll.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  clip-path: inset(0 0 -4% 0);
+  transform: none;
 }
 
-/* Card reveal — staggered with a subtle entrance rotation (no hover-tilt). */
 .on-scroll-card {
   opacity: 0;
-  transform: translateY(34px) rotate(var(--rot, -2deg));
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  clip-path: inset(0 0 100% 0);
+  transition:
+    opacity 0.5s ease,
+    clip-path 1s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--d, 0s);
-  will-change: transform, opacity;
 }
 .on-scroll-card.is-visible {
   opacity: 1;
-  transform: translateY(0) rotate(0deg);
+  clip-path: inset(0 0 0 0);
+}
+
+/* Tactile press for interactive pills/buttons. */
+.tactile {
+  transition:
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+.tactile:active {
+  transform: scale(0.97);
+}
+
+/* Faint film grain for navy slabs — printed depth, used sparingly. */
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .reveal, .on-scroll, .on-scroll-card, .reveal-clip {
+  html {
+    scroll-behavior: auto;
+  }
+  .rise,
+  .mask > i,
+  .on-scroll,
+  .on-scroll-card,
+  .accent-ital::after {
     animation: none !important;
     transition: none !important;
     opacity: 1 !important;
     transform: none !important;
     clip-path: none !important;
-  }
-  .accent-swipe::before {
-    animation: none !important;
-    transform: skew(-7deg) scaleX(1) !important;
   }
   .marquee__track {
     animation: none !important;

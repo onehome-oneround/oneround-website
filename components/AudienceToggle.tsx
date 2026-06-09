@@ -4,17 +4,18 @@ import { usePathname, useRouter } from "next/navigation";
 import { useAudience, type Audience } from "./AudienceProvider";
 
 /*
-  Persistent audience pill toggle (Users / For Venues). A sliding pill indicator
-  fills with the active side's accent (blue / navy). Switching flips the whole
-  page's accent + toggle-aware content in place. If the visitor isn't on the home
-  page (e.g. /partners), choosing a side takes them home to that view — so the
-  toggle is never a dead-end.
+  Audience toggle — a clear, tactile segmented pill. A light track holds a
+  sliding indicator that fills with the active side's accent (blue = Users,
+  navy = Venues) and lifts on a soft shadow so the selected side is unmistakable.
+  Active label: white, bold. Inactive: muted ink but clearly readable. Flips the
+  page's accent + content in place; off the home page it routes home.
 */
 
 export default function AudienceToggle({ className = "" }: { className?: string }) {
   const { audience, setAudience } = useAudience();
   const pathname = usePathname();
   const router = useRouter();
+  const isVenue = audience === "venue";
 
   function choose(a: Audience) {
     setAudience(a);
@@ -25,22 +26,29 @@ export default function AudienceToggle({ className = "" }: { className?: string 
     <div
       role="group"
       aria-label="Choose your view"
-      className={`relative grid grid-cols-2 rounded-full border border-[color:var(--line)] bg-offwhite p-1 ${className}`}
+      className={`relative grid grid-cols-2 rounded-full border border-[color:var(--rule)] bg-[#eef0f8] p-1 ${className}`}
     >
-      {/* sliding indicator — two equal segments, so 50% aligns exactly */}
+      {/* sliding filled indicator (geometry set inline so it never collapses) */}
       <span
         aria-hidden="true"
-        className="accent-fill absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-full transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        className="pointer-events-none absolute rounded-full bg-[color:var(--accent)] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
         style={{
-          transform: audience === "venue" ? "translateX(100%)" : "translateX(0)",
+          top: "0.25rem",
+          bottom: "0.25rem",
+          left: "0.25rem",
+          width: "calc(50% - 0.25rem)",
+          transform: isVenue ? "translateX(100%)" : "translateX(0)",
+          boxShadow: isVenue
+            ? "0 4px 14px -4px rgba(2,0,49,0.55)"
+            : "0 4px 14px -4px rgba(30,136,243,0.6)",
         }}
       />
       <button
         type="button"
         onClick={() => choose("consumer")}
-        aria-pressed={audience === "consumer"}
-        className={`relative z-10 w-full whitespace-nowrap rounded-full px-4 py-1.5 text-center text-xs font-bold transition-colors duration-300 sm:text-sm ${
-          audience === "consumer" ? "text-white" : "text-ink-soft hover:text-ink"
+        aria-pressed={!isVenue}
+        className={`relative z-10 whitespace-nowrap rounded-full px-5 py-2 text-center text-sm transition-colors duration-300 ${
+          !isVenue ? "font-bold text-white" : "font-medium text-ink-soft hover:text-ink"
         }`}
       >
         Users
@@ -48,12 +56,12 @@ export default function AudienceToggle({ className = "" }: { className?: string 
       <button
         type="button"
         onClick={() => choose("venue")}
-        aria-pressed={audience === "venue"}
-        className={`relative z-10 w-full whitespace-nowrap rounded-full px-4 py-1.5 text-center text-xs font-bold transition-colors duration-300 sm:text-sm ${
-          audience === "venue" ? "text-white" : "text-ink-soft hover:text-ink"
+        aria-pressed={isVenue}
+        className={`relative z-10 whitespace-nowrap rounded-full px-5 py-2 text-center text-sm transition-colors duration-300 ${
+          isVenue ? "font-bold text-white" : "font-medium text-ink-soft hover:text-ink"
         }`}
       >
-        For Venues
+        Venues
       </button>
     </div>
   );

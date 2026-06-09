@@ -7,16 +7,17 @@ import AudienceToggle from "./AudienceToggle";
 import NavStore from "./NavStore";
 
 /*
-  Sticky nav (all pages), light theme. Navy logo · persistent audience toggle ·
-  links (How it works · FAQ · For Venues) · "Get the App" + store icons (always
-  visible). Transparent over the white hero, gains a white blur + hairline on
-  scroll. Mobile collapses links + toggle into a hamburger panel; store stays.
+  Sticky nav — modelled on UniWorker's masthead, in OneRound's brand:
+  LEFT: logo + the audience toggle, grouped together.
+  RIGHT: title-case links + "Get the app" + circular store icons.
+  Generous empty space between, a tall bar with real presence, and a frosted
+  translucent white surface so content subtly shows through on scroll.
 */
 
 const links = [
   { label: "How it works", href: "/#how-it-works" },
   { label: "FAQ", href: "/#faq" },
-  { label: "For Venues", href: "/partners" },
+  { label: "Partnered venues", href: "/partnered-venues" },
 ];
 
 export default function Nav() {
@@ -30,51 +31,58 @@ export default function Nav() {
   }, [open]);
 
   return (
-    // Always a solid light strip so the two-tone logo + links pop on any section.
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-[color:var(--line)] bg-[#f4f5fc]/90 shadow-[0_6px_24px_-18px_rgba(2,0,49,0.35)] backdrop-blur-md">
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
-        <Logo variant="navy" height={26} priority />
-
-        {/* Desktop links */}
-        <div className="hidden items-center gap-8 lg:flex">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="text-sm font-semibold text-ink-soft transition hover:text-ink"
-            >
-              {l.label}
-            </Link>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-2.5">
+    <header
+      className="fixed inset-x-0 top-0 z-40 border-b border-[color:var(--rule)] shadow-[0_8px_40px_-28px_rgba(2,0,49,0.45)]"
+      style={{
+        backgroundColor: "rgba(255,255,255,0.82)",
+        backdropFilter: "blur(18px) saturate(140%)",
+        WebkitBackdropFilter: "blur(18px) saturate(140%)",
+      }}
+    >
+      <nav className="mx-auto flex h-20 max-w-[96rem] items-center justify-between px-5 sm:h-[5.5rem] sm:px-8">
+        {/* LEFT — logo + toggle */}
+        <div className="flex items-center gap-5 xl:gap-7">
+          <Logo variant="navy" height={28} priority />
           <div className="hidden lg:block">
             <AudienceToggle />
           </div>
+        </div>
+
+        {/* RIGHT — links + store */}
+        <div className="flex items-center gap-7 xl:gap-9">
+          <div className="hidden items-center gap-7 lg:flex xl:gap-8">
+            {links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className="text-[15px] font-medium text-ink-soft transition-colors hover:text-ink"
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
           <NavStore />
 
-          {/* Hamburger (mobile/tablet) */}
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--line)] text-ink transition hover:border-ink/30 lg:hidden"
+            className="tactile flex h-11 w-11 items-center justify-center rounded-full border border-[color:var(--rule)] bg-white/60 text-ink transition hover:border-ink/30 lg:hidden"
           >
             <span className="relative block h-4 w-5">
               <span
-                className={`absolute left-0 block h-0.5 w-5 bg-ink transition-all duration-300 ${
+                className={`absolute left-0 block h-0.5 w-5 rounded-full bg-ink transition-all duration-300 ${
                   open ? "top-1.5 rotate-45" : "top-0.5"
                 }`}
               />
               <span
-                className={`absolute left-0 top-1.5 block h-0.5 w-5 bg-ink transition-all duration-300 ${
+                className={`absolute left-0 top-1.5 block h-0.5 w-5 rounded-full bg-ink transition-all duration-300 ${
                   open ? "opacity-0" : "opacity-100"
                 }`}
               />
               <span
-                className={`absolute left-0 block h-0.5 w-5 bg-ink transition-all duration-300 ${
+                className={`absolute left-0 block h-0.5 w-5 rounded-full bg-ink transition-all duration-300 ${
                   open ? "top-1.5 -rotate-45" : "top-[10px]"
                 }`}
               />
@@ -83,20 +91,20 @@ export default function Nav() {
         </div>
       </nav>
 
-      {/* Mobile menu panel */}
+      {/* Mobile panel */}
       <div
-        className={`overflow-hidden border-t border-[color:var(--line)] bg-white/95 backdrop-blur-md transition-[max-height] duration-300 lg:hidden ${
+        className={`overflow-hidden border-t border-[color:var(--rule)] bg-white/95 backdrop-blur-xl transition-[max-height] duration-300 lg:hidden ${
           open ? "max-h-96" : "max-h-0 border-t-0"
         }`}
       >
-        <div className="flex flex-col gap-1 px-5 py-4">
-          <AudienceToggle className="mb-2 self-start" />
+        <div className="flex flex-col gap-2 px-5 py-6">
+          <AudienceToggle className="mb-3 self-start" />
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="rounded-xl px-3 py-3 text-base font-semibold text-ink/85 transition hover:bg-offwhite hover:text-ink"
+              className="rounded-xl px-3 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-offwhite hover:text-ink"
             >
               {l.label}
             </Link>

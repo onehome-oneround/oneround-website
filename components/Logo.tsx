@@ -49,7 +49,7 @@ export default function Logo({
 
   if (href) {
     return (
-      <Link href={href} aria-label="OneRound — home" className="inline-flex shrink-0">
+      <Link href={href} aria-label="OneRound, home" className="inline-flex shrink-0">
         {img}
       </Link>
     );

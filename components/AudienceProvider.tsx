@@ -31,9 +31,15 @@ const STORAGE_KEY = "oneround-audience";
 export function AudienceProvider({ children }: { children: ReactNode }) {
   const [audience, setAudienceState] = useState<Audience>("consumer");
 
-  // Hydrate from storage after mount (avoids SSR mismatch)
+  // Hydrate from storage after mount (avoids SSR mismatch). A ?view=venue|users
+  // query param wins, so the venue home can be deep-linked directly.
   useEffect(() => {
     try {
+      const view = new URLSearchParams(window.location.search).get("view");
+      if (view === "venue" || view === "users") {
+        setAudienceState(view === "venue" ? "venue" : "consumer");
+        return;
+      }
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved === "consumer" || saved === "venue") setAudienceState(saved);
     } catch {

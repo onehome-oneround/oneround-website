@@ -25,7 +25,7 @@ type OS = "ios" | "android" | "other";
 
 function AppStoreBadge() {
   return (
-    <span className="inline-flex h-[54px] items-center gap-2.5 rounded-xl border border-white/15 bg-black px-4 text-white transition group-hover/badge:border-white/35">
+    <span className="inline-flex h-[54px] items-center gap-2.5 border border-white/15 bg-black px-4 text-white transition group-hover/badge:border-white/40">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M16.36 12.78c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.75 2.28-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.64M14.09 5.83c.63-.77 1.06-1.83.94-2.9-.91.04-2.02.61-2.68 1.37-.59.67-1.1 1.76-.96 2.79 1.02.08 2.06-.52 2.7-1.26" />
       </svg>
@@ -41,7 +41,7 @@ function AppStoreBadge() {
 
 function GooglePlayBadge() {
   return (
-    <span className="inline-flex h-[54px] items-center gap-2.5 rounded-xl border border-white/15 bg-black px-4 text-white transition group-hover/badge:border-white/35">
+    <span className="inline-flex h-[54px] items-center gap-2.5 border border-white/15 bg-black px-4 text-white transition group-hover/badge:border-white/40">
       <svg width="20" height="22" viewBox="0 0 512 512" aria-hidden="true">
         <path d="M48 59v394c0 6 3 11 8 14l228-211L56 45c-5 3-8 8-8 14z" fill="#34A853" />
         <path d="M380 196l-72-42-58 53 58 53 73-42c12-7 12-15-1-22z" fill="#FBBC04" />

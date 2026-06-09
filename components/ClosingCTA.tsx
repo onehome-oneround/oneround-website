@@ -1,43 +1,41 @@
+"use client";
+
 import DownloadButtons from "./DownloadButtons";
+import { useAudience } from "./AudienceProvider";
 
 /*
-  Closing CTA band — full BLUE block with white text (a deliberate colour
-  punctuation, bookending the hero). Repeated headline + "Download the app today"
-  + store badges. id="download" is the nav Download target.
+  Closing CTA — the bookend. A full BLUE slab, type-dominant: a giant Fraunces
+  headline with the editorial italic accent on the closing words, the store
+  badges, and a mono note. The tagline swaps per side (Users / Venues).
+  id="download" is the nav store target.
 */
 
 export default function ClosingCTA() {
+  const { audience } = useAudience();
+  const isVenue = audience === "venue";
+  const lead = isVenue ? "Their reason to " : "Your reason to ";
+  const accent = isVenue ? "walk in" : "get out";
   return (
-    <section id="download" className="scroll-mt-20 px-5 py-12 sm:px-8 sm:py-16">
-      <div className="on-scroll relative mx-auto flex max-w-6xl flex-col items-center overflow-hidden rounded-[2rem] bg-blue px-6 py-20 text-center sm:py-28">
-        {/* subtle depth */}
-        <div
-          className="pointer-events-none absolute inset-0 -z-0 opacity-60"
-          style={{
-            background:
-              "radial-gradient(60% 80% at 50% 0%, rgba(255,255,255,0.18), transparent 70%)",
-          }}
-        />
-        <span aria-hidden="true" className="grain" />
-        <div className="relative z-10 flex flex-col items-center">
-          <h2 className="text-balance text-5xl font-extrabold leading-[0.9] tracking-[-0.03em] text-white sm:text-7xl">
-            However you go out,{" "}
-            <span
-              className="accent-swipe"
-              style={{ ["--swipe" as string]: "var(--navy)" }}
-            >
-              one app
-            </span>
-            .
-          </h2>
-          <p className="mt-5 text-base font-semibold text-white/85 sm:text-lg">
-            Download the app today.
-          </p>
-          <div className="mt-9">
-            <DownloadButtons center />
-          </div>
-          <p className="mt-4 text-xs text-white/70">
-            Free to download. Available on iOS and Android.
+    <section id="download" className="scroll-mt-16 bg-blue px-5 py-28 sm:px-8 sm:py-36">
+      <div className="on-scroll mx-auto max-w-[96rem]">
+        <p className="kicker text-white/70">Download / Free / iOS + Android</p>
+        <h2
+          className="mt-8 max-w-[18ch] text-white"
+          style={{ fontSize: "clamp(3rem, 9vw, 9.5rem)", lineHeight: "0.98", fontWeight: 600 }}
+        >
+          {lead}
+          <span
+            className="accent-ital"
+            style={{ color: "var(--navy)", ["--rule-color" as string]: "var(--navy)" }}
+          >
+            {accent}
+          </span>
+          .
+        </h2>
+        <div className="mt-12 flex flex-col gap-4 border-t border-white/25 pt-10 sm:flex-row sm:items-center sm:justify-between">
+          <DownloadButtons />
+          <p className="max-w-xs text-sm font-medium leading-relaxed text-navy">
+            Download the app today. Free to download. Available on iOS and Android.
           </p>
         </div>
       </div>

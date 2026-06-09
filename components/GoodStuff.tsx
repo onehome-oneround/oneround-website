@@ -1,16 +1,16 @@
 "use client";
 
-import PhoneMockup from "./PhoneMockup";
+import Image from "next/image";
 import PillButton from "./PillButton";
 import DownloadButtons from "./DownloadButtons";
+import EditorialTag from "./EditorialTag";
 import { useAudience } from "./AudienceProvider";
 
 /*
-  The Good Stuff — the one section that inverts to a navy card with white text.
-  Tilted phone mockup left; heading + benefit lines (hairline-separated) + blue
-  "+" pill right. Toggle-aware content. Accent is locked to BLUE here (via a
-  local data-audience="consumer") so the pill/marks stay visible on navy.
-  Reward/discovery framing — never "save money".
+  "The good stuff" — a full-bleed real photo (Users = good-user, Venues =
+  good-venue) under a navy scrim, with the benefits as frosted white bubble chips
+  and the CTA. White text throughout for legibility. The photo distinguishes it
+  from the flat-navy logo slider above. Content unchanged.
 */
 
 export default function GoodStuff() {
@@ -19,94 +19,85 @@ export default function GoodStuff() {
 
   const copy = isVenue
     ? {
-        heading: "The good stuff, for venues.",
+        heading: "The good stuff.",
         lines: [
-          "Free to join — no cost to be on OneRound",
+          "Free to join, no cost to be on OneRound",
           "Roundies and Deals drive real foot traffic",
           "New customers discovering your venue",
-          "Your venue where people choose where to go",
-          "Optionally feature your venue for more reach",
         ],
         cta: "Become a partner",
         href: "/partners",
-        screen: {
-          label: "app-venue-listing",
-          intent: "Real app screenshot — a venue's listing as customers see it, Roundie + deals.",
-        },
+        bg: "/images/newgood-venue.png",
       }
     : {
         heading: "The good stuff.",
         lines: [
-          "A free Roundie every day",
+          "Five Roundies a month",
           "Exclusive Deals you won't find elsewhere",
           "See where your friends and the crowd are headed",
-          "Discover new venues across Brisbane",
-          "Your whole outing in one app",
         ],
         cta: "",
         href: "",
-        screen: {
-          label: "app-roundie-claim",
-          intent: "Real app screenshot — the Roundie claim screen, shown in a packed venue context.",
-        },
+        bg: "/images/newgood-user.png",
       };
 
   return (
-    <section className="px-5 py-12 sm:px-8 sm:py-16">
-      {/* data-audience locks accent to blue on this navy card */}
+    <section className="on-dark relative isolate overflow-hidden px-5 py-28 sm:px-8 sm:py-36">
+      {/* full-bleed photo */}
+      <Image
+        src={copy.bg}
+        alt=""
+        fill
+        sizes="100vw"
+        className="-z-20 object-cover"
+        style={{ objectFit: "cover", objectPosition: "center" }}
+      />
+      {/* light scrim — only enough to keep the heading legible top-left; the photo
+          stays bright and the frosted cards carry their own contrast */}
       <div
-        data-audience="consumer"
-        className="on-scroll relative mx-auto grid max-w-6xl items-center gap-12 overflow-hidden rounded-[2rem] bg-navy p-8 sm:p-12 lg:grid-cols-2 lg:gap-8 lg:p-16"
-      >
-        <span aria-hidden="true" className="grain" />
-        {/* Phone */}
-        <div className="relative z-10 order-2 lg:order-1">
-          <PhoneMockup
-            screenLabel={copy.screen.label}
-            screenIntent={copy.screen.intent}
-            tilt={-6}
-            chips={
-              <div className="absolute -right-2 top-12 rotate-[5deg] rounded-2xl border border-white/15 bg-white px-4 py-3 shadow-xl">
-                <p className="text-[11px] font-semibold uppercase tracking-wide text-blue">
-                  {isVenue ? "Redeemed" : "Free today"}
-                </p>
-                <p className="text-xs font-bold text-navy">
-                  {isVenue ? "+1 new customer" : "Your daily Roundie"}
-                </p>
-              </div>
-            }
-          />
-        </div>
+        aria-hidden="true"
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(120deg, rgba(2,0,49,0.68) 0%, rgba(2,0,49,0.36) 22%, rgba(2,0,49,0.1) 48%, rgba(2,0,49,0.04) 100%)",
+        }}
+      />
 
-        {/* Copy */}
-        <div className="relative z-10 order-1 lg:order-2">
-          <h2 className="text-3xl font-extrabold leading-[0.98] tracking-[-0.03em] text-white sm:text-4xl lg:text-5xl">
-            {copy.heading}
-          </h2>
-          <ul className="mt-8 border-t border-white/12">
-            {copy.lines.map((line) => (
-              <li
-                key={line}
-                className="flex items-center gap-3 border-b border-white/12 py-4"
-              >
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue/15 text-blue">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="m5 13 4 4L19 7" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
-                <span className="text-base font-medium text-white/90">{line}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-8">
-            {isVenue ? (
-              <PillButton href={copy.href} icon="plus">
-                {copy.cta}
-              </PillButton>
-            ) : (
-              <DownloadButtons />
-            )}
-          </div>
+      <div className="relative z-10 mx-auto max-w-[96rem]">
+        <EditorialTag index="06" label="The Good Stuff" className="text-white" />
+        <h2
+          className="mt-8 max-w-[20ch] text-white [text-shadow:0_2px_30px_rgba(2,0,49,0.7)]"
+          style={{ fontSize: "clamp(2.8rem, 5.6vw, 5.5rem)", lineHeight: "1.0", fontWeight: 600 }}
+        >
+          {copy.heading}
+        </h2>
+
+        {/* benefit cards — frosted glass: photo blurs gently behind, but the panel
+            is solid enough that text stays crisp. Circular number badge each. */}
+        <ul className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-3">
+          {copy.lines.map((line, i) => (
+            <li
+              key={line}
+              className="flex items-center gap-4 rounded-[1.75rem] border border-white/20 bg-navy/60 p-6 shadow-[0_24px_60px_-32px_rgba(0,0,0,0.85)] backdrop-blur-2xl"
+            >
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/40 bg-white/15 font-display text-lg font-semibold text-white">
+                {i + 1}
+              </span>
+              <span className="text-[17px] font-medium leading-snug text-white">
+                {line}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-12">
+          {isVenue ? (
+            <PillButton href={copy.href} variant="solid" onDark>
+              {copy.cta}
+            </PillButton>
+          ) : (
+            <DownloadButtons />
+          )}
         </div>
       </div>
     </section>

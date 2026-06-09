@@ -1,24 +1,28 @@
-/* Shared FAQ content — verbatim from the brief. Used by the home FAQ section.
-   Pricing ($12/month) appears here only, never in the hero or feature sections. */
+/* Shared FAQ content. Used by the home FAQ section. Pricing ($12/month) appears
+   here only, never in the hero or feature sections. */
 
 export type Faq = { q: string; a: string };
 
 export const faqs: Faq[] = [
   {
     q: "What is OneRound?",
-    a: "OneRound is a social going-out app that shows you where everyone's headed and rewards you for getting out. See where your friends and the crowd are going in real time, claim a free item every day at participating venues with Roundies, and unlock exclusive Deals.",
+    a: "OneRound is a social going-out app that shows you where everyone's headed and rewards you for getting out. See where your friends and the crowd are going in real time, claim free food or drink items at participating venues with Roundies, and unlock exclusive Deals.",
+  },
+  {
+    q: "What do I get for $12/month?",
+    a: "OneRound membership is $12/month, with monthly and annual options. It gives you five Roundies a month: five free food or drink items at participating venues. You can redeem one Roundie per outing, and once you redeem one there is a 12 hour gap before you can redeem again, up to five a month. Membership also unlocks exclusive Deals you won't find anywhere else. The app itself is free to download, and the social side, seeing where everyone's headed, is always free.",
   },
   {
     q: "Is OneRound free?",
-    a: "The app is free to download, and the social side — seeing where everyone's headed — is always free. Roundies and Deals are part of OneRound membership, which is $12/month, with monthly and annual options. Keep an eye out for our one-month-free codes to try everything at no cost.",
+    a: "The app is free to download, and the social side, seeing where everyone's headed, is always free. Roundies and Deals are part of OneRound membership, which is $12/month. Keep an eye out for our one month free codes to try everything at no cost.",
   },
   {
     q: "What's a Roundie?",
-    a: "A Roundie is one free food or drink item you can claim each day at a participating venue. It's your daily reason to head out and discover somewhere new — an actual item on us, not a discount.",
+    a: "A Roundie is a free food or drink item at a participating venue. Your membership includes five Roundies a month: an actual item on us, not a discount. You can redeem one per outing.",
   },
   {
     q: "How do I claim a Roundie?",
-    a: "Check the venue's Roundie menu in the app, scan your unique Roundie code, tell the venue what you'd like from the menu, and enjoy your complimentary item.",
+    a: "Check the venue's Roundie menu in the app, scan your unique Roundie code, tell the venue what you'd like from the menu, and enjoy your complimentary item. You can redeem one per outing, with a 12 hour gap between redemptions, up to five a month.",
   },
   {
     q: "Do I need to be 18+?",

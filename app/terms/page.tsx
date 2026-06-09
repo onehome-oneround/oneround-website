@@ -49,11 +49,12 @@ export default function TermsPage() {
             <section>
               <h2>Membership and rewards</h2>
               <p>
-                Some features — Roundies and Deals — form part of a paid OneRound
-                membership; the social side is free. Full membership terms are
-                presented in the app before you subscribe. Rewards are subject to
-                participating-venue availability and fair-use limits (such as one
-                Roundie per day).
+                Some features, Roundies and Deals, form part of a paid OneRound
+                membership; the social side is free. Membership includes five
+                Roundies a month, redeemable one per outing with a 12 hour gap
+                between redemptions. Full membership terms are presented in the app
+                before you subscribe. Rewards are subject to participating-venue
+                availability and fair-use limits.
               </p>
             </section>
 

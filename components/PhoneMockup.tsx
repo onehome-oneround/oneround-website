@@ -2,17 +2,15 @@ import type { ReactNode } from "react";
 import ImagePlaceholder from "./ImagePlaceholder";
 
 /*
-  Tilted phone mockup showing a real app screen (placeholder until screenshots
-  are supplied), with small floating UI chips/cards overlapping it to make the
-  app feel alive — the UniWorker phone-mockup pattern, in OneRound's brand.
+  Phone mockup — a clean device frame holding a real app screen (placeholder
+  until supplied), with floating UI chips overlapping it to make the app feel
+  alive. Editorial: hairline frame, no soft glow. Optional tilt.
 */
 
 type Props = {
   screenLabel: string;
   screenIntent: string;
-  /** Floating chip cards positioned around the phone. */
   chips?: ReactNode;
-  /** Tilt in degrees (negative = lean left). */
   tilt?: number;
   className?: string;
 };
@@ -21,21 +19,17 @@ export default function PhoneMockup({
   screenLabel,
   screenIntent,
   chips,
-  tilt = -6,
+  tilt = -4,
   className = "",
 }: Props) {
   return (
     <div className={`relative mx-auto w-full max-w-[300px] ${className}`}>
-      {/* soft accent bloom behind the phone */}
-      <div className="bloom absolute inset-0 -z-10 scale-110 opacity-60" />
-
       <div
-        className="relative rounded-[2.75rem] border border-white/10 bg-navy p-2.5 shadow-[0_40px_80px_-30px_rgba(2,0,49,0.45)]"
-        style={{ transform: `rotate(${tilt}deg)` }}
+        className="relative border border-white/15 bg-[#04022e] p-2.5 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.8)]"
+        style={{ transform: `rotate(${tilt}deg)`, borderRadius: "2.5rem" }}
       >
-        {/* notch */}
-        <div className="absolute left-1/2 top-2.5 z-10 h-5 w-24 -translate-x-1/2 rounded-b-2xl bg-navy" />
-        <div className="overflow-hidden rounded-[2.25rem]">
+        <div className="absolute left-1/2 top-2.5 z-10 h-5 w-24 -translate-x-1/2 rounded-b-2xl bg-[#04022e]" />
+        <div className="overflow-hidden" style={{ borderRadius: "2rem" }}>
           <ImagePlaceholder
             label={screenLabel}
             intent={screenIntent}
@@ -45,8 +39,6 @@ export default function PhoneMockup({
           />
         </div>
       </div>
-
-      {/* floating chips (kept upright over the tilted phone) */}
       {chips}
     </div>
   );

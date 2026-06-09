@@ -1,13 +1,15 @@
 "use client";
 
+import EditorialTag from "./EditorialTag";
 import { useAudience } from "./AudienceProvider";
 
 /*
-  What to expect — heading + subhead left, outline pill chips right. Toggle-aware
-  copy; chips show the venue spread (launch focus first: nightclubs/pubs/bars).
+  "A venue for any occasion." — white slab. Editorial split: heading + body on the
+  left; the venue types rendered as a broadsheet directory (mono index + big
+  Fraunces word, hairline-ruled) on the right. Launch set only. Copy swaps with
+  the toggle; content unchanged.
 */
 
-// Launch venues
 const venueTypes = ["Clubs", "Bars", "Pubs"];
 
 export default function WhatToExpect() {
@@ -18,36 +20,42 @@ export default function WhatToExpect() {
     ? {
         kicker: "Every kind of venue",
         heading: "Built for venues like yours.",
-        body: "Clubs, bars and pubs all run OneRound — bringing new customers in and giving them a reason to head out.",
+        body: "From clubs to bars to pubs, OneRound helps to bring new customers through the door.",
       }
     : {
         kicker: "What to expect",
         heading: "A venue for any occasion.",
-        body: "From a big one out to an easy catch-up, OneRound works across the places you already go — with more venues added all the time.",
+        body: "From a big one out to an easy catch-up, OneRound works across the places you already go, with more venues added all the time.",
       };
 
   return (
-    <section className="px-5 py-20 sm:px-8 sm:py-24">
-      <div className="on-scroll mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
-        <div>
-          <p className="kicker accent-text">{copy.kicker}</p>
-          <h2 className="mt-4 text-3xl font-extrabold leading-[0.98] tracking-[-0.03em] text-ink sm:text-4xl lg:text-6xl">
+    <section className="bg-white px-5 py-24 sm:px-8 sm:py-28">
+      <div className="on-scroll mx-auto grid max-w-[96rem] grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-8">
+        <div className="lg:col-span-6 lg:pr-12">
+          <EditorialTag index="05" label={copy.kicker} className="accent-text" />
+          <h2
+            className="mt-8 text-ink"
+            style={{ fontSize: "clamp(2.6rem, 5.6vw, 6rem)", lineHeight: "1.0", fontWeight: 600 }}
+          >
             {copy.heading}
           </h2>
-          <p className="mt-5 max-w-md text-base leading-relaxed text-ink-soft">
-            {copy.body}
-          </p>
+          <p className="mt-7 max-w-md text-base leading-relaxed text-ink-soft">{copy.body}</p>
         </div>
 
-        <div className="flex flex-wrap gap-3 lg:justify-end">
-          {venueTypes.map((t) => (
-            <span
-              key={t}
-              className="accent-border accent-text rounded-full border bg-white px-6 py-3 text-base font-bold"
-            >
-              {t}
-            </span>
-          ))}
+        <div className="lg:col-span-6 lg:hair-l lg:pl-12">
+          <ul className="border-t border-[color:var(--rule)]">
+            {venueTypes.map((t, i) => (
+              <li
+                key={t}
+                className="flex items-center gap-6 border-b border-[color:var(--rule)] py-6"
+              >
+                <span className="kicker w-10 text-ink-faint">0{i + 1}</span>
+                <span className="font-display text-4xl font-semibold text-ink sm:text-6xl">
+                  {t}
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

@@ -2,15 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import Image from "next/image";
 import DownloadButtons from "@/components/DownloadButtons";
-import PhoneMockup from "@/components/PhoneMockup";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
+import EditorialTag from "@/components/EditorialTag";
+import ClosingHeadline from "@/components/ClosingHeadline";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "How Roundies work",
   description:
-    "A Roundie is one free food or drink item you can claim each day at a participating venue. Select from the Roundie menu, scan, and enjoy.",
+    "A Roundie is a free food or drink item at a participating venue. Membership gives you five a month, one per outing. Select from the Roundie menu, scan, and enjoy.",
   alternates: { canonical: "https://oneround.au/how-roundies-work" },
 };
 
@@ -19,34 +20,30 @@ type Step = {
   title: string;
   body: string;
   visual: "phone" | "photo";
-  label: string;
-  intent: string;
+  src: string;
 };
 
 const steps: Step[] = [
   {
     n: "01",
-    title: "Select from the Roundie menu",
-    body: "Open the app and browse the venue's Roundie menu to see what's free today, then pick your item.",
+    title: "Browse the Roundie menu",
+    body: "Open the app and browse the venue's Roundie menu to see what's on offer, and find the item you want.",
     visual: "phone",
-    label: "app-roundie-menu",
-    intent: "Real app screenshot — the venue's Roundie menu screen. (User to supply UI.)",
+    src: "/images/menu-round.png",
   },
   {
     n: "02",
-    title: "Scan",
-    body: "At the venue, scan your unique Roundie code to redeem your pick — quick and contactless.",
+    title: "Order and scan",
+    body: "At the venue, let the staff know what you'd like, then scan your unique code to redeem it. Quick and contactless, one per outing.",
     visual: "phone",
-    label: "app-roundie-scan",
-    intent: "Real app screenshot — the scan / redeem screen. (User to supply UI.)",
+    src: "/images/qr-round.png",
   },
   {
     n: "03",
     title: "Enjoy",
-    body: "Grab your complimentary item and enjoy. That's your daily Roundie — come back tomorrow for another.",
+    body: "Grab your item on us and enjoy. That's one of your five Roundies this month, come back for the next.",
     visual: "photo",
-    label: "people-enjoying",
-    intent: "Real photo — people having a great time at a venue, drinks/food in hand.",
+    src: "/images/enjoy-round.png",
   },
 ];
 
@@ -55,79 +52,89 @@ export default function HowRoundiesWorkPage() {
     <>
       <Nav />
       <main className="flex-1">
-        {/* Header */}
-        <section className="px-5 pb-8 pt-32 sm:px-8 sm:pt-40">
-          <div className="mx-auto max-w-5xl">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-ink-soft transition hover:text-ink"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        {/* Header — white slab */}
+        <section className="bg-white px-5 pb-12 pt-28 sm:px-8 sm:pt-36">
+          <div className="mx-auto max-w-[96rem]">
+            <Link href="/" className="kicker inline-flex items-center gap-2 text-ink-soft transition-colors hover:text-ink">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               Back to home
             </Link>
 
-            <p className="kicker accent-text mt-10">Roundies</p>
-            <h1 className="mt-4 text-balance text-5xl font-extrabold leading-[0.9] tracking-[-0.035em] text-ink sm:text-7xl">
-              How Roundies{" "}
-              <span
-                className="accent-swipe"
-                style={{ ["--swipe" as string]: "var(--accent)", ["--swipe-d" as string]: "0.45s" }}
-              >
-                work
-              </span>
+            <div className="mt-10">
+              <EditorialTag index="·" label="Roundies" className="accent-text" />
+            </div>
+            <h1
+              className="mt-8 max-w-[16ch] text-ink"
+              style={{ fontSize: "clamp(3rem, 8vw, 8rem)", lineHeight: "0.98", fontWeight: 600 }}
+            >
+              How Roundies <span className="italic accent-text">work.</span>
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
-              A Roundie is one free food or drink item you can claim each day at a
-              participating venue — an actual item on us, not a discount. Here&rsquo;s
-              all there is to it.
+            <p className="mt-7 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
+              A Roundie is a free food or drink item at a participating venue. Your
+              membership gives you five a month, one per outing. An actual item on us,
+              not a discount. Here&rsquo;s all there is to it.
             </p>
           </div>
         </section>
 
-        {/* Steps — alternating rows */}
-        <section className="px-5 py-10 sm:px-8 sm:py-12">
-          <div className="mx-auto flex max-w-5xl flex-col gap-16 sm:gap-24">
+        {/* Steps — alternating editorial rows */}
+        <section className="bg-white px-5 pb-12 sm:px-8">
+          <div className="mx-auto flex max-w-[96rem] flex-col">
             {steps.map((s, i) => {
               const flip = i % 2 === 1;
               return (
                 <div
                   key={s.n}
-                  className="on-scroll grid items-center gap-10 lg:grid-cols-2 lg:gap-16"
+                  className="on-scroll grid items-center gap-8 border-t border-[color:var(--rule)] py-10 lg:grid-cols-2 lg:gap-16 lg:py-12"
                 >
-                  {/* Visual */}
-                  <div className={`flex justify-center ${flip ? "lg:order-2" : ""}`}>
+                  <div
+                    className={`flex justify-center ${
+                      flip ? "lg:order-2 lg:justify-start" : "lg:justify-end"
+                    }`}
+                  >
                     {s.visual === "phone" ? (
-                      <PhoneMockup
-                        screenLabel={s.label}
-                        screenIntent={s.intent}
-                        tilt={flip ? 5 : -5}
+                      <Image
+                        src={s.src}
+                        alt={s.title}
+                        width={3375}
+                        height={4219}
+                        sizes="(max-width: 1024px) 70vw, 340px"
+                        className="h-auto w-full max-w-[300px] sm:max-w-[340px]"
+                        style={{ objectFit: "contain" }}
                       />
                     ) : (
-                      <div className="relative w-full max-w-[420px]">
-                        <div className="bloom absolute inset-0 -z-10 opacity-60" />
-                        <ImagePlaceholder
-                          label={s.label}
-                          intent={s.intent}
-                          tone="deep"
-                          className="aspect-[4/5] w-full rotate-[3deg] rounded-3xl border border-[color:var(--line)] shadow-2xl"
+                      <div className="relative aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-3xl bg-offwhite">
+                        <Image
+                          src={s.src}
+                          alt={s.title}
+                          fill
+                          quality={90}
+                          // The 3:2 source is cover-cropped into a 4:5 box, so the
+                          // browser scales it to fill by height. A width-only sizes
+                          // hint (e.g. 420px) under-provisions the height and the
+                          // browser upscales the result. Requesting a large slot makes
+                          // Next serve the full-resolution source (capped at 1537px).
+                          sizes="1024px"
+                          className="object-cover"
+                          style={{ objectFit: "cover", objectPosition: "center" }}
                         />
                       </div>
                     )}
                   </div>
-
-                  {/* Copy */}
-                  <div className={flip ? "lg:order-1" : ""}>
-                    <span className="font-display text-6xl font-extrabold leading-none tracking-tight accent-text">
-                      {s.n}
-                    </span>
-                    <h2 className="mt-4 text-3xl font-extrabold leading-[0.98] tracking-[-0.03em] text-ink sm:text-4xl">
-                      {s.title}
-                    </h2>
-                    <p className="mt-4 max-w-md text-base leading-relaxed text-ink-soft">
-                      {s.body}
-                    </p>
+                  <div
+                    className={`flex justify-start ${
+                      flip ? "lg:order-1 lg:justify-end" : "lg:justify-start"
+                    }`}
+                  >
+                    <div className="w-full max-w-md">
+                      <span className="index-num accent-text text-7xl sm:text-8xl">{s.n}</span>
+                      <h2 className="mt-5 font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+                        {s.title}
+                      </h2>
+                      <p className="mt-4 text-base leading-relaxed text-ink-soft">{s.body}</p>
+                    </div>
                   </div>
                 </div>
               );
@@ -135,22 +142,17 @@ export default function HowRoundiesWorkPage() {
           </div>
         </section>
 
-        {/* Closing — one per day + download */}
-        <section className="px-5 py-16 sm:px-8 sm:py-20">
-          <div className="on-scroll relative mx-auto flex max-w-5xl flex-col items-center gap-6 overflow-hidden rounded-[2rem] bg-navy px-6 py-16 text-center sm:px-12">
-            <span aria-hidden="true" className="grain" />
-            <h2 className="relative z-10 text-3xl font-extrabold leading-[0.98] tracking-[-0.03em] text-white sm:text-5xl">
-              One Roundie a day, every day.
-            </h2>
-            <p className="relative z-10 max-w-md text-base leading-relaxed text-white/75">
-              Get the app and start claiming at venues across Brisbane.
-            </p>
-            <div className="relative z-10 mt-2 flex flex-col items-center gap-3">
-              <DownloadButtons center />
-              <Link
-                href="/"
-                className="text-sm font-semibold text-white/70 transition hover:text-white"
-              >
+        {/* Closing — navy slab */}
+        <section className="on-dark bg-navy px-5 py-28 sm:px-8 sm:py-32">
+          <div className="on-scroll mx-auto max-w-[96rem]">
+            <p className="kicker text-white/60">Get the app</p>
+            <ClosingHeadline
+              users={{ lead: "Five on us,", accent: "every month." }}
+              venues={{ lead: "Bring people through", accent: "your door." }}
+            />
+            <div className="mt-12 flex flex-col gap-4 border-t border-white/25 pt-10 sm:flex-row sm:items-center sm:justify-between">
+              <DownloadButtons />
+              <Link href="/" className="kicker text-white/60 transition-colors hover:text-white">
                 ← Back to home
               </Link>
             </div>

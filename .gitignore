@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local dev / verification tooling artifacts
+.dev-log.txt
+/.shots/
+website.shotslog.txt

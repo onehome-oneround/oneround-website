@@ -6,6 +6,7 @@ import Marquee from "@/components/Marquee";
 import FeatureSpotlight from "@/components/FeatureSpotlight";
 import HowItWorks from "@/components/HowItWorks";
 import WhatToExpect from "@/components/WhatToExpect";
+import VenueLogos from "@/components/VenueLogos";
 import GoodStuff from "@/components/GoodStuff";
 import Faq from "@/components/Faq";
 import Contact from "@/components/Contact";
@@ -21,10 +22,11 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Features />
-        <Marquee />
+        <Marquee tone="blue" />
         <FeatureSpotlight />
         <HowItWorks />
         <WhatToExpect />
+        <VenueLogos />
         <GoodStuff />
         <Faq />
         <Contact />

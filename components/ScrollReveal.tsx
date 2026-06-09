@@ -3,9 +3,11 @@
 import { useEffect } from "react";
 
 /*
-  Lightweight scroll reveal. Adds `.is-visible` to any `.on-scroll` or
-  `.on-scroll-card` element when it enters the viewport. CSS handles the
-  transition (see globals.css). Respects prefers-reduced-motion.
+  Scroll reveal. Adds `.is-visible` to any `.on-scroll` / `.on-scroll-card`
+  element once it has scrolled into the lower viewport. Uses a rAF-throttled
+  scroll/resize check (robust across programmatic jumps and sticky ancestors,
+  where a per-element IntersectionObserver proved unreliable). CSS handles the
+  transition (see globals.css). Honours prefers-reduced-motion.
 */
 
 export default function ScrollReveal() {
@@ -15,28 +17,41 @@ export default function ScrollReveal() {
     );
     if (!els.length) return;
 
-    if (
-      typeof IntersectionObserver === "undefined" ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      els.forEach((el) => el.classList.add("is-visible"));
+    const reveal = (el: HTMLElement) => el.classList.add("is-visible");
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      els.forEach(reveal);
       return;
     }
 
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
-    );
+    let ticking = false;
+    const check = () => {
+      ticking = false;
+      const vh = window.innerHeight;
+      for (let i = els.length - 1; i >= 0; i--) {
+        const el = els[i];
+        const r = el.getBoundingClientRect();
+        // Reveal once the element's top enters the lower ~12% of the viewport
+        // (and it isn't fully below the fold).
+        if (r.top < vh * 0.88 && r.bottom > 0) {
+          reveal(el);
+          els.splice(i, 1);
+        }
+      }
+    };
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(check);
+    };
 
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    check(); // reveal anything already in view on load
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   return null;
