@@ -36,7 +36,7 @@ const steps: Step[] = [
   {
     n: "02",
     title: "Scan the deal's QR code",
-    body: "At the venue, scan the deal's QR code to unlock the offer. Quick and contactless, and you can use as many deals as you like.",
+    body: "At the venue, scan the deal's QR code to unlock the offer. Quick and contactless.",
     visual: "phone",
     label: "app-deals-scan",
     intent: "Scan and redeem screen. Real UI later.",
@@ -44,7 +44,7 @@ const steps: Step[] = [
   {
     n: "03",
     title: "Enjoy",
-    body: "That is it. Enjoy your deal, then come back for the next one.",
+    body: "Enjoy your deal, and there is always another one waiting.",
     visual: "photo",
     label: "people-enjoying",
     intent: "Real photo, people enjoying a venue with food and drinks.",
