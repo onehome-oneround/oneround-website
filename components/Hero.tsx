@@ -2,7 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import DownloadButtons from "./DownloadButtons";
+// HIDDEN until launch - re-enable: app store links (user-side hero CTA)
+// import DownloadButtons from "./DownloadButtons";
 import PillButton from "./PillButton";
 import { useAudience } from "./AudienceProvider";
 
@@ -57,7 +58,8 @@ export default function Hero() {
 
   // On the blue slab, secondary text is navy for AA contrast; on navy, it's white.
   const soft = isVenue ? "text-white/72" : "text-navy/75";
-  const meta = isVenue ? "text-white/60" : "text-navy/60";
+  // HIDDEN until launch - re-enable: app store links (used by the user-side "Free download" line)
+  // const meta = isVenue ? "text-white/60" : "text-navy/60";
   // The accent word sits in the OPPOSITE brand colour to the slab.
   const accentColor = isVenue ? "var(--blue)" : "var(--navy)";
 
@@ -128,6 +130,18 @@ export default function Hero() {
               <p className={`text-base font-medium leading-relaxed sm:text-lg ${soft}`}>
                 {subhead}
               </p>
+              {/* The venue CTA stays; the user-side store badges are hidden until
+                  launch, so the CTA block only renders on the venue side for now. */}
+              {isVenue && (
+                <div className="mt-8 flex flex-col gap-3">
+                  <PillButton href="#contact" variant="solid" onDark>
+                    Become a partner for free
+                  </PillButton>
+                </div>
+              )}
+              {/* HIDDEN until launch - re-enable: app store links (user-side hero CTA).
+                  To restore, replace the venue-only block above with this ternary
+                  (and re-enable the DownloadButtons import + `meta` const):
               <div className="mt-8 flex flex-col gap-3">
                 {isVenue ? (
                   <PillButton href="#contact" variant="solid" onDark>
@@ -140,6 +154,7 @@ export default function Hero() {
                   </>
                 )}
               </div>
+              */}
             </div>
           </div>
 

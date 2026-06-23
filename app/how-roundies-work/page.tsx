@@ -3,7 +3,8 @@ import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Image from "next/image";
-import DownloadButtons from "@/components/DownloadButtons";
+// HIDDEN until launch - re-enable: app store links (closing CTA download badges)
+// import DownloadButtons from "@/components/DownloadButtons";
 import EditorialTag from "@/components/EditorialTag";
 import ClosingHeadline from "@/components/ClosingHeadline";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -145,13 +146,15 @@ export default function HowRoundiesWorkPage() {
         {/* Closing — navy slab */}
         <section className="on-dark bg-navy px-5 py-28 sm:px-8 sm:py-32">
           <div className="on-scroll mx-auto max-w-[96rem]">
-            <p className="kicker text-white/60">Get the app</p>
+            {/* HIDDEN until launch - re-enable: app store links ("Get the app" kicker) */}
+            {/* <p className="kicker text-white/60">Get the app</p> */}
             <ClosingHeadline
               users={{ lead: "Five on us,", accent: "every month." }}
               venues={{ lead: "Bring people through", accent: "your door." }}
             />
             <div className="mt-12 flex flex-col gap-4 border-t border-white/25 pt-10 sm:flex-row sm:items-center sm:justify-between">
-              <DownloadButtons />
+              {/* HIDDEN until launch - re-enable: app store links (download badges) */}
+              {/* <DownloadButtons /> */}
               <Link href="/" className="kicker text-white/60 transition-colors hover:text-white">
                 ← Back to home
               </Link>

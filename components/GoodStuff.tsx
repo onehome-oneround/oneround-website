@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import PillButton from "./PillButton";
-import DownloadButtons from "./DownloadButtons";
+// HIDDEN until launch - re-enable: app store links (user-side Good Stuff CTA)
+// import DownloadButtons from "./DownloadButtons";
 import EditorialTag from "./EditorialTag";
 import { useAudience } from "./AudienceProvider";
 
@@ -90,6 +91,18 @@ export default function GoodStuff() {
           ))}
         </ul>
 
+        {/* The venue partner button stays; the user-side store badges are hidden
+            until launch, so the CTA only renders on the venue side for now. */}
+        {isVenue && (
+          <div className="mt-12">
+            <PillButton href={copy.href} variant="solid" onDark>
+              {copy.cta}
+            </PillButton>
+          </div>
+        )}
+        {/* HIDDEN until launch - re-enable: app store links (user-side Good Stuff CTA).
+            To restore, replace the venue-only block above with this ternary
+            (and re-enable the DownloadButtons import):
         <div className="mt-12">
           {isVenue ? (
             <PillButton href={copy.href} variant="solid" onDark>
@@ -99,6 +112,7 @@ export default function GoodStuff() {
             <DownloadButtons />
           )}
         </div>
+        */}
       </div>
     </section>
   );

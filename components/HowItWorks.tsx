@@ -1,6 +1,7 @@
 "use client";
 
-import DownloadButtons from "./DownloadButtons";
+// HIDDEN until launch - re-enable: app store links (user-side "how it works" CTA)
+// import DownloadButtons from "./DownloadButtons";
 import PillButton from "./PillButton";
 import EditorialTag from "./EditorialTag";
 import { useAudience } from "./AudienceProvider";
@@ -59,6 +60,17 @@ export default function HowItWorks() {
               )}
             </h2>
           </div>
+          {/* The venue CTA stays; the user-side store badges are hidden until launch. */}
+          {isVenue && (
+            <div className="lg:col-span-4 lg:pb-2">
+              <PillButton href="/partners" variant="solid" onDark>
+                Partner with us
+              </PillButton>
+            </div>
+          )}
+          {/* HIDDEN until launch - re-enable: app store links (user-side "how it works" CTA).
+              To restore, replace the venue-only block above with this ternary
+              (and re-enable the DownloadButtons import):
           <div className="lg:col-span-4 lg:pb-2">
             {isVenue ? (
               <PillButton href="/partners" variant="solid" onDark>
@@ -68,6 +80,7 @@ export default function HowItWorks() {
               <DownloadButtons />
             )}
           </div>
+          */}
         </div>
 
         <ol className="mt-16 grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">

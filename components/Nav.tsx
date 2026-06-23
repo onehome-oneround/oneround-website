@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Logo from "./Logo";
 import AudienceToggle from "./AudienceToggle";
-import NavStore from "./NavStore";
+// HIDDEN until launch - re-enable: app store links (nav "Get the app" + store icons)
+// import NavStore from "./NavStore";
 
 /*
   Sticky nav — modelled on UniWorker's masthead, in OneRound's brand:
@@ -17,7 +18,8 @@ import NavStore from "./NavStore";
 const links = [
   { label: "How it works", href: "/#how-it-works" },
   { label: "FAQ", href: "/#faq" },
-  { label: "Partnered venues", href: "/partnered-venues" },
+  // HIDDEN until launch - re-enable: venue partners
+  // { label: "Partnered venues", href: "/partnered-venues" },
 ];
 
 export default function Nav() {
@@ -61,7 +63,8 @@ export default function Nav() {
               </Link>
             ))}
           </div>
-          <NavStore />
+          {/* HIDDEN until launch - re-enable: app store links (nav "Get the app" + store icons) */}
+          {/* <NavStore /> */}
 
           <button
             type="button"

@@ -6,11 +6,13 @@ import Marquee from "@/components/Marquee";
 import FeatureSpotlight from "@/components/FeatureSpotlight";
 import HowItWorks from "@/components/HowItWorks";
 import WhatToExpect from "@/components/WhatToExpect";
-import VenueLogos from "@/components/VenueLogos";
+// HIDDEN until launch - re-enable: venue partners (logo slider + "See partnered venues")
+// import VenueLogos from "@/components/VenueLogos";
 import GoodStuff from "@/components/GoodStuff";
 import Faq from "@/components/Faq";
 import Contact from "@/components/Contact";
-import ClosingCTA from "@/components/ClosingCTA";
+// HIDDEN until launch - re-enable: app store links (closing CTA is a download-only section)
+// import ClosingCTA from "@/components/ClosingCTA";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -26,11 +28,14 @@ export default function Home() {
         <FeatureSpotlight />
         <HowItWorks />
         <WhatToExpect />
-        <VenueLogos />
+        {/* HIDDEN until launch - re-enable: venue partners (logo slider + "See partnered venues") */}
+        {/* <VenueLogos /> */}
         <GoodStuff />
         <Faq />
         <Contact />
-        <ClosingCTA />
+        {/* HIDDEN until launch - re-enable: app store links (closing CTA is a download-only
+            section; the Footer sign-off below already carries the same headline) */}
+        {/* <ClosingCTA /> */}
       </main>
       <Footer />
       <ScrollReveal />

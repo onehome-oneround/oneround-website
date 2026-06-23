@@ -1,6 +1,16 @@
+// HIDDEN until launch - re-enable: venue partners
+// The Partnered Venues page is hidden until the venue partnerships are confirmed.
+// Any direct visit to /partnered-venues is redirected home so no venue details
+// are exposed. The full original page is preserved below as `PartneredVenuesContent`
+// (kept as a named export only so it stays valid and lint-clean while unused).
+//
+// To restore: delete the redirect export below and rename `PartneredVenuesContent`
+// back to `export default function PartneredVenuesPage`, then re-enable the nav and
+// footer links and the homepage venue logo slider.
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import EditorialTag from "@/components/EditorialTag";
@@ -15,6 +25,11 @@ export const metadata: Metadata = {
 };
 
 export default function PartneredVenuesPage() {
+  redirect("/");
+}
+
+// HIDDEN until launch - re-enable: venue partners (rename this back to the default export)
+export function PartneredVenuesContent() {
   return (
     <>
       <Nav />
