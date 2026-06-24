@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import Image from "next/image";
 // HIDDEN until launch - re-enable: app store links (closing CTA download badges)
 // import DownloadButtons from "@/components/DownloadButtons";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
 import EditorialTag from "@/components/EditorialTag";
 import ClosingHeadline from "@/components/ClosingHeadline";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -21,8 +21,7 @@ type Step = {
   title: string;
   body: string;
   visual: "phone" | "photo";
-  label: string;
-  intent: string;
+  src: string;
 };
 
 const steps: Step[] = [
@@ -31,24 +30,21 @@ const steps: Step[] = [
     title: "See what deals a venue is offering",
     body: "Open the app and browse a venue's deals to see what is on, then choose the one you want.",
     visual: "phone",
-    label: "app-deals-list",
-    intent: "Venue deals list screen. Real UI later.",
+    src: "/images/menu-deal.png",
   },
   {
     n: "02",
     title: "Scan the deal's QR code",
-    body: "At the venue, scan the deal's QR code to unlock the offer. Quick and contactless.",
+    body: "At the venue, scan the deal's QR code to unlock the offer.",
     visual: "phone",
-    label: "app-deals-scan",
-    intent: "Scan and redeem screen. Real UI later.",
+    src: "/images/qr-deal.png",
   },
   {
     n: "03",
     title: "Enjoy",
     body: "Enjoy your deal, and there is always another one waiting.",
     visual: "photo",
-    label: "people-enjoying",
-    intent: "Real photo, people enjoying a venue with food and drinks.",
+    src: "/images/enjoy-deal.png",
   },
 ];
 
@@ -100,24 +96,32 @@ export default function HowDealsWorkPage() {
                     }`}
                   >
                     {s.visual === "phone" ? (
-                      // Placeholder sized to the real phone image footprint used on the
-                      // roundies/social pages (4:5 box at max-w 300/340) so proportions
-                      // stay consistent. Swap for an <Image> when the UI is ready.
-                      <ImagePlaceholder
-                        label={s.label}
-                        intent={s.intent}
-                        tone="deep"
-                        fig={s.n}
-                        className="aspect-[4/5] w-full max-w-[300px] rounded-3xl sm:max-w-[340px]"
+                      <Image
+                        src={s.src}
+                        alt={s.title}
+                        width={3375}
+                        height={4219}
+                        sizes="(max-width: 1024px) 70vw, 340px"
+                        className="h-auto w-full max-w-[300px] sm:max-w-[340px]"
+                        style={{ objectFit: "contain" }}
                       />
                     ) : (
-                      <ImagePlaceholder
-                        label={s.label}
-                        intent={s.intent}
-                        tone="deep"
-                        fig={s.n}
-                        className="aspect-[4/5] w-full max-w-[420px] rounded-3xl"
-                      />
+                      <div className="relative aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-3xl bg-offwhite">
+                        <Image
+                          src={s.src}
+                          alt={s.title}
+                          fill
+                          quality={90}
+                          // The 3:2 source is cover-cropped into a 4:5 box, so the
+                          // browser scales it to fill by height. A width-only sizes
+                          // hint (e.g. 420px) under-provisions the height and the
+                          // browser upscales the result. Requesting a large slot makes
+                          // Next serve the full-resolution source (capped at 1537px).
+                          sizes="1024px"
+                          className="object-cover"
+                          style={{ objectFit: "cover", objectPosition: "center" }}
+                        />
+                      </div>
                     )}
                   </div>
                   <div
