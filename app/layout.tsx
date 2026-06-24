@@ -42,11 +42,11 @@ const siteUrl = "https://oneround.au";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "OneRound · However you go out, one app",
+    default: "OneRound",
     template: "%s · OneRound",
   },
   description:
-    "Five free food or drink items a month at Brisbane's best venues, exclusive deals you won't find anywhere else, and a live look at where everyone's headed. Whatever the occasion, one app.",
+    "OneRound gives you five free food or drink items every month at Brisbane's best venues, plus exclusive deals and a live look at where everyone is going.",
   applicationName: "OneRound",
   keywords: [
     "OneRound",
@@ -63,16 +63,25 @@ export const metadata: Metadata = {
     type: "website",
     url: siteUrl,
     siteName: "OneRound",
-    title: "OneRound · However you go out, one app",
+    title: "OneRound",
     description:
-      "Brisbane's going-out app. Five free food or drink items a month, exclusive deals, and a live look at where everyone's headed.",
+      "OneRound gives you five free food or drink items every month at Brisbane's best venues, plus exclusive deals and a live look at where everyone is going.",
     locale: "en_AU",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "OneRound",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "OneRound · However you go out, one app",
+    title: "OneRound",
     description:
-      "Brisbane's going-out app. Five free food or drink items a month, exclusive deals, and a live look at where everyone's headed.",
+      "OneRound gives you five free food or drink items every month at Brisbane's best venues, plus exclusive deals and a live look at where everyone is going.",
+    images: ["/og-image.png"],
   },
   robots: { index: true, follow: true },
 };
