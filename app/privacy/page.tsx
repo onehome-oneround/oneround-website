@@ -1,97 +1,60 @@
 import type { Metadata } from "next";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
+import LegalPage from "@/components/LegalPage";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "How ONEROUND PTY LTD collects and handles personal information on the OneRound website.",
+    "How OneRound Pty Ltd collects, uses and handles personal information.",
   alternates: { canonical: "https://oneround.au/privacy" },
 };
 
-/*
-  Real, finished privacy copy (no lorem), describing the current site. Recommend
-  a legal review before data handling expands with the app.
-*/
-
 export default function PrivacyPage() {
   return (
-    <>
-      <Nav />
-      <main className="flex-1 px-5 pb-24 pt-32 sm:px-8 sm:pt-40">
-        <article className="mx-auto max-w-2xl">
-          <p className="kicker accent-text">Legal</p>
-          <h1 className="mt-3 text-4xl font-extrabold tracking-[-0.03em] text-ink sm:text-5xl">
-            Privacy Policy
-          </h1>
-          <p className="mt-3 text-sm text-ink-faint">Last updated: June 2026</p>
-
-          <div className="mt-10 space-y-8 text-ink-soft [&_h2]:text-xl [&_h2]:font-extrabold [&_h2]:text-ink [&_p]:mt-3 [&_p]:leading-relaxed">
-            <section>
-              <p>
-                This policy explains how ONEROUND PTY LTD (&ldquo;OneRound&rdquo;,
-                &ldquo;we&rdquo;, &ldquo;us&rdquo;) collects and handles personal
-                information through this website,{" "}
-                <span className="text-ink">oneround.au</span>. We handle personal
-                information in line with the Australian Privacy Principles under
-                the Privacy Act 1988 (Cth).
-              </p>
-            </section>
-
-            <section>
-              <h2>What we collect</h2>
-              <p>
-                When you contact us by email we collect the details you choose to
-                send, such as your name and email address. We also collect basic,
-                non-identifying analytics about how the site is used (such as page
-                views and general device type).
-              </p>
-            </section>
-
-            <section>
-              <h2>How we use it</h2>
-              <p>
-                We use your details to respond to your enquiry and to operate and
-                improve the site. We don&rsquo;t sell your information, and we
-                won&rsquo;t send you unrelated marketing.
-              </p>
-            </section>
-
-            <section>
-              <h2>Who we share it with</h2>
-              <p>
-                We use trusted service providers to run the site (for example,
-                hosting and analytics). They only access your information to
-                provide those services to us. We may disclose information if
-                required by law.
-              </p>
-            </section>
-
-            <section>
-              <h2>Your choices</h2>
-              <p>
-                You can ask us to access, correct, or delete the information we
-                hold about you at any time by emailing us.
-              </p>
-            </section>
-
-            <section>
-              <h2>Contact us</h2>
-              <p>
-                For any privacy question or request, email us at{" "}
-                <a
-                  href="mailto:hello@oneround.au"
-                  className="font-semibold accent-text hover:underline"
-                >
-                  hello@oneround.au
-                </a>
-                .
-              </p>
-            </section>
-          </div>
-        </article>
-      </main>
-      <Footer />
-    </>
+    <LegalPage title="Privacy Policy">
+      <p>
+        Your privacy is very important to us. Accordingly, we have developed
+        this Policy in order for you to understand how we collect, use,
+        communicate and disclose and make use of personal information. The
+        following outlines our privacy policy.
+      </p>
+      <p>
+        Before or at the time of collecting personal information, we will
+        identify the purposes for which information is being collected.
+      </p>
+      <p>
+        We will collect and use of personal information solely with the
+        objective of fulfilling those purposes specified by us and for other
+        compatible purposes, unless consent of the individual concerned is
+        obtained or use of the information is required by law.
+      </p>
+      <p>
+        We will only retain personal information as long as necessary for the
+        fulfillment of those purposes.
+      </p>
+      <p>
+        We will collect personal information by lawful and fair means and, where
+        appropriate, with the knowledge or consent of the individual concerned.
+      </p>
+      <p>
+        Personal data should be relevant to the purposes for which it is to be
+        used, and, to the extent necessary for those purposes, should be
+        accurate, complete, and up-to-date.
+      </p>
+      <p>
+        We will protect personal information by reasonable security safeguards
+        against loss or theft, as well as unauthorized access, disclosure,
+        copying, use or modification.
+      </p>
+      <p>
+        We will make readily available to customers information about our
+        policies and practices relating to the management of personal
+        information.
+      </p>
+      <p>
+        We are committed to conducting our business in accordance with these
+        principles in order to ensure that the confidentiality of personal
+        information is protected and maintained.
+      </p>
+    </LegalPage>
   );
 }

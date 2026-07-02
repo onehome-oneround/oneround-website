@@ -340,3 +340,80 @@
   background: var(--blue);
   color: var(--white);
 }
+
+/* ----------------------------------------------------------------------
+   Legal prose — one shared system so Privacy, Members Terms and Venue Terms
+   render identically. Fraunces section headings, Hanken body, navy ink.
+   h2 = major section, h3 = subsection. Clause lists reproduce the source
+   numbering exactly (a) / lower-roman / bullets).
+   ---------------------------------------------------------------------- */
+.legal-prose {
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.72;
+}
+.legal-prose > * + * {
+  margin-top: 1.15rem;
+}
+.legal-prose h2 {
+  font-family: var(--font-display), Georgia, serif;
+  color: var(--ink);
+  font-size: 1.6rem;
+  line-height: 1.12;
+  font-weight: 600;
+  margin-top: 3rem;
+}
+.legal-prose h3 {
+  font-family: var(--font-display), Georgia, serif;
+  color: var(--ink);
+  font-size: 1.2rem;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-top: 2.1rem;
+}
+.legal-prose h2 + p,
+.legal-prose h3 + p {
+  margin-top: 0.85rem;
+}
+.legal-prose a {
+  color: var(--accent);
+  font-weight: 600;
+  transition: color 0.35s ease;
+}
+.legal-prose a:hover {
+  text-decoration: underline;
+}
+.legal-prose ol,
+.legal-prose ul {
+  margin-top: 1rem;
+  padding-left: 1.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.legal-prose ul {
+  list-style: disc;
+}
+.legal-prose ol.roman {
+  list-style: lower-roman;
+}
+.legal-prose li::marker {
+  color: var(--ink-faint);
+}
+/* a) b) c) — parenthesised lower-alpha via counter */
+.legal-prose ol.alpha {
+  list-style: none;
+  padding-left: 0;
+  counter-reset: alpha;
+}
+.legal-prose ol.alpha > li {
+  counter-increment: alpha;
+  position: relative;
+  padding-left: 1.9rem;
+}
+.legal-prose ol.alpha > li::before {
+  content: counter(alpha, lower-alpha) ")";
+  position: absolute;
+  left: 0;
+  color: var(--ink-faint);
+}

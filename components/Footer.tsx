@@ -70,10 +70,13 @@ export default function Footer() {
             <p className="kicker text-white/45">Legal</p>
             <ul className="mt-4 space-y-3">
               <li>
-                <Link href="/privacy" className="font-display text-lg text-white/85 transition-colors hover:text-blue">Privacy</Link>
+                <Link href="/privacy" className="font-display text-lg text-white/85 transition-colors hover:text-blue">Privacy Policy</Link>
               </li>
               <li>
                 <Link href="/terms" className="font-display text-lg text-white/85 transition-colors hover:text-blue">Terms</Link>
+              </li>
+              <li>
+                <Link href="/venue-terms" className="font-display text-lg text-white/85 transition-colors hover:text-blue">Venue Terms</Link>
               </li>
             </ul>
           </div>
