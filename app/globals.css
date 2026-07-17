@@ -276,34 +276,25 @@
   }
 }
 
-/* Scroll reveals are a settle, not a performance: a short fade with a small
-   lift. The clip-path wipes were removed — inset(0 0 100% 0) unveiling a whole
-   card reads as content assembling itself on every scroll, which is the bulk of
-   what feels "jumpy". Travel is 0.4rem (was 1.1rem) so nothing visibly moves. */
+/* Scroll reveals fade, full stop — nothing translates, wipes or drifts. Content
+   that slides as it enters reads as unfinished, and it never sits still while
+   you read. Opacity costs no layout and moves no pixels. */
 .on-scroll {
   opacity: 0;
-  transform: translateY(0.4rem);
-  transition:
-    opacity 0.4s ease,
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.35s ease;
   transition-delay: var(--d, 0s);
 }
 .on-scroll.is-visible {
   opacity: 1;
-  transform: none;
 }
 
 .on-scroll-card {
   opacity: 0;
-  transform: translateY(0.4rem);
-  transition:
-    opacity 0.4s ease,
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.35s ease;
   transition-delay: var(--d, 0s);
 }
 .on-scroll-card.is-visible {
   opacity: 1;
-  transform: none;
 }
 
 /* Interactive feedback for pills/buttons: colour only.
