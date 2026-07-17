@@ -11,7 +11,7 @@ import ClosingHeadline from "@/components/ClosingHeadline";
 export const metadata: Metadata = {
   title: "How Social works",
   description:
-    "See where your friends and the wider community are heading, pick your spot to go in the draw for weekly cash and prizes, and find your vibe.",
+    "See where your friends and the wider community are heading, pick your spot, and find your vibe. Members go in the draw for weekly cash and prizes with Weekly Wins.",
   alternates: { canonical: "https://oneround.au/how-social-works" },
 };
 
@@ -37,8 +37,8 @@ const steps: Step[] = [
   },
   {
     n: "02",
-    title: "Pick where you're going and show up, going in the draw for weekly cash and prizes",
-    body: "Choose your spot and show up. Showing up enters you in the draw for weekly cash and prizes.",
+    title: "Pick where you're going and show up, and as a member go in the draw for weekly cash and prizes",
+    body: "Choose your spot and show up. Members who show up go in the draw for weekly cash and prizes — Weekly Wins is part of membership.",
     visual: "phone",
     src: "/images/going-social.png",
     w: 3375,
@@ -78,9 +78,9 @@ export default function HowSocialWorksPage() {
               How Social <span className="italic accent-text">works.</span>
             </h1>
             <p className="mt-7 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
-              The social side is always free. It shows you where everyone is heading, so
-              you can decide where to go and meet up before you head out. Here is all
-              there is to it.
+              Seeing where everyone is heading is always free. It shows you where the
+              crowd is going, so you can decide where to go and meet up before you head
+              out. Here is all there is to it.
             </p>
           </div>
         </section>

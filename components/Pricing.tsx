@@ -14,7 +14,8 @@ import { useAudience } from "./AudienceProvider";
   reads as ONE object rather than items pinned to opposite corners of a slab.
   The section is only as tall as the card plus breathing room; no forced height.
   This follows the "Minimal Single Column" pattern for a single-plan product
-  (one price, ≤3 benefits, one centered CTA) rather than a multi-tier comparison.
+  (one price, a short benefit list, one centered CTA) rather than a multi-tier
+  comparison.
 
   Consumer only. Venues join free ("Free to join" / "Become a partner for free"),
   so a $11.99 membership price on the venue side would be wrong. Like Contact and
@@ -23,9 +24,10 @@ import { useAudience } from "./AudienceProvider";
 
   Voice: value line matches Features ("Five on us, every month.") — short warm
   fragments, no numbers, price framed against the reward it buys (a drink on us).
-  No maths, no "4× return". The list claims only membership features; faqData.ts
-  says the social side is "always free", so it isn't listed. There is no annual
-  plan, so nothing here references one.
+  No maths, no "4× return". The list claims only paid membership features, in the
+  in-app paywall's order. Weekly Wins is a membership perk (the app confirms it's
+  paid, not part of the free social side), so it heads the list. There is no
+  annual plan, so nothing here references one.
 
   Static by design: no reveal, no fade, no parallax, no hover movement.
 
@@ -34,6 +36,7 @@ import { useAudience } from "./AudienceProvider";
 */
 
 const INCLUDED = [
+  "Entry into Weekly Wins",
   "Five Roundies every month",
   "Exclusive member Deals at every venue",
   "Cancel anytime",

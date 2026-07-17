@@ -14,11 +14,11 @@ export const faqs: Faq[] = [
   },
   {
     q: "What do I get for $11.99/month?",
-    a: "OneRound membership is $11.99/month, with monthly and annual options. It gives you five Roundies a month: five complimentary items at participating venues. You can redeem one Roundie per outing, and once you redeem one there is a 12 hour gap before you can redeem again, up to five a month. Membership also unlocks exclusive Deals you won't find anywhere else. The app itself is free to download, and the social side, seeing where everyone's headed, is always free.",
+    a: "OneRound membership is $11.99/month. It gives you five Roundies a month: five complimentary items at participating venues. You can redeem one Roundie per outing, and once you redeem one there is a 12 hour gap before you can redeem again, up to five a month. Membership also unlocks exclusive Deals you won't find anywhere else, plus entry into Weekly Wins. The app itself is free to download, and seeing where your friends and the crowd are heading, browsing venues on the map, and general app access are always free.",
   },
   {
     q: "Is OneRound free?",
-    a: "The app is free to download, and the social side, seeing where everyone's headed, is always free. Roundies and Deals are part of OneRound membership, which is $11.99/month. Keep an eye out for our one month free codes to try everything at no cost.",
+    a: "The app is free to download, and seeing where your friends and the crowd are heading, browsing venues on the map, and general app access are always free. Roundies, Deals, and entry into Weekly Wins are part of OneRound membership, which is $11.99/month. Keep an eye out for our one month free codes to try everything at no cost.",
   },
   {
     q: "What's a Roundie?",
