@@ -29,10 +29,17 @@ import { useAudience } from "./AudienceProvider";
   paid, not part of the free social side), so it heads the list. There is no
   annual plan, so nothing here references one.
 
-  Static by design: no reveal, no fade, no parallax, no hover movement.
+  Static by design: no reveal, no fade, no parallax, no hover movement. (The
+  "fade" below is a static CSS gradient background, not motion.)
 
-  Colour is all tokens: blue slab, white card, navy ink, blue accent CTA + ticks.
-  Everything on the white card clears AA comfortably (navy on white is ~16:1).
+  Flow: this used to be a full-saturation blue slab, which hard-cut against the
+  navy GoodStuff above and the white FAQ below. It's now a static tonal gradient
+  — paper (top, catching GoodStuff's bottom fade) → tint (the softened "blue"
+  moment) → white (bottom, so it melts into the white FAQ with no seam). The
+  brand blue still reads via the CTA and price. Part of the "make it flow" pass.
+
+  Colour is all tokens: gradient ground, white card, navy ink, blue accent CTA +
+  ticks. Everything on the white card clears AA comfortably (navy on white ~16:1).
 */
 
 const INCLUDED = [
@@ -69,13 +76,18 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="scroll-mt-24 bg-[color:var(--accent)] px-5 py-20 sm:px-8 sm:py-24"
+      className="scroll-mt-24 px-5 py-20 sm:px-8 sm:py-24"
+      style={{
+        background:
+          "linear-gradient(180deg, var(--paper) 0%, var(--tint) 55%, var(--white) 100%)",
+      }}
     >
       <div className="mx-auto max-w-[96rem]">
         <EditorialTag index="07" label="Membership" className="text-navy" />
 
-        {/* The card — the single contained object. */}
-        <div className="mx-auto mt-12 w-full max-w-md bg-white px-8 py-10 sm:px-10 sm:py-12">
+        {/* The card — the single contained object. Rounded + lifted so it floats
+            on the tonal ground rather than sitting as another hard rectangle. */}
+        <div className="mx-auto mt-12 w-full max-w-md rounded-3xl bg-white px-8 py-10 shadow-[0_40px_90px_-45px_rgba(2,0,49,0.45)] sm:px-10 sm:py-12">
           <div className="flex items-baseline gap-3">
             <span
               className="font-display text-navy"

@@ -16,6 +16,15 @@
   --white: #ffffff;
   --offwhite: #f4f5fb;
 
+  /* Tonal-flow neutrals (added for the "make it flow" pass). The page used to be
+     a binary of full-saturation blue slabs and white; these give a graduated
+     descent — white → paper → tint → navy — so section seams read as considered
+     steps rather than hard contrast cuts. Both take navy ink at AA.
+       --paper : pale cool grey, the third neutral ground
+       --tint  : pale wash of --blue, for softened "blue" sections */
+  --paper: #e9edf7;
+  --tint: #dcebfc;
+
   --ink: #020031;
   --ink-soft: #3a3a55;
   --ink-faint: #75758e;

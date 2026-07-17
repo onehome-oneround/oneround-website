@@ -4,6 +4,7 @@ import Image from "next/image";
 // HIDDEN until launch - re-enable: app store links (user-side hero CTA)
 // import DownloadButtons from "./DownloadButtons";
 import PillButton from "./PillButton";
+import SectionFade from "./SectionFade";
 import { useAudience } from "./AudienceProvider";
 
 /*
@@ -45,7 +46,10 @@ export default function Hero() {
     // id is the target of the Pricing section's "Get Started" CTA — at launch
     // the store badges appear in this hero, so that CTA can point straight at them.
     <section id="get-the-app" className="relative scroll-mt-16 bg-[color:var(--accent)]">
-      <div>
+      {/* Bottom fade — the accent masthead melts into the white Features section
+          below instead of hard-cutting. Static gradient; content sits above it. */}
+      <SectionFade edge="bottom" color="var(--white)" height="h-32" />
+      <div className="relative z-10">
         <div className="mx-auto grid min-h-[100svh] max-w-[96rem] grid-cols-1 gap-0 px-5 pb-12 pt-20 sm:px-8 lg:grid-cols-12 lg:gap-0 lg:px-0 lg:pb-0 lg:pt-0">
           {/* LEFT — masthead, headline, subhead, CTAs */}
           <div className="flex flex-col justify-center lg:col-span-7 lg:py-24 lg:pl-8 lg:pr-12 xl:pl-12">

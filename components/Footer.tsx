@@ -2,13 +2,16 @@
 
 import Link from "next/link";
 import Logo from "./Logo";
+import SectionFade from "./SectionFade";
 import { useAudience } from "./AudienceProvider";
 
 /*
-  Footer — a hard NAVY slab closing the broadsheet (hard cut from the blue CTA).
-  Editorial grid with hairline rules, mono metadata, working socials, contact,
-  the 18+ responsible-service line, and legal. Display copy "OneRound"; fine print
-  uses the legal entity. Content unchanged.
+  Footer — a NAVY slab closing the broadsheet. Editorial grid with hairline
+  rules, mono metadata, working socials, contact, the 18+ responsible-service
+  line, and legal. Display copy "OneRound"; fine print uses the legal entity.
+
+  A top fade eases the paper-neutral Contact section above into this navy close,
+  so the page ends on a tonal step rather than the old hard cut.
 */
 
 const INSTAGRAM = "https://instagram.com/oneroundapp";
@@ -22,8 +25,11 @@ export default function Footer() {
   const accent = isVenue ? "walk in" : "get out";
   const tagline = isVenue ? "Their reason to walk in." : "Your reason to get out.";
   return (
-    <footer className="on-dark bg-navy px-5 py-16 sm:px-8">
-      <div className="mx-auto max-w-[96rem]">
+    <footer className="on-dark relative bg-navy px-5 py-16 sm:px-8">
+      {/* Top fade — the paper Contact section eases into this navy close. Short,
+          so it stays in the top padding above the sign-off. */}
+      <SectionFade edge="top" color="var(--paper)" height="h-16" />
+      <div className="relative z-10 mx-auto max-w-[96rem]">
         {/* Big sign-off */}
         <div className="hair-b grid grid-cols-1 gap-8 pb-12 lg:grid-cols-12 lg:items-end">
           <p

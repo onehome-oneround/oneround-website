@@ -4,6 +4,7 @@
 // import DownloadButtons from "./DownloadButtons";
 import PillButton from "./PillButton";
 import EditorialTag from "./EditorialTag";
+import SectionFade from "./SectionFade";
 import { useAudience } from "./AudienceProvider";
 
 /*
@@ -37,9 +38,12 @@ export default function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="scroll-mt-16 bg-blue px-5 py-24 sm:px-8 sm:py-32"
+      className="relative scroll-mt-16 bg-blue px-5 py-24 sm:px-8 sm:py-32"
     >
-      <div className="mx-auto max-w-[96rem]">
+      {/* Bottom fade — the one deliberate saturated-blue slab melts into the
+          white WhatToExpect below instead of hard-cutting. */}
+      <SectionFade edge="bottom" color="var(--white)" height="h-32" />
+      <div className="relative z-10 mx-auto max-w-[96rem]">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
             <EditorialTag index="04" label="How it works" className="text-white" />
@@ -87,7 +91,7 @@ export default function HowItWorks() {
           {steps.map((s, i) => (
             <li
               key={i}
-              className="rounded-2xl bg-white p-7 shadow-[0_26px_55px_-26px_rgba(2,0,49,0.55)] sm:p-8"
+              className="rounded-3xl bg-white p-7 shadow-[0_26px_55px_-26px_rgba(2,0,49,0.55)] sm:p-8"
               style={{ display: "flex", flexDirection: "column", height: "100%" }}
             >
               <span className="index-num accent-text text-6xl leading-none">0{i + 1}</span>

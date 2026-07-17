@@ -1,5 +1,6 @@
 import Image from "next/image";
 import PillButton from "./PillButton";
+import SectionFade from "./SectionFade";
 import { publicVenues, type Venue } from "./venues";
 
 /*
@@ -80,13 +81,16 @@ export default function VenueLogos() {
   return (
     <section
       aria-label="Partner venues"
-      className="on-dark w-full overflow-hidden border-b border-white/15 bg-navy py-16 sm:py-20"
+      className="on-dark relative w-full overflow-hidden border-b border-white/15 bg-navy py-16 sm:py-20"
     >
-      <div className="flex flex-col gap-12 sm:gap-14">
+      {/* Top fade — the white WhatToExpect above eases into this navy strip.
+          Kept short so it stays in the top padding and never washes the logos. */}
+      <SectionFade edge="top" color="var(--white)" height="h-16" />
+      <div className="relative z-10 flex flex-col gap-12 sm:gap-14">
         <Row />
         <Row reverse />
       </div>
-      <div className="mt-14 flex justify-center px-5 sm:mt-16 sm:px-8">
+      <div className="relative z-10 mt-14 flex justify-center px-5 sm:mt-16 sm:px-8">
         <PillButton href="/partnered-venues" variant="solid" onDark>
           See partnered venues
         </PillButton>

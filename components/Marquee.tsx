@@ -9,7 +9,7 @@ import { useAudience } from "./AudienceProvider";
   hover; frozen for reduced-motion. tone + direction stay configurable.
 */
 
-type Tone = "navy" | "blue" | "white";
+type Tone = "navy" | "blue" | "tint" | "white";
 
 const USER_WORDS = [
   "Five free items a month",
@@ -30,6 +30,7 @@ const VENUE_WORDS = [
 const toneClass: Record<Tone, string> = {
   navy: "bg-navy text-white",
   blue: "bg-blue text-white",
+  tint: "bg-[color:var(--tint)] text-ink",
   white: "bg-white text-ink",
 };
 
@@ -38,7 +39,7 @@ function Sep({ tone }: { tone: Tone }) {
     <span
       aria-hidden="true"
       className={`px-5 font-mono text-xs sm:px-8 ${
-        tone === "white" ? "text-blue" : "text-white/55"
+        tone === "navy" || tone === "blue" ? "text-white/55" : "text-blue"
       }`}
     >
       ✳

@@ -119,7 +119,7 @@ export default function Features() {
           {features.map((f) => (
             <article
               key={f.n}
-              className="overflow-hidden rounded-2xl border border-[color:var(--rule)] bg-white shadow-[0_18px_44px_-28px_rgba(2,0,49,0.3)]"
+              className="overflow-hidden rounded-3xl border border-[color:var(--rule)] bg-white shadow-[0_18px_44px_-28px_rgba(2,0,49,0.3)]"
               style={{
                 display: "flex",
                 flexDirection: "column",
