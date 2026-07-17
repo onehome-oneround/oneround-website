@@ -18,8 +18,7 @@ import AudienceToggle from "./AudienceToggle";
 const links = [
   { label: "How it works", href: "/#how-it-works" },
   { label: "FAQ", href: "/#faq" },
-  // HIDDEN until launch - re-enable: venue partners
-  // { label: "Partnered venues", href: "/partnered-venues" },
+  { label: "Partnered venues", href: "/partnered-venues" },
 ];
 
 export default function Nav() {

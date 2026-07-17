@@ -3,6 +3,10 @@
   Descriptions are GENERIC PLACEHOLDER drafts to be replaced with real copy.
   `logo` carries intrinsic dimensions so it can be normalised to a consistent
   height (width auto) without distortion. `photo` is the venue's card header.
+
+  Only venues that have confirmed being named publicly are shown. Everything else
+  stays in this list, assets and all, but must render NOWHERE until it confirms:
+  always read `publicVenues` (below), never `venues`, from anything user-facing.
 */
 
 export type Venue = {
@@ -13,6 +17,8 @@ export type Venue = {
   // `screen` blends a logo with a baked-in black background onto navy (drops the black).
   logo: { src: string; w: number; h: number; invert?: boolean; screen?: boolean };
   photo: string;
+  // Has the venue confirmed we can name them publicly? Gates all display.
+  confirmed?: boolean;
 };
 
 export const venues: Venue[] = [
@@ -23,6 +29,7 @@ export const venues: Venue[] = [
       "A Brisbane favourite for an easy afternoon or a big night out. Claim a Roundie and settle in. [Placeholder, final copy to come.]",
     logo: { src: "/images/logo-normanby.png", w: 3750, h: 1969, invert: true },
     photo: "/images/venue-normanby.jpg",
+    confirmed: true,
   },
   {
     name: "The Magee",
@@ -31,7 +38,10 @@ export const venues: Venue[] = [
       "Local, lively and always on. Drop in, redeem a Roundie, and see where the night heads next. [Placeholder, final copy to come.]",
     logo: { src: "/images/logo-magee.png", w: 1466, h: 818 },
     photo: "/images/venue-magee.jpg",
+    confirmed: true,
   },
+  // Mi Casa and Spice Nightlife have not confirmed public naming, so they carry no
+  // `confirmed` flag and are held out of `publicVenues`. Add the flag once they do.
   {
     name: "Mi Casa",
     slug: "mi-casa",
@@ -47,6 +57,7 @@ export const venues: Venue[] = [
       "Late nights and big energy. Find Sugar on the map and head where the crowd is going. [Placeholder, final copy to come.]",
     logo: { src: "/images/logo-sugar.png", w: 512, h: 512 },
     photo: "/images/venue-sugar.png",
+    confirmed: true,
   },
   {
     name: "Spice Nightlife",
@@ -57,3 +68,6 @@ export const venues: Venue[] = [
     photo: "/images/venue-spice.jpg",
   },
 ];
+
+// The only venues that may appear anywhere user-facing.
+export const publicVenues: Venue[] = venues.filter((v) => v.confirmed);

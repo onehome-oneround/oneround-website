@@ -54,8 +54,7 @@ export default function Footer() {
               {[
                 { label: "How it works", href: "/#how-it-works" },
                 { label: "FAQ", href: "/#faq" },
-                // HIDDEN until launch - re-enable: venue partners
-                // { label: "Partnered Venues", href: "/partnered-venues" },
+                { label: "Partnered Venues", href: "/partnered-venues" },
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="font-display text-lg text-white/85 transition-colors hover:text-blue">

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import PillButton from "./PillButton";
-import { venues } from "./venues";
+import { publicVenues, type Venue } from "./venues";
 
 /*
   Venue logo slider — two full-bleed rows scrolling in OPPOSITE directions, a
@@ -13,9 +13,23 @@ import { venues } from "./venues";
   spaced, edge to edge. (Full-colour venue photos live on the Partnered Venues page.)
 */
 
-const sequence = [...venues, ...venues, ...venues];
+// Each half of the track must out-run the widest viewport, or the loop's
+// translateX(-50%) reveals dead space at the tail. Cells are a fixed 13rem, so
+// repeat the venues until a half spans >= 15 cells (195rem ≈ 3120px) however few
+// venues are confirmed.
+const CELLS_PER_HALF = 15;
+const REPEATS = publicVenues.length
+  ? Math.ceil(CELLS_PER_HALF / publicVenues.length)
+  : 0;
+const sequence = Array.from({ length: REPEATS }, () => publicVenues).flat();
 
-function Logo({ v }: { v: (typeof venues)[number] }) {
+// The rows scroll opposite ways, but with only a handful of venues an identical
+// order in both reads as one mirrored strip. Offsetting the reverse row's start
+// keeps the two from marching in lockstep.
+const offset = Math.floor(publicVenues.length / 2);
+const reverseSequence = [...sequence.slice(offset), ...sequence.slice(0, offset)];
+
+function Logo({ v }: { v: Venue }) {
   // Each logo sits centred in an identical fixed-width cell, so the cadence is
   // perfectly even regardless of how wide each logo is (the cause of the
   // bunched/gappy look when spacing by margins). Height normalised inline.
@@ -43,12 +57,13 @@ function Logo({ v }: { v: (typeof venues)[number] }) {
 }
 
 function Row({ reverse }: { reverse?: boolean }) {
+  const cells = reverse ? reverseSequence : sequence;
   return (
     <div className={`marquee w-full ${reverse ? "marquee--rev" : ""}`}>
       <div className="marquee__track">
         {[0, 1].map((seq) => (
           <span key={seq} className="flex items-center">
-            {sequence.map((v, i) => (
+            {cells.map((v, i) => (
               <Logo key={`${seq}-${i}`} v={v} />
             ))}
           </span>
@@ -59,6 +74,9 @@ function Row({ reverse }: { reverse?: boolean }) {
 }
 
 export default function VenueLogos() {
+  // No confirmed venues means no slider at all, rather than an empty navy slab.
+  if (!publicVenues.length) return null;
+
   return (
     <section
       aria-label="Partner venues"

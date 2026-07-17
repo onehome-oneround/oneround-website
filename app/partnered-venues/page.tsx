@@ -1,21 +1,13 @@
-// HIDDEN until launch - re-enable: venue partners
-// The Partnered Venues page is hidden until the venue partnerships are confirmed.
-// Any direct visit to /partnered-venues is redirected home so no venue details
-// are exposed. The full original page is preserved below as `PartneredVenuesContent`
-// (kept as a named export only so it stays valid and lint-clean while unused).
-//
-// To restore: delete the redirect export below and rename `PartneredVenuesContent`
-// back to `export default function PartneredVenuesPage`, then re-enable the nav and
-// footer links and the homepage venue logo slider.
+// Only venues that have confirmed public naming are listed here — the page reads
+// `publicVenues`, never the full `venues` list. See components/venues.ts.
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { redirect } from "next/navigation";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import EditorialTag from "@/components/EditorialTag";
 import ScrollReveal from "@/components/ScrollReveal";
-import { venues } from "@/components/venues";
+import { publicVenues } from "@/components/venues";
 
 export const metadata: Metadata = {
   title: "Partnered venues",
@@ -24,12 +16,25 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://oneround.au/partnered-venues" },
 };
 
-export default function PartneredVenuesPage() {
-  redirect("/");
-}
+/*
+  The grid is 1 / 2 / 3 columns, so the venue count decides how much of the last
+  row the trailing cell has to itself. Left as a single cell it would strand empty
+  cells beside it, which read as bare rule-coloured blocks — so it stretches to
+  fill the remainder, becoming a full-width band when the venues divide evenly.
+  (Class names are spelled out in full so Tailwind still emits them.)
+*/
+const trailingSpan = [
+  publicVenues.length % 2 === 0 ? "sm:col-span-2" : "",
+  publicVenues.length % 3 === 0
+    ? "lg:col-span-3 lg:flex-row lg:items-center lg:gap-8"
+    : publicVenues.length % 3 === 1
+      ? "lg:col-span-2"
+      : "",
+]
+  .filter(Boolean)
+  .join(" ");
 
-// HIDDEN until launch - re-enable: venue partners (rename this back to the default export)
-export function PartneredVenuesContent() {
+export default function PartneredVenuesPage() {
   return (
     <>
       <Nav />
@@ -67,7 +72,7 @@ export function PartneredVenuesContent() {
         {/* Venue grid */}
         <section className="bg-white px-5 pb-24 sm:px-8 sm:pb-28">
           <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-px border border-[color:var(--rule)] bg-[color:var(--rule)] sm:grid-cols-2 lg:grid-cols-3">
-            {venues.map((v, i) => (
+            {publicVenues.map((v, i) => (
               <article
                 key={v.slug}
                 className="on-scroll-card group flex flex-col bg-white"
@@ -95,7 +100,9 @@ export function PartneredVenuesContent() {
             ))}
 
             {/* Trailing cell — keeps the grid tidy + nods at what's next */}
-            <article className="flex flex-col items-start justify-center gap-4 bg-offwhite p-7">
+            <article
+              className={`flex flex-col items-start justify-center gap-4 bg-offwhite p-7 ${trailingSpan}`}
+            >
               <span className="index-num accent-text text-5xl">+</span>
               <p className="font-display text-2xl font-medium leading-tight text-ink">
                 More venues, all the time.

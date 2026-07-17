@@ -6,8 +6,7 @@ import Marquee from "@/components/Marquee";
 import FeatureSpotlight from "@/components/FeatureSpotlight";
 import HowItWorks from "@/components/HowItWorks";
 import WhatToExpect from "@/components/WhatToExpect";
-// HIDDEN until launch - re-enable: venue partners (logo slider + "See partnered venues")
-// import VenueLogos from "@/components/VenueLogos";
+import VenueLogos from "@/components/VenueLogos";
 import GoodStuff from "@/components/GoodStuff";
 import Faq from "@/components/Faq";
 import Contact from "@/components/Contact";
@@ -28,8 +27,7 @@ export default function Home() {
         <FeatureSpotlight />
         <HowItWorks />
         <WhatToExpect />
-        {/* HIDDEN until launch - re-enable: venue partners (logo slider + "See partnered venues") */}
-        {/* <VenueLogos /> */}
+        <VenueLogos />
         <GoodStuff />
         <Faq />
         <Contact />
