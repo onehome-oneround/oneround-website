@@ -8,6 +8,7 @@ import HowItWorks from "@/components/HowItWorks";
 import WhatToExpect from "@/components/WhatToExpect";
 import VenueLogos from "@/components/VenueLogos";
 import GoodStuff from "@/components/GoodStuff";
+import Pricing from "@/components/Pricing";
 import Faq from "@/components/Faq";
 import Contact from "@/components/Contact";
 // HIDDEN until launch - re-enable: app store links (closing CTA is a download-only section)
@@ -28,6 +29,7 @@ export default function Home() {
         <WhatToExpect />
         <VenueLogos />
         <GoodStuff />
+        <Pricing />
         <Faq />
         <Contact />
         {/* HIDDEN until launch - re-enable: app store links (closing CTA is a download-only

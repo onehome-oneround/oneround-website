@@ -1,5 +1,9 @@
-/* Shared FAQ content. Used by the home FAQ section. Pricing ($12/month) appears
-   here only, never in the hero or feature sections. */
+/* Shared FAQ content. Used by the home FAQ section.
+
+   Pricing ($11.99/month) also appears in the Pricing section directly above the
+   FAQ on the home page. It is still kept out of the hero and the feature
+   sections. If the price changes, change it in BOTH places — components/Pricing.tsx
+   renders it too, and the two sit within a screen of each other. */
 
 export type Faq = { q: string; a: string };
 
@@ -9,12 +13,12 @@ export const faqs: Faq[] = [
     a: "OneRound is a social going-out app that shows you where everyone's headed and rewards you for getting out. See where your friends and the crowd are going in real time, claim complimentary items at participating venues with Roundies, and unlock exclusive Deals.",
   },
   {
-    q: "What do I get for $12/month?",
-    a: "OneRound membership is $12/month, with monthly and annual options. It gives you five Roundies a month: five complimentary items at participating venues. You can redeem one Roundie per outing, and once you redeem one there is a 12 hour gap before you can redeem again, up to five a month. Membership also unlocks exclusive Deals you won't find anywhere else. The app itself is free to download, and the social side, seeing where everyone's headed, is always free.",
+    q: "What do I get for $11.99/month?",
+    a: "OneRound membership is $11.99/month, with monthly and annual options. It gives you five Roundies a month: five complimentary items at participating venues. You can redeem one Roundie per outing, and once you redeem one there is a 12 hour gap before you can redeem again, up to five a month. Membership also unlocks exclusive Deals you won't find anywhere else. The app itself is free to download, and the social side, seeing where everyone's headed, is always free.",
   },
   {
     q: "Is OneRound free?",
-    a: "The app is free to download, and the social side, seeing where everyone's headed, is always free. Roundies and Deals are part of OneRound membership, which is $12/month. Keep an eye out for our one month free codes to try everything at no cost.",
+    a: "The app is free to download, and the social side, seeing where everyone's headed, is always free. Roundies and Deals are part of OneRound membership, which is $11.99/month. Keep an eye out for our one month free codes to try everything at no cost.",
   },
   {
     q: "What's a Roundie?",

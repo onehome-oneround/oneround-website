@@ -85,7 +85,7 @@ export default function Contact() {
       <section id="contact" className="scroll-mt-28 bg-offwhite px-5 py-24 sm:px-8 sm:py-28">
         <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-5">
-            <EditorialTag index="08" label="Contact" className="accent-text" />
+            <EditorialTag index="09" label="Contact" className="accent-text" />
             <h2
               className="mt-8 text-ink"
               style={{ fontSize: "clamp(2.6rem, 5.6vw, 6rem)", lineHeight: "1.0", fontWeight: 600 }}
@@ -108,7 +108,7 @@ export default function Contact() {
     <section id="contact" className="scroll-mt-28 bg-offwhite px-5 py-24 sm:px-8 sm:py-28">
       <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-8">
-          <EditorialTag index="08" label="Contact" className="accent-text" />
+          <EditorialTag index="09" label="Contact" className="accent-text" />
           <h2
             className="mt-8 text-ink"
             style={{ fontSize: "clamp(2.6rem, 5.6vw, 6rem)", lineHeight: "1.0", fontWeight: 600 }}

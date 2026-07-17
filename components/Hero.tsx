@@ -42,7 +42,9 @@ export default function Hero() {
   const accentColor = isVenue ? "var(--blue)" : "var(--navy)";
 
   return (
-    <section className="relative bg-[color:var(--accent)]">
+    // id is the target of the Pricing section's "Get Started" CTA — at launch
+    // the store badges appear in this hero, so that CTA can point straight at them.
+    <section id="get-the-app" className="relative scroll-mt-16 bg-[color:var(--accent)]">
       <div>
         <div className="mx-auto grid min-h-[100svh] max-w-[96rem] grid-cols-1 gap-0 px-5 pb-12 pt-20 sm:px-8 lg:grid-cols-12 lg:gap-0 lg:px-0 lg:pb-0 lg:pt-0">
           {/* LEFT — masthead, headline, subhead, CTAs */}
