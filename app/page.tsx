@@ -13,7 +13,6 @@ import Contact from "@/components/Contact";
 // HIDDEN until launch - re-enable: app store links (closing CTA is a download-only section)
 // import ClosingCTA from "@/components/ClosingCTA";
 import Footer from "@/components/Footer";
-import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Home() {
   return (
@@ -36,7 +35,6 @@ export default function Home() {
         {/* <ClosingCTA /> */}
       </main>
       <Footer />
-      <ScrollReveal />
     </>
   );
 }

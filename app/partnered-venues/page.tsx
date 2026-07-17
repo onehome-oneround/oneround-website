@@ -6,7 +6,6 @@ import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import EditorialTag from "@/components/EditorialTag";
-import ScrollReveal from "@/components/ScrollReveal";
 import { publicVenues } from "@/components/venues";
 
 export const metadata: Metadata = {
@@ -73,11 +72,7 @@ export default function PartneredVenuesPage() {
         <section className="bg-white px-5 pb-24 sm:px-8 sm:pb-28">
           <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-px border border-[color:var(--rule)] bg-[color:var(--rule)] sm:grid-cols-2 lg:grid-cols-3">
             {publicVenues.map((v, i) => (
-              <article
-                key={v.slug}
-                className="on-scroll-card group flex flex-col bg-white"
-                style={{ ["--d" as string]: `${(i % 3) * 0.1}s` }}
-              >
+              <article key={v.slug} className="group flex flex-col bg-white">
                 <div className="relative aspect-[4/3] w-full overflow-hidden">
                   <Image
                     src={v.photo}
@@ -133,7 +128,6 @@ export default function PartneredVenuesPage() {
         </section>
       </main>
       <Footer />
-      <ScrollReveal />
     </>
   );
 }

@@ -12,7 +12,7 @@ export default function Faq() {
   return (
     <section id="faq" className="scroll-mt-16 bg-white px-5 py-24 sm:px-8 sm:py-28">
       <div className="mx-auto max-w-[96rem]">
-        <div className="on-scroll grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
             <EditorialTag index="07" label="Good to know" className="accent-text" />
             <h2
@@ -31,7 +31,7 @@ export default function Faq() {
           </p>
         </div>
 
-        <div className="on-scroll mt-12">
+        <div className="mt-12">
           <FaqAccordion items={faqs} />
         </div>
       </div>

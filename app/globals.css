@@ -231,11 +231,14 @@
 }
 
 /* ----------------------------------------------------------------------
-   Motion kit — crafted, not default fade slop.
-   - .rise        : staggered load reveal (hero)
-   - .mask/.mask>i: line-mask wipe for headlines
-   - .on-scroll   : refined clip+rise on scroll (via ScrollReveal → .is-visible)
-   - .on-scroll-card : editorial wipe-up for grid items, staggered
+   Motion kit — load only. Nothing animates on scroll.
+   - .rise        : load reveal (hero subhead/CTA)
+   - .mask/.mask>i: line-mask wipe for headlines — the one deliberate moment
+
+   There were also .on-scroll / .on-scroll-card reveals driven by a ScrollReveal
+   component. They're gone: sections now render as they are. If you're
+   reintroducing scroll reveals, that's a product decision that was explicitly
+   reversed once — check before spending time on it.
    ---------------------------------------------------------------------- */
 @keyframes rise {
   from {
@@ -276,27 +279,6 @@
   }
 }
 
-/* Scroll reveals fade, full stop — nothing translates, wipes or drifts. Content
-   that slides as it enters reads as unfinished, and it never sits still while
-   you read. Opacity costs no layout and moves no pixels. */
-.on-scroll {
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  transition-delay: var(--d, 0s);
-}
-.on-scroll.is-visible {
-  opacity: 1;
-}
-
-.on-scroll-card {
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  transition-delay: var(--d, 0s);
-}
-.on-scroll-card.is-visible {
-  opacity: 1;
-}
-
 /* Interactive feedback for pills/buttons: colour only.
    This used to scale(0.97) on press. Buttons that resize under the cursor read
    as unstable and, on a press, move the very thing being pressed — so the
@@ -330,8 +312,6 @@
      would leave them invisible. */
   .rise,
   .mask > i,
-  .on-scroll,
-  .on-scroll-card,
   .accent-ital::after {
     animation: none !important;
     transition: none !important;

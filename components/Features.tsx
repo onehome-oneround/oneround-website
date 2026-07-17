@@ -86,7 +86,7 @@ export default function Features() {
   return (
     <section className="bg-white px-5 pb-4 pt-20 sm:px-8 sm:pt-28">
       <div className="mx-auto max-w-[96rem]">
-        <div className="on-scroll grid grid-cols-1 gap-y-6 lg:grid-cols-12 lg:items-end">
+        <div className="grid grid-cols-1 gap-y-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
             <EditorialTag index="02" label="Introducing OneRound" className="accent-text" />
             <h2
@@ -116,12 +116,11 @@ export default function Features() {
         </div>
 
         <div className="mt-14 grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3">
-          {features.map((f, i) => (
+          {features.map((f) => (
             <article
               key={f.n}
-              className="on-scroll-card overflow-hidden rounded-2xl border border-[color:var(--rule)] bg-white shadow-[0_18px_44px_-28px_rgba(2,0,49,0.3)]"
+              className="overflow-hidden rounded-2xl border border-[color:var(--rule)] bg-white shadow-[0_18px_44px_-28px_rgba(2,0,49,0.3)]"
               style={{
-                ["--d" as string]: `${i * 0.12}s`,
                 display: "flex",
                 flexDirection: "column",
                 height: "100%",

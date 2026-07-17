@@ -83,7 +83,7 @@ export default function Contact() {
   if (isVenue) {
     return (
       <section id="contact" className="scroll-mt-28 bg-offwhite px-5 py-24 sm:px-8 sm:py-28">
-        <div className="on-scroll mx-auto grid max-w-[96rem] grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
+        <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-5">
             <EditorialTag index="08" label="Contact" className="accent-text" />
             <h2
@@ -106,7 +106,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="scroll-mt-28 bg-offwhite px-5 py-24 sm:px-8 sm:py-28">
-      <div className="on-scroll mx-auto grid max-w-[96rem] grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
+      <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-8">
           <EditorialTag index="08" label="Contact" className="accent-text" />
           <h2

@@ -17,7 +17,7 @@ export default function ClosingCTA() {
   const accent = isVenue ? "walk in" : "get out";
   return (
     <section id="download" className="scroll-mt-16 bg-blue px-5 py-28 sm:px-8 sm:py-36">
-      <div className="on-scroll mx-auto max-w-[96rem]">
+      <div className="mx-auto max-w-[96rem]">
         <p className="kicker text-white/70">Download / Free / iOS + Android</p>
         <h2
           className="mt-8 max-w-[18ch] text-white"

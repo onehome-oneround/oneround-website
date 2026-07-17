@@ -7,7 +7,6 @@ import Image from "next/image";
 // import DownloadButtons from "@/components/DownloadButtons";
 import EditorialTag from "@/components/EditorialTag";
 import ClosingHeadline from "@/components/ClosingHeadline";
-import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "How Roundies work",
@@ -88,7 +87,7 @@ export default function HowRoundiesWorkPage() {
               return (
                 <div
                   key={s.n}
-                  className="on-scroll grid items-center gap-8 border-t border-[color:var(--rule)] py-10 lg:grid-cols-2 lg:gap-16 lg:py-12"
+                  className="grid items-center gap-8 border-t border-[color:var(--rule)] py-10 lg:grid-cols-2 lg:gap-16 lg:py-12"
                 >
                   <div
                     className={`flex justify-center ${
@@ -145,7 +144,7 @@ export default function HowRoundiesWorkPage() {
 
         {/* Closing — navy slab */}
         <section className="on-dark bg-navy px-5 py-28 sm:px-8 sm:py-32">
-          <div className="on-scroll mx-auto max-w-[96rem]">
+          <div className="mx-auto max-w-[96rem]">
             {/* HIDDEN until launch - re-enable: app store links ("Get the app" kicker) */}
             {/* <p className="kicker text-white/60">Get the app</p> */}
             <ClosingHeadline
@@ -163,7 +162,6 @@ export default function HowRoundiesWorkPage() {
         </section>
       </main>
       <Footer />
-      <ScrollReveal />
     </>
   );
 }
