@@ -86,6 +86,27 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+/*
+  Pre-paint state resolution. Both the audience accent and the splash live in
+  browser storage, which the server can't read — so React only learns about them
+  in an effect, i.e. after the first paint. That produced two visible flashes:
+  a returning "venue" visitor saw the blue accent repaint navy, and anyone who'd
+  already dismissed the splash saw it flash up and vanish.
+
+  This runs synchronously during HTML parse, before the browser paints, and
+  writes both answers onto <html> as data attributes. CSS keys off them
+  (globals.css), so the first paint is already correct — no repaint, no flash.
+
+  It must be a plain inline <script>, not next/script: `beforeInteractive`
+  explicitly does not block hydration and Next controls its placement, so it
+  cannot guarantee execution before paint. Keep this tiny and dependency-free —
+  it is parse-blocking, so every byte is on the critical path.
+
+  Storage keys are duplicated from AudienceProvider/Splash by necessity (this
+  string ships to the browser before any module loads); keep them in sync.
+*/
+const PRE_PAINT = `(function(){try{var d=document.documentElement;var v=null;try{v=new URLSearchParams(location.search).get("view")}catch(e){}var a=v==="venue"?"venue":v==="users"?"consumer":localStorage.getItem("oneround-audience");if(a==="venue"||a==="consumer")d.setAttribute("data-audience",a);if(sessionStorage.getItem("oneround-splash-seen"))d.setAttribute("data-splash-seen","1")}catch(e){}})()`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -95,7 +116,13 @@ export default function RootLayout({
     <html
       lang="en-AU"
       className={`${fraunces.variable} ${hanken.variable} ${spaceMono.variable} h-full antialiased`}
+      // The script below mutates <html> before React hydrates, which React would
+      // otherwise flag as a server/client attribute mismatch.
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: PRE_PAINT }} />
+      </head>
       <body className="min-h-full flex flex-col bg-white text-ink">
         <AudienceProvider>{children}</AudienceProvider>
       </body>

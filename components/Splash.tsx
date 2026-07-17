@@ -8,6 +8,15 @@ import { useAudience } from "./AudienceProvider";
   Entry splash — "Choose your path". A hard two-slab split (Users = blue,
   Venues = navy) that stacks on mobile. Type-dominant editorial: mono label +
   giant Fraunces. Shown once per browser session; both choices set the accent.
+
+  Flash: `show` starts true because SSR cannot read sessionStorage, so returning
+  visitors used to get a full-screen splash painted and then yanked away once the
+  effect ran. The pre-paint script in app/layout.tsx now sets data-splash-seen on
+  <html> before paint and globals.css hides [data-splash-root] on that, so this
+  still mounts-then-unmounts but is never visible. markSeen() sets the attribute
+  too, so a client-side remount of this route stays covered.
+
+  SEEN_KEY is duplicated in that inline script — keep the two in sync.
 */
 
 const SEEN_KEY = "oneround-splash-seen";
@@ -31,6 +40,9 @@ export default function Splash() {
     } catch {
       /* ignore */
     }
+    // Mirror onto <html> so a client-side remount is hidden by CSS pre-paint,
+    // without waiting for a full reload to re-run the inline script.
+    document.documentElement.setAttribute("data-splash-seen", "1");
   }
 
   function enter(which: "consumer" | "venue") {
@@ -44,6 +56,7 @@ export default function Splash() {
 
   return (
     <div
+      data-splash-root
       className={`fixed inset-0 z-[60] flex flex-col transition-opacity duration-500 ${
         leaving ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
@@ -61,7 +74,7 @@ export default function Splash() {
       <button
         type="button"
         onClick={() => enter("consumer")}
-        className="group relative flex flex-1 flex-col justify-end overflow-hidden p-8 text-left transition-[flex-grow] duration-500 sm:p-12 lg:hover:flex-[1.25]"
+        className="group relative flex flex-1 flex-col justify-end overflow-hidden p-8 text-left sm:p-12"
       >
         <Image
           src="/images/newhere-user.png"
@@ -74,7 +87,7 @@ export default function Splash() {
         />
         <span
           aria-hidden="true"
-          className="absolute inset-0"
+          className="absolute inset-0 transition-opacity duration-300 ease-out group-hover:opacity-80"
           style={{
             background:
               "linear-gradient(to top, rgba(2,0,49,0.86) 0%, rgba(2,0,49,0.45) 55%, rgba(2,0,49,0.34) 100%)",
@@ -89,7 +102,7 @@ export default function Splash() {
         </span>
         <span className="relative z-10 mt-6 flex items-center gap-3 font-display text-lg italic text-white">
           Enter
-          <span className="flex h-9 w-9 items-center justify-center bg-white text-navy transition-transform group-hover:translate-x-1.5">
+          <span className="flex h-9 w-9 items-center justify-center bg-white text-navy">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M4 12h15m-6-6 6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -101,7 +114,7 @@ export default function Splash() {
       <button
         type="button"
         onClick={() => enter("venue")}
-        className="group relative flex flex-1 flex-col justify-end overflow-hidden p-8 text-left transition-[flex-grow] duration-500 sm:p-12 lg:hover:flex-[1.25]"
+        className="group relative flex flex-1 flex-col justify-end overflow-hidden p-8 text-left sm:p-12"
       >
         <Image
           src="/images/newhero-venue.png"
@@ -114,7 +127,7 @@ export default function Splash() {
         />
         <span
           aria-hidden="true"
-          className="absolute inset-0"
+          className="absolute inset-0 transition-opacity duration-300 ease-out group-hover:opacity-80"
           style={{
             background:
               "linear-gradient(to top, rgba(2,0,49,0.88) 0%, rgba(2,0,49,0.5) 55%, rgba(2,0,49,0.4) 100%)",
@@ -129,7 +142,7 @@ export default function Splash() {
         </span>
         <span className="relative z-10 mt-6 flex items-center gap-3 font-display text-lg italic text-white">
           See how it works
-          <span className="flex h-9 w-9 items-center justify-center bg-blue text-white transition-transform group-hover:translate-x-1.5">
+          <span className="flex h-9 w-9 items-center justify-center bg-blue text-white">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M4 12h15m-6-6 6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>

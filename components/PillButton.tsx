@@ -1,14 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, type ReactNode } from "react";
+import { type ReactNode } from "react";
 
 /*
-  Editorial CTA — sharp-edged, magnetic, tactile. The signature button of the
-  "After Dark" system: a hard rectangle with a mono micro-label feel and an arrow
-  that slides on hover. Subtly magnetises toward the pointer (disabled for
-  reduced-motion). Accent-aware via --accent; onDark flips to a white block.
-  Keeps the old API (children/href/variant/icon/onDark) so call sites are intact.
+  Editorial CTA — the signature button of the "After Dark" system: a hard
+  rectangle with a mono micro-label feel. Accent-aware via --accent; onDark
+  flips to a white block. Keeps the old API (children/href/variant/icon/onDark)
+  so call sites are intact.
+
+  Motion: colour only. This button previously magnetised toward the pointer
+  (a per-mousemove translate) and slid its arrow on hover; both were removed —
+  a CTA that moves under the cursor is a moving target and reads as instability.
+  Hover/press change colour and nothing else, so the button never shifts.
 */
 
 type Props = {
@@ -40,23 +44,8 @@ export default function PillButton({
   className = "",
   onDark = false,
 }: Props) {
-  const ref = useRef<HTMLAnchorElement>(null);
-
-  function onMove(e: React.MouseEvent) {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const r = el.getBoundingClientRect();
-    const x = e.clientX - (r.left + r.width / 2);
-    const y = e.clientY - (r.top + r.height / 2);
-    el.style.transform = `translate(${x * 0.18}px, ${y * 0.22}px)`;
-  }
-  function reset() {
-    if (ref.current) ref.current.style.transform = "";
-  }
-
   const base =
-    "group inline-flex items-center gap-4 px-6 py-4 text-sm font-bold uppercase tracking-[0.08em] transition-[transform,background-color,color] duration-200 ease-out will-change-transform";
+    "inline-flex items-center gap-4 px-6 py-4 text-sm font-bold uppercase tracking-[0.08em] transition-colors duration-200 ease-out";
   const styles =
     variant === "solid"
       ? onDark
@@ -67,15 +56,9 @@ export default function PillButton({
         : "border border-[color:var(--ink)] text-ink hover:bg-ink hover:text-white";
 
   return (
-    <Link
-      ref={ref}
-      href={href}
-      onMouseMove={onMove}
-      onMouseLeave={reset}
-      className={`${base} ${styles} ${className}`}
-    >
+    <Link href={href} className={`${base} ${styles} ${className}`}>
       <span>{children}</span>
-      <span className="transition-transform duration-300 ease-out group-hover:translate-x-1.5">
+      <span>
         <Icon icon={icon} />
       </span>
     </Link>

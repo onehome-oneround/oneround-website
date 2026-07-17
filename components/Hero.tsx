@@ -82,7 +82,7 @@ export default function Hero() {
                 fontSize: "clamp(2.5rem, 5.4vw, 5.5rem)",
                 lineHeight: "1.02",
                 fontWeight: 600,
-                transform: "translateY(calc(var(--p, 0) * -2vh))",
+                transform: "translateY(calc(var(--p, 0) * -0.8vh))",
               }}
             >
               {isVenue ? (
@@ -166,7 +166,7 @@ export default function Hero() {
             <div className="relative h-[58vw] overflow-hidden rounded-3xl shadow-[0_30px_70px_-42px_rgba(2,0,49,0.55)] sm:h-[44vw] lg:h-full">
               <div
                 className="absolute inset-0 lg:-inset-y-[10%]"
-                style={{ transform: "translateY(calc(var(--p, 0) * 14%))" }}
+                style={{ transform: "translateY(calc(var(--p, 0) * 6%))" }}
               >
                 <Image
                   src={heroImage.src}

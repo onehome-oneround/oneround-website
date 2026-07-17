@@ -63,10 +63,10 @@ function VenueEnquiryForm() {
       </label>
       <button
         type="submit"
-        className="tactile group inline-flex items-center gap-4 self-start bg-[color:var(--accent)] px-6 py-4 text-sm font-bold uppercase tracking-[0.08em] text-white transition-[transform,background-color] duration-200 hover:brightness-110"
+        className="inline-flex items-center gap-4 self-start bg-[color:var(--accent)] px-6 py-4 text-sm font-bold uppercase tracking-[0.08em] text-white transition-colors duration-200 hover:brightness-110"
       >
         <span>Send enquiry</span>
-        <span className="transition-transform duration-300 ease-out group-hover:translate-x-1.5">
+        <span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M4 12h15m-6-6 6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>

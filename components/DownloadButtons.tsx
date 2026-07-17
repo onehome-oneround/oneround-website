@@ -1,12 +1,12 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
 /*
-  App Store + Google Play download buttons — OS-aware.
-  - iOS visitors get the App Store badge first; Android gets Google Play first;
-    desktop shows both equally. Both are always rendered (honest + available).
+  App Store + Google Play download buttons. Fixed order, both always rendered.
   - The app isn't published yet, so both point at href="#".
+
+  Order: this used to reorder itself by user-agent (Android saw Play first) via
+  a useEffect setting flex `order`. That runs AFTER hydration, so Android users
+  watched the badges paint one way and then swap places — a real post-hydration
+  layout shift for the sake of a marginal win, given both badges are visible
+  either way. Order is now static, which also makes this a server component.
 
   Styling: these live on BLUE slabs (hero user-side, ClosingCTA), so the badge
   field is navy — the same accent inversion the headline italic already uses on
@@ -31,8 +31,6 @@ import { useEffect, useState } from "react";
 // TODO: real store URLs at launch
 const APP_STORE_URL = "#";
 const GOOGLE_PLAY_URL = "#";
-
-type OS = "ios" | "android" | "other";
 
 /* Shared badge field. Navy on the blue slab, hairline border, no radius.
    Note: don't reach for .tactile here — it's unlayered in globals.css, so it
@@ -86,48 +84,26 @@ type Props = {
 };
 
 export default function DownloadButtons({ className = "", center = false }: Props) {
-  const [os, setOs] = useState<OS>("other");
-
-  useEffect(() => {
-    const ua = navigator.userAgent || "";
-    if (/iPhone|iPad|iPod/i.test(ua)) setOs("ios");
-    else if (/Android/i.test(ua)) setOs("android");
-    else setOs("other");
-  }, []);
-
-  const link =
-    "group/badge inline-flex active:scale-[0.98] focus-visible:outline-white";
-
-  const apple = (
-    <a
-      key="apple"
-      href={APP_STORE_URL}
-      aria-label="Download OneRound on the App Store"
-      className={link}
-      style={{ order: os === "android" ? 2 : 1 }}
-    >
-      <AppStoreBadge />
-    </a>
-  );
-
-  const google = (
-    <a
-      key="google"
-      href={GOOGLE_PLAY_URL}
-      aria-label="Get OneRound on Google Play"
-      className={link}
-      style={{ order: os === "android" ? 1 : 2 }}
-    >
-      <GooglePlayBadge />
-    </a>
-  );
+  const link = "group/badge inline-flex focus-visible:outline-white";
 
   return (
     <div
       className={`flex flex-wrap gap-3 ${center ? "justify-center" : ""} ${className}`}
     >
-      {apple}
-      {google}
+      <a
+        href={APP_STORE_URL}
+        aria-label="Download OneRound on the App Store"
+        className={link}
+      >
+        <AppStoreBadge />
+      </a>
+      <a
+        href={GOOGLE_PLAY_URL}
+        aria-label="Get OneRound on Google Play"
+        className={link}
+      >
+        <GooglePlayBadge />
+      </a>
     </div>
   );
 }

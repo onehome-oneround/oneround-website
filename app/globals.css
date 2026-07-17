@@ -33,6 +33,16 @@
   --accent-deep: #0a083f;
 }
 
+/* Splash — hidden before the first paint for anyone who already dismissed it
+   this session. The pre-paint script in app/layout.tsx sets data-splash-seen on
+   <html>. React still mounts the splash (SSR can't read sessionStorage) and
+   removes it in an effect; this rule means it is never painted in between.
+   Not scoped to html[...] so it also applies on client-side remounts, where
+   Splash.tsx sets the attribute itself. */
+[data-splash-seen="1"] [data-splash-root] {
+  display: none;
+}
+
 @theme inline {
   --color-navy: var(--navy);
   --color-blue: var(--blue);
@@ -230,7 +240,7 @@
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(1.1rem);
+    transform: translateY(0.4rem);
   }
   to {
     opacity: 1;
@@ -239,7 +249,7 @@
 }
 .rise {
   opacity: 0;
-  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
   animation-delay: var(--d, 0s);
 }
 
@@ -251,11 +261,13 @@
   padding-bottom: 0.22em;
   margin-bottom: -0.12em;
 }
+/* The headline wipe is the one deliberate opening moment — kept, but tightened
+   from 1.05s so it settles instead of performing. Everything around it is quiet. */
 .mask > i {
   display: block;
   font-style: inherit;
   transform: translateY(120%);
-  animation: mask-in 1.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: mask-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   animation-delay: var(--d, 0s);
 }
 @keyframes mask-in {
@@ -264,44 +276,46 @@
   }
 }
 
+/* Scroll reveals are a settle, not a performance: a short fade with a small
+   lift. The clip-path wipes were removed — inset(0 0 100% 0) unveiling a whole
+   card reads as content assembling itself on every scroll, which is the bulk of
+   what feels "jumpy". Travel is 0.4rem (was 1.1rem) so nothing visibly moves. */
 .on-scroll {
   opacity: 0;
-  clip-path: inset(0 0 10% 0);
-  transform: translateY(1.1rem);
+  transform: translateY(0.4rem);
   transition:
-    opacity 0.6s ease,
-    clip-path 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.4s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--d, 0s);
 }
 .on-scroll.is-visible {
   opacity: 1;
-  clip-path: inset(0 0 -4% 0);
   transform: none;
 }
 
 .on-scroll-card {
   opacity: 0;
-  clip-path: inset(0 0 100% 0);
+  transform: translateY(0.4rem);
   transition:
-    opacity 0.5s ease,
-    clip-path 1s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.4s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--d, 0s);
 }
 .on-scroll-card.is-visible {
   opacity: 1;
-  clip-path: inset(0 0 0 0);
+  transform: none;
 }
 
-/* Tactile press for interactive pills/buttons. */
+/* Interactive feedback for pills/buttons: colour only.
+   This used to scale(0.97) on press. Buttons that resize under the cursor read
+   as unstable and, on a press, move the very thing being pressed — so the
+   transform is gone and only colour transitions remain. Kept as a class (rather
+   than deleted) so call sites stay intact and there's one place to tune. */
 .tactile {
   transition:
-    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
     background-color 0.2s ease,
+    border-color 0.2s ease,
     color 0.2s ease;
-}
-.tactile:active {
-  transform: scale(0.97);
 }
 
 /* Faint film grain for navy slabs — printed depth, used sparingly. */
@@ -320,6 +334,9 @@
   html {
     scroll-behavior: auto;
   }
+  /* Motion kit: land in the final state rather than animate to it. These start
+     at opacity 0, so they need the explicit reveal — a duration override alone
+     would leave them invisible. */
   .rise,
   .mask > i,
   .on-scroll,
@@ -333,6 +350,16 @@
   }
   .marquee__track {
     animation: none !important;
+  }
+  /* Catch-all. The rules above only ever covered the load/scroll kit, which let
+     every hover, press and state transform keep moving for users who asked for
+     no motion. Colour changes still apply, they just land instantly. */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
