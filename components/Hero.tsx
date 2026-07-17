@@ -59,7 +59,10 @@ export default function Hero() {
   // On the blue slab, secondary text is navy for AA contrast; on navy, it's white.
   const soft = isVenue ? "text-white/72" : "text-navy/75";
   // HIDDEN until launch - re-enable: app store links (used by the user-side "Free download" line)
-  // const meta = isVenue ? "text-white/60" : "text-navy/60";
+  // Users side is navy-on-blue: at the kicker's 11px/700, navy/60 measures 3.16:1
+  // and navy/80 only reaches 4.49:1 — both under WCAG AA's 4.5:1, so it runs at
+  // full navy (5.61:1). Venues is white-on-navy and clears it at /60 (7.19:1).
+  // const meta = isVenue ? "text-white/60" : "text-navy";
   // The accent word sits in the OPPOSITE brand colour to the slab.
   const accentColor = isVenue ? "var(--blue)" : "var(--navy)";
 
@@ -105,10 +108,10 @@ export default function Hero() {
               ) : (
                 <>
                   <span className="mask">
-                    <i style={{ ["--d" as string]: "0.05s" }}>Five free food</i>
+                    <i style={{ ["--d" as string]: "0.05s" }}>Five complimentary</i>
                   </span>
                   <span className="mask">
-                    <i style={{ ["--d" as string]: "0.16s" }}>or drink items,</i>
+                    <i style={{ ["--d" as string]: "0.16s" }}>items,</i>
                   </span>
                   <span className="mask">
                     <i style={{ ["--d" as string]: "0.27s" }}>

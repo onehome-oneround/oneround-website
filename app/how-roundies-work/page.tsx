@@ -12,7 +12,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: "How Roundies work",
   description:
-    "A Roundie is a free food or drink item at a participating venue. Membership gives you five a month, one per outing. Select from the Roundie menu, scan, and enjoy.",
+    "A Roundie is a complimentary item at a participating venue. Membership gives you five a month, one per outing. Select from the Roundie menu, scan, and enjoy.",
   alternates: { canonical: "https://oneround.au/how-roundies-work" },
 };
 
@@ -73,7 +73,7 @@ export default function HowRoundiesWorkPage() {
               How Roundies <span className="italic accent-text">work.</span>
             </h1>
             <p className="mt-7 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
-              A Roundie is a free food or drink item at a participating venue. Your
+              A Roundie is a complimentary item at a participating venue. Your
               membership gives you five a month, one per outing. An actual item on us,
               not a discount. Here&rsquo;s all there is to it.
             </p>

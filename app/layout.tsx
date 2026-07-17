@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     template: "%s · OneRound",
   },
   description:
-    "OneRound gives you five free food or drink items every month at Brisbane's best venues, plus exclusive deals and a live look at where everyone is going.",
+    "OneRound gives you five complimentary items every month at Brisbane's best venues, plus exclusive deals and a live look at where everyone is going.",
   applicationName: "OneRound",
   keywords: [
     "OneRound",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     siteName: "OneRound",
     title: "OneRound",
     description:
-      "OneRound gives you five free food or drink items every month at Brisbane's best venues, plus exclusive deals and a live look at where everyone is going.",
+      "OneRound gives you five complimentary items every month at Brisbane's best venues, plus exclusive deals and a live look at where everyone is going.",
     locale: "en_AU",
     images: [
       {
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "OneRound",
     description:
-      "OneRound gives you five free food or drink items every month at Brisbane's best venues, plus exclusive deals and a live look at where everyone is going.",
+      "OneRound gives you five complimentary items every month at Brisbane's best venues, plus exclusive deals and a live look at where everyone is going.",
     images: ["/og-image.png"],
   },
   robots: { index: true, follow: true },

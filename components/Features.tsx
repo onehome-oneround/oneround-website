@@ -26,7 +26,7 @@ const consumerFeatures: Feature[] = [
     n: "01",
     heading: "Roundies",
     sub: "Five on us, every month.",
-    body: "Claim five free food or drink items a month at participating venues, one per outing. Your reason to get out and find somewhere new.",
+    body: "Claim five complimentary items a month at participating venues, one per outing. Your reason to get out and find somewhere new.",
     image: "/images/feature-roundie.png",
     cta: { label: "How Roundies work", href: "/how-roundies-work" },
   },
