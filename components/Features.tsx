@@ -114,18 +114,50 @@ export default function Features() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3">
-          {features.map((f) => (
+        {/* Bento — Roundies is the hero perk, so it's the large cell (two wide,
+            two tall on desktop); Deals and Social are the smaller cells stacked
+            beside it. Three equal cards read as a template; mixed sizes read
+            editorial. Rows are auto: the two small cards set the row heights and
+            the large card fills both. On mobile everything stacks full width.
+            Card headline sizes step down (large ~text-5xl > small ~text-2xl),
+            beneath the section h2's display-section — the type ramp as hierarchy
+            rather than the section-tier class competing inside the section. */}
+        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 lg:grid-rows-2">
+          {/* Large — Roundies */}
+          <article className="flex flex-col overflow-hidden rounded-3xl border border-[color:var(--rule)] bg-white shadow-[0_18px_44px_-28px_rgba(2,0,49,0.3)] lg:col-span-2 lg:row-span-2">
+            <div className="relative aspect-[16/10] w-full overflow-hidden bg-offwhite lg:aspect-auto lg:min-h-[16rem] lg:flex-1">
+              <Image
+                src={features[0].image}
+                alt={features[0].heading}
+                fill
+                sizes="(max-width: 1024px) 100vw, 640px"
+                className="object-cover"
+                style={{ objectFit: "cover", objectPosition: "center" }}
+              />
+            </div>
+            <div className="flex flex-col p-7 sm:p-9">
+              <span className="index-num accent-text text-4xl">{features[0].n}</span>
+              <h3 className="mt-4 font-display text-4xl font-semibold leading-[0.98] text-ink sm:text-5xl">
+                {features[0].heading}
+              </h3>
+              <p className="kicker accent-text mt-3">{features[0].sub}</p>
+              <p className="mt-4 max-w-md text-base leading-relaxed text-ink-soft">
+                {features[0].body}
+              </p>
+              <div style={{ marginTop: "auto", paddingTop: "2rem" }}>
+                <PillButton href={features[0].cta.href} variant="outline">
+                  {features[0].cta.label}
+                </PillButton>
+              </div>
+            </div>
+          </article>
+
+          {/* Small — Deals, Social */}
+          {features.slice(1).map((f) => (
             <article
               key={f.n}
-              className="overflow-hidden rounded-3xl border border-[color:var(--rule)] bg-white shadow-[0_18px_44px_-28px_rgba(2,0,49,0.3)]"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                height: "100%",
-              }}
+              className="flex flex-col overflow-hidden rounded-3xl border border-[color:var(--rule)] bg-white shadow-[0_18px_44px_-28px_rgba(2,0,49,0.3)]"
             >
-              {/* image on top */}
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-offwhite">
                 <Image
                   src={f.image}
@@ -136,18 +168,14 @@ export default function Features() {
                   style={{ objectFit: "cover", objectPosition: "center" }}
                 />
               </div>
-              {/* content — flexes so the button always pins to the bottom edge */}
-              <div
-                className="p-6 sm:p-7"
-                style={{ display: "flex", flexDirection: "column", flexGrow: 1 }}
-              >
-                <span className="index-num accent-text text-4xl">{f.n}</span>
-                <h3 className="mt-4 font-display text-2xl font-semibold leading-tight text-ink">
+              <div className="flex flex-1 flex-col p-6 sm:p-7">
+                <span className="index-num accent-text text-3xl">{f.n}</span>
+                <h3 className="mt-3 font-display text-2xl font-semibold leading-tight text-ink">
                   {f.heading}
                 </h3>
-                <p className="kicker accent-text mt-3">{f.sub}</p>
-                <p className="mt-4 text-sm leading-relaxed text-ink-soft">{f.body}</p>
-                <div style={{ marginTop: "auto", paddingTop: "2.5rem" }}>
+                <p className="kicker accent-text mt-2">{f.sub}</p>
+                <p className="mt-3 text-sm leading-relaxed text-ink-soft">{f.body}</p>
+                <div style={{ marginTop: "auto", paddingTop: "1.5rem" }}>
                   <PillButton href={f.cta.href} variant="outline">
                     {f.cta.label}
                   </PillButton>
