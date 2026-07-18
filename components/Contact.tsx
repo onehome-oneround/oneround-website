@@ -86,10 +86,7 @@ export default function Contact() {
         <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-5">
             <EditorialTag index="09" label="Contact" className="accent-text" />
-            <h2
-              className="mt-8 text-ink"
-              style={{ fontSize: "clamp(2.6rem, 5.6vw, 6rem)", lineHeight: "1.0", fontWeight: 600 }}
-            >
+            <h2 className="display-section mt-8 text-ink">
               Want OneRound in your venue?
             </h2>
             <p className="mt-6 max-w-md text-base leading-relaxed text-ink-soft">
@@ -109,10 +106,7 @@ export default function Contact() {
       <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-8">
           <EditorialTag index="09" label="Contact" className="accent-text" />
-          <h2
-            className="mt-8 text-ink"
-            style={{ fontSize: "clamp(2.6rem, 5.6vw, 6rem)", lineHeight: "1.0", fontWeight: 600 }}
-          >
+          <h2 className="display-section mt-8 text-ink">
             Get in touch.
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-ink-soft">

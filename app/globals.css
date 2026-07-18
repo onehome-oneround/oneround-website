@@ -109,6 +109,31 @@
 /* ----------------------------------------------------------------------
    Type helpers
    ---------------------------------------------------------------------- */
+
+/* Display type ramp — three intentional tiers so headings read as a scale
+   rather than a dozen ad-hoc clamp() values. Fraunces is already applied to
+   h1/h2/h3 in the base layer; these only set size / leading / weight. Body copy
+   is untouched.
+     display-statement : the loud pull-quote moment (one per page, e.g. GoodStuff)
+     display-section   : default section heading
+     display-masthead  : the Hero masthead specifically
+   Each still lets a section set its own colour / margin at the call site. */
+.display-statement {
+  font-size: clamp(3.25rem, 10vw, 10rem);
+  line-height: 0.9;
+  font-weight: 600;
+}
+.display-section {
+  font-size: clamp(2.6rem, 5.6vw, 6rem);
+  line-height: 1;
+  font-weight: 600;
+}
+.display-masthead {
+  font-size: clamp(2.5rem, 5.4vw, 5.5rem);
+  line-height: 1.02;
+  font-weight: 600;
+}
+
 .font-display {
   font-family: var(--font-display), Georgia, serif;
 }

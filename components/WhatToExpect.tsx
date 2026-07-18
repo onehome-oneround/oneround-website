@@ -33,10 +33,7 @@ export default function WhatToExpect() {
       <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-8">
         <div className="lg:col-span-6 lg:pr-12">
           <EditorialTag index="05" label={copy.kicker} className="accent-text" />
-          <h2
-            className="mt-8 text-ink"
-            style={{ fontSize: "clamp(2.6rem, 5.6vw, 6rem)", lineHeight: "1.0", fontWeight: 600 }}
-          >
+          <h2 className="display-section mt-8 text-ink">
             {copy.heading}
           </h2>
           <p className="mt-7 max-w-md text-base leading-relaxed text-ink-soft">{copy.body}</p>

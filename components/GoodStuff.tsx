@@ -72,10 +72,7 @@ export default function GoodStuff() {
 
       <div className="relative z-10 mx-auto max-w-[96rem]">
         <EditorialTag index="06" label="The Good Stuff" className="text-white" />
-        <h2
-          className="mt-8 max-w-[20ch] text-white [text-shadow:0_2px_30px_rgba(2,0,49,0.7)]"
-          style={{ fontSize: "clamp(2.8rem, 5.6vw, 5.5rem)", lineHeight: "1.0", fontWeight: 600 }}
-        >
+        <h2 className="display-section mt-8 max-w-[20ch] text-white [text-shadow:0_2px_30px_rgba(2,0,49,0.7)]">
           {copy.heading}
         </h2>
 

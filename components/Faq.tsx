@@ -15,10 +15,7 @@ export default function Faq() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
             <EditorialTag index="08" label="Good to know" className="accent-text" />
-            <h2
-              className="mt-8 text-ink"
-              style={{ fontSize: "clamp(2.8rem, 6.4vw, 7rem)", lineHeight: "0.98", fontWeight: 600 }}
-            >
+            <h2 className="display-section mt-8 text-ink">
               Questions<span className="italic accent-text">?</span>
             </h2>
           </div>

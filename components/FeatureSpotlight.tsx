@@ -66,8 +66,7 @@ export default function FeatureSpotlight() {
         <div className="lg:col-span-7 lg:pr-12">
           <EditorialTag index="03" label={copy.kicker} className="text-white" />
           <h2
-            className="mt-8 text-white [text-shadow:0_2px_30px_rgba(2,0,49,0.6)]"
-            style={{ fontSize: "clamp(2.8rem, 6vw, 6.5rem)", lineHeight: "1.0", fontWeight: 600 }}
+            className="display-section mt-8 text-white [text-shadow:0_2px_30px_rgba(2,0,49,0.6)]"
           >
             {copy.heading}
           </h2>

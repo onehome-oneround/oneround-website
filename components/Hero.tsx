@@ -54,14 +54,7 @@ export default function Hero() {
           {/* LEFT — masthead, headline, subhead, CTAs */}
           <div className="flex flex-col justify-center lg:col-span-7 lg:py-24 lg:pl-8 lg:pr-12 xl:pl-12">
             {/* Headline */}
-            <h1
-              className="mt-10 text-white lg:mt-0"
-              style={{
-                fontSize: "clamp(2.5rem, 5.4vw, 5.5rem)",
-                lineHeight: "1.02",
-                fontWeight: 600,
-              }}
-            >
+            <h1 className="display-masthead mt-10 text-white lg:mt-0">
               {isVenue ? (
                 <>
                   <span className="mask">

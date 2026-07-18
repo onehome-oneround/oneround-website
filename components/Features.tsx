@@ -90,8 +90,7 @@ export default function Features() {
           <div className="lg:col-span-8">
             <EditorialTag index="02" label="Introducing OneRound" className="accent-text" />
             <h2
-              className={`mt-6 font-display ${isVenue ? "text-ink" : "text-blue"}`}
-              style={{ fontSize: "clamp(2.2rem, 5.4vw, 5rem)", lineHeight: "1.05", fontWeight: 600 }}
+              className={`display-section mt-6 font-display ${isVenue ? "text-ink" : "text-blue"}`}
             >
               {isVenue ? (
                 <>

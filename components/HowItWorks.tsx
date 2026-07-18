@@ -47,10 +47,7 @@ export default function HowItWorks() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
             <EditorialTag index="04" label="How it works" className="text-white" />
-            <h2
-              className="mt-8 text-white"
-              style={{ fontSize: "clamp(2.8rem, 6.4vw, 7rem)", lineHeight: "0.98", fontWeight: 600 }}
-            >
+            <h2 className="display-section mt-8 text-white">
               {isVenue ? (
                 <>
                   Live in <span className="italic" style={{ color: wordColor }}>three</span> simple
