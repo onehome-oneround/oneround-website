@@ -76,7 +76,7 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="scroll-mt-24 px-5 py-20 sm:px-8 sm:py-24"
+      className="scroll-mt-24 px-5 py-24 sm:px-8 sm:py-32"
       style={{
         background:
           "linear-gradient(180deg, var(--paper) 0%, var(--tint) 55%, var(--white) 100%)",

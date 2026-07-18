@@ -25,6 +25,12 @@
   --paper: #e9edf7;
   --tint: #dcebfc;
 
+  /* One card radius across the site. Equal to Tailwind's rounded-3xl (24px),
+     which is the de-facto standard the container cards already use; this names
+     it and fixes the one deviation (GoodStuff was 1.75rem). Pills/badges stay
+     rounded-full; broadsheet slabs and hairline elements stay square. */
+  --radius-card: 1.5rem;
+
   --ink: #020031;
   --ink-soft: #3a3a55;
   --ink-faint: #75758e;

@@ -44,7 +44,7 @@ export default function GoodStuff() {
       };
 
   return (
-    <section className="on-dark relative isolate overflow-hidden px-5 py-28 sm:px-8 sm:py-36">
+    <section className="on-dark relative isolate overflow-hidden px-5 py-24 sm:px-8 sm:py-32">
       {/* full-bleed photo */}
       <Image
         src={copy.bg}
@@ -82,7 +82,7 @@ export default function GoodStuff() {
           {copy.lines.map((line, i) => (
             <li
               key={line}
-              className="flex items-center gap-4 rounded-[1.75rem] border border-white/20 bg-navy/60 p-6 shadow-[0_24px_60px_-32px_rgba(0,0,0,0.85)] backdrop-blur-2xl"
+              className="flex items-center gap-4 rounded-[var(--radius-card)] border border-white/20 bg-navy/60 p-6 shadow-[0_24px_60px_-32px_rgba(0,0,0,0.85)] backdrop-blur-2xl"
             >
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/40 bg-white/15 font-display text-lg font-semibold text-white">
                 {i + 1}

@@ -84,7 +84,7 @@ export default function Features() {
     : "Three reasons to get out: Roundies, Deals, and seeing where everyone's going. One membership, every venue.";
 
   return (
-    <section className="bg-white px-5 pb-4 pt-20 sm:px-8 sm:pt-28">
+    <section className="bg-white px-5 py-24 sm:px-8 sm:py-32">
       <div className="mx-auto max-w-[96rem]">
         <div className="grid grid-cols-1 gap-y-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">

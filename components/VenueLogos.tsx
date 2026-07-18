@@ -81,7 +81,7 @@ export default function VenueLogos() {
   return (
     <section
       aria-label="Partner venues"
-      className="on-dark relative w-full overflow-hidden border-b border-white/15 bg-navy py-16 sm:py-20"
+      className="on-dark relative w-full overflow-hidden border-b border-white/15 bg-navy py-24 sm:py-32"
     >
       {/* Top fade — the white WhatToExpect above eases into this navy strip.
           Kept short so it stays in the top padding and never washes the logos. */}

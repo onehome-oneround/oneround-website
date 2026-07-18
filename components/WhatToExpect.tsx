@@ -29,7 +29,7 @@ export default function WhatToExpect() {
       };
 
   return (
-    <section className="bg-white px-5 py-24 sm:px-8 sm:py-28">
+    <section className="bg-white px-5 py-24 sm:px-8 sm:py-32">
       <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-8">
         <div className="lg:col-span-6 lg:pr-12">
           <EditorialTag index="05" label={copy.kicker} className="accent-text" />
