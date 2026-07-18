@@ -33,10 +33,12 @@ import { useAudience } from "./AudienceProvider";
   "fade" below is a static CSS gradient background, not motion.)
 
   Flow: this used to be a full-saturation blue slab, which hard-cut against the
-  navy GoodStuff above and the white FAQ below. It's now a static tonal gradient
-  — paper (top, catching GoodStuff's bottom fade) → tint (the softened "blue"
-  moment) → white (bottom, so it melts into the white FAQ with no seam). The
-  brand blue still reads via the CTA and price. Part of the "make it flow" pass.
+  navy GoodStuff above and the FAQ below. It's now a static tonal gradient —
+  paper (top, catching GoodStuff's bottom fade) → tint (the softened "blue"
+  moment) → paper (bottom, so it melts into the paper FAQ with no seam). Both
+  ends are paper because the palette-descent pass grounded the closing stretch
+  (Pricing, FAQ, Contact) in paper before the navy footer. Brand blue still
+  reads via the CTA and price.
 
   Colour is all tokens: gradient ground, white card, navy ink, blue accent CTA +
   ticks. Everything on the white card clears AA comfortably (navy on white ~16:1).
@@ -79,7 +81,7 @@ export default function Pricing() {
       className="scroll-mt-24 px-5 py-24 sm:px-8 sm:py-32"
       style={{
         background:
-          "linear-gradient(180deg, var(--paper) 0%, var(--tint) 55%, var(--white) 100%)",
+          "linear-gradient(180deg, var(--paper) 0%, var(--tint) 55%, var(--paper) 100%)",
       }}
     >
       <div className="mx-auto max-w-[96rem]">
