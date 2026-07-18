@@ -72,7 +72,7 @@ export default function GoodStuff() {
 
       <div className="relative z-10 mx-auto max-w-[96rem]">
         <EditorialTag index="06" label="The Good Stuff" className="text-white" />
-        <h2 className="display-section mt-8 max-w-[20ch] text-white [text-shadow:0_2px_30px_rgba(2,0,49,0.7)]">
+        <h2 className="display-statement mt-8 max-w-[14ch] text-white [text-shadow:0_2px_30px_rgba(2,0,49,0.7)]">
           {copy.heading}
         </h2>
 
