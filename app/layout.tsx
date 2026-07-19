@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Hanken_Grotesk, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { AudienceProvider } from "@/components/AudienceProvider";
+import Analytics from "@/components/Analytics";
 
 /*
   Typography — "After Dark broadsheet" editorial system. Three families:
@@ -125,6 +126,10 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-white text-ink">
         <AudienceProvider>{children}</AudienceProvider>
+        {/* GA4 + Meta Pixel. Renders nothing outside production or without IDs;
+            see components/Analytics.tsx for the guards and why paid ads depend
+            on this staying live. */}
+        <Analytics />
       </body>
     </html>
   );
