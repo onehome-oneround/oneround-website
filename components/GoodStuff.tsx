@@ -61,7 +61,7 @@ export default function GoodStuff() {
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "linear-gradient(120deg, rgba(2,0,49,0.68) 0%, rgba(2,0,49,0.36) 22%, rgba(2,0,49,0.1) 48%, rgba(2,0,49,0.04) 100%)",
+            "linear-gradient(120deg, rgba(var(--navy-rgb),0.68) 0%, rgba(var(--navy-rgb),0.36) 22%, rgba(var(--navy-rgb),0.1) 48%, rgba(var(--navy-rgb),0.04) 100%)",
         }}
       />
       {/* Bottom fade — the photo dissolves into the next section's paper ground so
@@ -72,7 +72,7 @@ export default function GoodStuff() {
 
       <div className="relative z-10 mx-auto max-w-[96rem]">
         <EditorialTag index="06" label="The Good Stuff" className="text-white" />
-        <h2 className="display-statement mt-8 max-w-[14ch] text-white [text-shadow:0_2px_30px_rgba(2,0,49,0.7)]">
+        <h2 className="display-statement mt-8 max-w-[14ch] text-white [text-shadow:0_2px_30px_rgba(var(--navy-rgb),0.7)]">
           {copy.heading}
         </h2>
 

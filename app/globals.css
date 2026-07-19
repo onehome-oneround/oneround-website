@@ -31,6 +31,19 @@
      rounded-full; broadsheet slabs and hairline elements stay square. */
   --radius-card: 1.5rem;
 
+  /* RGB channel companions of the brand tokens, for rgba() scrims / shadows /
+     text-shadows that need an alpha. Keep in sync with --navy/--blue/--white. */
+  --navy-rgb: 2, 0, 49;
+  --blue-rgb: 30, 136, 243;
+  --white-rgb: 255, 255, 255;
+
+  /* One-off component shades, named so they stop being raw hexes (exact prior
+     values — zero visual change). */
+  --navy-deep: #04022e; /* ImagePlaceholder tone="deep" */
+  --navy-dark: #070540; /* ImagePlaceholder tone="dark" */
+  --navy-hover: #0a0850; /* NavStore icon hover (behind launch guard) */
+  --toggle-track: #eef0f8; /* AudienceToggle track */
+
   --ink: #020031;
   --ink-soft: #3a3a55;
   --ink-faint: #75758e;

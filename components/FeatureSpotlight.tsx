@@ -55,7 +55,7 @@ export default function FeatureSpotlight() {
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "linear-gradient(90deg, rgba(2,0,49,0.94) 0%, rgba(2,0,49,0.86) 40%, rgba(2,0,49,0.62) 100%)",
+            "linear-gradient(90deg, rgba(var(--navy-rgb),0.94) 0%, rgba(var(--navy-rgb),0.86) 40%, rgba(var(--navy-rgb),0.62) 100%)",
         }}
       />
       <span aria-hidden="true" className="grain" />
@@ -66,11 +66,11 @@ export default function FeatureSpotlight() {
         <div className="lg:col-span-7 lg:pr-12">
           <EditorialTag index="03" label={copy.kicker} className="text-white" />
           <h2
-            className="display-section mt-8 text-white [text-shadow:0_2px_30px_rgba(2,0,49,0.6)]"
+            className="display-section mt-8 text-white [text-shadow:0_2px_30px_rgba(var(--navy-rgb),0.6)]"
           >
             {copy.heading}
           </h2>
-          <p className="mt-7 max-w-md text-base leading-relaxed text-white/85 [text-shadow:0_1px_16px_rgba(2,0,49,0.6)]">
+          <p className="mt-7 max-w-md text-base leading-relaxed text-white/85 [text-shadow:0_1px_16px_rgba(var(--navy-rgb),0.6)]">
             {copy.body}
           </p>
         </div>

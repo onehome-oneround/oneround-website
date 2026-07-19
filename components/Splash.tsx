@@ -90,7 +90,7 @@ export default function Splash() {
           className="absolute inset-0 transition-opacity duration-300 ease-out group-hover:opacity-80"
           style={{
             background:
-              "linear-gradient(to top, rgba(2,0,49,0.86) 0%, rgba(2,0,49,0.45) 55%, rgba(2,0,49,0.34) 100%)",
+              "linear-gradient(to top, rgba(var(--navy-rgb),0.86) 0%, rgba(var(--navy-rgb),0.45) 55%, rgba(var(--navy-rgb),0.34) 100%)",
           }}
         />
         <span className="kicker relative z-10 text-white/75">01 / I&rsquo;m heading out</span>
@@ -130,7 +130,7 @@ export default function Splash() {
           className="absolute inset-0 transition-opacity duration-300 ease-out group-hover:opacity-80"
           style={{
             background:
-              "linear-gradient(to top, rgba(2,0,49,0.88) 0%, rgba(2,0,49,0.5) 55%, rgba(2,0,49,0.4) 100%)",
+              "linear-gradient(to top, rgba(var(--navy-rgb),0.88) 0%, rgba(var(--navy-rgb),0.5) 55%, rgba(var(--navy-rgb),0.4) 100%)",
           }}
         />
         <span className="kicker relative z-10 text-white/75">02 / I run a venue</span>

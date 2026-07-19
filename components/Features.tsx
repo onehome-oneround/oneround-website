@@ -124,7 +124,7 @@ export default function Features() {
             rather than the section-tier class competing inside the section. */}
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 lg:grid-rows-2">
           {/* Large — Roundies */}
-          <article className="flex flex-col overflow-hidden rounded-3xl border border-[color:var(--rule)] bg-white shadow-[0_18px_44px_-28px_rgba(2,0,49,0.3)] lg:col-span-2 lg:row-span-2">
+          <article className="flex flex-col overflow-hidden rounded-3xl border border-[color:var(--rule)] bg-white shadow-[0_18px_44px_-28px_rgba(var(--navy-rgb),0.3)] lg:col-span-2 lg:row-span-2">
             <div className="relative aspect-[16/10] w-full overflow-hidden bg-offwhite lg:aspect-auto lg:min-h-[16rem] lg:flex-1">
               <Image
                 src={features[0].image}
@@ -156,7 +156,7 @@ export default function Features() {
           {features.slice(1).map((f) => (
             <article
               key={f.n}
-              className="flex flex-col overflow-hidden rounded-3xl border border-[color:var(--rule)] bg-white shadow-[0_18px_44px_-28px_rgba(2,0,49,0.3)]"
+              className="flex flex-col overflow-hidden rounded-3xl border border-[color:var(--rule)] bg-white shadow-[0_18px_44px_-28px_rgba(var(--navy-rgb),0.3)]"
             >
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-offwhite">
                 <Image

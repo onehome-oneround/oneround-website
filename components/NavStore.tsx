@@ -9,7 +9,7 @@ const APP_STORE_URL = "#"; // TODO: real App Store URL
 const GOOGLE_PLAY_URL = "#"; // TODO: real Google Play URL
 
 const circle =
-  "flex h-10 w-10 items-center justify-center rounded-full bg-navy text-white transition-colors duration-200 hover:bg-[#0a0850]";
+  "flex h-10 w-10 items-center justify-center rounded-full bg-navy text-white transition-colors duration-200 hover:bg-[color:var(--navy-hover)]";
 
 export default function NavStore() {
   return (

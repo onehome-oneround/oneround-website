@@ -133,7 +133,7 @@ export default function Hero() {
 
           {/* RIGHT — inset photo panel (rounded, lifted) */}
           <div className="relative mt-10 lg:col-span-5 lg:mt-0 lg:py-10 lg:pl-3 lg:pr-10">
-            <div className="relative h-[58vw] overflow-hidden rounded-3xl shadow-[0_30px_70px_-42px_rgba(2,0,49,0.55)] sm:h-[44vw] lg:h-full">
+            <div className="relative h-[58vw] overflow-hidden rounded-3xl shadow-[0_30px_70px_-42px_rgba(var(--navy-rgb),0.55)] sm:h-[44vw] lg:h-full">
               <div className="absolute inset-0">
                 <Image
                   src={heroImage.src}

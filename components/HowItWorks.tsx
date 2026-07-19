@@ -88,7 +88,7 @@ export default function HowItWorks() {
           {steps.map((s, i) => (
             <li
               key={i}
-              className="rounded-3xl bg-white p-7 shadow-[0_26px_55px_-26px_rgba(2,0,49,0.55)] sm:p-8"
+              className="rounded-3xl bg-white p-7 shadow-[0_26px_55px_-26px_rgba(var(--navy-rgb),0.55)] sm:p-8"
               style={{ display: "flex", flexDirection: "column", height: "100%" }}
             >
               <span className="index-num accent-text text-6xl leading-none">0{i + 1}</span>

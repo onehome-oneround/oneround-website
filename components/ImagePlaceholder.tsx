@@ -26,8 +26,8 @@ export default function ImagePlaceholder({
   fig,
 }: Props) {
   const light = tone === "light";
-  const bg = tone === "deep" ? "bg-[#04022e]" : tone === "light" ? "bg-offwhite" : "bg-[#070540]";
-  const frame = light ? "rgba(2,0,49,0.18)" : "rgba(255,255,255,0.22)";
+  const bg = tone === "deep" ? "bg-[color:var(--navy-deep)]" : tone === "light" ? "bg-offwhite" : "bg-[color:var(--navy-dark)]";
+  const frame = light ? "rgba(var(--navy-rgb),0.18)" : "rgba(var(--white-rgb),0.22)";
   const slug = light ? "text-navy" : "text-white";
   const soft = light ? "text-navy/55" : "text-white/60";
 

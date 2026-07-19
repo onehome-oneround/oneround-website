@@ -89,7 +89,7 @@ export default function Pricing() {
 
         {/* The card — the single contained object. Rounded + lifted so it floats
             on the tonal ground rather than sitting as another hard rectangle. */}
-        <div className="mx-auto mt-12 w-full max-w-md rounded-3xl bg-white px-8 py-10 shadow-[0_40px_90px_-45px_rgba(2,0,49,0.45)] sm:px-10 sm:py-12">
+        <div className="mx-auto mt-12 w-full max-w-md rounded-3xl bg-white px-8 py-10 shadow-[0_40px_90px_-45px_rgba(var(--navy-rgb),0.45)] sm:px-10 sm:py-12">
           <div className="flex items-baseline gap-3">
             <span
               className="font-display text-navy"
