@@ -90,3 +90,42 @@ context on where the risk sits, not legal advice, and the small-business
 turnover exemption under Privacy Act s6D is genuinely unsettled here — s6D(4)(c)
 may bite where personal information is disclosed for a benefit, and the 2023
 Privacy Act Review response agreed in principle to remove the exemption.
+
+## Pattern: features that depend on wall-clock time
+
+`components/LaunchCountdown.tsx` is the reference implementation. Anything else
+that keys off the current time — a countdown, a launch gate, a "new until"
+badge, scheduled copy — should follow the same three rules rather than
+reinventing them.
+
+**1. Target as a fixed UTC epoch, never local-timezone math.** Store the moment
+as `Date.UTC(...)` and compare against `Date.now()` in absolute milliseconds.
+The visitor's timezone is irrelevant to "how long until this instant", and
+`new Date("2026-08-10T00:00")` is parsed as *local* time, which silently gives
+every visitor a different target. Brisbane is UTC+10 year-round with no daylight
+saving, so an AEST wall-clock time converts to UTC once, by hand, in a comment
+next to the constant — no runtime offset logic, no timezone library.
+
+**2. Never server-render a time-derived value.** Every page here is statically
+prerendered, so server HTML is baked at BUILD time, not request time. A rendered
+clock value is stale by however long sits between deploy and visit, and will
+visibly snap to the truth on hydration. Render *structure only* on the server —
+labels, and slots sized to their final width and height — then populate on the
+client. Reserve the space so populating shifts nothing: the site holds CLS 0 and
+that is worth protecting.
+
+**3. Gate at build time as well as runtime.** A module-scope constant
+(`LAUNCHED_AT_BUILD`) lets a build that happens after the moment ship no markup
+at all, while a runtime check still handles a skewed client clock and a stale
+build served after the date. Neither check alone is sufficient.
+
+Prefer `useSyncExternalStore` over `useState` + `useEffect` for the ticking
+itself: the clock is an external mutable source, the server snapshot is explicit
+rather than implied, and it avoids the synchronous setState-in-effect that this
+repo's lint config rejects. Keep the snapshot at second granularity — returning
+raw `Date.now()` changes on every render and never settles.
+
+Do NOT reach for the parse-blocking pre-paint script in `app/layout.tsx` to
+solve the first-paint problem. That script is on the critical path of every page
+load forever; a temporary launch feature does not justify taxing it. A slot that
+populates a few hundred milliseconds after paint is the correct trade.

@@ -5,6 +5,7 @@ import Image from "next/image";
 // import DownloadButtons from "./DownloadButtons";
 import PillButton from "./PillButton";
 import SectionFade from "./SectionFade";
+import LaunchCountdown from "./LaunchCountdown";
 import { useAudience } from "./AudienceProvider";
 
 /*
@@ -107,6 +108,13 @@ export default function Hero() {
               <p className={`text-base font-medium leading-relaxed sm:text-lg ${soft}`}>
                 {subhead}
               </p>
+              {/* Launch countdown. Sits here so it occupies the space the store
+                  badges will take once the launch guard lifts — it counts down
+                  to, and is replaced by, the thing below it. Inside this `rise`
+                  wrapper so it inherits the existing load reveal rather than
+                  adding one; the digits are the only new motion. Removes itself
+                  entirely once the target passes. */}
+              <LaunchCountdown softClassName={soft} />
               {/* The venue CTA stays; the user-side store badges are hidden until
                   launch, so the CTA block only renders on the venue side for now. */}
               {isVenue && (
