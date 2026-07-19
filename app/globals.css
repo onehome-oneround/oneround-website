@@ -16,12 +16,13 @@
   --white: #ffffff;
   --offwhite: #f4f5fb;
 
-  /* Tonal-flow neutrals (added for the "make it flow" pass). The page used to be
-     a binary of full-saturation blue slabs and white; these give a graduated
-     descent — white → paper → tint → navy — so section seams read as considered
-     steps rather than hard contrast cuts. Both take navy ink at AA.
-       --paper : pale cool grey, the third neutral ground
-       --tint  : pale wash of --blue, for softened "blue" sections */
+  /* Neutral grounds. The homepage holds ONE light ground (--paper) from Features
+     through Contact; sections are marked by the EditorialTag hairline, vertical
+     whitespace, and full-bleed image bands rather than by a colour change each
+     time. Accent Hero and navy Footer bookend it. Takes navy ink at AA.
+       --paper : pale cool grey, the single light ground
+       --tint  : pale wash of --blue. Unused by the homepage since the ground
+                 consolidation; kept as a palette token for future components. */
   --paper: #e9edf7;
   --tint: #dcebfc;
 
@@ -33,12 +34,11 @@
 
   /* RGB channel companions of the brand tokens, for rgba() scrims / shadows /
      text-shadows / section-fade gradients that need an alpha. Keep in sync with
-     --navy/--blue/--white/--paper/--tint. */
+     --navy/--blue/--white/--paper. */
   --navy-rgb: 2, 0, 49;
   --blue-rgb: 30, 136, 243;
   --white-rgb: 255, 255, 255;
   --paper-rgb: 233, 237, 247;
-  --tint-rgb: 220, 235, 252;
 
   /* One-off component shades, named so they stop being raw hexes (exact prior
      values — zero visual change). */
@@ -131,7 +131,7 @@
      which is low-contrast where the ground IS the accent — a navy ring on the
      navy (venue) slabs, a blue ring on the blue slabs. Any element inside an
      .on-dark section (the navy photo slabs + Footer) or a slab flagged
-     .focus-on-dark (the blue Hero/HowItWorks, the Splash overlay) flips its
+     .focus-on-dark (the accent Hero, the Splash overlay) flips its
      focus ring to white so keyboard focus stays clearly visible. */
   .on-dark :focus-visible,
   .focus-on-dark :focus-visible {

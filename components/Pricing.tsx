@@ -29,18 +29,16 @@ import { useAudience } from "./AudienceProvider";
   paid, not part of the free social side), so it heads the list. There is no
   annual plan, so nothing here references one.
 
-  Static by design: no reveal, no fade, no parallax, no hover movement. (The
-  "fade" below is a static CSS gradient background, not motion.)
+  Static by design: no reveal, no fade, no parallax, no hover movement.
 
-  Flow: this used to be a full-saturation blue slab, which hard-cut against the
-  navy GoodStuff above and the FAQ below. It's now a static tonal gradient —
-  paper (top, catching GoodStuff's bottom fade) → tint (the softened "blue"
-  moment) → paper (bottom, so it melts into the paper FAQ with no seam). Both
-  ends are paper because the palette-descent pass grounded the closing stretch
-  (Pricing, FAQ, Contact) in paper before the navy footer. Brand blue still
-  reads via the CTA and price.
+  Flow: this was a full-saturation blue slab, then a paper→tint→paper gradient.
+  It is now flat paper — the same held ground as GoodStuff's bottom fade lands
+  on, and as the FAQ and Contact below. Nothing separates it from its neighbours
+  but the EditorialTag hairline and the section's own whitespace, which is the
+  point: the card is the object, the ground stays quiet behind it. Brand blue
+  still reads via the CTA and price.
 
-  Colour is all tokens: gradient ground, white card, navy ink, blue accent CTA +
+  Colour is all tokens: paper ground, white card, navy ink, blue accent CTA +
   ticks. Everything on the white card clears AA comfortably (navy on white ~16:1).
 */
 
@@ -78,11 +76,7 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="scroll-mt-24 px-5 py-24 sm:px-8 sm:py-32"
-      style={{
-        background:
-          "linear-gradient(180deg, var(--paper) 0%, var(--tint) 55%, var(--paper) 100%)",
-      }}
+      className="scroll-mt-24 bg-[color:var(--paper)] px-5 py-24 sm:px-8 sm:py-32"
     >
       <div className="mx-auto max-w-[96rem]">
         <EditorialTag index="07" label="Membership" className="text-navy" />

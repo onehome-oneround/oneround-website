@@ -49,9 +49,10 @@ export default function Hero() {
     // hero is a full-viewport masthead sized by min-h-[100svh] + the inner grid's
     // own padding, so it's an exception to the rhythm alongside Marquee/Footer.
     <section id="get-the-app" className="focus-on-dark relative scroll-mt-16 bg-[color:var(--accent)]">
-      {/* Bottom fade — the accent masthead melts into the white Features section
-          below instead of hard-cutting. Static gradient; content sits above it. */}
-      <SectionFade edge="bottom" colorRgb="--white-rgb" height="h-48" />
+      {/* Bottom fade — the accent masthead melts into the paper ground that now
+          runs from Features down to Contact, instead of hard-cutting. Static
+          gradient; content sits above it. */}
+      <SectionFade edge="bottom" colorRgb="--paper-rgb" height="h-48" />
       <div className="relative z-10">
         <div className="mx-auto grid min-h-[100svh] max-w-[96rem] grid-cols-1 gap-0 px-5 pb-12 pt-20 sm:px-8 lg:grid-cols-12 lg:gap-0 lg:px-0 lg:pb-0 lg:pt-0">
           {/* LEFT — masthead, headline, subhead, CTAs */}

@@ -4,7 +4,8 @@ import EditorialTag from "./EditorialTag";
 import { useAudience } from "./AudienceProvider";
 
 /*
-  "A venue for any occasion." — white slab. Editorial split: heading + body on the
+  "A venue for any occasion." — sits on the held paper ground. Editorial split:
+  heading + body on the
   left; the venue types rendered as a broadsheet directory (mono index + big
   Fraunces word, hairline-ruled) on the right. Launch set only. Copy swaps with
   the toggle; content unchanged.
@@ -29,7 +30,7 @@ export default function WhatToExpect() {
       };
 
   return (
-    <section className="bg-white px-5 py-24 sm:px-8 sm:py-32">
+    <section className="bg-[color:var(--paper)] px-5 py-24 sm:px-8 sm:py-32">
       <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-8">
         <div className="lg:col-span-6 lg:pr-12">
           <EditorialTag index="05" label={copy.kicker} className="accent-text" />

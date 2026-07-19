@@ -83,9 +83,9 @@ export default function VenueLogos() {
       aria-label="Partner venues"
       className="on-dark relative w-full overflow-hidden border-b border-white/15 bg-navy py-24 sm:py-32"
     >
-      {/* Top fade — the white WhatToExpect above eases into this navy strip.
+      {/* Top fade — the paper WhatToExpect above eases into this navy strip.
           Kept short so it stays in the top padding and never washes the logos. */}
-      <SectionFade edge="top" colorRgb="--white-rgb" height="h-24" />
+      <SectionFade edge="top" colorRgb="--paper-rgb" height="h-24" />
       <div className="relative z-10 flex flex-col gap-12 sm:gap-14">
         <Row />
         <Row reverse />
