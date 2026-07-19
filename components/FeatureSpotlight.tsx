@@ -60,7 +60,7 @@ export default function FeatureSpotlight() {
       />
       <span aria-hidden="true" className="grain" />
       {/* Top fade — eases the pale tint ticker above into this navy anchor. */}
-      <SectionFade edge="top" color="var(--tint)" height="h-28" />
+      <SectionFade edge="top" colorRgb="--tint-rgb" height="h-40" />
 
       <div className="relative z-10 mx-auto grid max-w-[96rem] grid-cols-1 items-center gap-12 px-5 py-24 sm:px-8 sm:py-32 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-7 lg:pr-12">
@@ -91,7 +91,7 @@ export default function FeatureSpotlight() {
         </div>
       </div>
       {/* Bottom fade — eases this navy anchor down into the blue HowItWorks slab. */}
-      <SectionFade edge="bottom" color="var(--blue)" height="h-28" />
+      <SectionFade edge="bottom" colorRgb="--blue-rgb" height="h-40" />
     </section>
   );
 }

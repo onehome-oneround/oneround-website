@@ -68,7 +68,7 @@ export default function GoodStuff() {
           the dark→light seam into Pricing reads as a tonal step, not a hard cut.
           On the venue side Pricing is absent and the FAQ (white) follows; paper
           is a neutral pale landing that softens either way. */}
-      <SectionFade edge="bottom" color="var(--paper)" height="h-40" />
+      <SectionFade edge="bottom" colorRgb="--paper-rgb" height="h-48" />
 
       <div className="relative z-10 mx-auto max-w-[96rem]">
         <EditorialTag index="06" label="The Good Stuff" className="text-white" />

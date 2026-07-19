@@ -42,7 +42,7 @@ export default function HowItWorks() {
     >
       {/* Bottom fade — the one deliberate saturated-blue slab melts into the
           white WhatToExpect below instead of hard-cutting. */}
-      <SectionFade edge="bottom" color="var(--white)" height="h-32" />
+      <SectionFade edge="bottom" colorRgb="--white-rgb" height="h-48" />
       <div className="relative z-10 mx-auto max-w-[96rem]">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">

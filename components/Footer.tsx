@@ -28,7 +28,7 @@ export default function Footer() {
     <footer className="on-dark relative bg-navy px-5 py-16 sm:px-8">
       {/* Top fade — the paper Contact section eases into this navy close. Short,
           so it stays in the top padding above the sign-off. */}
-      <SectionFade edge="top" color="var(--paper)" height="h-16" />
+      <SectionFade edge="top" colorRgb="--paper-rgb" height="h-16" />
       <div className="relative z-10 mx-auto max-w-[96rem]">
         {/* Big sign-off. A lighter (weight 500), smaller closing statement, not a
             section heading — deliberately off the display-* ramp so it doesn't
