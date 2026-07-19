@@ -57,7 +57,7 @@ export default function Splash() {
   return (
     <div
       data-splash-root
-      className={`fixed inset-0 z-[60] flex flex-col transition-opacity duration-500 ${
+      className={`focus-on-dark fixed inset-0 z-[60] flex flex-col transition-opacity duration-500 ${
         leaving ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
       role="dialog"

@@ -110,6 +110,17 @@
     outline-offset: 3px;
     border-radius: 2px;
   }
+
+  /* Focus rings on dark / accent grounds. The default ring is var(--accent),
+     which is low-contrast where the ground IS the accent — a navy ring on the
+     navy (venue) slabs, a blue ring on the blue slabs. Any element inside an
+     .on-dark section (the navy photo slabs + Footer) or a slab flagged
+     .focus-on-dark (the blue Hero/HowItWorks, the Splash overlay) flips its
+     focus ring to white so keyboard focus stays clearly visible. */
+  .on-dark :focus-visible,
+  .focus-on-dark :focus-visible {
+    outline-color: var(--white);
+  }
 }
 
 /* ----------------------------------------------------------------------

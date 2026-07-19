@@ -38,7 +38,7 @@ export default function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="relative scroll-mt-16 bg-blue px-5 py-24 sm:px-8 sm:py-32"
+      className="focus-on-dark relative scroll-mt-16 bg-blue px-5 py-24 sm:px-8 sm:py-32"
     >
       {/* Bottom fade — the one deliberate saturated-blue slab melts into the
           white WhatToExpect below instead of hard-cutting. */}

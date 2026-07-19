@@ -45,7 +45,7 @@ export default function Hero() {
   return (
     // id is the target of the Pricing section's "Get Started" CTA — at launch
     // the store badges appear in this hero, so that CTA can point straight at them.
-    <section id="get-the-app" className="relative scroll-mt-16 bg-[color:var(--accent)]">
+    <section id="get-the-app" className="focus-on-dark relative scroll-mt-16 bg-[color:var(--accent)]">
       {/* Bottom fade — the accent masthead melts into the white Features section
           below instead of hard-cutting. Static gradient; content sits above it. */}
       <SectionFade edge="bottom" color="var(--white)" height="h-32" />
