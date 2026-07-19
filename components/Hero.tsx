@@ -45,6 +45,9 @@ export default function Hero() {
   return (
     // id is the target of the Pricing section's "Get Started" CTA — at launch
     // the store badges appear in this hero, so that CTA can point straight at them.
+    // No py-* here (unlike the py-24 sm:py-32 section rhythm) is intentional: the
+    // hero is a full-viewport masthead sized by min-h-[100svh] + the inner grid's
+    // own padding, so it's an exception to the rhythm alongside Marquee/Footer.
     <section id="get-the-app" className="focus-on-dark relative scroll-mt-16 bg-[color:var(--accent)]">
       {/* Bottom fade — the accent masthead melts into the white Features section
           below instead of hard-cutting. Static gradient; content sits above it. */}

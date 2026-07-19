@@ -33,7 +33,7 @@ function VenueEnquiryForm() {
   }
 
   const field =
-    "mt-2 w-full rounded-xl border border-[color:var(--rule)] bg-white px-4 py-3 text-base text-ink outline-none transition focus:border-[color:var(--accent)] focus:ring-2 focus:ring-[color:var(--accent)]/25";
+    "mt-2 w-full border border-[color:var(--rule)] bg-white px-4 py-3 text-base text-ink outline-none transition focus:border-[color:var(--accent)] focus:ring-2 focus:ring-[color:var(--accent)]/25";
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">

@@ -30,7 +30,10 @@ export default function Footer() {
           so it stays in the top padding above the sign-off. */}
       <SectionFade edge="top" color="var(--paper)" height="h-16" />
       <div className="relative z-10 mx-auto max-w-[96rem]">
-        {/* Big sign-off */}
+        {/* Big sign-off. A lighter (weight 500), smaller closing statement, not a
+            section heading — deliberately off the display-* ramp so it doesn't
+            compete with the section headings; display-section would make it
+            6rem/600 and read as another section head. */}
         <div className="hair-b grid grid-cols-1 gap-8 pb-12 lg:grid-cols-12 lg:items-end">
           <p
             className="font-display text-white lg:col-span-8"

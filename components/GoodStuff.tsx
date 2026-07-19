@@ -95,8 +95,10 @@ export default function GoodStuff() {
         </ul>
 
         {/* The venue partner button stays; the user-side store badges are hidden
-            until launch, so the CTA only renders on the venue side for now. */}
-        {isVenue && (
+            until launch, so the CTA only renders on the venue side for now.
+            Guard on copy.href too: the consumer copy carries an empty href, so
+            this can never render a dead link even if the audience gate changes. */}
+        {isVenue && copy.href && (
           <div className="mt-12">
             <PillButton href={copy.href} variant="solid" onDark>
               {copy.cta}

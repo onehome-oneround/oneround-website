@@ -91,6 +91,9 @@ export default function Pricing() {
             on the tonal ground rather than sitting as another hard rectangle. */}
         <div className="mx-auto mt-12 w-full max-w-md rounded-3xl bg-white px-8 py-10 shadow-[0_40px_90px_-45px_rgba(var(--navy-rgb),0.45)] sm:px-10 sm:py-12">
           <div className="flex items-baseline gap-3">
+            {/* The price is a display NUMBER inside the (preserved) pricing card,
+                not a section heading — deliberately kept off the display-* ramp,
+                whose tiers (5.5-10rem) would all oversize it and change the card. */}
             <span
               className="font-display text-navy"
               style={{ fontSize: "clamp(3rem, 8vw, 4.5rem)", lineHeight: "0.9", fontWeight: 600 }}
