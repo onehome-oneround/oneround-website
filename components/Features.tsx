@@ -132,37 +132,28 @@ export default function Features() {
             card to the same height, so no card can outgrow its siblings by
             construction. Keep it that way — do not reintroduce row spans here.
             On mobile everything stacks full width. */}
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:gap-7 lg:grid-cols-10">
-          {features.map((f, i) => (
+        <div className="mt-14 grid grid-cols-1 gap-6 sm:gap-7 lg:grid-cols-3">
+          {features.map((f) => (
             <article
               key={f.n}
-              /* Roundies (i === 0) is 4 of 10; the others 3 each. */
-              className={`flex flex-col overflow-hidden rounded-3xl border border-[color:var(--rule)] bg-white shadow-[0_18px_44px_-28px_rgba(var(--navy-rgb),0.3)] ${
-                i === 0 ? "lg:col-span-4" : "lg:col-span-3"
-              }`}
+              className="flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-[color:var(--rule)] bg-white shadow-[0_18px_44px_-28px_rgba(var(--navy-rgb),0.3)]"
             >
-              {/* Fixed height, not an aspect ratio. The cards are different
-                  widths, so a shared ratio would make the wider Roundies photo
-                  taller and start its copy lower than its siblings' — they would
-                  stop reading as peers. A locked height means all three copy
-                  blocks begin at the same y. */}
-              <div className="relative h-56 w-full shrink-0 overflow-hidden bg-offwhite">
+              {/* One ratio for all three. Safe now the cards are equal width —
+                  identical width plus identical ratio means identical photo
+                  height, so every copy block starts at the same y. */}
+              <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-offwhite">
                 <Image
                   src={f.image}
                   alt={f.heading}
                   fill
-                  sizes={
-                    i === 0
-                      ? "(max-width: 1024px) 100vw, 40vw"
-                      : "(max-width: 1024px) 100vw, 30vw"
-                  }
+                  sizes="(max-width: 1024px) 100vw, 33vw"
                   className="object-cover"
                   style={{ objectFit: "cover", objectPosition: "center" }}
                 />
               </div>
               <div className="flex flex-1 flex-col p-7">
                 <span className="index-num accent-text text-3xl">{f.n}</span>
-                <h3 className="mt-3 font-display text-2xl font-semibold leading-tight text-ink">
+                <h3 className="display-section mt-3 font-display text-ink">
                   {f.heading}
                 </h3>
                 <p className="kicker accent-text mt-2">{f.sub}</p>
