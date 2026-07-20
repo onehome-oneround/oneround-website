@@ -145,22 +145,6 @@ export default function HowRoundiesWorkPage() {
                 </p>
               </div>
             </div>
-
-            <div className="mt-16 max-w-2xl">
-              <p className="font-display text-2xl font-semibold leading-tight text-ink sm:text-3xl">
-                You&rsquo;ll always see the condition before you redeem.
-              </p>
-              <p className="mt-5 text-base leading-relaxed text-ink-soft">
-                Every pairing is written on the Roundie card in the app, so you know
-                what it asks for while you&rsquo;re still deciding. Nothing is sprung
-                on you at the bar.
-              </p>
-              <p className="mt-4 text-base leading-relaxed text-ink-soft">
-                And the choice stays yours. If you don&rsquo;t want the pairing, don&rsquo;t
-                redeem it — your Roundie is untouched, and there will be a standalone
-                one waiting another night.
-              </p>
-            </div>
           </div>
         </section>
 
