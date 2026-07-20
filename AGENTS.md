@@ -17,7 +17,7 @@ a fresh bug, and don't try to fix it with another pre-paint script.
 read, so `AudienceProvider` renders `"consumer"` during SSR and only learns the
 real value in an effect — after hydration. Components branch on `isVenue` for
 copy and for whole blocks (`Contact` swaps its entire subtree, `Pricing` returns
-null entirely on the venue side, `Faq` reflows from 11 to 9 items, and
+null entirely on the venue side, `Faq` reflows from 11 to 8 items, and
 `HowItWorks` and `GoodStuff` add a CTA block), so when the state flips,
 everything below reflows.
 
