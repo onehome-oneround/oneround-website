@@ -16,13 +16,12 @@
   --white: #ffffff;
   --offwhite: #f4f5fb;
 
-  /* Neutral grounds. The homepage holds ONE light ground (--paper) from Features
-     through Contact; sections are marked by the EditorialTag hairline, vertical
-     whitespace, and full-bleed image bands rather than by a colour change each
-     time. Accent Hero and navy Footer bookend it. Takes navy ink at AA.
-       --paper : pale cool grey, the single light ground
-       --tint  : pale wash of --blue. Unused by the homepage since the ground
-                 consolidation; kept as a palette token for future components. */
+  /* Neutral grounds. The homepage varies its ground across blue, navy, paper and
+     white rather than holding one: accent Hero, paper editorial sections, a
+     saturated blue HowItWorks slab, navy photo bands and strips, navy Footer.
+     Sections meet at hard edges — no gradient seams. Takes navy ink at AA.
+       --paper : pale cool grey, the main light ground
+       --tint  : pale wash of --blue, carried by the Marquee ticker strip */
   --paper: #e9edf7;
   --tint: #dcebfc;
 
@@ -131,7 +130,7 @@
      which is low-contrast where the ground IS the accent — a navy ring on the
      navy (venue) slabs, a blue ring on the blue slabs. Any element inside an
      .on-dark section (the navy photo slabs + Footer) or a slab flagged
-     .focus-on-dark (the accent Hero, the Splash overlay) flips its
+     .focus-on-dark (the accent Hero, the blue HowItWorks, the Splash overlay) flips its
      focus ring to white so keyboard focus stays clearly visible. */
   .on-dark :focus-visible,
   .focus-on-dark :focus-visible {

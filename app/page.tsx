@@ -23,7 +23,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Features />
-        <Marquee tone="white" />
+        <Marquee tone="tint" />
         <FeatureSpotlight />
         <HowItWorks />
         <WhatToExpect />
