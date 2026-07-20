@@ -5,7 +5,6 @@ import PillButton from "./PillButton";
 // HIDDEN until launch - re-enable: app store links (user-side Good Stuff CTA)
 // import DownloadButtons from "./DownloadButtons";
 import EditorialTag from "./EditorialTag";
-import SectionFade from "./SectionFade";
 import { useAudience } from "./AudienceProvider";
 
 /*
@@ -66,11 +65,6 @@ export default function GoodStuff() {
             "linear-gradient(120deg, rgba(var(--navy-rgb),0.68) 0%, rgba(var(--navy-rgb),0.36) 22%, rgba(var(--navy-rgb),0.1) 48%, rgba(var(--navy-rgb),0.04) 100%)",
         }}
       />
-      {/* Bottom fade — the photo dissolves into the paper ground below so the
-          dark→light seam reads as a tonal step, not a hard cut. Works on both
-          audiences: Pricing follows on the consumer side, and on the venue side
-          Pricing returns null so the FAQ follows — both are paper. */}
-      <SectionFade edge="bottom" colorRgb="--paper-rgb" height="h-48" />
 
       <div className="relative z-10 mx-auto max-w-[96rem]">
         <EditorialTag index="06" label="The Good Stuff" className="text-white" />

@@ -41,8 +41,6 @@ export default function HowItWorks() {
       id="how-it-works"
       className="scroll-mt-16 bg-[color:var(--paper)] px-5 py-24 sm:px-8 sm:py-32"
     >
-      {/* No SectionFade: WhatToExpect below shares this paper ground, so there is
-          no seam left to bridge. */}
       <div className="mx-auto max-w-[96rem]">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">

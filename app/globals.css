@@ -33,12 +33,12 @@
   --radius-card: 1.5rem;
 
   /* RGB channel companions of the brand tokens, for rgba() scrims / shadows /
-     text-shadows / section-fade gradients that need an alpha. Keep in sync with
-     --navy/--blue/--white/--paper. */
+     text-shadows that need an alpha. Keep in sync with --navy/--blue/--white.
+     (--paper-rgb existed only for the section-fade gradients and went with
+     them; sections now meet at hard edges.) */
   --navy-rgb: 2, 0, 49;
   --blue-rgb: 30, 136, 243;
   --white-rgb: 255, 255, 255;
-  --paper-rgb: 233, 237, 247;
 
   /* One-off component shades, named so they stop being raw hexes (exact prior
      values — zero visual change). */
