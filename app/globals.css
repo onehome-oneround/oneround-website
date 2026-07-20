@@ -250,6 +250,18 @@
 }
 
 /* Hairline helpers */
+/* Hairline rules — the broadsheet separator.
+
+   WARNING: these are plain CSS classes, not Tailwind utilities, so they take NO
+   Tailwind variants. `lg:hair-l` does not compile to a media-queried border —
+   it compiles to nothing at all, and the rule silently never renders. That bug
+   shipped twice (fixed in 88f09dc and the commit that added this note), and it
+   is invisible in review because the neighbouring `lg:pl-*` still applies, so
+   the spacing looks intentional with no line in it.
+
+   For a responsive hairline use real utilities:
+     lg:border-l lg:border-[color:var(--rule)]
+   Unprefixed `hair-t` / `hair-b` / `hair-l` are fine at all breakpoints. */
 .hair-t {
   border-top: 1px solid var(--rule);
 }

@@ -40,7 +40,11 @@ export default function WhatToExpect() {
           <p className="mt-7 max-w-md text-base leading-relaxed text-ink-soft">{copy.body}</p>
         </div>
 
-        <div className="lg:col-span-6 lg:hair-l lg:pl-12">
+        {/* Tailwind border utilities, NOT `lg:hair-l`. See the note by the
+            hairline utilities in globals.css: a `lg:` variant cannot be applied
+            to a plain CSS class, so `lg:hair-l` compiled to nothing and this
+            divider never rendered. */}
+        <div className="lg:col-span-6 lg:border-l lg:border-[color:var(--rule)] lg:pl-12">
           <ul className="border-t border-[color:var(--rule)]">
             {venueTypes.map((t, i) => (
               <li
