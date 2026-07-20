@@ -6,10 +6,12 @@ import EditorialTag from "./EditorialTag";
 import { useAudience } from "./AudienceProvider";
 
 /*
-  "One app. Every outing." (Users) / "One app. More customers." (Venues). A white
-  slab: editorial index tag, a giant Fraunces head, then three cards (Roundies /
-  Deals / Social) with a framed photo, number, tagline, body, and a how-it-works
-  link. Copy swaps with the toggle; layout, photos, numbers, and buttons are shared.
+  "One app. Every outing." (Users) / "One app. More customers." (Venues). Sits on
+  the held paper ground: editorial index tag, a giant Fraunces head, then three
+  cards (Roundies / Deals / Social), each with a framed photo, number, tagline,
+  body, and a how-it-works link. Every card carries the same anatomy and the same
+  type sizes — they are siblings, and the only thing separating them is width.
+  Copy swaps with the toggle; layout, photos, numbers, and buttons are shared.
 */
 
 type Feature = {
@@ -114,67 +116,59 @@ export default function Features() {
           </p>
         </div>
 
-        {/* Bento — Roundies is the hero perk, so it's the large cell (two wide,
-            two tall on desktop); Deals and Social are the smaller cells stacked
-            beside it. Three equal cards read as a template; mixed sizes read
-            editorial. Rows are auto: the two small cards set the row heights and
-            the large card fills both. On mobile everything stacks full width.
-            Card headline sizes step down (large ~text-5xl > small ~text-2xl),
-            beneath the section h2's display-section — the type ramp as hierarchy
-            rather than the section-tier class competing inside the section. */}
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 lg:grid-rows-2">
-          {/* Large — Roundies */}
-          <article className="flex flex-col overflow-hidden rounded-3xl border border-[color:var(--rule)] bg-white shadow-[0_18px_44px_-28px_rgba(var(--navy-rgb),0.3)] lg:col-span-2 lg:row-span-2">
-            <div className="relative aspect-[16/10] w-full overflow-hidden bg-offwhite lg:aspect-auto lg:min-h-[16rem] lg:flex-1">
-              <Image
-                src={features[0].image}
-                alt={features[0].heading}
-                fill
-                sizes="(max-width: 1024px) 100vw, 640px"
-                className="object-cover"
-                style={{ objectFit: "cover", objectPosition: "center" }}
-              />
-            </div>
-            <div className="flex flex-col p-7 sm:p-9">
-              <span className="index-num accent-text text-4xl">{features[0].n}</span>
-              <h3 className="mt-4 font-display text-4xl font-semibold leading-[0.98] text-ink sm:text-5xl">
-                {features[0].heading}
-              </h3>
-              <p className="kicker accent-text mt-3">{features[0].sub}</p>
-              <p className="mt-4 max-w-md text-base leading-relaxed text-ink-soft">
-                {features[0].body}
-              </p>
-              <div style={{ marginTop: "auto", paddingTop: "2rem" }}>
-                <PillButton href={features[0].cta.href} variant="outline">
-                  {features[0].cta.label}
-                </PillButton>
-              </div>
-            </div>
-          </article>
+        {/* Three sibling cards in ONE row, 4/3/3 of a ten-column grid. Roundies
+            leads at 1.33x the width of the other two and holds top-left reading
+            priority; that width and position are the ONLY emphasis it gets.
 
-          {/* Small — Deals, Social */}
-          {features.slice(1).map((f) => (
+            This replaces a two-row bento where Roundies was col-span-2
+            row-span-2 and its photo was `lg:aspect-auto lg:flex-1`. That photo
+            had no intrinsic size — it absorbed whatever height was left after
+            the copy, and since row-span-2 made the card as tall as the two
+            stacked cards beside it (1278px), the photo took 903px of that and
+            pushed the entire copy block below the fold. The anatomy was all
+            present in the markup and none of it was on screen.
+
+            A single row is what prevents that recurring: grid stretches every
+            card to the same height, so no card can outgrow its siblings by
+            construction. Keep it that way — do not reintroduce row spans here.
+            On mobile everything stacks full width. */}
+        <div className="mt-14 grid grid-cols-1 gap-6 sm:gap-7 lg:grid-cols-10">
+          {features.map((f, i) => (
             <article
               key={f.n}
-              className="flex flex-col overflow-hidden rounded-3xl border border-[color:var(--rule)] bg-white shadow-[0_18px_44px_-28px_rgba(var(--navy-rgb),0.3)]"
+              /* Roundies (i === 0) is 4 of 10; the others 3 each. */
+              className={`flex flex-col overflow-hidden rounded-3xl border border-[color:var(--rule)] bg-white shadow-[0_18px_44px_-28px_rgba(var(--navy-rgb),0.3)] ${
+                i === 0 ? "lg:col-span-4" : "lg:col-span-3"
+              }`}
             >
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-offwhite">
+              {/* Fixed height, not an aspect ratio. The cards are different
+                  widths, so a shared ratio would make the wider Roundies photo
+                  taller and start its copy lower than its siblings' — they would
+                  stop reading as peers. A locked height means all three copy
+                  blocks begin at the same y. */}
+              <div className="relative h-56 w-full shrink-0 overflow-hidden bg-offwhite">
                 <Image
                   src={f.image}
                   alt={f.heading}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes={
+                    i === 0
+                      ? "(max-width: 1024px) 100vw, 40vw"
+                      : "(max-width: 1024px) 100vw, 30vw"
+                  }
                   className="object-cover"
                   style={{ objectFit: "cover", objectPosition: "center" }}
                 />
               </div>
-              <div className="flex flex-1 flex-col p-6 sm:p-7">
+              <div className="flex flex-1 flex-col p-7">
                 <span className="index-num accent-text text-3xl">{f.n}</span>
                 <h3 className="mt-3 font-display text-2xl font-semibold leading-tight text-ink">
                   {f.heading}
                 </h3>
                 <p className="kicker accent-text mt-2">{f.sub}</p>
                 <p className="mt-3 text-sm leading-relaxed text-ink-soft">{f.body}</p>
+                {/* mt-auto pins every CTA to the card floor, so all three align
+                    even though the body copy runs to different lengths. */}
                 <div style={{ marginTop: "auto", paddingTop: "1.5rem" }}>
                   <PillButton href={f.cta.href} variant="outline">
                     {f.cta.label}
