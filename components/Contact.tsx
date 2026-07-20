@@ -28,7 +28,7 @@ export default function Contact() {
               Want OneRound in your venue?
             </h2>
             <p className="mt-6 max-w-md text-base leading-relaxed text-ink-soft">
-              Let's talk. Tell us about your venue and we'll get you set up.
+              Let&rsquo;s talk. Tell us about your venue and we&rsquo;ll get you set up.
             </p>
           </div>
           <div className="lg:col-span-7">
@@ -48,7 +48,7 @@ export default function Contact() {
             Get in touch.
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-ink-soft">
-            Questions, press, or just want to say hi? We'd love to hear from you.
+            Questions, press, or just want to say hi? We&rsquo;d love to hear from you.
           </p>
         </div>
         <div className="lg:col-span-4 lg:pb-3">

@@ -125,6 +125,14 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: PRE_PAINT }} />
       </head>
       <body className="min-h-full flex flex-col bg-white text-ink">
+        {/* Skip link — first focusable element, visually hidden until focused,
+            jumps keyboard users past the nav to the page's <main id="main-content">. */}
+        <a
+          href="#main-content"
+          className="sr-only rounded-sm bg-navy px-4 py-2 text-sm font-semibold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100]"
+        >
+          Skip to content
+        </a>
         <AudienceProvider>{children}</AudienceProvider>
         {/* GA4 + Meta Pixel. Renders nothing outside production or without IDs;
             see components/Analytics.tsx for the guards and why paid ads depend

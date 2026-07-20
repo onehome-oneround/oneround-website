@@ -51,7 +51,7 @@ export default function HowDealsWorkPage() {
   return (
     <>
       <Nav />
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         {/* Header — white slab */}
         <section className="bg-white px-5 pb-12 pt-24 sm:px-8 sm:pt-28">
           <div className="mx-auto max-w-[96rem]">

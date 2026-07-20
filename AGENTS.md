@@ -16,8 +16,10 @@ a fresh bug, and don't try to fix it with another pre-paint script.
 **Why it happens.** The audience lives in `localStorage`, which the server can't
 read, so `AudienceProvider` renders `"consumer"` during SSR and only learns the
 real value in an effect — after hydration. Components branch on `isVenue` for
-copy and for whole blocks (`Contact` swaps its entire subtree, `HowItWorks` and
-`GoodStuff` add a CTA block), so when the state flips, everything below reflows.
+copy and for whole blocks (`Contact` swaps its entire subtree, `Pricing` returns
+null entirely on the venue side, `Faq` reflows from 11 to 9 items, and
+`HowItWorks` and `GoodStuff` add a CTA block), so when the state flips,
+everything below reflows.
 
 **What is already handled.** The accent flash and the splash flash are fixed: a
 parse-blocking inline script in `app/layout.tsx` resolves both from storage and

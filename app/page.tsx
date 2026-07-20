@@ -20,7 +20,7 @@ export default function Home() {
     <>
       <Splash />
       <Nav />
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         <Hero />
         <Features />
         <Marquee tone="tint" />

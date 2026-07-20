@@ -121,7 +121,10 @@ export default function Footer() {
           <p className="kicker text-white/45">
             18+. We support the responsible service and consumption of alcohol
           </p>
-          <p className="kicker text-white/45">© 2026 ONEROUND PTY LTD</p>
+          <div className="flex flex-col gap-1 sm:items-end">
+            <p className="kicker text-white/45">© 2026 ONEROUND PTY LTD</p>
+            <p className="kicker text-white/45">ABN 53 691 600 263</p>
+          </div>
         </div>
       </div>
     </footer>

@@ -176,6 +176,11 @@ export default function VenueSignupForm() {
 
       if (response.ok) {
         setStatus("success");
+        // Conversion events. Analytics.tsx loads GA4 (gtag) + Meta Pixel (fbq);
+        // both are optional-chained so this no-ops if the scripts didn't load
+        // (blocked, non-prod, or missing IDs). Window types: PageViewTracker.tsx.
+        window.gtag?.("event", "generate_lead");
+        window.fbq?.("track", "Lead");
         return;
       }
 
