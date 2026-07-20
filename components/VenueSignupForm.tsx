@@ -207,7 +207,7 @@ export default function VenueSignupForm() {
         tabIndex={-1}
         className="border border-[color:var(--rule)] bg-white p-8 outline-none sm:p-10"
       >
-        <p className="kicker accent-text">Application received</p>
+        <p className="kicker text-navy">Application received</p>
         <p className="mt-4 font-display text-2xl leading-tight text-ink sm:text-3xl">
           Thanks — we&apos;ll be in touch within 24 hours.
         </p>

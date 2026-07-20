@@ -90,7 +90,7 @@ export default function Features() {
       <div className="mx-auto max-w-[96rem]">
         <div className="grid grid-cols-1 gap-y-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
-            <EditorialTag index="02" label="Introducing OneRound" className="accent-text" />
+            <EditorialTag index="02" label="Introducing OneRound" className="text-navy" />
             <h2
               className={`display-section mt-6 font-display ${isVenue ? "text-ink" : "text-blue"}`}
             >
@@ -156,7 +156,7 @@ export default function Features() {
                 <h3 className="display-section mt-3 font-display text-ink">
                   {f.heading}
                 </h3>
-                <p className="kicker accent-text mt-2">{f.sub}</p>
+                <p className="kicker text-navy mt-2">{f.sub}</p>
                 <p className="mt-3 text-sm leading-relaxed text-ink-soft">{f.body}</p>
                 {/* mt-auto pins every CTA to the card floor, so all three align
                     even though the body copy runs to different lengths. */}

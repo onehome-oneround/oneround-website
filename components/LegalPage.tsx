@@ -23,7 +23,7 @@ export default function LegalPage({
       <Nav />
       <main className="flex-1 px-5 pb-24 pt-32 sm:px-8 sm:pt-40">
         <article className="mx-auto max-w-2xl">
-          <p className="kicker accent-text">Legal</p>
+          <p className="kicker text-navy">Legal</p>
           <h1 className="mt-3 text-4xl font-extrabold tracking-[-0.03em] text-ink sm:text-5xl">
             {title}
           </h1>

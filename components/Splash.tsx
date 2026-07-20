@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { useAudience } from "./AudienceProvider";
 
@@ -21,18 +21,49 @@ import { useAudience } from "./AudienceProvider";
 
 const SEEN_KEY = "oneround-splash-seen";
 
+/*
+  "Has this session already seen the splash?" is a read of sessionStorage, an
+  external source, so it goes through useSyncExternalStore rather than an effect
+  that calls setState. The previous version started `show` true and setState-d it
+  false inside an effect, scheduling a second render pass on every page load.
+
+  Read-only: nothing subscribes, because the only writer is markSeen() below and
+  it does not need to notify.
+
+  Note that useSyncExternalStore re-reads getSnapshot on EVERY render, not just
+  on notify. markSeen() writes sessionStorage at the start of the dismiss, so
+  `seen` DOES flip true on the very next render — which would unmount the splash
+  instantly and cut off the 600ms leave transition. The render gate below guards
+  against that by ignoring `seen` while a dismiss is in flight.
+*/
+function subscribeSeen() {
+  return () => {};
+}
+
+function getSeenSnapshot(): boolean {
+  try {
+    return Boolean(sessionStorage.getItem(SEEN_KEY));
+  } catch {
+    return false;
+  }
+}
+
+/* The server cannot read sessionStorage, so it always renders the splash —
+   matching the old `useState(true)`. globals.css hides it pre-paint via
+   data-splash-seen, so a returning visitor never actually sees it. */
+function getSeenServerSnapshot(): boolean {
+  return false;
+}
+
 export default function Splash() {
   const { setAudience } = useAudience();
-  const [show, setShow] = useState(true);
+  const seen = useSyncExternalStore(
+    subscribeSeen,
+    getSeenSnapshot,
+    getSeenServerSnapshot,
+  );
+  const [dismissed, setDismissed] = useState(false);
   const [leaving, setLeaving] = useState(false);
-
-  useEffect(() => {
-    try {
-      if (sessionStorage.getItem(SEEN_KEY)) setShow(false);
-    } catch {
-      /* ignore */
-    }
-  }, []);
 
   function markSeen() {
     try {
@@ -47,12 +78,19 @@ export default function Splash() {
 
   function enter(which: "consumer" | "venue") {
     setAudience(which);
-    markSeen();
+    // setLeaving BEFORE markSeen: markSeen writes sessionStorage, which flips
+    // `seen` on the next render, and the gate below needs `leaving` already true
+    // by then or the splash unmounts before it can fade. Both are batched inside
+    // this handler, so the next render sees both.
     setLeaving(true);
-    setTimeout(() => setShow(false), 600);
+    markSeen();
+    setTimeout(() => setDismissed(true), 600);
   }
 
-  if (!show) return null;
+  // `leaving` overrides `seen` so the fade can play; `dismissed` is the timeout
+  // landing, and is the only thing that actually unmounts after a choice.
+  if (dismissed) return null;
+  if (seen && !leaving) return null;
 
   return (
     <div

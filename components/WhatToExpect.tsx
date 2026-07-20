@@ -33,7 +33,7 @@ export default function WhatToExpect() {
     <section className="bg-[color:var(--paper)] px-5 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center lg:gap-8">
         <div className="lg:col-span-6 lg:pr-12">
-          <EditorialTag index="05" label={copy.kicker} className="accent-text" />
+          <EditorialTag index="05" label={copy.kicker} className="text-navy" />
           <h2 className="display-section mt-6 text-ink">
             {copy.heading}
           </h2>

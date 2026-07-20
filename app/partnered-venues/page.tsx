@@ -52,7 +52,7 @@ export default function PartneredVenuesPage() {
             </Link>
 
             <div className="mt-8">
-              <EditorialTag index="·" label="Partner venues" className="accent-text" />
+              <EditorialTag index="·" label="Partner venues" className="text-navy" />
             </div>
             <h1
               className="mt-6 max-w-[16ch] text-ink"
@@ -85,7 +85,7 @@ export default function PartneredVenuesPage() {
                 </div>
                 <div className="flex flex-1 flex-col p-7">
                   <div className="hair-b flex items-baseline justify-between pb-3">
-                    <span className="kicker accent-text">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="kicker text-navy">{String(i + 1).padStart(2, "0")}</span>
                     <span className="kicker text-ink-faint">Brisbane</span>
                   </div>
                   {/* One step up from text-3xl, taking the space the placeholder

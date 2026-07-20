@@ -63,7 +63,7 @@ export default function HowDealsWorkPage() {
             </Link>
 
             <div className="mt-8">
-              <EditorialTag index="·" label="Deals" className="accent-text" />
+              <EditorialTag index="·" label="Deals" className="text-navy" />
             </div>
             <h1
               className="mt-6 max-w-[16ch] text-ink"

@@ -36,7 +36,7 @@ export default function Faq() {
       <div className="mx-auto max-w-[96rem]">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
-            <EditorialTag index="08" label="Good to know" className="accent-text" />
+            <EditorialTag index="08" label="Good to know" className="text-navy" />
             <h2 className="display-section mt-6 text-ink">
               Questions<span className="italic accent-text">?</span>
             </h2>

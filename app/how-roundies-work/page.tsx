@@ -63,7 +63,7 @@ export default function HowRoundiesWorkPage() {
             </Link>
 
             <div className="mt-8">
-              <EditorialTag index="·" label="Roundies" className="accent-text" />
+              <EditorialTag index="·" label="Roundies" className="text-navy" />
             </div>
             <h1
               className="mt-6 max-w-[16ch] text-ink"
@@ -100,7 +100,7 @@ export default function HowRoundiesWorkPage() {
                 Roundie menu": tagging this section "01" would put two different
                 01s within a screen of each other, meaning different things. The
                 dot sidesteps that collision entirely. */}
-            <EditorialTag index="·" label="Two kinds of Roundies" className="accent-text" />
+            <EditorialTag index="·" label="Two kinds of Roundies" className="text-navy" />
             <h2 className="mt-6 max-w-[18ch] font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl">
               Two kinds of Roundies.
             </h2>
@@ -112,7 +112,7 @@ export default function HowRoundiesWorkPage() {
 
             <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
               <div>
-                <span className="kicker accent-text">Standalone</span>
+                <span className="kicker text-navy">Standalone</span>
                 <h3 className="mt-4 font-display text-2xl font-semibold leading-tight text-ink">
                   An item on us, no strings.
                 </h3>
@@ -131,7 +131,7 @@ export default function HowRoundiesWorkPage() {
                   rule silently never renders. Verified: border-left-width came
                   back 0px. */}
               <div className="lg:border-l lg:border-[color:var(--rule)] lg:pl-16">
-                <span className="kicker accent-text">Paired</span>
+                <span className="kicker text-navy">Paired</span>
                 <h3 className="mt-4 font-display text-2xl font-semibold leading-tight text-ink">
                   An item on us, with a small purchase.
                 </h3>

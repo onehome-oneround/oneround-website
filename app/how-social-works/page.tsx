@@ -69,7 +69,7 @@ export default function HowSocialWorksPage() {
             </Link>
 
             <div className="mt-8">
-              <EditorialTag index="·" label="Social" className="accent-text" />
+              <EditorialTag index="·" label="Social" className="text-navy" />
             </div>
             <h1
               className="mt-6 max-w-[16ch] text-ink"
