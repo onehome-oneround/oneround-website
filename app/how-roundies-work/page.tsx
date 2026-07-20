@@ -71,11 +71,6 @@ export default function HowRoundiesWorkPage() {
             >
               How Roundies <span className="italic accent-text">work.</span>
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
-              A Roundie is a complimentary item at a participating venue. Your
-              membership gives you five a month, one per outing. An actual item on us,
-              not a discount. Here&rsquo;s all there is to it.
-            </p>
           </div>
         </section>
 
@@ -104,24 +99,23 @@ export default function HowRoundiesWorkPage() {
             <h2 className="mt-6 max-w-[18ch] font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl">
               Two kinds of Roundies.
             </h2>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-ink-soft">
-              Both are complimentary. One you claim with nothing at all. The other
-              comes with a small purchase alongside it, and unlocks items a venue
-              would rarely give away otherwise.
-            </p>
 
             <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+              {/* The column label carries the h3 now. It used to be a span above a
+                  sentence-length h3, and with that sentence gone the section would
+                  have had no subheadings at all — a two-word label is also the
+                  better heading for anyone navigating by heading. Same `kicker`
+                  class, so nothing moves. */}
               <div>
-                <span className="kicker text-navy">Standalone</span>
-                <h3 className="mt-4 font-display text-2xl font-semibold leading-tight text-ink">
-                  An item on us, no strings.
-                </h3>
-                <p className="mt-4 text-base leading-relaxed text-ink-soft">
-                  You claim it, you get it. Nothing to buy, nothing to add. Walk in,
-                  scan, walk out with it.
+                <h3 className="kicker text-navy">Standalone</h3>
+                {/* Lede, then follow-up: the first line carries the definition at
+                    display weight, the second the mechanics at body weight. */}
+                <p className="mt-4 font-display text-xl font-semibold leading-snug text-ink sm:text-2xl">
+                  A Roundie is an item on us, redeemable at participating venues.
                 </p>
-                <p className="mt-4 text-sm leading-relaxed text-ink-faint">
-                  A beer. A coffee. A slice of pizza.
+                <p className="mt-3 text-base leading-relaxed text-ink-soft">
+                  Members receive five Roundies every month, one per outing. Open the
+                  app, tap the Roundie, and redeem it.
                 </p>
               </div>
 
@@ -131,17 +125,15 @@ export default function HowRoundiesWorkPage() {
                   rule silently never renders. Verified: border-left-width came
                   back 0px. */}
               <div className="lg:border-l lg:border-[color:var(--rule)] lg:pl-16">
-                <span className="kicker text-navy">Paired</span>
-                <h3 className="mt-4 font-display text-2xl font-semibold leading-tight text-ink">
-                  An item on us, with a small purchase.
-                </h3>
-                <p className="mt-4 text-base leading-relaxed text-ink-soft">
-                  The venue asks you to buy something alongside it. That trade is what
-                  lets them put up bigger and better items than they could afford to
-                  hand over for nothing.
+                <h3 className="kicker text-navy">Paired</h3>
+                <p className="mt-4 font-display text-xl font-semibold leading-snug text-ink sm:text-2xl">
+                  Some Roundies come with a small purchase alongside — a beer, a
+                  coffee, whatever the pairing asks for.
                 </p>
-                <p className="mt-4 text-sm leading-relaxed text-ink-faint">
-                  A bowl of chips with a beer. A spirit with any main.
+                <p className="mt-3 text-base leading-relaxed text-ink-soft">
+                  The condition sits on the Roundie card so you see it before you
+                  redeem. Lets venues offer items they wouldn&rsquo;t put on the
+                  standalone list.
                 </p>
               </div>
             </div>

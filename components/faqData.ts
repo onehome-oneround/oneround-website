@@ -36,7 +36,7 @@ export const consumerFaqs: Faq[] = [
   },
   {
     q: "How do I redeem one?",
-    a: "Open the app at the venue, tap the Roundie, and show the staff. That's it. No vouchers, no printing, no fuss.",
+    a: "Open the app at the venue, tap the Roundie, and redeem it. That's it. No vouchers, no printing, no fuss.",
   },
   {
     q: "Do I need to be 18+ to use OneRound?",
