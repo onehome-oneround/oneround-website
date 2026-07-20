@@ -6,10 +6,6 @@
    so both inherit the post-hydration content swap documented in AGENTS.md
    rather than introducing a new mechanism.
 
-   [CONFIRM: ...] markers are deliberate placeholders awaiting real figures and
-   commitments before launch. Do not invent values for them; leave them visible
-   so they cannot ship unnoticed.
-
    Pricing ($11.99/month) also appears in the Pricing section directly above the
    FAQ on the home page. If the price changes, change it in BOTH places —
    components/Pricing.tsx renders it too, and the two sit within a screen of
@@ -48,11 +44,11 @@ export const consumerFaqs: Faq[] = [
   },
   {
     q: "What if I don't use all five in a month?",
-    a: "Roundies reset at the start of each month — they don't roll over. But with over [CONFIRM: X] partnered venues in Brisbane, most members use theirs.",
+    a: "Roundies reset at the start of each month — they don't roll over.",
   },
   {
     q: "Which venues are on OneRound?",
-    a: "[CONFIRM: X] Brisbane venues at launch, with more added every week. See the full list on our partnered venues page.",
+    a: "A growing list of Brisbane venues at launch, with more added every week. See the full list on our partnered venues page.",
   },
   {
     q: "Can I cancel anytime?",
@@ -82,16 +78,12 @@ export const venueFaqs: Faq[] = [
     a: "No. Redemption happens through the OneRound app — staff verify the redemption on-screen. No new hardware, no POS integration required.",
   },
   {
-    q: "Is there a minimum term or exclusivity?",
-    a: "[CONFIRM: No minimum term, no exclusivity. You can offer competing loyalty programs alongside OneRound.]",
-  },
-  {
     q: "How does redemption work — how do our staff know it's legit?",
     a: "The member shows a live redemption screen in the app with a countdown timer and your venue name. Screenshots don't work. Staff verify with one tap.",
   },
   {
     q: "What analytics do we get?",
-    a: "[CONFIRM: Weekly reports on redemptions, member visits, average spend on non-Roundie items, and repeat-visit rates.]",
+    a: "Your venue dashboard shows Roundie data, Deals data, foot traffic data, and network data.",
   },
   {
     q: "What if a member behaves badly at our venue?",
@@ -99,6 +91,6 @@ export const venueFaqs: Faq[] = [
   },
   {
     q: "How does OneRound bring me new customers?",
-    a: "Members actively seek partnered venues — they check the app before deciding where to go. You get visibility inside the app, in weekly member emails, and at launch events. [CONFIRM: exact marketing commitments to venues]",
+    a: "Members actively seek partnered venues — they check the app before deciding where to go. You get visibility from members seeking Roundies and exclusive deals.",
   },
 ];
