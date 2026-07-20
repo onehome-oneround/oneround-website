@@ -88,8 +88,11 @@ export default function PartneredVenuesPage() {
                     <span className="kicker accent-text">{String(i + 1).padStart(2, "0")}</span>
                     <span className="kicker text-ink-faint">Brisbane</span>
                   </div>
-                  <h2 className="mt-5 font-display text-3xl font-semibold text-ink">{v.name}</h2>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-soft">{v.description}</p>
+                  {/* One step up from text-3xl, taking the space the placeholder
+                      description used to occupy. Deliberately NOT promoted onto
+                      the display-* ramp: those tiers run 2.6rem-10rem and would
+                      overrun a ~434px card column and compete with the h1. */}
+                  <h2 className="mt-5 font-display text-4xl font-semibold text-ink">{v.name}</h2>
                 </div>
               </article>
             ))}
