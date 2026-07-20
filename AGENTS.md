@@ -36,13 +36,25 @@ profile with empty storage, so they always see the consumer path and report
 CLS 0. Reproduce it by setting `localStorage['oneround-audience'] = 'venue'`
 and reloading.
 
-## LAUNCH BLOCKER: privacy policy vs. analytics
+## LAUNCH BLOCKER: privacy policy vs. analytics and the venue form
 
 GA4 and the Meta Pixel are installed and will fire the moment anything runs
 with `NODE_ENV=production` and the IDs set (`components/Analytics.tsx`). The
-privacy policy at `app/privacy/page.tsx` has not been updated to match. **Do
-not put the site in front of real user traffic until it is.** This is a legal
-and contractual gap, not a tidy-up.
+venue signup form now collects **name, email and phone directly** and posts them
+to `/api/venue-signup`. The privacy policy at `app/privacy/page.tsx` has not been
+updated to cover either. **Do not put the site in front of real user traffic
+until it is.** This is a legal and contractual gap, not a tidy-up.
+
+**The form makes this sharper than analytics alone.** Trackers collect
+behavioural data a visitor might not notice; a form is the visitor deliberately
+handing over contact details, which is unambiguously personal information under
+anyone's reading. The form carries a "By submitting, you agree to our Privacy
+Policy" line linking to `/privacy` — and that line currently points at a
+document which does not describe this collection, or the analytics, at all.
+Pointing users at a policy that does not cover what you are doing is worse than
+staying silent: it is an explicit representation that the policy governs the
+submission, which makes the ACL misleading-conduct exposure below more direct,
+not less. Either the policy describes the form or that line should not ship.
 
 **The problem is the policy's own wording.** It is generic boilerplate that
 mentions no analytics, cookies, third parties or tracking, while making
@@ -129,3 +141,27 @@ Do NOT reach for the parse-blocking pre-paint script in `app/layout.tsx` to
 solve the first-paint problem. That script is on the critical path of every page
 load forever; a temporary launch feature does not justify taxing it. A slot that
 populates a few hundred milliseconds after paint is the correct trade.
+
+## LAUNCH BLOCKER: venue signup goes nowhere
+
+`app/api/venue-signup/route.ts` validates a submission, logs it to the server
+console, and returns 200. **There is no delivery.** The visitor is told "we'll
+be in touch within 24 hours" and nothing reaches anyone.
+
+**Wire real email to hello@oneround.au before pointing any venue at the form** —
+Resend, Postmark or similar. This is a blocker the moment the venue path is
+promoted anywhere, not a post-launch nicety, because:
+
+  - Console logs on most hosts roll off within days and are not searchable.
+    A lead missed is gone with no record that it existed.
+  - The success message is a promise. Shipping it while submissions evaporate
+    is the failure mode most likely to cost an actual partner.
+
+The route is deliberately shaped for this: validation, spam gates and the
+success contract are all in place, so adding delivery is a single call at the
+point marked `TODO (LAUNCH BLOCKER)` just before the `console.log`. Send to
+hello@oneround.au, and consider a copy to the submitter as confirmation.
+
+Until it is wired, treat any venue traffic to `/?view=venue#contact` as
+lead loss. The previous implementation was a `mailto:` form, which failed
+just as silently for anyone on webmail — do not go back to that.

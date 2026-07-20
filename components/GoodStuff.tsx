@@ -28,7 +28,9 @@ export default function GoodStuff() {
           "New customers discovering your venue",
         ],
         cta: "Become a partner",
-        href: "/partners",
+        // #contact, not /partners: that route 307s to /?view=venue, i.e. the top
+        // of the page the visitor is already on. This goes to the signup form.
+        href: "#contact",
         bg: "/images/newgood-venue.png",
       }
     : {

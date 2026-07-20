@@ -64,7 +64,7 @@ export default function HowItWorks() {
           {/* The venue CTA stays; the user-side store badges are hidden until launch. */}
           {isVenue && (
             <div className="lg:col-span-4 lg:pb-2">
-              <PillButton href="/partners" variant="solid">
+              <PillButton href="#contact" variant="solid">
                 Partner with us
               </PillButton>
             </div>
@@ -75,7 +75,7 @@ export default function HowItWorks() {
               section sits on the light paper ground since the ground consolidation.
           <div className="lg:col-span-4 lg:pb-2">
             {isVenue ? (
-              <PillButton href="/partners" variant="solid">
+              <PillButton href="#contact" variant="solid">
                 Partner with us
               </PillButton>
             ) : (
