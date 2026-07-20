@@ -10,7 +10,7 @@ import { faqs } from "./faqData";
 
 export default function Faq() {
   return (
-    <section id="faq" className="scroll-mt-16 bg-[color:var(--paper)] px-5 py-24 sm:px-8 sm:py-32">
+    <section id="faq" className="scroll-mt-16 bg-white px-5 py-24 sm:px-8 sm:py-32">
       <div className="mx-auto max-w-[96rem]">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">

@@ -31,15 +31,18 @@ import { useAudience } from "./AudienceProvider";
 
   Static by design: no reveal, no fade, no parallax, no hover movement.
 
-  Flow: this was a full-saturation blue slab, then a paper→tint→paper gradient.
-  It is now flat paper — the same held ground as GoodStuff's bottom fade lands
-  on, and as the FAQ and Contact below. Nothing separates it from its neighbours
-  but the EditorialTag hairline and the section's own whitespace, which is the
-  point: the card is the object, the ground stays quiet behind it. Brand blue
-  still reads via the CTA and price.
+  Flow: this was a full-saturation blue slab, then a paper→tint→paper gradient,
+  then flat paper. It is flat --tint now: Membership, Good to know and Contact
+  had all collapsed onto the same paper, which ran ~2,400px of identical ground
+  into the navy footer as one undifferentiated block. The closing stretch now
+  steps tint → white → paper → navy, so each section reads as its own beat.
 
-  Colour is all tokens: paper ground, white card, navy ink, blue accent CTA +
-  ticks. Everything on the white card clears AA comfortably (navy on white ~16:1).
+  Tint also suits this section specifically: the white card lifts off a pale blue
+  ground far better than off paper, which keeps the card as the object.
+
+  Colour is all tokens: tint ground, white card, navy ink, blue accent CTA +
+  ticks. Everything on the white card clears AA comfortably (navy on white ~16:1),
+  and navy on tint is ~14:1.
 */
 
 const INCLUDED = [
@@ -76,7 +79,7 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="scroll-mt-24 bg-[color:var(--paper)] px-5 py-24 sm:px-8 sm:py-32"
+      className="scroll-mt-24 bg-[color:var(--tint)] px-5 py-24 sm:px-8 sm:py-32"
     >
       <div className="mx-auto max-w-[96rem]">
         <EditorialTag index="07" label="Membership" className="text-navy" />
