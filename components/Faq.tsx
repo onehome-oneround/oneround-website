@@ -1,14 +1,36 @@
+"use client";
+
 import FaqAccordion from "./FaqAccordion";
 import EditorialTag from "./EditorialTag";
-import { faqs } from "./faqData";
+import { useAudience } from "./AudienceProvider";
+import { consumerFaqs, venueFaqs } from "./faqData";
 
 /*
   FAQ — white slab, on the home page (no separate route). Editorial: index tag,
   a giant Fraunces head, then the questions as hairline-ruled accordion rows.
-  id="faq" so nav/footer links anchor straight here. Content unchanged.
+  id="faq" so nav/footer links anchor straight here.
+
+  Content swaps with the audience, the same way Contact does: useAudience()
+  rather than usePathname(), because there is no separate venue route to key
+  off — /partners 307s to /?view=venue, so both audiences are served by the same
+  page. That means this inherits the known post-hydration content swap in
+  AGENTS.md rather than adding a new mechanism, and a returning venue visitor
+  landing on / sees the consumer set until the audience resolves. Deferred, not
+  new.
+
+  Layout, markup, hairlines, spacing and the eyebrow are unchanged from the
+  single-set version; only the copy and the array selection differ.
 */
 
 export default function Faq() {
+  const { audience } = useAudience();
+  const isVenue = audience === "venue";
+
+  const items = isVenue ? venueFaqs : consumerFaqs;
+  const intro = isVenue
+    ? "Everything about listing your venue, redemptions, and getting set up with OneRound."
+    : "Everything about Roundies, Deals, and getting out with OneRound.";
+
   return (
     <section id="faq" className="scroll-mt-16 bg-white px-5 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-[96rem]">
@@ -20,7 +42,7 @@ export default function Faq() {
             </h2>
           </div>
           <p className="text-base leading-relaxed text-ink-soft lg:col-span-4 lg:pb-3">
-            Everything about Roundies, Deals, and getting out with OneRound. Still stuck?{" "}
+            {intro} Still stuck?{" "}
             <a href="mailto:hello@oneround.au" className="accent-text font-semibold underline-offset-4 hover:underline">
               Email us
             </a>
@@ -29,7 +51,7 @@ export default function Faq() {
         </div>
 
         <div className="mt-10">
-          <FaqAccordion items={faqs} />
+          <FaqAccordion items={items} />
         </div>
       </div>
     </section>
