@@ -101,16 +101,14 @@ export default function HowRoundiesWorkPage() {
             </h2>
 
             <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
-              {/* The column label carries the h3 now. It used to be a span above a
-                  sentence-length h3, and with that sentence gone the section would
-                  have had no subheadings at all — a two-word label is also the
-                  better heading for anyone navigating by heading. Same `kicker`
-                  class, so nothing moves. */}
+              {/* The one-word label is the column title; everything under it is
+                  description at a single body size, so the two sentences read as
+                  one block rather than a lede and a follow-up. */}
               <div>
-                <h3 className="kicker text-navy">Standalone</h3>
-                {/* Lede, then follow-up: the first line carries the definition at
-                    display weight, the second the mechanics at body weight. */}
-                <p className="mt-4 font-display text-xl font-semibold leading-snug text-ink sm:text-2xl">
+                <h3 className="font-display text-2xl font-semibold leading-tight text-ink">
+                  Standalone
+                </h3>
+                <p className="mt-4 text-base leading-relaxed text-ink-soft">
                   A Roundie is an item on us, redeemable at participating venues.
                 </p>
                 <p className="mt-3 text-base leading-relaxed text-ink-soft">
@@ -125,8 +123,10 @@ export default function HowRoundiesWorkPage() {
                   rule silently never renders. Verified: border-left-width came
                   back 0px. */}
               <div className="lg:border-l lg:border-[color:var(--rule)] lg:pl-16">
-                <h3 className="kicker text-navy">Paired</h3>
-                <p className="mt-4 font-display text-xl font-semibold leading-snug text-ink sm:text-2xl">
+                <h3 className="font-display text-2xl font-semibold leading-tight text-ink">
+                  Paired
+                </h3>
+                <p className="mt-4 text-base leading-relaxed text-ink-soft">
                   Some Roundies come with a small purchase alongside — a beer, a
                   coffee, whatever the pairing asks for.
                 </p>
