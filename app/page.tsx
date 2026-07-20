@@ -8,27 +8,28 @@ import HowItWorks from "@/components/HowItWorks";
 import WhatToExpect from "@/components/WhatToExpect";
 import VenueLogos from "@/components/VenueLogos";
 import GoodStuff from "@/components/GoodStuff";
+import Pricing from "@/components/Pricing";
 import Faq from "@/components/Faq";
 import Contact from "@/components/Contact";
 // HIDDEN until launch - re-enable: app store links (closing CTA is a download-only section)
 // import ClosingCTA from "@/components/ClosingCTA";
 import Footer from "@/components/Footer";
-import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Home() {
   return (
     <>
       <Splash />
       <Nav />
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         <Hero />
         <Features />
-        <Marquee tone="blue" />
+        <Marquee tone="tint" />
         <FeatureSpotlight />
         <HowItWorks />
         <WhatToExpect />
         <VenueLogos />
         <GoodStuff />
+        <Pricing />
         <Faq />
         <Contact />
         {/* HIDDEN until launch - re-enable: app store links (closing CTA is a download-only
@@ -36,7 +37,6 @@ export default function Home() {
         {/* <ClosingCTA /> */}
       </main>
       <Footer />
-      <ScrollReveal />
     </>
   );
 }

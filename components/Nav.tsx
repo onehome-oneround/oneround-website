@@ -33,9 +33,9 @@ export default function Nav() {
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-40 border-b border-[color:var(--rule)] shadow-[0_8px_40px_-28px_rgba(2,0,49,0.45)]"
+      className="fixed inset-x-0 top-0 z-40 border-b border-[color:var(--rule)] shadow-[0_8px_40px_-28px_rgba(var(--navy-rgb),0.45)]"
       style={{
-        backgroundColor: "rgba(255,255,255,0.82)",
+        backgroundColor: "rgba(var(--white-rgb),0.82)",
         backdropFilter: "blur(18px) saturate(140%)",
         WebkitBackdropFilter: "blur(18px) saturate(140%)",
       }}
@@ -106,7 +106,7 @@ export default function Nav() {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="rounded-xl px-3 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-offwhite hover:text-ink"
+              className="px-3 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-offwhite hover:text-ink"
             >
               {l.label}
             </Link>

@@ -21,7 +21,7 @@ export default function ClosingHeadline({
   const p = audience === "venue" ? venues : users;
   return (
     <h2
-      className="mt-8 max-w-[18ch] text-white"
+      className="mt-6 max-w-[18ch] text-white"
       style={{ fontSize: "clamp(2.8rem, 7vw, 7rem)", lineHeight: "0.98", fontWeight: 600 }}
     >
       {p.lead}{" "}

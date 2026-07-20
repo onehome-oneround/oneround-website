@@ -27,7 +27,9 @@ export default function GoodStuff() {
           "New customers discovering your venue",
         ],
         cta: "Become a partner",
-        href: "/partners",
+        // #contact, not /partners: that route 307s to /?view=venue, i.e. the top
+        // of the page the visitor is already on. This goes to the signup form.
+        href: "#contact",
         bg: "/images/newgood-venue.png",
       }
     : {
@@ -43,7 +45,7 @@ export default function GoodStuff() {
       };
 
   return (
-    <section className="on-dark relative isolate overflow-hidden px-5 py-28 sm:px-8 sm:py-36">
+    <section className="on-dark relative isolate overflow-hidden px-5 py-20 sm:px-8 sm:py-24">
       {/* full-bleed photo */}
       <Image
         src={copy.bg}
@@ -60,26 +62,23 @@ export default function GoodStuff() {
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "linear-gradient(120deg, rgba(2,0,49,0.68) 0%, rgba(2,0,49,0.36) 22%, rgba(2,0,49,0.1) 48%, rgba(2,0,49,0.04) 100%)",
+            "linear-gradient(120deg, rgba(var(--navy-rgb),0.68) 0%, rgba(var(--navy-rgb),0.36) 22%, rgba(var(--navy-rgb),0.1) 48%, rgba(var(--navy-rgb),0.04) 100%)",
         }}
       />
 
       <div className="relative z-10 mx-auto max-w-[96rem]">
         <EditorialTag index="06" label="The Good Stuff" className="text-white" />
-        <h2
-          className="mt-8 max-w-[20ch] text-white [text-shadow:0_2px_30px_rgba(2,0,49,0.7)]"
-          style={{ fontSize: "clamp(2.8rem, 5.6vw, 5.5rem)", lineHeight: "1.0", fontWeight: 600 }}
-        >
+        <h2 className="display-statement mt-6 max-w-[14ch] text-white [text-shadow:0_2px_30px_rgba(var(--navy-rgb),0.7)]">
           {copy.heading}
         </h2>
 
         {/* benefit cards — frosted glass: photo blurs gently behind, but the panel
             is solid enough that text stays crisp. Circular number badge each. */}
-        <ul className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-3">
+        <ul className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3">
           {copy.lines.map((line, i) => (
             <li
               key={line}
-              className="flex items-center gap-4 rounded-[1.75rem] border border-white/20 bg-navy/60 p-6 shadow-[0_24px_60px_-32px_rgba(0,0,0,0.85)] backdrop-blur-2xl"
+              className="flex items-center gap-4 rounded-[var(--radius-card)] border border-white/20 bg-navy/60 p-6 shadow-[0_24px_60px_-32px_rgba(0,0,0,0.85)] backdrop-blur-2xl"
             >
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/40 bg-white/15 font-display text-lg font-semibold text-white">
                 {i + 1}
@@ -92,9 +91,11 @@ export default function GoodStuff() {
         </ul>
 
         {/* The venue partner button stays; the user-side store badges are hidden
-            until launch, so the CTA only renders on the venue side for now. */}
-        {isVenue && (
-          <div className="mt-12">
+            until launch, so the CTA only renders on the venue side for now.
+            Guard on copy.href too: the consumer copy carries an empty href, so
+            this can never render a dead link even if the audience gate changes. */}
+        {isVenue && copy.href && (
+          <div className="mt-10">
             <PillButton href={copy.href} variant="solid" onDark>
               {copy.cta}
             </PillButton>
@@ -103,7 +104,7 @@ export default function GoodStuff() {
         {/* HIDDEN until launch - re-enable: app store links (user-side Good Stuff CTA).
             To restore, replace the venue-only block above with this ternary
             (and re-enable the DownloadButtons import):
-        <div className="mt-12">
+        <div className="mt-10">
           {isVenue ? (
             <PillButton href={copy.href} variant="solid" onDark>
               {copy.cta}

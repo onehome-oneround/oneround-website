@@ -16,11 +16,11 @@ export default function ClosingCTA() {
   const lead = isVenue ? "Their reason to " : "Your reason to ";
   const accent = isVenue ? "walk in" : "get out";
   return (
-    <section id="download" className="scroll-mt-16 bg-blue px-5 py-28 sm:px-8 sm:py-36">
-      <div className="on-scroll mx-auto max-w-[96rem]">
+    <section id="download" className="scroll-mt-16 bg-blue px-5 py-24 sm:px-8 sm:py-28">
+      <div className="mx-auto max-w-[96rem]">
         <p className="kicker text-white/70">Download / Free / iOS + Android</p>
         <h2
-          className="mt-8 max-w-[18ch] text-white"
+          className="mt-6 max-w-[18ch] text-white"
           style={{ fontSize: "clamp(3rem, 9vw, 9.5rem)", lineHeight: "0.98", fontWeight: 600 }}
         >
           {lead}
@@ -32,7 +32,7 @@ export default function ClosingCTA() {
           </span>
           .
         </h2>
-        <div className="mt-12 flex flex-col gap-4 border-t border-white/25 pt-10 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-4 border-t border-white/25 pt-10 sm:flex-row sm:items-center sm:justify-between">
           <DownloadButtons />
           <p className="max-w-xs text-sm font-medium leading-relaxed text-navy">
             Download the app today. Free to download. Available on iOS and Android.

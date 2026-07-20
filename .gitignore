@@ -32,6 +32,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...except the template, which documents the required vars and carries no
+# real values. Without this negation the blanket .env* rule hides it.
+!.env.example
 
 # vercel
 .vercel

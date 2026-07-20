@@ -54,21 +54,20 @@ export default function FeatureSpotlight() {
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "linear-gradient(90deg, rgba(2,0,49,0.94) 0%, rgba(2,0,49,0.86) 40%, rgba(2,0,49,0.62) 100%)",
+            "linear-gradient(90deg, rgba(var(--navy-rgb),0.94) 0%, rgba(var(--navy-rgb),0.86) 40%, rgba(var(--navy-rgb),0.62) 100%)",
         }}
       />
       <span aria-hidden="true" className="grain" />
 
-      <div className="relative z-10 mx-auto grid max-w-[96rem] grid-cols-1 items-center gap-12 px-5 py-24 sm:px-8 sm:py-32 lg:grid-cols-12 lg:gap-8">
+      <div className="relative z-10 mx-auto grid max-w-[96rem] grid-cols-1 items-center gap-8 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-7 lg:pr-12">
           <EditorialTag index="03" label={copy.kicker} className="text-white" />
           <h2
-            className="mt-8 text-white [text-shadow:0_2px_30px_rgba(2,0,49,0.6)]"
-            style={{ fontSize: "clamp(2.8rem, 6vw, 6.5rem)", lineHeight: "1.0", fontWeight: 600 }}
+            className="display-section mt-6 text-white [text-shadow:0_2px_30px_rgba(var(--navy-rgb),0.6)]"
           >
             {copy.heading}
           </h2>
-          <p className="mt-7 max-w-md text-base leading-relaxed text-white/85 [text-shadow:0_1px_16px_rgba(2,0,49,0.6)]">
+          <p className="mt-5 max-w-md text-base leading-relaxed text-white/85 [text-shadow:0_1px_16px_rgba(var(--navy-rgb),0.6)]">
             {copy.body}
           </p>
         </div>

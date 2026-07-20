@@ -26,7 +26,7 @@ export default function AudienceToggle({ className = "" }: { className?: string 
     <div
       role="group"
       aria-label="Choose your view"
-      className={`relative grid grid-cols-2 rounded-full border border-[color:var(--rule)] bg-[#eef0f8] p-1 ${className}`}
+      className={`relative grid grid-cols-2 rounded-full border border-[color:var(--rule)] bg-[color:var(--toggle-track)] p-1 ${className}`}
     >
       {/* sliding filled indicator (geometry set inline so it never collapses) */}
       <span
@@ -39,8 +39,8 @@ export default function AudienceToggle({ className = "" }: { className?: string 
           width: "calc(50% - 0.25rem)",
           transform: isVenue ? "translateX(100%)" : "translateX(0)",
           boxShadow: isVenue
-            ? "0 4px 14px -4px rgba(2,0,49,0.55)"
-            : "0 4px 14px -4px rgba(30,136,243,0.6)",
+            ? "0 4px 14px -4px rgba(var(--navy-rgb),0.55)"
+            : "0 4px 14px -4px rgba(var(--blue-rgb),0.6)",
         }}
       />
       <button

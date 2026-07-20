@@ -5,10 +5,12 @@ import Logo from "./Logo";
 import { useAudience } from "./AudienceProvider";
 
 /*
-  Footer — a hard NAVY slab closing the broadsheet (hard cut from the blue CTA).
-  Editorial grid with hairline rules, mono metadata, working socials, contact,
-  the 18+ responsible-service line, and legal. Display copy "OneRound"; fine print
-  uses the legal entity. Content unchanged.
+  Footer — a NAVY slab closing the broadsheet. Editorial grid with hairline
+  rules, mono metadata, working socials, contact, the 18+ responsible-service
+  line, and legal. Display copy "OneRound"; fine print uses the legal entity.
+
+  A top fade eases the paper-neutral Contact section above into this navy close,
+  so the page ends on a tonal step rather than the old hard cut.
 */
 
 const INSTAGRAM = "https://instagram.com/oneroundapp";
@@ -22,9 +24,12 @@ export default function Footer() {
   const accent = isVenue ? "walk in" : "get out";
   const tagline = isVenue ? "Their reason to walk in." : "Your reason to get out.";
   return (
-    <footer className="on-dark bg-navy px-5 py-16 sm:px-8">
-      <div className="mx-auto max-w-[96rem]">
-        {/* Big sign-off */}
+    <footer className="on-dark relative bg-navy px-5 py-14 sm:px-8">
+      <div className="relative z-10 mx-auto max-w-[96rem]">
+        {/* Big sign-off. A lighter (weight 500), smaller closing statement, not a
+            section heading — deliberately off the display-* ramp so it doesn't
+            compete with the section headings; display-section would make it
+            6rem/600 and read as another section head. */}
         <div className="hair-b grid grid-cols-1 gap-8 pb-12 lg:grid-cols-12 lg:items-end">
           <p
             className="font-display text-white lg:col-span-8"
@@ -116,7 +121,10 @@ export default function Footer() {
           <p className="kicker text-white/45">
             18+. We support the responsible service and consumption of alcohol
           </p>
-          <p className="kicker text-white/45">© 2026 ONEROUND PTY LTD</p>
+          <div className="flex flex-col gap-1 sm:items-end">
+            <p className="kicker text-white/45">© 2026 ONEROUND PTY LTD</p>
+            <p className="kicker text-white/45">ABN 53 691 600 263</p>
+          </div>
         </div>
       </div>
     </footer>

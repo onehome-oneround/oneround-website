@@ -7,12 +7,11 @@ import Image from "next/image";
 // import DownloadButtons from "@/components/DownloadButtons";
 import EditorialTag from "@/components/EditorialTag";
 import ClosingHeadline from "@/components/ClosingHeadline";
-import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "How Roundies work",
   description:
-    "A Roundie is a free food or drink item at a participating venue. Membership gives you five a month, one per outing. Select from the Roundie menu, scan, and enjoy.",
+    "A Roundie is a complimentary item at a participating venue. Membership gives you five a month, one per outing. Select from the Roundie menu, scan, and enjoy.",
   alternates: { canonical: "https://oneround.au/how-roundies-work" },
 };
 
@@ -52,9 +51,9 @@ export default function HowRoundiesWorkPage() {
   return (
     <>
       <Nav />
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         {/* Header — white slab */}
-        <section className="bg-white px-5 pb-12 pt-28 sm:px-8 sm:pt-36">
+        <section className="bg-white px-5 pb-12 pt-24 sm:px-8 sm:pt-28">
           <div className="mx-auto max-w-[96rem]">
             <Link href="/" className="kicker inline-flex items-center gap-2 text-ink-soft transition-colors hover:text-ink">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -63,32 +62,99 @@ export default function HowRoundiesWorkPage() {
               Back to home
             </Link>
 
-            <div className="mt-10">
-              <EditorialTag index="·" label="Roundies" className="accent-text" />
+            <div className="mt-8">
+              <EditorialTag index="·" label="Roundies" className="text-navy" />
             </div>
             <h1
-              className="mt-8 max-w-[16ch] text-ink"
+              className="mt-6 max-w-[16ch] text-ink"
               style={{ fontSize: "clamp(3rem, 8vw, 8rem)", lineHeight: "0.98", fontWeight: 600 }}
             >
               How Roundies <span className="italic accent-text">work.</span>
             </h1>
-            <p className="mt-7 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
-              A Roundie is a free food or drink item at a participating venue. Your
-              membership gives you five a month, one per outing. An actual item on us,
-              not a discount. Here&rsquo;s all there is to it.
-            </p>
           </div>
         </section>
 
-        {/* Steps — alternating editorial rows */}
-        <section className="bg-white px-5 pb-12 sm:px-8">
+        {/* Two kinds of Roundies — primary flow, deliberately ahead of the redeem
+            steps: a reader needs to know WHAT a Roundie is before HOW to claim
+            one, and "some come with a purchase" is the fact most likely to catch
+            someone out later.
+
+            Ground stays --paper even though this is now main flow rather than an
+            aside. The header above and the steps below are both white, so a white
+            section here would leave the entire page body one uninterrupted white
+            field until the navy close. Paper gives white → paper → white → navy,
+            and separates the conceptual chapter from the procedural one.
+
+            No cards: this page separates with hairlines. */}
+        <section className="bg-[color:var(--paper)] px-5 py-20 sm:px-8 sm:py-24">
+          <div className="mx-auto max-w-[96rem]">
+            {/* Still "·", not "01", now that this leads. Two reasons. This page's
+                EditorialTag convention is "·" — the masthead above uses it, and
+                nothing on the page numbers its sections. More decisively, the
+                steps immediately below open with a display "01" for "Browse the
+                Roundie menu": tagging this section "01" would put two different
+                01s within a screen of each other, meaning different things. The
+                dot sidesteps that collision entirely. */}
+            <EditorialTag index="·" label="Two kinds of Roundies" className="text-navy" />
+            <h2 className="mt-6 max-w-[18ch] font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+              Two kinds of Roundies.
+            </h2>
+
+            <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+              {/* The one-word label is the column title; everything under it is
+                  description at a single body size, so the two sentences read as
+                  one block rather than a lede and a follow-up. */}
+              <div>
+                <h3 className="font-display text-2xl font-semibold leading-tight text-ink">
+                  Standalone
+                </h3>
+                <p className="mt-4 text-base leading-relaxed text-ink-soft">
+                  A Roundie is an item on us, redeemable at participating venues.
+                </p>
+                <p className="mt-3 text-base leading-relaxed text-ink-soft">
+                  Members receive five Roundies every month, one per outing. Open the
+                  app, tap the Roundie, and redeem it.
+                </p>
+              </div>
+
+              {/* Tailwind border utilities, NOT `lg:hair-l`. hair-l is a plain
+                  CSS class from globals.css, and a `lg:` variant cannot be
+                  applied to a non-utility class — it compiles to nothing and the
+                  rule silently never renders. Verified: border-left-width came
+                  back 0px. */}
+              <div className="lg:border-l lg:border-[color:var(--rule)] lg:pl-16">
+                <h3 className="font-display text-2xl font-semibold leading-tight text-ink">
+                  Paired
+                </h3>
+                <p className="mt-4 text-base leading-relaxed text-ink-soft">
+                  Some Roundies come with a small purchase alongside — a beer, a
+                  coffee, whatever the pairing asks for.
+                </p>
+                <p className="mt-3 text-base leading-relaxed text-ink-soft">
+                  The condition sits on the Roundie card so you see it before you
+                  redeem. Lets venues offer items they wouldn&rsquo;t put on the
+                  standalone list.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Steps — alternating editorial rows.
+
+            pt-24/sm:pt-32 is required now that this follows the paper section
+            rather than the header. It previously had no top padding and borrowed
+            the header's pb-12; after the reorder the first row's border-t landed
+            flush on the paper→white seam, putting a hairline exactly on a colour
+            boundary where it reads as a dirty edge rather than an opening rule. */}
+        <section className="bg-white px-5 pb-12 pt-20 sm:px-8 sm:pt-24">
           <div className="mx-auto flex max-w-[96rem] flex-col">
             {steps.map((s, i) => {
               const flip = i % 2 === 1;
               return (
                 <div
                   key={s.n}
-                  className="on-scroll grid items-center gap-8 border-t border-[color:var(--rule)] py-10 lg:grid-cols-2 lg:gap-16 lg:py-12"
+                  className="grid items-center gap-8 border-t border-[color:var(--rule)] py-10 lg:grid-cols-2 lg:gap-12 lg:py-12"
                 >
                   <div
                     className={`flex justify-center ${
@@ -144,15 +210,15 @@ export default function HowRoundiesWorkPage() {
         </section>
 
         {/* Closing — navy slab */}
-        <section className="on-dark bg-navy px-5 py-28 sm:px-8 sm:py-32">
-          <div className="on-scroll mx-auto max-w-[96rem]">
+        <section className="on-dark bg-navy px-5 py-24 sm:px-8 sm:py-24">
+          <div className="mx-auto max-w-[96rem]">
             {/* HIDDEN until launch - re-enable: app store links ("Get the app" kicker) */}
             {/* <p className="kicker text-white/60">Get the app</p> */}
             <ClosingHeadline
               users={{ lead: "Five on us,", accent: "every month." }}
               venues={{ lead: "Bring people through", accent: "your door." }}
             />
-            <div className="mt-12 flex flex-col gap-4 border-t border-white/25 pt-10 sm:flex-row sm:items-center sm:justify-between">
+            <div className="mt-10 flex flex-col gap-4 border-t border-white/25 pt-10 sm:flex-row sm:items-center sm:justify-between">
               {/* HIDDEN until launch - re-enable: app store links (download badges) */}
               {/* <DownloadButtons /> */}
               <Link href="/" className="kicker text-white/60 transition-colors hover:text-white">
@@ -163,7 +229,6 @@ export default function HowRoundiesWorkPage() {
         </section>
       </main>
       <Footer />
-      <ScrollReveal />
     </>
   );
 }

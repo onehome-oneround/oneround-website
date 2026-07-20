@@ -6,13 +6,12 @@ import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import EditorialTag from "@/components/EditorialTag";
-import ScrollReveal from "@/components/ScrollReveal";
 import { publicVenues } from "@/components/venues";
 
 export const metadata: Metadata = {
   title: "Partnered venues",
   description:
-    "The Brisbane venues live on OneRound. Claim free Roundies each month, unlock exclusive Deals, and see where everyone's headed.",
+    "The Brisbane venues live on OneRound. Claim complimentary Roundies each month, unlock exclusive Deals, and see where everyone's headed.",
   alternates: { canonical: "https://oneround.au/partnered-venues" },
 };
 
@@ -38,9 +37,9 @@ export default function PartneredVenuesPage() {
   return (
     <>
       <Nav />
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         {/* Header — white slab */}
-        <section className="bg-white px-5 pb-12 pt-28 sm:px-8 sm:pt-36">
+        <section className="bg-white px-5 pb-12 pt-24 sm:px-8 sm:pt-28">
           <div className="mx-auto max-w-[96rem]">
             <Link
               href="/"
@@ -52,19 +51,19 @@ export default function PartneredVenuesPage() {
               Back to home
             </Link>
 
-            <div className="mt-10">
-              <EditorialTag index="·" label="Partner venues" className="accent-text" />
+            <div className="mt-8">
+              <EditorialTag index="·" label="Partner venues" className="text-navy" />
             </div>
             <h1
-              className="mt-8 max-w-[16ch] text-ink"
+              className="mt-6 max-w-[16ch] text-ink"
               style={{ fontSize: "clamp(3rem, 8vw, 8rem)", lineHeight: "0.98", fontWeight: 600 }}
             >
               Partnered <span className="italic accent-text">venues.</span>
             </h1>
-            <p className="mt-7 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
               The Brisbane venues live on OneRound, with more added all the time. Claim
-              free Roundies each month, unlock exclusive Deals, and see where everyone&rsquo;s
-              headed.
+              complimentary Roundies each month, unlock exclusive Deals, and see where
+              everyone&rsquo;s headed.
             </p>
           </div>
         </section>
@@ -73,28 +72,27 @@ export default function PartneredVenuesPage() {
         <section className="bg-white px-5 pb-24 sm:px-8 sm:pb-28">
           <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-px border border-[color:var(--rule)] bg-[color:var(--rule)] sm:grid-cols-2 lg:grid-cols-3">
             {publicVenues.map((v, i) => (
-              <article
-                key={v.slug}
-                className="on-scroll-card group flex flex-col bg-white"
-                style={{ ["--d" as string]: `${(i % 3) * 0.1}s` }}
-              >
+              <article key={v.slug} className="group flex flex-col bg-white">
                 <div className="relative aspect-[4/3] w-full overflow-hidden">
                   <Image
                     src={v.photo}
                     alt={`${v.name}, Brisbane`}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="object-cover"
                     style={{ objectFit: "cover" }}
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-7">
                   <div className="hair-b flex items-baseline justify-between pb-3">
-                    <span className="kicker accent-text">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="kicker text-navy">{String(i + 1).padStart(2, "0")}</span>
                     <span className="kicker text-ink-faint">Brisbane</span>
                   </div>
-                  <h2 className="mt-5 font-display text-3xl font-semibold text-ink">{v.name}</h2>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-soft">{v.description}</p>
+                  {/* One step up from text-3xl, taking the space the placeholder
+                      description used to occupy. Deliberately NOT promoted onto
+                      the display-* ramp: those tiers run 2.6rem-10rem and would
+                      overrun a ~434px card column and compete with the h1. */}
+                  <h2 className="mt-5 font-display text-4xl font-semibold text-ink">{v.name}</h2>
                 </div>
               </article>
             ))}
@@ -115,16 +113,16 @@ export default function PartneredVenuesPage() {
         </section>
 
         {/* Closing — navy slab */}
-        <section className="on-dark bg-navy px-5 py-28 sm:px-8 sm:py-32">
+        <section className="on-dark bg-navy px-5 py-24 sm:px-8 sm:py-24">
           <div className="mx-auto max-w-[96rem]">
             <p className="kicker text-white/60">Get the app</p>
             <h2
-              className="mt-8 max-w-[18ch] text-white"
+              className="mt-6 max-w-[18ch] text-white"
               style={{ fontSize: "clamp(2.8rem, 7vw, 7rem)", lineHeight: "0.98", fontWeight: 600 }}
             >
               See where everyone&rsquo;s <span className="italic text-blue">going.</span>
             </h2>
-            <div className="mt-12 border-t border-white/25 pt-10">
+            <div className="mt-10 border-t border-white/25 pt-10">
               <Link href="/" className="kicker text-white/60 transition-colors hover:text-white">
                 ← Back to home
               </Link>
@@ -133,7 +131,6 @@ export default function PartneredVenuesPage() {
         </section>
       </main>
       <Footer />
-      <ScrollReveal />
     </>
   );
 }

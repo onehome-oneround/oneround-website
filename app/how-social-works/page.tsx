@@ -7,12 +7,11 @@ import Image from "next/image";
 // import DownloadButtons from "@/components/DownloadButtons";
 import EditorialTag from "@/components/EditorialTag";
 import ClosingHeadline from "@/components/ClosingHeadline";
-import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "How Social works",
   description:
-    "See where your friends and the wider community are heading, pick your spot to go in the draw for weekly cash and prizes, and find your vibe.",
+    "See where your friends and the wider community are heading, pick your spot, and find your vibe. Members go in the draw for weekly cash and prizes with Weekly Wins.",
   alternates: { canonical: "https://oneround.au/how-social-works" },
 };
 
@@ -38,8 +37,8 @@ const steps: Step[] = [
   },
   {
     n: "02",
-    title: "Pick where you're going and show up, going in the draw for weekly cash and prizes",
-    body: "Choose your spot and show up. Showing up enters you in the draw for weekly cash and prizes.",
+    title: "Pick where you're going and show up, and as a member go in the draw for weekly cash and prizes",
+    body: "Choose your spot and show up. Members who show up go in the draw for weekly cash and prizes — Weekly Wins is part of membership.",
     visual: "phone",
     src: "/images/going-social.png",
     w: 3375,
@@ -58,9 +57,9 @@ export default function HowSocialWorksPage() {
   return (
     <>
       <Nav />
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         {/* Header — white slab */}
-        <section className="bg-white px-5 pb-12 pt-28 sm:px-8 sm:pt-36">
+        <section className="bg-white px-5 pb-12 pt-24 sm:px-8 sm:pt-28">
           <div className="mx-auto max-w-[96rem]">
             <Link href="/" className="kicker inline-flex items-center gap-2 text-ink-soft transition-colors hover:text-ink">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -69,19 +68,19 @@ export default function HowSocialWorksPage() {
               Back to home
             </Link>
 
-            <div className="mt-10">
-              <EditorialTag index="·" label="Social" className="accent-text" />
+            <div className="mt-8">
+              <EditorialTag index="·" label="Social" className="text-navy" />
             </div>
             <h1
-              className="mt-8 max-w-[16ch] text-ink"
+              className="mt-6 max-w-[16ch] text-ink"
               style={{ fontSize: "clamp(3rem, 8vw, 8rem)", lineHeight: "0.98", fontWeight: 600 }}
             >
               How Social <span className="italic accent-text">works.</span>
             </h1>
-            <p className="mt-7 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
-              The social side is always free. It shows you where everyone is heading, so
-              you can decide where to go and meet up before you head out. Here is all
-              there is to it.
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
+              Seeing where everyone is heading is always free. It shows you where the
+              crowd is going, so you can decide where to go and meet up before you head
+              out. Here is all there is to it.
             </p>
           </div>
         </section>
@@ -94,7 +93,7 @@ export default function HowSocialWorksPage() {
               return (
                 <div
                   key={s.n}
-                  className="on-scroll grid items-center gap-8 border-t border-[color:var(--rule)] py-10 lg:grid-cols-2 lg:gap-16 lg:py-12"
+                  className="grid items-center gap-8 border-t border-[color:var(--rule)] py-10 lg:grid-cols-2 lg:gap-12 lg:py-12"
                 >
                   <div
                     className={`flex justify-center ${
@@ -150,15 +149,15 @@ export default function HowSocialWorksPage() {
         </section>
 
         {/* Closing — navy slab */}
-        <section className="on-dark bg-navy px-5 py-28 sm:px-8 sm:py-32">
-          <div className="on-scroll mx-auto max-w-[96rem]">
+        <section className="on-dark bg-navy px-5 py-24 sm:px-8 sm:py-24">
+          <div className="mx-auto max-w-[96rem]">
             {/* HIDDEN until launch - re-enable: app store links ("Get the app" kicker) */}
             {/* <p className="kicker text-white/60">Get the app</p> */}
             <ClosingHeadline
               users={{ lead: "Know where the", accent: "crowd's at." }}
               venues={{ lead: "Get your venue", accent: "discovered." }}
             />
-            <div className="mt-12 flex flex-col gap-4 border-t border-white/25 pt-10 sm:flex-row sm:items-center sm:justify-between">
+            <div className="mt-10 flex flex-col gap-4 border-t border-white/25 pt-10 sm:flex-row sm:items-center sm:justify-between">
               {/* HIDDEN until launch - re-enable: app store links (download badges) */}
               {/* <DownloadButtons /> */}
               <Link href="/" className="kicker text-white/60 transition-colors hover:text-white">
@@ -169,7 +168,6 @@ export default function HowSocialWorksPage() {
         </section>
       </main>
       <Footer />
-      <ScrollReveal />
     </>
   );
 }

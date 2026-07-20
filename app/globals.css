@@ -16,6 +16,36 @@
   --white: #ffffff;
   --offwhite: #f4f5fb;
 
+  /* Neutral grounds. The homepage varies its ground across blue, navy, paper and
+     white rather than holding one: accent Hero, paper editorial sections, a
+     saturated blue HowItWorks slab, navy photo bands and strips, navy Footer.
+     Sections meet at hard edges — no gradient seams. Takes navy ink at AA.
+       --paper : pale cool grey, the main light ground
+       --tint  : pale wash of --blue, carried by the Marquee ticker strip */
+  --paper: #e9edf7;
+  --tint: #dcebfc;
+
+  /* One card radius across the site. Equal to Tailwind's rounded-3xl (24px),
+     which is the de-facto standard the container cards already use; this names
+     it and fixes the one deviation (GoodStuff was 1.75rem). Pills/badges stay
+     rounded-full; broadsheet slabs and hairline elements stay square. */
+  --radius-card: 1.5rem;
+
+  /* RGB channel companions of the brand tokens, for rgba() scrims / shadows /
+     text-shadows that need an alpha. Keep in sync with --navy/--blue/--white.
+     (--paper-rgb existed only for the section-fade gradients and went with
+     them; sections now meet at hard edges.) */
+  --navy-rgb: 2, 0, 49;
+  --blue-rgb: 30, 136, 243;
+  --white-rgb: 255, 255, 255;
+
+  /* One-off component shades, named so they stop being raw hexes (exact prior
+     values — zero visual change). */
+  --navy-deep: #04022e; /* ImagePlaceholder tone="deep" */
+  --navy-dark: #070540; /* ImagePlaceholder tone="dark" */
+  --navy-hover: #0a0850; /* NavStore icon hover (behind launch guard) */
+  --toggle-track: #eef0f8; /* AudienceToggle track */
+
   --ink: #020031;
   --ink-soft: #3a3a55;
   --ink-faint: #75758e;
@@ -31,6 +61,16 @@
 [data-audience="venue"] {
   --accent: var(--navy);
   --accent-deep: #0a083f;
+}
+
+/* Splash — hidden before the first paint for anyone who already dismissed it
+   this session. The pre-paint script in app/layout.tsx sets data-splash-seen on
+   <html>. React still mounts the splash (SSR can't read sessionStorage) and
+   removes it in an effect; this rule means it is never painted in between.
+   Not scoped to html[...] so it also applies on client-side remounts, where
+   Splash.tsx sets the attribute itself. */
+[data-splash-seen="1"] [data-splash-root] {
+  display: none;
 }
 
 @theme inline {
@@ -85,11 +125,47 @@
     outline-offset: 3px;
     border-radius: 2px;
   }
+
+  /* Focus rings on dark / accent grounds. The default ring is var(--accent),
+     which is low-contrast where the ground IS the accent — a navy ring on the
+     navy (venue) slabs, a blue ring on the blue slabs. Any element inside an
+     .on-dark section (the navy photo slabs + Footer) or a slab flagged
+     .focus-on-dark (the accent Hero, the blue HowItWorks, the Splash overlay) flips its
+     focus ring to white so keyboard focus stays clearly visible. */
+  .on-dark :focus-visible,
+  .focus-on-dark :focus-visible {
+    outline-color: var(--white);
+  }
 }
 
 /* ----------------------------------------------------------------------
    Type helpers
    ---------------------------------------------------------------------- */
+
+/* Display type ramp — three intentional tiers so headings read as a scale
+   rather than a dozen ad-hoc clamp() values. Fraunces is already applied to
+   h1/h2/h3 in the base layer; these only set size / leading / weight. Body copy
+   is untouched.
+     display-statement : the loud pull-quote moment (one per page, e.g. GoodStuff)
+     display-section   : default section heading
+     display-masthead  : the Hero masthead specifically
+   Each still lets a section set its own colour / margin at the call site. */
+.display-statement {
+  font-size: clamp(3.25rem, 10vw, 10rem);
+  line-height: 0.9;
+  font-weight: 600;
+}
+.display-section {
+  font-size: clamp(2.6rem, 5.6vw, 6rem);
+  line-height: 1;
+  font-weight: 600;
+}
+.display-masthead {
+  font-size: clamp(2.5rem, 5.4vw, 5.5rem);
+  line-height: 1.02;
+  font-weight: 600;
+}
+
 .font-display {
   font-family: var(--font-display), Georgia, serif;
 }
@@ -174,6 +250,18 @@
 }
 
 /* Hairline helpers */
+/* Hairline rules — the broadsheet separator.
+
+   WARNING: these are plain CSS classes, not Tailwind utilities, so they take NO
+   Tailwind variants. `lg:hair-l` does not compile to a media-queried border —
+   it compiles to nothing at all, and the rule silently never renders. That bug
+   shipped twice (fixed in 88f09dc and the commit that added this note), and it
+   is invisible in review because the neighbouring `lg:pl-*` still applies, so
+   the spacing looks intentional with no line in it.
+
+   For a responsive hairline use real utilities:
+     lg:border-l lg:border-[color:var(--rule)]
+   Unprefixed `hair-t` / `hair-b` / `hair-l` are fine at all breakpoints. */
 .hair-t {
   border-top: 1px solid var(--rule);
 }
@@ -221,16 +309,19 @@
 }
 
 /* ----------------------------------------------------------------------
-   Motion kit — crafted, not default fade slop.
-   - .rise        : staggered load reveal (hero)
-   - .mask/.mask>i: line-mask wipe for headlines
-   - .on-scroll   : refined clip+rise on scroll (via ScrollReveal → .is-visible)
-   - .on-scroll-card : editorial wipe-up for grid items, staggered
+   Motion kit — load only. Nothing animates on scroll.
+   - .rise        : load reveal (hero subhead/CTA)
+   - .mask/.mask>i: line-mask wipe for headlines — the one deliberate moment
+
+   There were also .on-scroll / .on-scroll-card reveals driven by a ScrollReveal
+   component. They're gone: sections now render as they are. If you're
+   reintroducing scroll reveals, that's a product decision that was explicitly
+   reversed once — check before spending time on it.
    ---------------------------------------------------------------------- */
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(1.1rem);
+    transform: translateY(0.4rem);
   }
   to {
     opacity: 1;
@@ -239,7 +330,7 @@
 }
 .rise {
   opacity: 0;
-  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
   animation-delay: var(--d, 0s);
 }
 
@@ -251,11 +342,13 @@
   padding-bottom: 0.22em;
   margin-bottom: -0.12em;
 }
+/* The headline wipe is the one deliberate opening moment — kept, but tightened
+   from 1.05s so it settles instead of performing. Everything around it is quiet. */
 .mask > i {
   display: block;
   font-style: inherit;
   transform: translateY(120%);
-  animation: mask-in 1.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: mask-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   animation-delay: var(--d, 0s);
 }
 @keyframes mask-in {
@@ -264,44 +357,16 @@
   }
 }
 
-.on-scroll {
-  opacity: 0;
-  clip-path: inset(0 0 10% 0);
-  transform: translateY(1.1rem);
-  transition:
-    opacity 0.6s ease,
-    clip-path 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: var(--d, 0s);
-}
-.on-scroll.is-visible {
-  opacity: 1;
-  clip-path: inset(0 0 -4% 0);
-  transform: none;
-}
-
-.on-scroll-card {
-  opacity: 0;
-  clip-path: inset(0 0 100% 0);
-  transition:
-    opacity 0.5s ease,
-    clip-path 1s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: var(--d, 0s);
-}
-.on-scroll-card.is-visible {
-  opacity: 1;
-  clip-path: inset(0 0 0 0);
-}
-
-/* Tactile press for interactive pills/buttons. */
+/* Interactive feedback for pills/buttons: colour only.
+   This used to scale(0.97) on press. Buttons that resize under the cursor read
+   as unstable and, on a press, move the very thing being pressed — so the
+   transform is gone and only colour transitions remain. Kept as a class (rather
+   than deleted) so call sites stay intact and there's one place to tune. */
 .tactile {
   transition:
-    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
     background-color 0.2s ease,
+    border-color 0.2s ease,
     color 0.2s ease;
-}
-.tactile:active {
-  transform: scale(0.97);
 }
 
 /* Faint film grain for navy slabs — printed depth, used sparingly. */
@@ -320,10 +385,11 @@
   html {
     scroll-behavior: auto;
   }
+  /* Motion kit: land in the final state rather than animate to it. These start
+     at opacity 0, so they need the explicit reveal — a duration override alone
+     would leave them invisible. */
   .rise,
   .mask > i,
-  .on-scroll,
-  .on-scroll-card,
   .accent-ital::after {
     animation: none !important;
     transition: none !important;
@@ -333,6 +399,16 @@
   }
   .marquee__track {
     animation: none !important;
+  }
+  /* Catch-all. The rules above only ever covered the load/scroll kit, which let
+     every hover, press and state transform keep moving for users who asked for
+     no motion. Colour changes still apply, they just land instantly. */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

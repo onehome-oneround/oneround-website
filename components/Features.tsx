@@ -6,10 +6,12 @@ import EditorialTag from "./EditorialTag";
 import { useAudience } from "./AudienceProvider";
 
 /*
-  "One app. Every outing." (Users) / "One app. More customers." (Venues). A white
-  slab: editorial index tag, a giant Fraunces head, then three cards (Roundies /
-  Deals / Social) with a framed photo, number, tagline, body, and a how-it-works
-  link. Copy swaps with the toggle; layout, photos, numbers, and buttons are shared.
+  "One app. Every outing." (Users) / "One app. More customers." (Venues). Sits on
+  the held paper ground: editorial index tag, a giant Fraunces head, then three
+  cards (Roundies / Deals / Social), each with a framed photo, number, tagline,
+  body, and a how-it-works link. Every card carries the same anatomy and the same
+  type sizes — they are siblings, and the only thing separating them is width.
+  Copy swaps with the toggle; layout, photos, numbers, and buttons are shared.
 */
 
 type Feature = {
@@ -26,7 +28,7 @@ const consumerFeatures: Feature[] = [
     n: "01",
     heading: "Roundies",
     sub: "Five on us, every month.",
-    body: "Claim five free food or drink items a month at participating venues, one per outing. Your reason to get out and find somewhere new.",
+    body: "Claim five complimentary items a month at participating venues, one per outing. Your reason to get out and find somewhere new.",
     image: "/images/feature-roundie.png",
     cta: { label: "How Roundies work", href: "/how-roundies-work" },
   },
@@ -84,14 +86,13 @@ export default function Features() {
     : "Three reasons to get out: Roundies, Deals, and seeing where everyone's going. One membership, every venue.";
 
   return (
-    <section className="bg-white px-5 pb-4 pt-20 sm:px-8 sm:pt-28">
+    <section className="bg-[color:var(--paper)] px-5 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-[96rem]">
-        <div className="on-scroll grid grid-cols-1 gap-y-6 lg:grid-cols-12 lg:items-end">
+        <div className="grid grid-cols-1 gap-y-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
-            <EditorialTag index="02" label="Introducing OneRound" className="accent-text" />
+            <EditorialTag index="02" label="Introducing OneRound" className="text-navy" />
             <h2
-              className={`mt-6 font-display ${isVenue ? "text-ink" : "text-blue"}`}
-              style={{ fontSize: "clamp(2.2rem, 5.4vw, 5rem)", lineHeight: "1.05", fontWeight: 600 }}
+              className={`display-section mt-6 font-display ${isVenue ? "text-ink" : "text-blue"}`}
             >
               {isVenue ? (
                 <>
@@ -115,41 +116,51 @@ export default function Features() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3">
-          {features.map((f, i) => (
+        {/* Three sibling cards in ONE row, 4/3/3 of a ten-column grid. Roundies
+            leads at 1.33x the width of the other two and holds top-left reading
+            priority; that width and position are the ONLY emphasis it gets.
+
+            This replaces a two-row bento where Roundies was col-span-2
+            row-span-2 and its photo was `lg:aspect-auto lg:flex-1`. That photo
+            had no intrinsic size — it absorbed whatever height was left after
+            the copy, and since row-span-2 made the card as tall as the two
+            stacked cards beside it (1278px), the photo took 903px of that and
+            pushed the entire copy block below the fold. The anatomy was all
+            present in the markup and none of it was on screen.
+
+            A single row is what prevents that recurring: grid stretches every
+            card to the same height, so no card can outgrow its siblings by
+            construction. Keep it that way — do not reintroduce row spans here.
+            On mobile everything stacks full width. */}
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:gap-7 lg:grid-cols-3">
+          {features.map((f) => (
             <article
               key={f.n}
-              className="on-scroll-card overflow-hidden rounded-2xl border border-[color:var(--rule)] bg-white shadow-[0_18px_44px_-28px_rgba(2,0,49,0.3)]"
-              style={{
-                ["--d" as string]: `${i * 0.12}s`,
-                display: "flex",
-                flexDirection: "column",
-                height: "100%",
-              }}
+              className="flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-[color:var(--rule)] bg-white shadow-[0_18px_44px_-28px_rgba(var(--navy-rgb),0.3)]"
             >
-              {/* image on top */}
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-offwhite">
+              {/* One ratio for all three. Safe now the cards are equal width —
+                  identical width plus identical ratio means identical photo
+                  height, so every copy block starts at the same y. */}
+              <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-offwhite">
                 <Image
                   src={f.image}
                   alt={f.heading}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width: 1024px) 100vw, 33vw"
                   className="object-cover"
                   style={{ objectFit: "cover", objectPosition: "center" }}
                 />
               </div>
-              {/* content — flexes so the button always pins to the bottom edge */}
-              <div
-                className="p-6 sm:p-7"
-                style={{ display: "flex", flexDirection: "column", flexGrow: 1 }}
-              >
-                <span className="index-num accent-text text-4xl">{f.n}</span>
-                <h3 className="mt-4 font-display text-2xl font-semibold leading-tight text-ink">
+              <div className="flex flex-1 flex-col p-7">
+                <span className="index-num accent-text text-3xl">{f.n}</span>
+                <h3 className="display-section mt-3 font-display text-ink">
                   {f.heading}
                 </h3>
-                <p className="kicker accent-text mt-3">{f.sub}</p>
-                <p className="mt-4 text-sm leading-relaxed text-ink-soft">{f.body}</p>
-                <div style={{ marginTop: "auto", paddingTop: "2.5rem" }}>
+                <p className="kicker text-navy mt-2">{f.sub}</p>
+                <p className="mt-3 text-sm leading-relaxed text-ink-soft">{f.body}</p>
+                {/* mt-auto pins every CTA to the card floor, so all three align
+                    even though the body copy runs to different lengths. */}
+                <div style={{ marginTop: "auto", paddingTop: "1.5rem" }}>
                   <PillButton href={f.cta.href} variant="outline">
                     {f.cta.label}
                   </PillButton>

@@ -43,13 +43,13 @@ app/
   partners/page.tsx  /partners (venue credibility, navy accent locked)
   how-roundies-work/ /how-roundies-work (Roundie claim explainer; links back home)
   privacy, terms/    Real, finished legal copy (not stubs)
-  globals.css        Design system: brand vars, --accent theming, reveals
-  layout.tsx         Fonts + metadata + AudienceProvider
+  globals.css        Design system: brand vars, --accent theming, load motion
+  layout.tsx         Fonts + metadata + AudienceProvider + pre-paint script
 components/          AudienceProvider, AudienceToggle, Splash, Nav, Hero,
                      Features (Three things), FeatureSpotlight (Social Layer),
                      HowItWorks, WhatToExpect, GoodStuff, Faq/FaqAccordion
                      (+faqData), Contact, ClosingCTA, Footer, DownloadButtons,
-                     PillButton, PhoneMockup, ImagePlaceholder, Logo, ScrollReveal
+                     PillButton, PhoneMockup, ImagePlaceholder, Logo
 public/              oneround-logo-navy.png (light site), oneround-logo-white.png (dark sections)
 
 Colour rhythm: white hero → off-white "Three things" → white Social Layer →
