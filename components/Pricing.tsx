@@ -3,19 +3,33 @@
 import PillButton from "./PillButton";
 import EditorialTag from "./EditorialTag";
 import { useAudience } from "./AudienceProvider";
+import {
+  Badge,
+  Glasses,
+  Lock,
+  Rays,
+  ShieldCheck,
+  Squiggle,
+} from "./PricingMarks";
 
 /*
   Membership pricing — a blue slab between The Good Stuff (dark photo) and the
   FAQ (white), which also restores the blue band the colour rhythm calls for
   while ClosingCTA sits behind the launch guard.
 
-  Composition: one contained white card, centered, max-w-md. Everything —
-  price, value line, included list, CTA — lives inside that single card, so it
-  reads as ONE object rather than items pinned to opposite corners of a slab.
-  The section is only as tall as the card plus breathing room; no forced height.
-  This follows the "Minimal Single Column" pattern for a single-plan product
-  (one price, a short benefit list, one centered CTA) rather than a multi-tier
-  comparison.
+  Composition: a two-column editorial spread. Left carries the pitch — eyebrow,
+  a two-colour display statement, subhead, and a line-art clink. Right carries
+  the card. A circular badge straddles the gutter between them, and small marks
+  sit in the top-right and bottom-right corners of the section.
+
+  The card itself is untouched from the single-column version: same price, same
+  value line, same four included items, same CTA, same white / rounded / lifted
+  treatment. It is still ONE object; the spread is built around it, not through
+  it.
+
+  Everything decorative is inline SVG with locked width and height — see
+  PricingMarks. None of it is interactive or announced: all aria-hidden, all
+  pointer-events-none where it overlaps content.
 
   Consumer only. Venues join free ("Free to join" / "Become a partner for free"),
   so a $11.99 membership price on the venue side would be wrong. Like Contact and
@@ -31,18 +45,14 @@ import { useAudience } from "./AudienceProvider";
 
   Static by design: no reveal, no fade, no parallax, no hover movement.
 
-  Flow: this was a full-saturation blue slab, then a paper→tint→paper gradient,
-  then flat paper. It is flat --tint now: Membership, Good to know and Contact
-  had all collapsed onto the same paper, which ran ~2,400px of identical ground
-  into the navy footer as one undifferentiated block. The closing stretch now
-  steps tint → white → paper → navy, so each section reads as its own beat.
+  Flow: ground is --paper. The closing stretch reads paper → white → paper →
+  navy, so Membership, Good to know and Contact still alternate rather than
+  collapsing into one field, which was the problem the earlier tint fixed.
 
-  Tint also suits this section specifically: the white card lifts off a pale blue
-  ground far better than off paper, which keeps the card as the object.
-
-  Colour is all tokens: tint ground, white card, navy ink, blue accent CTA +
-  ticks. Everything on the white card clears AA comfortably (navy on white ~16:1),
-  and navy on tint is ~14:1.
+  Colour is all tokens: paper ground, white card, navy ink, blue accent CTA,
+  ticks and line-art. Everything on the white card clears AA comfortably (navy on
+  white ~16:1), and navy on paper ~15:1. The line-art is decorative only, so its
+  blue-on-paper contrast carries no information requirement.
 */
 
 const INCLUDED = [
@@ -79,14 +89,44 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="scroll-mt-24 bg-[color:var(--tint)] px-5 py-20 sm:px-8 sm:py-24"
+      className="relative isolate scroll-mt-24 overflow-hidden bg-[color:var(--paper)] px-5 py-20 sm:px-8 sm:py-24"
     >
-      <div className="mx-auto max-w-[96rem]">
-        <EditorialTag index="07" label="Membership" className="text-navy" />
+      {/* Corner marks. Hidden below sm, where the section is a single narrow
+          column and they would crowd the type rather than frame it. */}
+      <Rays className="pointer-events-none absolute right-6 top-8 hidden text-blue sm:block" />
+      <Squiggle className="pointer-events-none absolute bottom-8 right-8 hidden text-blue sm:block" />
 
-        {/* The card — the single contained object. Rounded + lifted so it floats
-            on the tonal ground rather than sitting as another hard rectangle. */}
-        <div className="mx-auto mt-10 w-full max-w-md rounded-3xl bg-white px-8 py-10 shadow-[0_40px_90px_-45px_rgba(var(--navy-rgb),0.45)] sm:px-10 sm:py-12">
+      <div className="relative mx-auto max-w-[96rem]">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-8">
+          {/* LEFT — the pitch */}
+          <div className="lg:col-span-6">
+            <EditorialTag index="07" label="Membership" className="text-navy" />
+            <h2 className="display-statement mt-6">
+              <span className="block text-navy">More rounds.</span>
+              <span className="block text-blue">More reasons.</span>
+            </h2>
+            <p className="mt-6 max-w-md text-base leading-relaxed text-ink-soft">
+              Your membership unlocks exclusive rewards and deals at the best
+              venues, every single month.
+            </p>
+            <Glasses className="mt-10 text-blue" />
+          </div>
+
+          {/* Badge straddling the gutter. Only at lg, where there IS a gutter —
+              below that the columns stack and it would land on top of copy.
+              Absolutely positioned so it cannot affect the grid's height. */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 text-blue lg:block"
+          >
+            <Badge />
+          </div>
+
+          {/* RIGHT — the card, unchanged */}
+          <div className="lg:col-span-6">
+            {/* The card — the single contained object. Rounded + lifted so it floats
+                on the tonal ground rather than sitting as another hard rectangle. */}
+            <div className="mx-auto w-full max-w-md rounded-3xl bg-white px-8 py-10 shadow-[0_40px_90px_-45px_rgba(var(--navy-rgb),0.45)] sm:px-10 sm:py-12">
           <div className="flex items-baseline gap-3">
             {/* The price is a display NUMBER inside the (preserved) pricing card,
                 not a section heading — deliberately kept off the display-* ramp,
@@ -126,6 +166,26 @@ export default function Pricing() {
           >
             Get Started
           </PillButton>
+            </div>
+
+            {/* Trust markers, centred under the card. Two only — more would read
+                as reassurance-by-volume, which undercuts it. */}
+            <ul className="mx-auto mt-8 flex max-w-md flex-wrap items-start justify-center gap-x-10 gap-y-5">
+              {[
+                { Icon: ShieldCheck, one: "Secure payments", two: "cancel anytime" },
+                { Icon: Lock, one: "Your data is safe", two: "and private" },
+              ].map(({ Icon, one, two }) => (
+                <li key={one} className="flex items-start gap-3">
+                  <Icon className="mt-0.5 shrink-0 text-blue" />
+                  <span className="kicker leading-[1.5] text-ink-soft">
+                    {one}
+                    <br />
+                    {two}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
