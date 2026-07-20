@@ -91,78 +91,27 @@ export default function HowRoundiesWorkPage() {
           </div>
         </section>
 
-        {/* Steps — alternating editorial rows */}
-        <section className="bg-white px-5 pb-12 sm:px-8">
-          <div className="mx-auto flex max-w-[96rem] flex-col">
-            {steps.map((s, i) => {
-              const flip = i % 2 === 1;
-              return (
-                <div
-                  key={s.n}
-                  className="grid items-center gap-8 border-t border-[color:var(--rule)] py-10 lg:grid-cols-2 lg:gap-16 lg:py-12"
-                >
-                  <div
-                    className={`flex justify-center ${
-                      flip ? "lg:order-2 lg:justify-start" : "lg:justify-end"
-                    }`}
-                  >
-                    {s.visual === "phone" ? (
-                      <Image
-                        src={s.src}
-                        alt={s.title}
-                        width={3375}
-                        height={4219}
-                        sizes="(max-width: 1024px) 70vw, 340px"
-                        className="h-auto w-full max-w-[300px] sm:max-w-[340px]"
-                        style={{ objectFit: "contain" }}
-                      />
-                    ) : (
-                      <div className="relative aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-3xl bg-offwhite">
-                        <Image
-                          src={s.src}
-                          alt={s.title}
-                          fill
-                          quality={90}
-                          // The 3:2 source is cover-cropped into a 4:5 box, so the
-                          // browser scales it to fill by height. A width-only sizes
-                          // hint (e.g. 420px) under-provisions the height and the
-                          // browser upscales the result. Requesting a large slot makes
-                          // Next serve the full-resolution source (capped at 1537px).
-                          sizes="1024px"
-                          className="object-cover"
-                          style={{ objectFit: "cover", objectPosition: "center" }}
-                        />
-                      </div>
-                    )}
-                  </div>
-                  <div
-                    className={`flex justify-start ${
-                      flip ? "lg:order-1 lg:justify-end" : "lg:justify-start"
-                    }`}
-                  >
-                    <div className="w-full max-w-md">
-                      <span className="index-num accent-text text-7xl sm:text-8xl">{s.n}</span>
-                      <h2 className="mt-5 font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl">
-                        {s.title}
-                      </h2>
-                      <p className="mt-4 text-base leading-relaxed text-ink-soft">{s.body}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
+        {/* Two kinds of Roundies — primary flow, deliberately ahead of the redeem
+            steps: a reader needs to know WHAT a Roundie is before HOW to claim
+            one, and "some come with a purchase" is the fact most likely to catch
+            someone out later.
 
-        {/* Two kinds of Roundies — a conceptual aside, not a fourth step, so it
-            takes the paper ground to read as its own chapter between the white
-            steps above and the navy close below. No cards: this page separates
-            with hairlines, and the two-column split uses the same lg:hair-l
-            device as WhatToExpect on the homepage. */}
+            Ground stays --paper even though this is now main flow rather than an
+            aside. The header above and the steps below are both white, so a white
+            section here would leave the entire page body one uninterrupted white
+            field until the navy close. Paper gives white → paper → white → navy,
+            and separates the conceptual chapter from the procedural one.
+
+            No cards: this page separates with hairlines. */}
         <section className="bg-[color:var(--paper)] px-5 py-24 sm:px-8 sm:py-32">
           <div className="mx-auto max-w-[96rem]">
-            {/* "·" rather than a number: the steps own 01-03, and numbering this
-                would read as a fourth step. */}
+            {/* Still "·", not "01", now that this leads. Two reasons. This page's
+                EditorialTag convention is "·" — the masthead above uses it, and
+                nothing on the page numbers its sections. More decisively, the
+                steps immediately below open with a display "01" for "Browse the
+                Roundie menu": tagging this section "01" would put two different
+                01s within a screen of each other, meaning different things. The
+                dot sidesteps that collision entirely. */}
             <EditorialTag index="·" label="Two kinds of Roundies" className="accent-text" />
             <h2 className="mt-8 max-w-[18ch] font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl">
               Two kinds of Roundies.
@@ -239,6 +188,75 @@ export default function HowRoundiesWorkPage() {
                 one waiting another night.
               </p>
             </div>
+          </div>
+        </section>
+
+        {/* Steps — alternating editorial rows.
+
+            pt-24/sm:pt-32 is required now that this follows the paper section
+            rather than the header. It previously had no top padding and borrowed
+            the header's pb-12; after the reorder the first row's border-t landed
+            flush on the paper→white seam, putting a hairline exactly on a colour
+            boundary where it reads as a dirty edge rather than an opening rule. */}
+        <section className="bg-white px-5 pb-12 pt-24 sm:px-8 sm:pt-32">
+          <div className="mx-auto flex max-w-[96rem] flex-col">
+            {steps.map((s, i) => {
+              const flip = i % 2 === 1;
+              return (
+                <div
+                  key={s.n}
+                  className="grid items-center gap-8 border-t border-[color:var(--rule)] py-10 lg:grid-cols-2 lg:gap-16 lg:py-12"
+                >
+                  <div
+                    className={`flex justify-center ${
+                      flip ? "lg:order-2 lg:justify-start" : "lg:justify-end"
+                    }`}
+                  >
+                    {s.visual === "phone" ? (
+                      <Image
+                        src={s.src}
+                        alt={s.title}
+                        width={3375}
+                        height={4219}
+                        sizes="(max-width: 1024px) 70vw, 340px"
+                        className="h-auto w-full max-w-[300px] sm:max-w-[340px]"
+                        style={{ objectFit: "contain" }}
+                      />
+                    ) : (
+                      <div className="relative aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-3xl bg-offwhite">
+                        <Image
+                          src={s.src}
+                          alt={s.title}
+                          fill
+                          quality={90}
+                          // The 3:2 source is cover-cropped into a 4:5 box, so the
+                          // browser scales it to fill by height. A width-only sizes
+                          // hint (e.g. 420px) under-provisions the height and the
+                          // browser upscales the result. Requesting a large slot makes
+                          // Next serve the full-resolution source (capped at 1537px).
+                          sizes="1024px"
+                          className="object-cover"
+                          style={{ objectFit: "cover", objectPosition: "center" }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div
+                    className={`flex justify-start ${
+                      flip ? "lg:order-1 lg:justify-end" : "lg:justify-start"
+                    }`}
+                  >
+                    <div className="w-full max-w-md">
+                      <span className="index-num accent-text text-7xl sm:text-8xl">{s.n}</span>
+                      <h2 className="mt-5 font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+                        {s.title}
+                      </h2>
+                      <p className="mt-4 text-base leading-relaxed text-ink-soft">{s.body}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
 
