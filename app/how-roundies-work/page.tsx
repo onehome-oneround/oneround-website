@@ -23,6 +23,18 @@ type Step = {
   src: string;
 };
 
+/*
+  Worked examples of paired Roundies. Deliberately spread across venue types so
+  the reader sees this is a range of arrangements, not one gimmick: a light
+  pairing, a food upsell, a door charge, and a two-person dinner.
+*/
+const pairedExamples: { offer: string; note: string }[] = [
+  { offer: "Free chips with any beer", note: "Light pairing" },
+  { offer: "Free cocktail with any main", note: "Upsell into food" },
+  { offer: "Free entry with drink purchase", note: "Clubs and events" },
+  { offer: "Free dessert with any two mains", note: "Dinner for two" },
+];
+
 const steps: Step[] = [
   {
     n: "01",
@@ -139,6 +151,94 @@ export default function HowRoundiesWorkPage() {
                 </div>
               );
             })}
+          </div>
+        </section>
+
+        {/* Two kinds of Roundies — a conceptual aside, not a fourth step, so it
+            takes the paper ground to read as its own chapter between the white
+            steps above and the navy close below. No cards: this page separates
+            with hairlines, and the two-column split uses the same lg:hair-l
+            device as WhatToExpect on the homepage. */}
+        <section className="bg-[color:var(--paper)] px-5 py-24 sm:px-8 sm:py-32">
+          <div className="mx-auto max-w-[96rem]">
+            {/* "·" rather than a number: the steps own 01-03, and numbering this
+                would read as a fourth step. */}
+            <EditorialTag index="·" label="Two kinds of Roundies" className="accent-text" />
+            <h2 className="mt-8 max-w-[18ch] font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+              Two kinds of Roundies.
+            </h2>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-ink-soft">
+              Both are complimentary. One you claim with nothing at all. The other
+              comes with a small purchase alongside it, and unlocks items a venue
+              would rarely give away otherwise.
+            </p>
+
+            <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
+              <div>
+                <span className="kicker accent-text">Standalone</span>
+                <h3 className="mt-4 font-display text-2xl font-semibold leading-tight text-ink">
+                  An item on us, no strings.
+                </h3>
+                <p className="mt-4 text-base leading-relaxed text-ink-soft">
+                  You claim it, you get it. Nothing to buy, nothing to add. Walk in,
+                  scan, walk out with it.
+                </p>
+                <p className="mt-4 text-sm leading-relaxed text-ink-faint">
+                  A beer. A coffee. A slice of pizza.
+                </p>
+              </div>
+
+              {/* Tailwind border utilities, NOT `lg:hair-l`. hair-l is a plain
+                  CSS class from globals.css, and a `lg:` variant cannot be
+                  applied to a non-utility class — it compiles to nothing and the
+                  rule silently never renders. Verified: border-left-width came
+                  back 0px. */}
+              <div className="lg:border-l lg:border-[color:var(--rule)] lg:pl-16">
+                <span className="kicker accent-text">Paired</span>
+                <h3 className="mt-4 font-display text-2xl font-semibold leading-tight text-ink">
+                  An item on us, with a small purchase.
+                </h3>
+                <p className="mt-4 text-base leading-relaxed text-ink-soft">
+                  The venue asks you to buy something alongside it. That trade is what
+                  lets them put up bigger and better items than they could afford to
+                  hand over for nothing.
+                </p>
+                <p className="mt-4 text-sm leading-relaxed text-ink-faint">
+                  A bowl of chips with a beer. A spirit with any main.
+                </p>
+              </div>
+            </div>
+
+            <ul className="mt-16 border-t border-[color:var(--rule)]">
+              {pairedExamples.map((example, i) => (
+                <li
+                  key={example.offer}
+                  className="flex flex-col gap-1 border-b border-[color:var(--rule)] py-5 sm:flex-row sm:items-baseline sm:gap-8"
+                >
+                  <span className="kicker w-10 shrink-0 text-ink-faint">0{i + 1}</span>
+                  <span className="font-display text-xl font-semibold leading-tight text-ink sm:text-2xl">
+                    {example.offer}
+                  </span>
+                  <span className="kicker text-ink-faint sm:ml-auto">{example.note}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-12 max-w-2xl">
+              <p className="font-display text-2xl font-semibold leading-tight text-ink sm:text-3xl">
+                You&rsquo;ll always see the condition before you redeem.
+              </p>
+              <p className="mt-5 text-base leading-relaxed text-ink-soft">
+                Every pairing is written on the Roundie card in the app, so you know
+                what it asks for while you&rsquo;re still deciding. Nothing is sprung
+                on you at the bar.
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-ink-soft">
+                And the choice stays yours. If you don&rsquo;t want the pairing, don&rsquo;t
+                redeem it — your Roundie is untouched, and there will be a standalone
+                one waiting another night.
+              </p>
+            </div>
           </div>
         </section>
 
