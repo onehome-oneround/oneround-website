@@ -23,18 +23,6 @@ type Step = {
   src: string;
 };
 
-/*
-  Worked examples of paired Roundies. Deliberately spread across venue types so
-  the reader sees this is a range of arrangements, not one gimmick: a light
-  pairing, a food upsell, a door charge, and a two-person dinner.
-*/
-const pairedExamples: { offer: string; note: string }[] = [
-  { offer: "Free chips with any beer", note: "Light pairing" },
-  { offer: "Free cocktail with any main", note: "Upsell into food" },
-  { offer: "Free entry with drink purchase", note: "Clubs and events" },
-  { offer: "Free dessert with any two mains", note: "Dinner for two" },
-];
-
 const steps: Step[] = [
   {
     n: "01",
@@ -158,22 +146,7 @@ export default function HowRoundiesWorkPage() {
               </div>
             </div>
 
-            <ul className="mt-16 border-t border-[color:var(--rule)]">
-              {pairedExamples.map((example, i) => (
-                <li
-                  key={example.offer}
-                  className="flex flex-col gap-1 border-b border-[color:var(--rule)] py-5 sm:flex-row sm:items-baseline sm:gap-8"
-                >
-                  <span className="kicker w-10 shrink-0 text-ink-faint">0{i + 1}</span>
-                  <span className="font-display text-xl font-semibold leading-tight text-ink sm:text-2xl">
-                    {example.offer}
-                  </span>
-                  <span className="kicker text-ink-faint sm:ml-auto">{example.note}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-12 max-w-2xl">
+            <div className="mt-16 max-w-2xl">
               <p className="font-display text-2xl font-semibold leading-tight text-ink sm:text-3xl">
                 You&rsquo;ll always see the condition before you redeem.
               </p>
