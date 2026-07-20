@@ -136,7 +136,7 @@ function Countdown({ softClassName }: { softClassName: string }) {
   const parts = isPrePaint ? null : partsFrom(remainingMs);
 
   return (
-    <div className="mt-8">
+    <div className="mt-6">
       <p className={`kicker ${softClassName}`}>Launching Brisbane</p>
       {/* Gap and numeral size step down on small screens. At text-5xl/gap-6 the
           four columns have an intrinsic width of ~337px, which overflows the

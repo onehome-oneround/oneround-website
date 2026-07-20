@@ -59,15 +59,15 @@ export default function FeatureSpotlight() {
       />
       <span aria-hidden="true" className="grain" />
 
-      <div className="relative z-10 mx-auto grid max-w-[96rem] grid-cols-1 items-center gap-12 px-5 py-24 sm:px-8 sm:py-32 lg:grid-cols-12 lg:gap-8">
+      <div className="relative z-10 mx-auto grid max-w-[96rem] grid-cols-1 items-center gap-8 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-7 lg:pr-12">
           <EditorialTag index="03" label={copy.kicker} className="text-white" />
           <h2
-            className="display-section mt-8 text-white [text-shadow:0_2px_30px_rgba(var(--navy-rgb),0.6)]"
+            className="display-section mt-6 text-white [text-shadow:0_2px_30px_rgba(var(--navy-rgb),0.6)]"
           >
             {copy.heading}
           </h2>
-          <p className="mt-7 max-w-md text-base leading-relaxed text-white/85 [text-shadow:0_1px_16px_rgba(var(--navy-rgb),0.6)]">
+          <p className="mt-5 max-w-md text-base leading-relaxed text-white/85 [text-shadow:0_1px_16px_rgba(var(--navy-rgb),0.6)]">
             {copy.body}
           </p>
         </div>

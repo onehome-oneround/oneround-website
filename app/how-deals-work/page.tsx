@@ -53,7 +53,7 @@ export default function HowDealsWorkPage() {
       <Nav />
       <main className="flex-1">
         {/* Header — white slab */}
-        <section className="bg-white px-5 pb-12 pt-28 sm:px-8 sm:pt-36">
+        <section className="bg-white px-5 pb-12 pt-24 sm:px-8 sm:pt-28">
           <div className="mx-auto max-w-[96rem]">
             <Link href="/" className="kicker inline-flex items-center gap-2 text-ink-soft transition-colors hover:text-ink">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -62,16 +62,16 @@ export default function HowDealsWorkPage() {
               Back to home
             </Link>
 
-            <div className="mt-10">
+            <div className="mt-8">
               <EditorialTag index="·" label="Deals" className="accent-text" />
             </div>
             <h1
-              className="mt-8 max-w-[16ch] text-ink"
+              className="mt-6 max-w-[16ch] text-ink"
               style={{ fontSize: "clamp(3rem, 8vw, 8rem)", lineHeight: "0.98", fontWeight: 600 }}
             >
               How Deals <span className="italic accent-text">work.</span>
             </h1>
-            <p className="mt-7 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
               Deals are exclusive offers you will only find through OneRound, on top of
               your monthly Roundies. Use as many as you like, whenever they are running.
               Here is all there is to it.
@@ -87,7 +87,7 @@ export default function HowDealsWorkPage() {
               return (
                 <div
                   key={s.n}
-                  className="grid items-center gap-8 border-t border-[color:var(--rule)] py-10 lg:grid-cols-2 lg:gap-16 lg:py-12"
+                  className="grid items-center gap-8 border-t border-[color:var(--rule)] py-10 lg:grid-cols-2 lg:gap-12 lg:py-12"
                 >
                   <div
                     className={`flex justify-center ${
@@ -143,7 +143,7 @@ export default function HowDealsWorkPage() {
         </section>
 
         {/* Closing — navy slab */}
-        <section className="on-dark bg-navy px-5 py-28 sm:px-8 sm:py-32">
+        <section className="on-dark bg-navy px-5 py-24 sm:px-8 sm:py-24">
           <div className="mx-auto max-w-[96rem]">
             {/* HIDDEN until launch - re-enable: app store links ("Get the app" kicker) */}
             {/* <p className="kicker text-white/60">Get the app</p> */}
@@ -151,7 +151,7 @@ export default function HowDealsWorkPage() {
               users={{ lead: "Offers you won't find", accent: "anywhere else." }}
               venues={{ lead: "Fill your", accent: "quiet periods." }}
             />
-            <div className="mt-12 flex flex-col gap-4 border-t border-white/25 pt-10 sm:flex-row sm:items-center sm:justify-between">
+            <div className="mt-10 flex flex-col gap-4 border-t border-white/25 pt-10 sm:flex-row sm:items-center sm:justify-between">
               {/* HIDDEN until launch - re-enable: app store links (download badges) */}
               {/* <DownloadButtons /> */}
               <Link href="/" className="kicker text-white/60 transition-colors hover:text-white">

@@ -20,11 +20,11 @@ export default function Contact() {
 
   if (isVenue) {
     return (
-      <section id="contact" className="scroll-mt-28 bg-[color:var(--paper)] px-5 py-24 sm:px-8 sm:py-32">
-        <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
+      <section id="contact" className="scroll-mt-28 bg-[color:var(--paper)] px-5 py-20 sm:px-8 sm:py-24">
+        <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-5">
             <EditorialTag index="09" label="Contact" className="accent-text" />
-            <h2 className="display-section mt-8 text-ink">
+            <h2 className="display-section mt-6 text-ink">
               Want OneRound in your venue?
             </h2>
             <p className="mt-6 max-w-md text-base leading-relaxed text-ink-soft">
@@ -40,11 +40,11 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="scroll-mt-28 bg-[color:var(--paper)] px-5 py-24 sm:px-8 sm:py-32">
-      <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
+    <section id="contact" className="scroll-mt-28 bg-[color:var(--paper)] px-5 py-20 sm:px-8 sm:py-24">
+      <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-8">
           <EditorialTag index="09" label="Contact" className="accent-text" />
-          <h2 className="display-section mt-8 text-ink">
+          <h2 className="display-section mt-6 text-ink">
             Get in touch.
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-ink-soft">

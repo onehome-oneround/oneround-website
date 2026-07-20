@@ -39,7 +39,7 @@ export default function PartneredVenuesPage() {
       <Nav />
       <main className="flex-1">
         {/* Header — white slab */}
-        <section className="bg-white px-5 pb-12 pt-28 sm:px-8 sm:pt-36">
+        <section className="bg-white px-5 pb-12 pt-24 sm:px-8 sm:pt-28">
           <div className="mx-auto max-w-[96rem]">
             <Link
               href="/"
@@ -51,16 +51,16 @@ export default function PartneredVenuesPage() {
               Back to home
             </Link>
 
-            <div className="mt-10">
+            <div className="mt-8">
               <EditorialTag index="·" label="Partner venues" className="accent-text" />
             </div>
             <h1
-              className="mt-8 max-w-[16ch] text-ink"
+              className="mt-6 max-w-[16ch] text-ink"
               style={{ fontSize: "clamp(3rem, 8vw, 8rem)", lineHeight: "0.98", fontWeight: 600 }}
             >
               Partnered <span className="italic accent-text">venues.</span>
             </h1>
-            <p className="mt-7 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
               The Brisbane venues live on OneRound, with more added all the time. Claim
               free Roundies each month, unlock exclusive Deals, and see where everyone&rsquo;s
               headed.
@@ -110,16 +110,16 @@ export default function PartneredVenuesPage() {
         </section>
 
         {/* Closing — navy slab */}
-        <section className="on-dark bg-navy px-5 py-28 sm:px-8 sm:py-32">
+        <section className="on-dark bg-navy px-5 py-24 sm:px-8 sm:py-24">
           <div className="mx-auto max-w-[96rem]">
             <p className="kicker text-white/60">Get the app</p>
             <h2
-              className="mt-8 max-w-[18ch] text-white"
+              className="mt-6 max-w-[18ch] text-white"
               style={{ fontSize: "clamp(2.8rem, 7vw, 7rem)", lineHeight: "0.98", fontWeight: 600 }}
             >
               See where everyone&rsquo;s <span className="italic text-blue">going.</span>
             </h2>
-            <div className="mt-12 border-t border-white/25 pt-10">
+            <div className="mt-10 border-t border-white/25 pt-10">
               <Link href="/" className="kicker text-white/60 transition-colors hover:text-white">
                 ← Back to home
               </Link>

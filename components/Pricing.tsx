@@ -79,14 +79,14 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="scroll-mt-24 bg-[color:var(--tint)] px-5 py-24 sm:px-8 sm:py-32"
+      className="scroll-mt-24 bg-[color:var(--tint)] px-5 py-20 sm:px-8 sm:py-24"
     >
       <div className="mx-auto max-w-[96rem]">
         <EditorialTag index="07" label="Membership" className="text-navy" />
 
         {/* The card — the single contained object. Rounded + lifted so it floats
             on the tonal ground rather than sitting as another hard rectangle. */}
-        <div className="mx-auto mt-12 w-full max-w-md rounded-3xl bg-white px-8 py-10 shadow-[0_40px_90px_-45px_rgba(var(--navy-rgb),0.45)] sm:px-10 sm:py-12">
+        <div className="mx-auto mt-10 w-full max-w-md rounded-3xl bg-white px-8 py-10 shadow-[0_40px_90px_-45px_rgba(var(--navy-rgb),0.45)] sm:px-10 sm:py-12">
           <div className="flex items-baseline gap-3">
             {/* The price is a display NUMBER inside the (preserved) pricing card,
                 not a section heading — deliberately kept off the display-* ramp,

@@ -24,7 +24,7 @@ export default function Footer() {
   const accent = isVenue ? "walk in" : "get out";
   const tagline = isVenue ? "Their reason to walk in." : "Your reason to get out.";
   return (
-    <footer className="on-dark relative bg-navy px-5 py-16 sm:px-8">
+    <footer className="on-dark relative bg-navy px-5 py-14 sm:px-8">
       <div className="relative z-10 mx-auto max-w-[96rem]">
         {/* Big sign-off. A lighter (weight 500), smaller closing statement, not a
             section heading — deliberately off the display-* ramp so it doesn't

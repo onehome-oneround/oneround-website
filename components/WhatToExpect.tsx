@@ -30,14 +30,14 @@ export default function WhatToExpect() {
       };
 
   return (
-    <section className="bg-[color:var(--paper)] px-5 py-24 sm:px-8 sm:py-32">
-      <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-8">
+    <section className="bg-[color:var(--paper)] px-5 py-20 sm:px-8 sm:py-24">
+      <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center lg:gap-8">
         <div className="lg:col-span-6 lg:pr-12">
           <EditorialTag index="05" label={copy.kicker} className="accent-text" />
-          <h2 className="display-section mt-8 text-ink">
+          <h2 className="display-section mt-6 text-ink">
             {copy.heading}
           </h2>
-          <p className="mt-7 max-w-md text-base leading-relaxed text-ink-soft">{copy.body}</p>
+          <p className="mt-5 max-w-md text-base leading-relaxed text-ink-soft">{copy.body}</p>
         </div>
 
         {/* Tailwind border utilities, NOT `lg:hair-l`. See the note by the

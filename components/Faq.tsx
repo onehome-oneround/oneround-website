@@ -10,12 +10,12 @@ import { faqs } from "./faqData";
 
 export default function Faq() {
   return (
-    <section id="faq" className="scroll-mt-16 bg-white px-5 py-24 sm:px-8 sm:py-32">
+    <section id="faq" className="scroll-mt-16 bg-white px-5 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-[96rem]">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
             <EditorialTag index="08" label="Good to know" className="accent-text" />
-            <h2 className="display-section mt-8 text-ink">
+            <h2 className="display-section mt-6 text-ink">
               Questions<span className="italic accent-text">?</span>
             </h2>
           </div>
@@ -28,7 +28,7 @@ export default function Faq() {
           </p>
         </div>
 
-        <div className="mt-12">
+        <div className="mt-10">
           <FaqAccordion items={faqs} />
         </div>
       </div>

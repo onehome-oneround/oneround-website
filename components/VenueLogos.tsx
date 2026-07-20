@@ -80,13 +80,13 @@ export default function VenueLogos() {
   return (
     <section
       aria-label="Partner venues"
-      className="on-dark relative w-full overflow-hidden border-b border-white/15 bg-navy py-24 sm:py-32"
+      className="on-dark relative w-full overflow-hidden border-b border-white/15 bg-navy py-20 sm:py-24"
     >
-      <div className="relative z-10 flex flex-col gap-12 sm:gap-14">
+      <div className="relative z-10 flex flex-col gap-8 sm:gap-14">
         <Row />
         <Row reverse />
       </div>
-      <div className="relative z-10 mt-14 flex justify-center px-5 sm:mt-16 sm:px-8">
+      <div className="relative z-10 mt-10 flex justify-center px-5 sm:mt-12 sm:px-8">
         <PillButton href="/partnered-venues" variant="solid" onDark>
           See partnered venues
         </PillButton>

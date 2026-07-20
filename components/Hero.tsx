@@ -45,16 +45,16 @@ export default function Hero() {
   return (
     // id is the target of the Pricing section's "Get Started" CTA — at launch
     // the store badges appear in this hero, so that CTA can point straight at them.
-    // No py-* here (unlike the py-24 sm:py-32 section rhythm) is intentional: the
+    // No py-* here (unlike the py-20 sm:py-24 section rhythm) is intentional: the
     // hero is a full-viewport masthead sized by min-h-[100svh] + the inner grid's
     // own padding, so it's an exception to the rhythm alongside Marquee/Footer.
     <section id="get-the-app" className="focus-on-dark relative scroll-mt-16 bg-[color:var(--accent)]">
       <div className="relative z-10">
         <div className="mx-auto grid min-h-[100svh] max-w-[96rem] grid-cols-1 gap-0 px-5 pb-12 pt-20 sm:px-8 lg:grid-cols-12 lg:gap-0 lg:px-0 lg:pb-0 lg:pt-0">
           {/* LEFT — masthead, headline, subhead, CTAs */}
-          <div className="flex flex-col justify-center lg:col-span-7 lg:py-24 lg:pl-8 lg:pr-12 xl:pl-12">
+          <div className="flex flex-col justify-center lg:col-span-7 lg:py-20 lg:pl-8 lg:pr-12 xl:pl-12">
             {/* Headline */}
-            <h1 className="display-masthead mt-10 text-white lg:mt-0">
+            <h1 className="display-masthead mt-8 text-white lg:mt-0">
               {isVenue ? (
                 <>
                   <span className="mask">
@@ -99,7 +99,7 @@ export default function Hero() {
             </h1>
 
             {/* Subhead + CTAs */}
-            <div className="rise mt-6 max-w-xl sm:mt-7" style={{ ["--d" as string]: "0.6s" }}>
+            <div className="rise mt-6 max-w-xl sm:mt-6" style={{ ["--d" as string]: "0.6s" }}>
               <p className={`text-base font-medium leading-relaxed sm:text-lg ${soft}`}>
                 {subhead}
               </p>
@@ -113,7 +113,7 @@ export default function Hero() {
               {/* The venue CTA stays; the user-side store badges are hidden until
                   launch, so the CTA block only renders on the venue side for now. */}
               {isVenue && (
-                <div className="mt-8 flex flex-col gap-3">
+                <div className="mt-6 flex flex-col gap-3">
                   <PillButton href="#contact" variant="solid" onDark>
                     Become a partner for free
                   </PillButton>
@@ -122,7 +122,7 @@ export default function Hero() {
               {/* HIDDEN until launch - re-enable: app store links (user-side hero CTA).
                   To restore, replace the venue-only block above with this ternary
                   (and re-enable the DownloadButtons import + `meta` const):
-              <div className="mt-8 flex flex-col gap-3">
+              <div className="mt-6 flex flex-col gap-3">
                 {isVenue ? (
                   <PillButton href="#contact" variant="solid" onDark>
                     Become a partner for free
@@ -139,7 +139,7 @@ export default function Hero() {
           </div>
 
           {/* RIGHT — inset photo panel (rounded, lifted) */}
-          <div className="relative mt-10 lg:col-span-5 lg:mt-0 lg:py-10 lg:pl-3 lg:pr-10">
+          <div className="relative mt-8 lg:col-span-5 lg:mt-0 lg:py-10 lg:pl-3 lg:pr-10">
             <div className="relative h-[58vw] overflow-hidden rounded-3xl shadow-[0_30px_70px_-42px_rgba(var(--navy-rgb),0.55)] sm:h-[44vw] lg:h-full">
               <div className="absolute inset-0">
                 <Image

@@ -30,7 +30,7 @@ export default function LegalPage({
           {meta ? (
             <div className="mt-4 space-y-1 text-sm text-ink-faint">{meta}</div>
           ) : null}
-          <div className="legal-prose mt-10">{children}</div>
+          <div className="legal-prose mt-8">{children}</div>
         </article>
       </main>
       <Footer />

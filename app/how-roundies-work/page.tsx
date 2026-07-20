@@ -53,7 +53,7 @@ export default function HowRoundiesWorkPage() {
       <Nav />
       <main className="flex-1">
         {/* Header — white slab */}
-        <section className="bg-white px-5 pb-12 pt-28 sm:px-8 sm:pt-36">
+        <section className="bg-white px-5 pb-12 pt-24 sm:px-8 sm:pt-28">
           <div className="mx-auto max-w-[96rem]">
             <Link href="/" className="kicker inline-flex items-center gap-2 text-ink-soft transition-colors hover:text-ink">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -62,16 +62,16 @@ export default function HowRoundiesWorkPage() {
               Back to home
             </Link>
 
-            <div className="mt-10">
+            <div className="mt-8">
               <EditorialTag index="·" label="Roundies" className="accent-text" />
             </div>
             <h1
-              className="mt-8 max-w-[16ch] text-ink"
+              className="mt-6 max-w-[16ch] text-ink"
               style={{ fontSize: "clamp(3rem, 8vw, 8rem)", lineHeight: "0.98", fontWeight: 600 }}
             >
               How Roundies <span className="italic accent-text">work.</span>
             </h1>
-            <p className="mt-7 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
               A Roundie is a complimentary item at a participating venue. Your
               membership gives you five a month, one per outing. An actual item on us,
               not a discount. Here&rsquo;s all there is to it.
@@ -91,7 +91,7 @@ export default function HowRoundiesWorkPage() {
             and separates the conceptual chapter from the procedural one.
 
             No cards: this page separates with hairlines. */}
-        <section className="bg-[color:var(--paper)] px-5 py-24 sm:px-8 sm:py-32">
+        <section className="bg-[color:var(--paper)] px-5 py-20 sm:px-8 sm:py-24">
           <div className="mx-auto max-w-[96rem]">
             {/* Still "·", not "01", now that this leads. Two reasons. This page's
                 EditorialTag convention is "·" — the masthead above uses it, and
@@ -101,7 +101,7 @@ export default function HowRoundiesWorkPage() {
                 01s within a screen of each other, meaning different things. The
                 dot sidesteps that collision entirely. */}
             <EditorialTag index="·" label="Two kinds of Roundies" className="accent-text" />
-            <h2 className="mt-8 max-w-[18ch] font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+            <h2 className="mt-6 max-w-[18ch] font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl">
               Two kinds of Roundies.
             </h2>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-ink-soft">
@@ -110,7 +110,7 @@ export default function HowRoundiesWorkPage() {
               would rarely give away otherwise.
             </p>
 
-            <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
+            <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
               <div>
                 <span className="kicker accent-text">Standalone</span>
                 <h3 className="mt-4 font-display text-2xl font-semibold leading-tight text-ink">
@@ -155,14 +155,14 @@ export default function HowRoundiesWorkPage() {
             the header's pb-12; after the reorder the first row's border-t landed
             flush on the paper→white seam, putting a hairline exactly on a colour
             boundary where it reads as a dirty edge rather than an opening rule. */}
-        <section className="bg-white px-5 pb-12 pt-24 sm:px-8 sm:pt-32">
+        <section className="bg-white px-5 pb-12 pt-20 sm:px-8 sm:pt-24">
           <div className="mx-auto flex max-w-[96rem] flex-col">
             {steps.map((s, i) => {
               const flip = i % 2 === 1;
               return (
                 <div
                   key={s.n}
-                  className="grid items-center gap-8 border-t border-[color:var(--rule)] py-10 lg:grid-cols-2 lg:gap-16 lg:py-12"
+                  className="grid items-center gap-8 border-t border-[color:var(--rule)] py-10 lg:grid-cols-2 lg:gap-12 lg:py-12"
                 >
                   <div
                     className={`flex justify-center ${
@@ -218,7 +218,7 @@ export default function HowRoundiesWorkPage() {
         </section>
 
         {/* Closing — navy slab */}
-        <section className="on-dark bg-navy px-5 py-28 sm:px-8 sm:py-32">
+        <section className="on-dark bg-navy px-5 py-24 sm:px-8 sm:py-24">
           <div className="mx-auto max-w-[96rem]">
             {/* HIDDEN until launch - re-enable: app store links ("Get the app" kicker) */}
             {/* <p className="kicker text-white/60">Get the app</p> */}
@@ -226,7 +226,7 @@ export default function HowRoundiesWorkPage() {
               users={{ lead: "Five on us,", accent: "every month." }}
               venues={{ lead: "Bring people through", accent: "your door." }}
             />
-            <div className="mt-12 flex flex-col gap-4 border-t border-white/25 pt-10 sm:flex-row sm:items-center sm:justify-between">
+            <div className="mt-10 flex flex-col gap-4 border-t border-white/25 pt-10 sm:flex-row sm:items-center sm:justify-between">
               {/* HIDDEN until launch - re-enable: app store links (download badges) */}
               {/* <DownloadButtons /> */}
               <Link href="/" className="kicker text-white/60 transition-colors hover:text-white">

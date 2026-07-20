@@ -45,7 +45,7 @@ export default function GoodStuff() {
       };
 
   return (
-    <section className="on-dark relative isolate overflow-hidden px-5 py-24 sm:px-8 sm:py-32">
+    <section className="on-dark relative isolate overflow-hidden px-5 py-20 sm:px-8 sm:py-24">
       {/* full-bleed photo */}
       <Image
         src={copy.bg}
@@ -68,13 +68,13 @@ export default function GoodStuff() {
 
       <div className="relative z-10 mx-auto max-w-[96rem]">
         <EditorialTag index="06" label="The Good Stuff" className="text-white" />
-        <h2 className="display-statement mt-8 max-w-[14ch] text-white [text-shadow:0_2px_30px_rgba(var(--navy-rgb),0.7)]">
+        <h2 className="display-statement mt-6 max-w-[14ch] text-white [text-shadow:0_2px_30px_rgba(var(--navy-rgb),0.7)]">
           {copy.heading}
         </h2>
 
         {/* benefit cards — frosted glass: photo blurs gently behind, but the panel
             is solid enough that text stays crisp. Circular number badge each. */}
-        <ul className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-3">
+        <ul className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3">
           {copy.lines.map((line, i) => (
             <li
               key={line}
@@ -95,7 +95,7 @@ export default function GoodStuff() {
             Guard on copy.href too: the consumer copy carries an empty href, so
             this can never render a dead link even if the audience gate changes. */}
         {isVenue && copy.href && (
-          <div className="mt-12">
+          <div className="mt-10">
             <PillButton href={copy.href} variant="solid" onDark>
               {copy.cta}
             </PillButton>
@@ -104,7 +104,7 @@ export default function GoodStuff() {
         {/* HIDDEN until launch - re-enable: app store links (user-side Good Stuff CTA).
             To restore, replace the venue-only block above with this ternary
             (and re-enable the DownloadButtons import):
-        <div className="mt-12">
+        <div className="mt-10">
           {isVenue ? (
             <PillButton href={copy.href} variant="solid" onDark>
               {copy.cta}

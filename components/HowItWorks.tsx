@@ -42,7 +42,7 @@ export default function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="focus-on-dark scroll-mt-16 bg-blue px-5 py-24 sm:px-8 sm:py-32"
+      className="focus-on-dark scroll-mt-16 bg-blue px-5 py-20 sm:px-8 sm:py-24"
     >
       <div className="mx-auto max-w-[96rem]">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
@@ -53,7 +53,7 @@ export default function HowItWorks() {
                 The h2 below stays white: at display-section it is large text,
                 where 3.58:1 clears the 3:1 bar. */}
             <EditorialTag index="04" label="How it works" className="text-navy" />
-            <h2 className="display-section mt-8 text-white">
+            <h2 className="display-section mt-6 text-white">
               {isVenue ? (
                 <>
                   Live in <span className="italic" style={{ color: wordColor }}>three</span> simple
@@ -91,7 +91,7 @@ export default function HowItWorks() {
           */}
         </div>
 
-        <ol className="mt-16 grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+        <ol className="mt-12 grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {steps.map((s, i) => (
             <li
               key={i}

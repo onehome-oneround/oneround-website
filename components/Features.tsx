@@ -86,7 +86,7 @@ export default function Features() {
     : "Three reasons to get out: Roundies, Deals, and seeing where everyone's going. One membership, every venue.";
 
   return (
-    <section className="bg-[color:var(--paper)] px-5 py-24 sm:px-8 sm:py-32">
+    <section className="bg-[color:var(--paper)] px-5 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-[96rem]">
         <div className="grid grid-cols-1 gap-y-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
@@ -132,7 +132,7 @@ export default function Features() {
             card to the same height, so no card can outgrow its siblings by
             construction. Keep it that way — do not reintroduce row spans here.
             On mobile everything stacks full width. */}
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:gap-7 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:gap-7 lg:grid-cols-3">
           {features.map((f) => (
             <article
               key={f.n}
