@@ -11,7 +11,7 @@ import ClosingHeadline from "@/components/ClosingHeadline";
 export const metadata: Metadata = {
   title: "How Roundies work",
   description:
-    "A Roundie is a complimentary item at a participating venue. Membership gives you five a month, one per outing. Select from the Roundie menu, scan, and enjoy.",
+    "A Roundie is a food or drink item that's on us at a participating venue. Membership gives you five a month, one per outing. Select from the Roundie menu, scan, and enjoy.",
   alternates: { canonical: "https://oneround.au/how-roundies-work" },
 };
 
