@@ -36,7 +36,7 @@ const consumerFeatures: Feature[] = [
     n: "02",
     heading: "Deals",
     sub: "Offers you won't find anywhere else.",
-    body: "Exclusive deals at venues across the city, only through OneRound.",
+    body: "Exclusive deals at venues across Brisbane, only through OneRound.",
     image: "/images/feature-deal.png",
     cta: { label: "How Deals work", href: "/how-deals-work" },
   },
