@@ -1,5 +1,8 @@
+"use client";
+
 import Script from "next/script";
 import PageViewTracker from "./PageViewTracker";
+import { useConsent } from "./ConsentProvider";
 
 /*
   Google Analytics 4 + Meta Pixel.
@@ -12,7 +15,10 @@ import PageViewTracker from "./PageViewTracker";
   if this component stops rendering, ad spend degrades silently and the gap in
   the data cannot be backfilled.
 
-  Rendering is guarded twice:
+  Rendering is guarded THREE ways, all of which must pass:
+  - Consent must be "accepted" (see ConsentProvider / ConsentGate). Until the
+    visitor accepts, nothing loads and no tracking call fires. This is why the
+    component is a client component now — consent is a client-only value.
   - NODE_ENV must be "production", so localhost and dev builds never emit the
     tags and never pollute reporting with developer traffic.
   - The relevant ID must be non-empty, so a missing var disables that one
@@ -32,10 +38,14 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
 const isProduction = process.env.NODE_ENV === "production";
-const gaEnabled = isProduction && !!GA_ID;
-const metaEnabled = isProduction && !!META_PIXEL_ID;
 
 export default function Analytics() {
+  const { consent } = useConsent();
+  const consented = consent === "accepted";
+
+  const gaEnabled = consented && isProduction && !!GA_ID;
+  const metaEnabled = consented && isProduction && !!META_PIXEL_ID;
+
   if (!gaEnabled && !metaEnabled) return null;
 
   return (

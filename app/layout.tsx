@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Fraunces, Hanken_Grotesk, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { AudienceProvider } from "@/components/AudienceProvider";
+import { ConsentProvider } from "@/components/ConsentProvider";
+import ConsentGate from "@/components/ConsentGate";
 import Analytics from "@/components/Analytics";
 
 /*
@@ -134,11 +136,18 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <AudienceProvider>{children}</AudienceProvider>
-        {/* GA4 + Meta Pixel. Renders nothing outside production or without IDs;
-            see components/Analytics.tsx for the guards and why paid ads depend
-            on this staying live. */}
-        <Analytics />
+        {/* ConsentProvider wraps everything that reads the tracking choice: the
+            consent card and the analytics gate both live inside it. */}
+        <ConsentProvider>
+          <AudienceProvider>{children}</AudienceProvider>
+          {/* Bottom-right consent card; renders only on a genuine first visit. */}
+          <ConsentGate />
+          {/* GA4 + Meta Pixel. Renders nothing until consent is accepted, and
+              nothing outside production or without IDs; see
+              components/Analytics.tsx for the three guards and why paid ads
+              depend on this staying live. */}
+          <Analytics />
+        </ConsentProvider>
       </body>
     </html>
   );

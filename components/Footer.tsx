@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Logo from "./Logo";
 import { useAudience } from "./AudienceProvider";
+import { useConsent } from "./ConsentProvider";
 
 /*
   Footer — a NAVY slab closing the broadsheet. Editorial grid with hairline
@@ -19,6 +20,7 @@ const EMAIL = "hello@oneround.au";
 
 export default function Footer() {
   const { audience } = useAudience();
+  const { setConsent } = useConsent();
   const isVenue = audience === "venue";
   const lead = isVenue ? "Their reason to " : "Your reason to ";
   const accent = isVenue ? "walk in" : "get out";
@@ -81,6 +83,17 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/venue-terms" className="font-display text-lg text-white/85 transition-colors hover:text-blue">Venue Terms</Link>
+              </li>
+              <li>
+                {/* Reopens the consent card so a visitor can revisit their
+                    tracking choice. A button, not a link — it changes state. */}
+                <button
+                  type="button"
+                  onClick={() => setConsent("unknown")}
+                  className="font-display text-lg text-left text-white/85 transition-colors hover:text-blue"
+                >
+                  Cookie preferences
+                </button>
               </li>
             </ul>
           </div>
