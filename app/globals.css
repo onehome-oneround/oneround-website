@@ -483,3 +483,59 @@
   left: 0;
   color: var(--ink-faint);
 }
+/* Inline bold labels ("When you sign up…:") sit a shade darker than body ink. */
+.legal-prose strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+/* Section separator — the broadsheet hairline standing in for the source's --- */
+.legal-prose hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin-top: 3rem;
+}
+.legal-prose hr + h2 {
+  margin-top: 1.5rem;
+}
+/* Data table (e.g. the third-party providers list): hairline top/bottom + row
+   rules, mono uppercase headers, left-aligned, no card wrapper. The wrapping
+   element supplies the top margin and any horizontal scroll on narrow screens. */
+.legal-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+.legal-prose thead th {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+  padding: 0.75rem 1.25rem 0.75rem 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  vertical-align: bottom;
+  white-space: nowrap;
+}
+.legal-prose tbody td {
+  padding: 0.85rem 1.25rem 0.85rem 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  color: var(--ink-soft);
+}
+.legal-prose tbody td:first-child {
+  color: var(--ink);
+  font-weight: 500;
+}
+.legal-prose th:last-child,
+.legal-prose td:last-child {
+  padding-right: 0;
+}
+/* Lets a wide table scroll within its own box on narrow screens instead of
+   forcing the page to scroll horizontally. */
+.legal-prose .legal-table-scroll {
+  overflow-x: auto;
+}
