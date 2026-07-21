@@ -18,8 +18,25 @@ export default function AudienceToggle({ className = "" }: { className?: string 
   const isVenue = audience === "venue";
 
   function choose(a: Audience) {
+    const changed = a !== audience;
+    if (pathname !== "/") {
+      setAudience(a);
+      router.push("/"); // Next scrolls the new route to the top on its own.
+      return;
+    }
+    // Switching audience is a fresh view, so land at the top of it. Scroll
+    // BEFORE the state change, not after: the content reflows (sections
+    // appear/disappear per audience) and, from partway down the page, the
+    // browser's scroll-anchoring compensates for the changed height above the
+    // viewport and lands on a random section (membership / FAQ). At the top
+    // there is nothing above the viewport to anchor against, so the reflow
+    // can't move us. A post-commit scroll loses this race — anchoring keeps
+    // re-adjusting for several frames and snaps back. "instant" overrides
+    // html { scroll-behavior: smooth }.
+    if (changed) {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
     setAudience(a);
-    if (pathname !== "/") router.push("/");
   }
 
   return (
