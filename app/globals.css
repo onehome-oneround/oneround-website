@@ -63,16 +63,6 @@
   --accent-deep: #0a083f;
 }
 
-/* Splash — hidden before the first paint for anyone who already dismissed it
-   this session. The pre-paint script in app/layout.tsx sets data-splash-seen on
-   <html>. React still mounts the splash (SSR can't read sessionStorage) and
-   removes it in an effect; this rule means it is never painted in between.
-   Not scoped to html[...] so it also applies on client-side remounts, where
-   Splash.tsx sets the attribute itself. */
-[data-splash-seen="1"] [data-splash-root] {
-  display: none;
-}
-
 @theme inline {
   --color-navy: var(--navy);
   --color-blue: var(--blue);
@@ -130,8 +120,8 @@
      which is low-contrast where the ground IS the accent — a navy ring on the
      navy (venue) slabs, a blue ring on the blue slabs. Any element inside an
      .on-dark section (the navy photo slabs + Footer) or a slab flagged
-     .focus-on-dark (the accent Hero, the blue HowItWorks, the Splash overlay) flips its
-     focus ring to white so keyboard focus stays clearly visible. */
+     .focus-on-dark (the accent Hero, the blue HowItWorks) flips its focus ring
+     to white so keyboard focus stays clearly visible. */
   .on-dark :focus-visible,
   .focus-on-dark :focus-visible {
     outline-color: var(--white);

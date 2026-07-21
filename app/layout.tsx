@@ -88,25 +88,26 @@ export const metadata: Metadata = {
 };
 
 /*
-  Pre-paint state resolution. Both the audience accent and the splash live in
-  browser storage, which the server can't read — so React only learns about them
-  in an effect, i.e. after the first paint. That produced two visible flashes:
-  a returning "venue" visitor saw the blue accent repaint navy, and anyone who'd
-  already dismissed the splash saw it flash up and vanish.
+  Pre-paint audience-accent resolution. The audience lives in browser storage,
+  which the server can't read — so AudienceProvider only learns the real value in
+  an effect, i.e. after first paint. Without this, a returning "venue" visitor
+  would see the blue accent repaint to navy after hydration.
 
-  This runs synchronously during HTML parse, before the browser paints, and
-  writes both answers onto <html> as data attributes. CSS keys off them
-  (globals.css), so the first paint is already correct — no repaint, no flash.
+  This runs synchronously during HTML parse, before the browser paints, resolves
+  the audience (?view param, else localStorage) and stamps data-audience on
+  <html>. globals.css keys --accent off it, so the first paint is already the
+  right colour — no accent flash.
 
   It must be a plain inline <script>, not next/script: `beforeInteractive`
   explicitly does not block hydration and Next controls its placement, so it
   cannot guarantee execution before paint. Keep this tiny and dependency-free —
   it is parse-blocking, so every byte is on the critical path.
 
-  Storage keys are duplicated from AudienceProvider/Splash by necessity (this
-  string ships to the browser before any module loads); keep them in sync.
+  The storage key is duplicated from AudienceProvider by necessity (this string
+  ships to the browser before any module loads); keep the two in sync. (This does
+  NOT fix the content swap — see AGENTS.md; it only prevents the accent flash.)
 */
-const PRE_PAINT = `(function(){try{var d=document.documentElement;var v=null;try{v=new URLSearchParams(location.search).get("view")}catch(e){}var a=v==="venue"?"venue":v==="users"?"consumer":localStorage.getItem("oneround-audience");if(a==="venue"||a==="consumer")d.setAttribute("data-audience",a);if(sessionStorage.getItem("oneround-splash-seen"))d.setAttribute("data-splash-seen","1")}catch(e){}})()`;
+const PRE_PAINT = `(function(){try{var d=document.documentElement;var v=null;try{v=new URLSearchParams(location.search).get("view")}catch(e){}var a=v==="venue"?"venue":v==="users"?"consumer":localStorage.getItem("oneround-audience");if(a==="venue"||a==="consumer")d.setAttribute("data-audience",a)}catch(e){}})()`;
 
 export default function RootLayout({
   children,

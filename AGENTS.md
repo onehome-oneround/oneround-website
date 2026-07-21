@@ -21,12 +21,20 @@ null entirely on the venue side, `Faq` reflows from 11 to 8 items, and
 `HowItWorks` and `GoodStuff` add a CTA block), so when the state flips,
 everything below reflows.
 
-**What is already handled.** The accent flash and the splash flash are fixed: a
-parse-blocking inline script in `app/layout.tsx` resolves both from storage and
-stamps `data-audience` / `data-splash-seen` on `<html>` before first paint, and
-CSS keys off those attributes. That approach fundamentally cannot fix the
+**What is already handled.** The accent flash is fixed: a parse-blocking inline
+script in `app/layout.tsx` resolves the audience from storage (`?view` param, else
+localStorage) and stamps `data-audience` on `<html>` before first paint, and
+globals.css keys `--accent` off it. That script fundamentally cannot fix the
 content swap — the SSR HTML is already generated with consumer content by the
-time any script runs. Adding more to that script will not help.
+time any script runs. Adding more to it will not help.
+
+**The audience splash was removed.** The old "Choose your path" gate let first
+visits pick a side (and had its own pre-paint flash guard). It's gone: every
+visitor now defaults to the consumer view via `AudienceProvider`, and the nav
+toggle / `?view=venue` deep link are the only ways to reach the venue side. So
+there is no longer any splash flash — but the content swap above is unchanged,
+because it was never caused by the splash; it's driven by the consumer default in
+SSR versus the localStorage value read after hydration.
 
 **What the real fix requires.** Move the audience into a cookie so the server
 can read it per request, and render the page per-request rather than statically.
