@@ -12,7 +12,7 @@ export default function FaqAccordion({ items }: { items: Faq[] }) {
       {items.map((item, i) => (
         <details key={item.q} className="group border-b border-[color:var(--rule)]">
           <summary className="flex cursor-pointer list-none items-center gap-5 py-7 text-left [&::-webkit-details-marker]:hidden">
-            <span className="kicker w-10 shrink-0 text-ink-faint">0{i + 1}</span>
+            <span className="kicker w-10 shrink-0 text-ink-faint">{String(i + 1).padStart(2, "0")}</span>
             <span className="flex-1 font-display text-2xl font-medium leading-tight text-ink transition-colors group-hover:text-[color:var(--accent)] sm:text-3xl">
               {item.q}
             </span>
