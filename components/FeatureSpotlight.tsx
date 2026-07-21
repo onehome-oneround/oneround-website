@@ -46,6 +46,7 @@ export default function FeatureSpotlight() {
         intent={copy.bg.intent}
         tone="deep"
         align="top"
+        caption={false}
         className="absolute inset-0 -z-20 h-full w-full"
       />
       {/* navy scrim — darker on the copy side for legibility */}

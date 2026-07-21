@@ -15,6 +15,11 @@ type Props = {
   align?: "center" | "top";
   /** Optional figure number for the caption, e.g. "01". */
   fig?: string;
+  /** Show the mono label/intent caption. Turn OFF when the placeholder is used
+      purely as a scrimmed background (e.g. FeatureSpotlight): the caption would
+      otherwise bleed through the scrim as stray visible copy. The descriptive
+      aria-label is kept regardless, so the field stays accessible. */
+  caption?: boolean;
 };
 
 export default function ImagePlaceholder({
@@ -24,6 +29,7 @@ export default function ImagePlaceholder({
   tone = "dark",
   align = "center",
   fig,
+  caption = true,
 }: Props) {
   const light = tone === "light";
   const bg = tone === "deep" ? "bg-[color:var(--navy-deep)]" : tone === "light" ? "bg-offwhite" : "bg-[color:var(--navy-dark)]";
@@ -53,18 +59,21 @@ export default function ImagePlaceholder({
         <line x1="100" y1="0" x2="0" y2="100" stroke={frame} strokeWidth="0.4" />
       </svg>
 
-      {/* caption block */}
-      <div
-        className={`absolute inset-0 flex flex-col gap-1.5 p-6 ${
-          align === "top" ? "justify-start" : "justify-end"
-        }`}
-      >
-        <span className={`kicker ${soft}`}>{fig ? `Fig. ${fig} / Photo` : "Photo"}</span>
-        <span className={`font-mono text-sm font-bold ${slug}`}>{label}</span>
-        <span className={`max-w-[36ch] font-mono text-[11px] leading-relaxed ${soft}`}>
-          {intent}
-        </span>
-      </div>
+      {/* caption block — suppressed when caption={false} so background usages
+          don't bleed the label/intent metadata through as visible copy */}
+      {caption && (
+        <div
+          className={`absolute inset-0 flex flex-col gap-1.5 p-6 ${
+            align === "top" ? "justify-start" : "justify-end"
+          }`}
+        >
+          <span className={`kicker ${soft}`}>{fig ? `Fig. ${fig} / Photo` : "Photo"}</span>
+          <span className={`font-mono text-sm font-bold ${slug}`}>{label}</span>
+          <span className={`max-w-[36ch] font-mono text-[11px] leading-relaxed ${soft}`}>
+            {intent}
+          </span>
+        </div>
+      )}
     </div>
   );
 }

@@ -32,6 +32,19 @@
 const APP_STORE_URL = "#";
 const GOOGLE_PLAY_URL = "#";
 
+/* A store link is only real once it points somewhere; "#" (or empty) is a
+   placeholder. Guard on this so a dead link can never ship — even if the launch
+   guard around this component is removed before the URLs are set. */
+const isLiveUrl = (url: string) => url !== "" && url !== "#";
+
+if (process.env.NODE_ENV !== "production") {
+  if (!isLiveUrl(APP_STORE_URL) || !isLiveUrl(GOOGLE_PLAY_URL)) {
+    console.warn(
+      '[DownloadButtons] Store URL is still a placeholder ("#") — that button is hidden until a real URL is set.',
+    );
+  }
+}
+
 /* Shared badge field. Navy on the blue slab, hairline border, no radius.
    Note: don't reach for .tactile here — it's unlayered in globals.css, so it
    would beat this transition and it doesn't cover border-color. Press stays on
@@ -85,25 +98,33 @@ type Props = {
 
 export default function DownloadButtons({ className = "", center = false }: Props) {
   const link = "group/badge inline-flex focus-visible:outline-white";
+  const showApple = isLiveUrl(APP_STORE_URL);
+  const showPlay = isLiveUrl(GOOGLE_PLAY_URL);
+  // No live store links yet — render nothing rather than dead-link badges.
+  if (!showApple && !showPlay) return null;
 
   return (
     <div
       className={`flex flex-wrap gap-3 ${center ? "justify-center" : ""} ${className}`}
     >
-      <a
-        href={APP_STORE_URL}
-        aria-label="Download OneRound on the App Store"
-        className={link}
-      >
-        <AppStoreBadge />
-      </a>
-      <a
-        href={GOOGLE_PLAY_URL}
-        aria-label="Get OneRound on Google Play"
-        className={link}
-      >
-        <GooglePlayBadge />
-      </a>
+      {showApple && (
+        <a
+          href={APP_STORE_URL}
+          aria-label="Download OneRound on the App Store"
+          className={link}
+        >
+          <AppStoreBadge />
+        </a>
+      )}
+      {showPlay && (
+        <a
+          href={GOOGLE_PLAY_URL}
+          aria-label="Get OneRound on Google Play"
+          className={link}
+        >
+          <GooglePlayBadge />
+        </a>
+      )}
     </div>
   );
 }
