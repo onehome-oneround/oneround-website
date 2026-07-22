@@ -71,6 +71,11 @@ export default function HowRoundiesWorkPage() {
             >
               How Roundies <span className="italic accent-text">work.</span>
             </h1>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
+              A Roundie is one item on us at a partnered venue — a drink, a snack,
+              entry, whatever the venue puts on the menu. Members get five a month,
+              one per outing. Here is all there is to it.
+            </p>
           </div>
         </section>
 
