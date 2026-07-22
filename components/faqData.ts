@@ -16,35 +16,35 @@ export type Faq = { q: string; a: string };
 export const consumerFaqs: Faq[] = [
   {
     q: "What's a Roundie?",
-    a: "A Roundie is a food or drink item that's on us. Members get five every month to use at partnered venues. Think of it as one round on us, every outing.",
+    a: "A Roundie is one complimentary item at a partnered venue — a drink, a snack, entry, whatever the venue's put on the menu. Some are standalone, some are paired with a small purchase. Members get five a month, one per outing.",
   },
   {
     q: "How is a Roundie different from a Deal?",
-    a: "A Roundie is one item on us. A Deal is a discount on something you're already buying — think member pricing on cocktails, mains, or entry. You get both with your membership.",
+    a: "A Roundie is one item on us. A Deal is a member-only offer — sometimes a discount on your usual, sometimes a live push during a quiet night, sometimes a recurring perk like a Tuesday steak night or Sunday sessions. Your membership gets you both.",
   },
   {
-    q: "How many Roundies do I get each month?",
-    a: "Five, plus access to every Deal at every partnered venue. Roundies reset at the start of each month.",
+    q: "How much does OneRound cost?",
+    a: "$11.99 a month. A single outing with a Roundie will return more than your membership, the rest of the month is upside.",
   },
   {
-    q: "Do I have to buy anything else to redeem a Roundie?",
-    a: "Sometimes. Some Roundies are standalone — walk in, redeem, leave. Others are paired — you might get chips on us with any beer purchase, for example. Every Roundie shows its condition on the card in the app before you redeem, so nothing is sprung on you at the bar.",
-  },
-  {
-    q: "How do I redeem one?",
-    a: "Open the app at the venue, tap the Roundie, and redeem it. That's it. No vouchers, no printing, no fuss.",
-  },
-  {
-    q: "Do I need to be 18+ to use OneRound?",
-    a: "Yes. Membership is 18+, and we verify your age at signup. Venues will check ID at service, same as anywhere else. Not every Roundie is a drink — plenty are food, entry, or non-alcoholic — but the membership itself is over-18 only.",
+    q: "How do I redeem a Roundie?",
+    a: "Open the app at the venue. Tap the 'Redeem Roundie' button on the home screen — or head to the venue's Roundies menu and pick the one you want. A QR code shows on your phone, the venue's staff scans it, and the item's yours.",
   },
   {
     q: "Can I use more than one Roundie in a day?",
-    a: "One Roundie per day, across all venues. Keeps things fair for members and venues alike.",
+    a: "One Roundie per member per day, across all venues. Keeps things fair for members and venues.",
   },
   {
     q: "What if I don't use all five in a month?",
     a: "Roundies reset at the start of each month — they don't roll over.",
+  },
+  {
+    q: "Can I see where my friends are going out?",
+    a: "Yes. Members mark where they're heading before they head out. Open the app to see where your friends and the wider OneRound crowd are landing that night — no more group-chat scramble.",
+  },
+  {
+    q: "Do I need to be 18+ to use OneRound?",
+    a: "Yes. Membership is 18+, and we verify your age at signup. Venues will check ID at service, same as anywhere else. Not every Roundie is a drink — plenty are food, entry, or non-alcoholic — but the membership itself is over-18 only.",
   },
   {
     q: "Which venues are on OneRound?",
@@ -56,7 +56,7 @@ export const consumerFaqs: Faq[] = [
   },
   {
     q: "When does OneRound launch?",
-    a: "10 August 2026 in Brisbane. Sign up now to be first in.",
+    a: "Early August 2026 in Brisbane. Sign up now to be first in.",
   },
 ];
 
