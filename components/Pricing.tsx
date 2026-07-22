@@ -38,10 +38,10 @@ import {
 
   Voice: value line matches Features ("Five on us, every month.") — short warm
   fragments, no numbers, price framed against the reward it buys (a drink on us).
-  No maths, no "4× return". The list claims only paid membership features, in the
-  in-app paywall's order. Weekly Wins is a membership perk (the app confirms it's
-  paid, not part of the free social side), so it heads the list. There is no
-  annual plan, so nothing here references one.
+  No maths, no "4× return". The list claims only paid membership features, led by
+  Roundies then Deals. Weekly Wins is a membership perk too (the app confirms it's
+  paid, not part of the free social side), so it earns a place on the list. There
+  is no annual plan, so nothing here references one.
 
   Static by design: no reveal, no fade, no parallax, no hover movement.
 
@@ -56,9 +56,9 @@ import {
 */
 
 const INCLUDED = [
-  "Entry into Weekly Wins",
   "Five Roundies every month",
-  "Exclusive member Deals at every venue",
+  "Exclusive member Deals",
+  "Entry into Weekly Wins",
   "Cancel anytime",
 ];
 
@@ -141,7 +141,7 @@ export default function Pricing() {
           </div>
 
           <p className="mt-5 font-display text-2xl font-semibold leading-snug text-navy sm:text-[1.75rem]">
-            Less than a cocktail. One on us, every outing.
+            Less than a standard. One on us, every outing.
           </p>
 
           <ul className="mt-8">
