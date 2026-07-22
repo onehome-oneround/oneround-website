@@ -74,8 +74,8 @@ export default function HowRoundiesWorkPage() {
           </div>
         </section>
 
-        {/* Two kinds of Roundies — primary flow, deliberately ahead of the redeem
-            steps: a reader needs to know WHAT a Roundie is before HOW to claim
+        {/* Two ways Roundies can be redeemed — primary flow, deliberately ahead of
+            the redeem steps: a reader needs to know WHAT a Roundie is before HOW to claim
             one, and "some come with a purchase" is the fact most likely to catch
             someone out later.
 
@@ -95,25 +95,21 @@ export default function HowRoundiesWorkPage() {
                 Roundie menu": tagging this section "01" would put two different
                 01s within a screen of each other, meaning different things. The
                 dot sidesteps that collision entirely. */}
-            <EditorialTag index="·" label="Two kinds of Roundies" className="text-navy" />
+            <EditorialTag index="·" label="Two ways Roundies can be redeemed" className="text-navy" />
             <h2 className="mt-6 max-w-[18ch] font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl">
-              Two kinds of Roundies.
+              Two ways Roundies can be redeemed.
             </h2>
 
             <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
-              {/* The one-word label is the column title; everything under it is
-                  description at a single body size, so the two sentences read as
-                  one block rather than a lede and a follow-up. */}
+              {/* Lede + follow-up: the first line names and frames the kind, the
+                  second explains it in body copy. */}
               <div>
-                <h3 className="font-display text-2xl font-semibold leading-tight text-ink">
-                  Standalone
+                <h3 className="font-display text-xl font-semibold leading-snug text-ink sm:text-2xl">
+                  Standalone Roundies come with no conditions.
                 </h3>
                 <p className="mt-4 text-base leading-relaxed text-ink-soft">
-                  A Roundie is an item on us, redeemable at participating venues.
-                </p>
-                <p className="mt-3 text-base leading-relaxed text-ink-soft">
-                  Members receive five Roundies every month, one per outing. Open the
-                  app, tap the Roundie, and redeem it.
+                  Walk into a partnered venue, redeem it in the app, and it&rsquo;s
+                  yours — nothing to buy alongside.
                 </p>
               </div>
 
@@ -123,17 +119,14 @@ export default function HowRoundiesWorkPage() {
                   rule silently never renders. Verified: border-left-width came
                   back 0px. */}
               <div className="lg:border-l lg:border-[color:var(--rule)] lg:pl-16">
-                <h3 className="font-display text-2xl font-semibold leading-tight text-ink">
-                  Paired
+                <h3 className="font-display text-xl font-semibold leading-snug text-ink sm:text-2xl">
+                  Paired Roundies come with a condition — redeem them alongside a
+                  specific purchase at the venue.
                 </h3>
                 <p className="mt-4 text-base leading-relaxed text-ink-soft">
-                  Some Roundies come with a small purchase alongside — a beer, a
-                  coffee, whatever the pairing asks for.
-                </p>
-                <p className="mt-3 text-base leading-relaxed text-ink-soft">
-                  The condition sits on the Roundie card so you see it before you
-                  redeem. Lets venues offer items they wouldn&rsquo;t put on the
-                  standalone list.
+                  The pairing sits on the Roundie card in the app so you see it
+                  before you redeem. It lets venues offer items they wouldn&rsquo;t
+                  put on the standalone list.
                 </p>
               </div>
             </div>
