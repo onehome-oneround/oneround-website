@@ -142,7 +142,7 @@ export default function Pricing() {
           </div>
 
           <p className="mt-5 font-display text-2xl font-semibold leading-snug text-navy sm:text-[1.75rem]">
-            Less than a standard. One on us, every outing.
+            Less than a standard. Five on us, every month.
           </p>
 
           <ul className="mt-8">

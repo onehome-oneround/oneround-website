@@ -81,7 +81,7 @@ export default function Hero() {
                     <i style={{ ["--d" as string]: "0.05s" }}>Five Roundies.</i>
                   </span>
                   <span className="mask">
-                    <i style={{ ["--d" as string]: "0.16s" }}>One on us,</i>
+                    <i style={{ ["--d" as string]: "0.16s" }}>Every month.</i>
                   </span>
                   <span className="mask">
                     <i style={{ ["--d" as string]: "0.27s" }}>
@@ -89,7 +89,7 @@ export default function Hero() {
                         className="accent-ital"
                         style={{ color: accentColor, ["--rule-color" as string]: accentColor, ["--d" as string]: "0.9s" }}
                       >
-                        every outing
+                        On us
                       </span>
                       .
                     </i>

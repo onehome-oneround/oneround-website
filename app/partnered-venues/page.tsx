@@ -11,7 +11,7 @@ import { publicVenues } from "@/components/venues";
 export const metadata: Metadata = {
   title: "Partnered venues",
   description:
-    "The Brisbane venues live on OneRound. Redeem five Roundies a month — one on us at every outing — unlock exclusive Deals, and see where everyone's headed.",
+    "The Brisbane venues live on OneRound. Redeem five Roundies a month, unlock exclusive Deals, and see where everyone's headed.",
   alternates: { canonical: "https://oneround.au/partnered-venues" },
 };
 
