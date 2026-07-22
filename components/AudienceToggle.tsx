@@ -64,7 +64,7 @@ export default function AudienceToggle({ className = "" }: { className?: string 
         type="button"
         onClick={() => choose("consumer")}
         aria-pressed={!isVenue}
-        className={`relative z-10 flex min-h-11 items-center justify-center whitespace-nowrap rounded-full px-5 text-sm transition-colors duration-300 ${
+        className={`relative z-10 flex min-h-11 items-center justify-center whitespace-nowrap rounded-full px-3 text-sm transition-colors duration-300 lg:px-5 ${
           !isVenue ? "font-bold text-white" : "font-medium text-ink-soft hover:text-ink"
         }`}
       >
@@ -74,7 +74,7 @@ export default function AudienceToggle({ className = "" }: { className?: string 
         type="button"
         onClick={() => choose("venue")}
         aria-pressed={isVenue}
-        className={`relative z-10 flex min-h-11 items-center justify-center whitespace-nowrap rounded-full px-5 text-sm transition-colors duration-300 ${
+        className={`relative z-10 flex min-h-11 items-center justify-center whitespace-nowrap rounded-full px-3 text-sm transition-colors duration-300 lg:px-5 ${
           isVenue ? "font-bold text-white" : "font-medium text-ink-soft hover:text-ink"
         }`}
       >

@@ -8,11 +8,13 @@ import AudienceToggle from "./AudienceToggle";
 // import NavStore from "./NavStore";
 
 /*
-  Sticky nav — modelled on UniWorker's masthead, in OneRound's brand:
-  LEFT: logo + the audience toggle, grouped together.
-  RIGHT: title-case links + "Get the app" + circular store icons.
-  Generous empty space between, a tall bar with real presence, and a frosted
-  translucent white surface so content subtly shows through on scroll.
+  Sticky nav — modelled on UniWorker's masthead, in OneRound's brand.
+  Desktop (lg+): LEFT logo + audience toggle grouped together, RIGHT title-case
+  links (+ "Get the app" store icons, behind the launch guard).
+  Mobile (<lg): a three-part bar — logo left, the audience toggle centre (it is
+  the primary control, so it stays visible rather than hiding in the menu), and a
+  hamburger right holding only the secondary links. A tall bar with real presence
+  on a frosted translucent white surface so content shows through on scroll.
 */
 
 const links = [
@@ -40,13 +42,22 @@ export default function Nav() {
         WebkitBackdropFilter: "blur(18px) saturate(140%)",
       }}
     >
-      <nav className="mx-auto flex h-20 max-w-[96rem] items-center justify-between px-5 sm:h-[5.5rem] sm:px-8">
-        {/* LEFT — logo + toggle */}
+      <nav className="mx-auto flex h-20 max-w-[96rem] items-center justify-between gap-2 px-4 sm:h-[5.5rem] sm:px-8">
+        {/* LEFT — logo (+ toggle, desktop only) */}
         <div className="flex items-center gap-5 xl:gap-7">
-          <Logo variant="navy" height={28} priority />
+          {/* Logo shrinks a touch on mobile so the centre toggle + hamburger all
+              fit a 375px bar; the header height is unchanged. */}
+          <Logo variant="navy" height={28} priority className="!h-5 lg:!h-full" />
           <div className="hidden lg:block">
             <AudienceToggle />
           </div>
+        </div>
+
+        {/* CENTRE — audience toggle, always visible on mobile (the primary
+            control belongs in the header, not two taps deep in the menu).
+            Hidden at lg+, where the desktop toggle above takes over. */}
+        <div className="lg:hidden">
+          <AudienceToggle />
         </div>
 
         {/* RIGHT — links + store */}
@@ -99,8 +110,10 @@ export default function Nav() {
           open ? "max-h-96" : "max-h-0 border-t-0"
         }`}
       >
+        {/* Secondary nav only — the audience toggle now lives in the header.
+            Every item closes the menu on tap (which also restores body scroll
+            via the effect above), so the page isn't stuck behind an open panel. */}
         <div className="flex flex-col gap-2 px-5 py-6">
-          <AudienceToggle className="mb-3 self-start" />
           {links.map((l) => (
             <Link
               key={l.href}
