@@ -1,6 +1,7 @@
 "use client";
 
-import PillButton from "./PillButton";
+// Hidden pre-launch — restore with the Get Started CTA in the card below.
+// import PillButton from "./PillButton";
 import EditorialTag from "./EditorialTag";
 import { useAudience } from "./AudienceProvider";
 import {
@@ -148,7 +149,7 @@ export default function Pricing() {
             {INCLUDED.map((item) => (
               <li
                 key={item}
-                className="flex items-start gap-3 border-t border-[color:var(--rule)] py-4 first:border-t-0 first:pt-0"
+                className="flex items-start gap-3 border-t border-[color:var(--rule)] py-4 first:border-t-0 first:pt-0 last:pb-0"
               >
                 <Tick />
                 <span className="text-base leading-relaxed text-ink">{item}</span>
@@ -156,16 +157,20 @@ export default function Pricing() {
             ))}
           </ul>
 
-          {/* CTA points at the hero for now; at launch the store badges live
-              there, so this can re-point straight at them. Full card width, fixed
-              height, so it can't reflow as the font loads. */}
-          <PillButton
-            href="#get-the-app"
-            variant="solid"
-            className="mt-8 h-14 w-full justify-center"
-          >
-            Get Started
-          </PillButton>
+          {/* Hidden pre-launch — restore once app store links are live. The CTA
+              points at the hero (#get-the-app); at launch the store badges live
+              there, so it can re-point straight at them. Full card width, fixed
+              height so it can't reflow as the font loads. To restore, re-enable
+              the PillButton import above and put this back after the list:
+
+              <PillButton
+                href="#get-the-app"
+                variant="solid"
+                className="mt-8 h-14 w-full justify-center"
+              >
+                Get Started
+              </PillButton>
+          */}
             </div>
 
             {/* Trust markers, centred under the card. Two only — more would read
