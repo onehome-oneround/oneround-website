@@ -16,7 +16,7 @@ export type Faq = { q: string; a: string };
 export const consumerFaqs: Faq[] = [
   {
     q: "What's a Roundie?",
-    a: "A Roundie is one complimentary item at a partnered venue — a drink, a snack, entry, whatever the venue's put on the menu. Some are standalone, some are paired with a small purchase. Members get five a month, one per outing.",
+    a: "A Roundie is one item on us at a partnered venue — a drink, a snack, entry, whatever the venue's put on the menu. Some are standalone, some are paired with a small purchase. Members get five a month, one per outing.",
   },
   {
     q: "How is a Roundie different from a Deal?",
