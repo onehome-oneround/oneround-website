@@ -5,7 +5,8 @@ import Marquee from "@/components/Marquee";
 import FeatureSpotlight from "@/components/FeatureSpotlight";
 import HowItWorks from "@/components/HowItWorks";
 import WhatToExpect from "@/components/WhatToExpect";
-import VenueLogos from "@/components/VenueLogos";
+// Hidden pre-launch — restore once partner venues are signed and confirmed.
+// import VenueLogos from "@/components/VenueLogos";
 import GoodStuff from "@/components/GoodStuff";
 import Pricing from "@/components/Pricing";
 import Faq from "@/components/Faq";
@@ -25,7 +26,8 @@ export default function Home() {
         <FeatureSpotlight />
         <HowItWorks />
         <WhatToExpect />
-        <VenueLogos />
+        {/* Hidden pre-launch — restore once partner venues are signed and confirmed. */}
+        {/* <VenueLogos /> */}
         <GoodStuff />
         <Pricing />
         <Faq />

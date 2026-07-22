@@ -16,6 +16,17 @@ export const metadata: Metadata = {
 };
 
 /*
+  Hidden pre-launch — restore once partner venues are signed and confirmed.
+  The full page (header, venue grid, "More venues" callout, closing navy slab)
+  is preserved verbatim in the SHOW_VENUES branch of the component below; while
+  SHOW_VENUES is false a "Coming soon" holding page renders instead. To restore,
+  flip this to true — nothing else to change. (A flag rather than a block comment
+  because the old JSX contains its own nested JSX comments, which a plain comment
+  wrapper cannot span.)
+*/
+const SHOW_VENUES = false;
+
+/*
   The grid is 1 / 2 / 3 columns, so the venue count decides how much of the last
   row the trailing cell has to itself. Left as a single cell it would strand empty
   cells beside it, which read as bare rule-coloured blocks — so it stretches to
@@ -37,6 +48,7 @@ export default function PartneredVenuesPage() {
   return (
     <>
       <Nav />
+      {SHOW_VENUES ? (
       <main id="main-content" className="flex-1">
         {/* Header — white slab */}
         <section className="bg-white px-5 pb-12 pt-24 sm:px-8 sm:pt-28">
@@ -130,6 +142,21 @@ export default function PartneredVenuesPage() {
           </div>
         </section>
       </main>
+      ) : (
+      <main
+        id="main-content"
+        className="flex flex-1 items-center justify-center bg-[color:var(--paper)] px-5 py-32 text-center sm:px-8"
+      >
+        <div className="max-w-md">
+          <p className="kicker text-navy">Partnered venues</p>
+          <h1 className="display-section mt-6 text-navy">Coming soon.</h1>
+          <p className="mt-6 text-base leading-relaxed text-ink-soft">
+            We&rsquo;re finalising our launch lineup of Brisbane venues. Check
+            back closer to 10 August.
+          </p>
+        </div>
+      </main>
+      )}
       <Footer />
     </>
   );
