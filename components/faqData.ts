@@ -63,34 +63,34 @@ export const consumerFaqs: Faq[] = [
 export const venueFaqs: Faq[] = [
   {
     q: "What does it cost my venue to be on OneRound?",
-    a: "Nothing. No listing fee, no monthly fee, no percentage on non-member sales. You get paid for every Roundie redeemed and every Deal claimed.",
+    a: "Nothing. No setup fee, no monthly fee, no commission, no revenue share. Hardware, listing and promotion are all free. Your only cost is the item itself — and only when a Roundie is actually redeemed.",
   },
   {
     q: "Who chooses which items are Roundies?",
-    a: "You do. You set which items are eligible, whether they're standalone or paired, and you can change the mix anytime from the venue dashboard.",
+    a: "You do. Pick any item — a drink, a snack, entry, whatever fits your venue. Set them as standalone or paired with a purchase. Change the mix anytime from the venue portal.",
   },
   {
     q: "Can we cap how many redeem per day?",
-    a: "Yes. Set daily caps, time-of-day windows, or day-of-week rules. You stay in control of your covers.",
+    a: "Yes. Set your daily cap (minimum 25 per open day) and offer more on the nights you want to fill, fewer on the ones you don't. Once the cap's hit, Roundies reset the next day. You stay in control of your covers.",
   },
   {
-    q: "Do we need new equipment or POS integration?",
-    a: "No. Redemption happens through the OneRound app — staff verify the redemption on-screen. No new hardware, no POS integration required.",
-  },
-  {
-    q: "How does redemption work — how do our staff know it's legit?",
-    a: "The member shows a live redemption screen in the app with a countdown timer and your venue name. Screenshots don't work. Staff verify with one tap.",
+    q: "What equipment do we need and how does redemption work?",
+    a: "We provide the kit — a scanner and small kiosk screen for your bar. No POS integration or till changes needed. To redeem: the member pulls up their Roundie in the app, your staff scans the QR code from their phone with the OneRound scanner, item's handed over. Almost no training required — you get a one-page brief and support whenever you need it.",
   },
   {
     q: "What analytics do we get?",
-    a: "Your venue dashboard shows Roundie data, Deals data, foot traffic data, and network data.",
+    a: "For your first three months, your OneRound partner sends you a personalised monthly report — Roundies redeemed, unique vs repeat members, top items, best times. The self-serve dashboard rolls out later in the year.",
   },
   {
     q: "What if a member behaves badly at our venue?",
-    a: "Flag them from the venue dashboard. Repeat issues result in membership suspension. Your staff are protected the same as anywhere else.",
+    a: "Flag them from the venue portal. Repeat issues result in membership suspension. Your staff are protected the same as anywhere else — refuse service as normal.",
+  },
+  {
+    q: "Is this legal?",
+    a: "Yes. OneRound was built with a liquor licensing lawyer and raised directly with OLGR. They can't endorse any program, but raised no issues with ours. Because members pay a subscription, a Roundie is a reward they've already bought — not alcohol promoted to the public. RSA obligations are unchanged, and one Roundie per member per day means nobody stacks free drinks.",
   },
   {
     q: "How does OneRound bring me new customers?",
-    a: "Members actively seek partnered venues — they check the app before deciding where to go. You get visibility from members seeking Roundies and exclusive deals.",
+    a: "Members open the app to see which venues have Roundies and Deals worth checking out that night. They also see where their friends and the wider OneRound crowd are heading — and that pulls whole groups your way. You get discovery, momentum, and social proof without any ad spend.",
   },
 ];
