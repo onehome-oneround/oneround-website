@@ -2,17 +2,25 @@
 
 import PillButton from "./PillButton";
 import EditorialTag from "./EditorialTag";
-import VenueSignupForm from "./VenueSignupForm";
 import { useAudience } from "./AudienceProvider";
 
 /*
   Contact (id="contact") — sits on the held paper ground. Users: editorial head
-  + email button. Venues: the signup form, which posts to /api/venue-signup.
+  + email button. Venues: an email-us block — a prominent mailto CTA plus a
+  checklist of what to include, in place of a form.
 
-  This is the single venue signup destination on the site — the Hero, HowItWorks
-  and GoodStuff venue CTAs all anchor to #contact. Adding a second venue form
-  elsewhere would split the funnel; extend this one instead.
+  This is the single venue contact destination on the site — the Hero, HowItWorks
+  and GoodStuff venue CTAs all anchor to #contact.
 */
+
+const VENUE_EMAIL_CHECKLIST = [
+  "Venue name",
+  "Your name and role",
+  "Contact email and phone",
+  "Venue type (pub, bar, club, restaurant, etc.)",
+  "Approximate capacity",
+  "Anything else you’d like us to know",
+];
 
 export default function Contact() {
   const { audience } = useAudience();
@@ -28,11 +36,36 @@ export default function Contact() {
               Want OneRound in your venue?
             </h2>
             <p className="mt-6 max-w-md text-base leading-relaxed text-ink-soft">
-              Let&rsquo;s talk. Tell us about your venue and we&rsquo;ll get you set up.
+              Email us and we&rsquo;ll set you up.
             </p>
           </div>
           <div className="lg:col-span-7">
-            <VenueSignupForm />
+            {/* Prominent mailto CTA. break-words guards against overflow on the
+                narrowest screens; the size caps below the left headline so the
+                two don't compete. */}
+            <a
+              href="mailto:hello@oneround.au?subject=New%20venue%20enquiry"
+              className="inline-block break-words font-display font-semibold leading-none text-blue underline-offset-4 hover:underline"
+              style={{ fontSize: "clamp(1.75rem, 5vw, 3.25rem)" }}
+            >
+              hello@oneround.au
+            </a>
+
+            <p className="kicker mt-10 text-ink-faint">Include these in your email</p>
+            <ul className="mt-5 flex flex-col gap-3">
+              {VENUE_EMAIL_CHECKLIST.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 text-base leading-relaxed text-ink-soft"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="mt-[0.6rem] h-1.5 w-1.5 shrink-0 rounded-full bg-navy"
+                  />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
