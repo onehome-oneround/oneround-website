@@ -273,7 +273,10 @@
 .marquee__track {
   display: inline-flex;
   align-items: center;
-  animation: marquee 30s linear infinite;
+  /* ~4x faster than the original 30s: at 30s the ticker read as static/broken.
+     Fast enough that motion is obvious at a glance, slow enough to stay legible.
+     Frozen entirely under prefers-reduced-motion (see the media query below). */
+  animation: marquee 7.5s linear infinite;
 }
 .marquee--rev .marquee__track {
   animation-name: marquee-rev;
