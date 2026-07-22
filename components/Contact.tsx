@@ -52,7 +52,7 @@ export default function Contact() {
           </p>
         </div>
         <div className="lg:col-span-4 lg:pb-3">
-          <PillButton href="mailto:hello@oneround.au" variant="solid">
+          <PillButton href="mailto:hello@oneround.au?subject=Hello%20from%20oneround.au" variant="solid">
             hello@oneround.au
           </PillButton>
         </div>

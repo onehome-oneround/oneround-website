@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 
 /*
+  Retained for future portal integration — not currently used. The venue signup
+  form (components/VenueSignupForm.tsx) now hands off via mailto and no longer
+  posts here; this handler is kept intact so a server-side intake can be wired
+  back up later without rebuilding it.
+
   Venue signup intake.
 
   TODO (LAUNCH BLOCKER): this only logs to the server console. Before venues are

@@ -43,7 +43,7 @@ export default function Faq() {
           </div>
           <p className="text-base leading-relaxed text-ink-soft lg:col-span-4 lg:pb-3">
             {intro} Still stuck?{" "}
-            <a href="mailto:hello@oneround.au" className="accent-text font-semibold underline-offset-4 hover:underline">
+            <a href="mailto:hello@oneround.au?subject=Question%20about%20OneRound" className="accent-text font-semibold underline-offset-4 hover:underline">
               Email us
             </a>
             .

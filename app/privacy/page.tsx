@@ -127,7 +127,7 @@ export default function PrivacyPage() {
               691 600 263), an Australian proprietary limited company. Where this
               policy refers to “OneRound”, “we”, “us”, or “our”, it means
               ONEROUND PTY LTD. You can contact us at{" "}
-              <a href="mailto:hello@oneround.au">hello@oneround.au</a>.
+              <a href="mailto:hello@oneround.au?subject=Privacy%20question">hello@oneround.au</a>.
             </p>
             <p>
               We are bound by the <em>Privacy Act 1988</em> (Cth) and the
@@ -387,7 +387,7 @@ export default function PrivacyPage() {
             <p>
               If you believe a minor has provided personal information to us,
               please contact us at{" "}
-              <a href="mailto:hello@oneround.au">hello@oneround.au</a>.
+              <a href="mailto:hello@oneround.au?subject=Privacy%20question">hello@oneround.au</a>.
             </p>
 
             <hr />
@@ -428,7 +428,7 @@ export default function PrivacyPage() {
             </ul>
             <p>
               To exercise any of these rights, contact us at{" "}
-              <a href="mailto:hello@oneround.au">hello@oneround.au</a>. We aim to
+              <a href="mailto:hello@oneround.au?subject=Privacy%20question">hello@oneround.au</a>. We aim to
               respond within 30 days.
             </p>
 
@@ -438,7 +438,7 @@ export default function PrivacyPage() {
               If you believe we have breached the Australian Privacy Principles or
               otherwise mishandled your personal information, please contact us
               first at{" "}
-              <a href="mailto:hello@oneround.au">hello@oneround.au</a> with the
+              <a href="mailto:hello@oneround.au?subject=Privacy%20question">hello@oneround.au</a> with the
               details of your complaint. We take complaints seriously and aim to
               resolve them within 30 days.
             </p>
@@ -485,7 +485,7 @@ export default function PrivacyPage() {
             </p>
             <p>
               <strong>Email:</strong>{" "}
-              <a href="mailto:hello@oneround.au">hello@oneround.au</a>
+              <a href="mailto:hello@oneround.au?subject=Privacy%20question">hello@oneround.au</a>
               <br />
               <strong>Registered entity:</strong> ONEROUND PTY LTD
               <br />

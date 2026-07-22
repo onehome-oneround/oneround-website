@@ -6,10 +6,13 @@ import { useEffect, useRef, useState } from "react";
 /*
   Venue signup form — venue path only, rendered inside the Contact section.
 
-  Replaces the previous mailto: form. That version handed the visitor off to
-  their mail client, which silently does nothing for anyone on webmail without a
-  registered handler — the lead was lost with no error and no record. This posts
-  to /api/venue-signup instead.
+  Submits via mailto: on a valid submission the visitor's email client opens with
+  To / Subject / Body pre-filled, and they click send. There is no server-side
+  email — the JSON POST to /api/venue-signup is retained for a future portal
+  integration but is no longer called from here. The trade-off is deliberate: a
+  mailto does nothing for someone on webmail with no registered handler, so the
+  success state tells the visitor to click send and gives hello@oneround.au as a
+  direct fallback.
 
   COLOUR. The palette has no red. Rather than invent one, an invalid field takes
   full --ink for its message and a solid --ink border in place of the faint
@@ -21,9 +24,10 @@ import { useEffect, useRef, useState } from "react";
   empty until it has something to say, so a message appearing pushes nothing.
   Keep error copy to a single line — a two-line message would defeat this.
 
-  SPAM. Three layers, all invisible to real users: a honeypot field, a
-  render-timestamp the server uses to reject sub-3-second submissions, and the
-  Origin/Host check in the route handler. No captcha.
+  SPAM. Two client-side gates, invisible to real users: a honeypot field and a
+  render-timestamp used to reject sub-3-second submissions. Either one silently
+  aborts before the mailto opens. No captcha. (The old Origin/Host check lived in
+  the route handler, which this form no longer calls.)
 */
 
 const HONEYPOT_FIELD = "company_website";
@@ -31,6 +35,10 @@ const HONEYPOT_FIELD = "company_website";
 const VENUE_TYPES = ["Pub", "Bar", "Club", "Restaurant", "Cafe", "Other"];
 
 const ABOUT_MAX = 500;
+
+// A human cannot read, tab through and complete this form in under three
+// seconds; anything faster is scripted, so we silently abort before the mailto.
+const MIN_FILL_MS = 3000;
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -113,8 +121,7 @@ function FieldError({ id, message }: { id: string; message?: string }) {
 
 export default function VenueSignupForm() {
   const [errors, setErrors] = useState<Errors>({});
-  const [status, setStatus] = useState<"idle" | "sending" | "success">("idle");
-  const [formError, setFormError] = useState<string | null>(null);
+  const [status, setStatus] = useState<"idle" | "success">("idle");
 
   const formRef = useRef<HTMLFormElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
@@ -137,17 +144,18 @@ export default function VenueSignupForm() {
     formRef.current.querySelector<HTMLElement>(`[name="${first}"]`)?.focus();
   }
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    // Immediate feedback before any await, so the button never sits idle-looking
-    // while the request is in flight.
-    setFormError(null);
 
     const data = new FormData(event.currentTarget);
     const read = (key: string) => String(data.get(key) ?? "").trim();
     const values = Object.fromEntries(
       FOCUS_ORDER.map((name) => [name, read(name)]),
     ) as Record<FieldName, string>;
+
+    // Honeypot: a real user never sees this field, so anything in it is a bot.
+    // Abort silently — no mailto, no feedback that would teach it anything.
+    if (read(HONEYPOT_FIELD)) return;
 
     const clientErrors = validate(values);
     if (Object.keys(clientErrors).length > 0) {
@@ -157,47 +165,38 @@ export default function VenueSignupForm() {
     }
 
     setErrors({});
-    setStatus("sending");
 
-    try {
-      const response = await fetch("/api/venue-signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...values,
-          [HONEYPOT_FIELD]: read(HONEYPOT_FIELD),
-          renderedAt: renderedAt.current,
-        }),
-      });
+    // Timing trap: too fast to be a human. Abort silently, like the honeypot.
+    const startedAt = renderedAt.current;
+    if (startedAt !== null && Date.now() - startedAt < MIN_FILL_MS) return;
 
-      if (response.ok) {
-        setStatus("success");
-        // Conversion events. Analytics.tsx loads GA4 (gtag) + Meta Pixel (fbq);
-        // both are optional-chained so this no-ops if the scripts didn't load
-        // (blocked, non-prod, or missing IDs). Window types: PageViewTracker.tsx.
-        window.gtag?.("event", "generate_lead");
-        window.fbq?.("track", "Lead");
-        return;
-      }
+    // Hand off to the visitor's email client — no server round-trip. Line breaks
+    // become %0A once encodeURIComponent runs over the assembled body.
+    const subject = `New venue signup — ${values.venueName}`;
+    const body = [
+      "New venue signup enquiry from oneround.au:",
+      "",
+      `Venue: ${values.venueName}`,
+      `Type: ${values.venueType}`,
+      `Capacity: ${values.capacity}`,
+      `Contact: ${values.contactName}`,
+      `Email: ${values.email}`,
+      `Phone: ${values.phone}`,
+      "",
+      "Message:",
+      values.about || "(no additional message)",
+    ].join("\n");
 
-      const payload = await response.json().catch(() => null);
-      // The form stays mounted and filled either way, so a retry costs nothing.
-      if (payload?.errors) {
-        setErrors(payload.errors as Errors);
-        focusFirstInvalid(payload.errors as Errors);
-        setStatus("idle");
-        return;
-      }
-      setFormError(
-        payload?.error ?? "Something went wrong. Please try again.",
-      );
-      setStatus("idle");
-    } catch {
-      setFormError(
-        "Could not reach the server. Check your connection and try again.",
-      );
-      setStatus("idle");
-    }
+    // Conversion events. Analytics.tsx loads GA4 (gtag) + Meta Pixel (fbq); both
+    // are optional-chained so this no-ops if the scripts didn't load (blocked,
+    // non-prod, or missing IDs). Window types: PageViewTracker.tsx.
+    window.gtag?.("event", "generate_lead");
+    window.fbq?.("track", "Lead");
+
+    window.location.href = `mailto:hello@oneround.au?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+    setStatus("success");
   }
 
   if (status === "success") {
@@ -208,14 +207,14 @@ export default function VenueSignupForm() {
         tabIndex={-1}
         className="border border-[color:var(--rule)] bg-white p-8 outline-none sm:p-10"
       >
-        <p className="kicker text-navy">Application received</p>
+        <p className="kicker text-navy">Almost done</p>
         <p className="mt-4 font-display text-2xl leading-tight text-ink sm:text-3xl">
-          Thanks — we&apos;ll be in touch within 24 hours.
+          Your email client has opened — click send to finish your enquiry.
         </p>
         <p className="mt-4 text-base leading-relaxed text-ink-soft">
-          We&apos;ve got your details. If it&apos;s urgent, reach us directly at{" "}
+          If nothing opened, email us directly at{" "}
           <a
-            href="mailto:hello@oneround.au"
+            href="mailto:hello@oneround.au?subject=Venue%20enquiry"
             className="underline underline-offset-4"
           >
             hello@oneround.au
@@ -225,8 +224,6 @@ export default function VenueSignupForm() {
       </div>
     );
   }
-
-  const sending = status === "sending";
 
   return (
     <form ref={formRef} onSubmit={handleSubmit} noValidate className="flex flex-col">
@@ -380,10 +377,9 @@ export default function VenueSignupForm() {
 
       <button
         type="submit"
-        disabled={sending}
-        className="mt-4 inline-flex items-center gap-4 self-start bg-[color:var(--accent)] px-6 py-4 text-sm font-bold uppercase tracking-[0.08em] text-white transition-colors duration-200 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
+        className="mt-4 inline-flex items-center gap-4 self-start bg-[color:var(--accent)] px-6 py-4 text-sm font-bold uppercase tracking-[0.08em] text-white transition-colors duration-200 hover:brightness-110"
       >
-        <span>{sending ? "Sending..." : "Apply to partner"}</span>
+        <span>Apply to partner</span>
         <span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path
@@ -396,15 +392,6 @@ export default function VenueSignupForm() {
           </svg>
         </span>
       </button>
-
-      {/* Reserved slot, same reasoning as the per-field errors: 1.875rem is
-          pt-3 (12px) + leading (18px). */}
-      <p
-        aria-live="polite"
-        className="min-h-[1.875rem] pt-3 text-[0.8125rem] leading-[1.125rem] text-ink"
-      >
-        {formError ?? ""}
-      </p>
     </form>
   );
 }

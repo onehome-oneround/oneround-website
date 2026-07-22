@@ -184,7 +184,7 @@ export default function TermsPage() {
         modification of any implied warranties, conditions, guarantees or
         obligations. Nothing in these Terms excludes or limits your rights under
         the Australian Consumer Law. If you have a complaint, contact us at{" "}
-        <a href="mailto:hello@oneround.au">hello@oneround.au</a> or call 0410 567
+        <a href="mailto:hello@oneround.au?subject=Terms%20question">hello@oneround.au</a> or call 0410 567
         374.
       </p>
       <p>
