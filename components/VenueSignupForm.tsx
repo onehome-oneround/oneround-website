@@ -41,8 +41,6 @@ type FieldName =
   | "phone"
   | "venueType"
   | "capacity"
-  | "role"
-  | "suburb"
   | "about";
 
 type Errors = Partial<Record<FieldName, string>>;
@@ -56,8 +54,6 @@ const FOCUS_ORDER: FieldName[] = [
   "phone",
   "venueType",
   "capacity",
-  "role",
-  "suburb",
   "about",
 ];
 
@@ -353,35 +349,6 @@ export default function VenueSignupForm() {
             className={fieldClass(!!errors.capacity)}
           />
           <FieldError id="capacity-error" message={errors.capacity} />
-        </div>
-
-        <div>
-          <label htmlFor="role" className="block">
-            <span className={labelClass}>Your role (optional)</span>
-          </label>
-          <input
-            id="role"
-            name="role"
-            type="text"
-            placeholder="e.g. owner, manager"
-            className={fieldClass(false)}
-          />
-          <FieldError id="role-error" />
-        </div>
-
-        <div>
-          <label htmlFor="suburb" className="block">
-            <span className={labelClass}>Suburb (optional)</span>
-          </label>
-          <input
-            id="suburb"
-            name="suburb"
-            type="text"
-            placeholder="e.g. Fortitude Valley"
-            autoComplete="address-level2"
-            className={fieldClass(false)}
-          />
-          <FieldError id="suburb-error" />
         </div>
       </div>
 

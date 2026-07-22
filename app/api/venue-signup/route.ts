@@ -97,8 +97,6 @@ export async function POST(request: Request) {
   const phone = str("phone");
   const venueType = str("venueType");
   const capacityRaw = str("capacity");
-  const role = str("role");
-  const suburb = str("suburb");
   const about = str("about");
 
   // Mirrors the client rules exactly. The client copy is for speed; this is the
@@ -141,8 +139,6 @@ export async function POST(request: Request) {
       `Phone:         ${phone}`,
       `Venue type:    ${venueType}`,
       `Capacity:      ${capacity}`,
-      `Role:          ${role || "(not given)"}`,
-      `Suburb:        ${suburb || "(not given)"}`,
       `About:         ${about || "(not given)"}`,
       `User agent:    ${request.headers.get("user-agent") ?? "(none)"}`,
       "====================================================",
