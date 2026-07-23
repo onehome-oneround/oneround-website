@@ -26,6 +26,32 @@ const links = [
   { label: "About", href: "/about" },
 ];
 
+// External member portal — a plain anchor (not a Next <Link>), opens in a new
+// tab. Rendered as the last nav item on both desktop and mobile.
+const LOGIN_URL = "https://portal.oneround.au/login";
+
+// Subtle up-right arrow marking the link as external / new-tab.
+function ExternalArrow() {
+  return (
+    <svg
+      width="11"
+      height="11"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      className="opacity-55"
+    >
+      <path
+        d="M7 17 17 7M8 7h9v9"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -88,6 +114,16 @@ export default function Nav() {
                 {l.label}
               </Link>
             ))}
+            <a
+              href={LOGIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-[15px] font-medium text-ink-soft transition-colors hover:text-ink"
+            >
+              Log in
+              <ExternalArrow />
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
           </div>
           {/* HIDDEN until launch - re-enable: app store links (nav "Get the app" + store icons) */}
           {/* <NavStore /> */}
@@ -143,6 +179,17 @@ export default function Nav() {
               {l.label}
             </Link>
           ))}
+          <a
+            href={LOGIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className="inline-flex items-center gap-1.5 px-3 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-offwhite hover:text-ink"
+          >
+            Log in
+            <ExternalArrow />
+            <span className="sr-only">(opens in a new tab)</span>
+          </a>
         </div>
       </div>
     </header>
