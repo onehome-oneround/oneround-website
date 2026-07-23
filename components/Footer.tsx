@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 import { useAudience } from "./AudienceProvider";
 import { useConsent } from "./ConsentProvider";
+import { hashTarget, scrollToHashId } from "./hashNav";
 
 /*
   Footer — a NAVY slab closing the broadsheet. Editorial grid with hairline
@@ -21,7 +23,19 @@ const EMAIL = "hello@oneround.au";
 export default function Footer() {
   const { audience } = useAudience();
   const { setConsent } = useConsent();
+  const pathname = usePathname();
   const isVenue = audience === "venue";
+
+  // Same-page hash links (How it works / FAQ) scroll themselves on the home
+  // page — Next's <Link> won't re-scroll when the href matches the current url.
+  // See hashNav.ts. Off the home page the Link routes to "/#…" as usual.
+  function onHashClick(e: React.MouseEvent, href: string) {
+    const id = hashTarget(href);
+    if (id && pathname === "/") {
+      e.preventDefault();
+      scrollToHashId(id);
+    }
+  }
   const lead = isVenue ? "Their reason to " : "Your reason to ";
   const accent = isVenue ? "walk in" : "get out";
   const tagline = isVenue ? "Their reason to walk in." : "Your reason to get out.";
@@ -65,7 +79,11 @@ export default function Footer() {
                 { label: "About", href: "/about" },
               ].map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="font-display text-lg text-white/85 transition-colors hover:text-blue">
+                  <Link
+                    href={l.href}
+                    onClick={(e) => onHashClick(e, l.href)}
+                    className="font-display text-lg text-white/85 transition-colors hover:text-blue"
+                  >
                     {l.label}
                   </Link>
                 </li>

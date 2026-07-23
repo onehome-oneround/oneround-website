@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 import AudienceToggle from "./AudienceToggle";
+import { hashTarget, scrollToHashId } from "./hashNav";
 // HIDDEN until launch - re-enable: app store links (nav "Get the app" + store icons)
 // import NavStore from "./NavStore";
 
@@ -26,6 +28,18 @@ const links = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  // On the home page, scroll same-page hash links ourselves so they always
+  // fire — Next's <Link> skips the scroll when the href equals the current url
+  // (see hashNav.ts). Off the home page, let the Link route to "/#…".
+  function onHashClick(e: React.MouseEvent, href: string) {
+    const id = hashTarget(href);
+    if (id && pathname === "/") {
+      e.preventDefault();
+      scrollToHashId(id);
+    }
+  }
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -68,6 +82,7 @@ export default function Nav() {
               <Link
                 key={l.href}
                 href={l.href}
+                onClick={(e) => onHashClick(e, l.href)}
                 className="text-[15px] font-medium text-ink-soft transition-colors hover:text-ink"
               >
                 {l.label}
@@ -119,7 +134,10 @@ export default function Nav() {
             <Link
               key={l.href}
               href={l.href}
-              onClick={() => setOpen(false)}
+              onClick={(e) => {
+                onHashClick(e, l.href);
+                setOpen(false);
+              }}
               className="px-3 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-offwhite hover:text-ink"
             >
               {l.label}
