@@ -5,6 +5,7 @@
 import PillButton from "./PillButton";
 import EditorialTag from "./EditorialTag";
 import { useAudience } from "./AudienceProvider";
+import { useVenueContact } from "./useVenueContact";
 
 /*
   "Out the door in three steps" — the saturated blue slab. This is the page's one
@@ -36,6 +37,7 @@ export default function HowItWorks() {
   const { audience } = useAudience();
   const isVenue = audience === "venue";
   const steps = isVenue ? venueSteps : consumerSteps;
+  const goToVenueContact = useVenueContact();
   // Solid blue section on both sides; the accent word is navy to contrast the blue.
   const wordColor = "var(--navy)";
 
@@ -70,7 +72,12 @@ export default function HowItWorks() {
           {/* The venue CTA stays; the user-side store badges are hidden until launch. */}
           {isVenue && (
             <div className="lg:col-span-4 lg:pb-2">
-              <PillButton href="#contact" variant="solid" onDark>
+              <PillButton
+                href="/?view=venue#contact"
+                variant="solid"
+                onDark
+                onClick={goToVenueContact}
+              >
                 Partner with us
               </PillButton>
             </div>

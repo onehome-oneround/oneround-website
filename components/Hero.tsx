@@ -6,6 +6,7 @@ import Image from "next/image";
 import PillButton from "./PillButton";
 import LaunchCountdown from "./LaunchCountdown";
 import { useAudience } from "./AudienceProvider";
+import { useVenueContact } from "./useVenueContact";
 
 /*
   Hero — the masthead spread. A hard accent slab (Users = blue, Venues = navy)
@@ -23,6 +24,7 @@ import { useAudience } from "./AudienceProvider";
 export default function Hero() {
   const { audience } = useAudience();
   const isVenue = audience === "venue";
+  const goToVenueContact = useVenueContact();
 
   const subhead = isVenue
     ? "OneRound brings new faces to your venue and gets them spending, with no upfront cost and no risk."
@@ -114,7 +116,12 @@ export default function Hero() {
                   launch, so the CTA block only renders on the venue side for now. */}
               {isVenue && (
                 <div className="mt-6 flex flex-col gap-3">
-                  <PillButton href="#contact" variant="solid" onDark>
+                  <PillButton
+                    href="/?view=venue#contact"
+                    variant="solid"
+                    onDark
+                    onClick={goToVenueContact}
+                  >
                     Become a partner for free
                   </PillButton>
                 </div>

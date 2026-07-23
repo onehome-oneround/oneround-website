@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { type ReactNode } from "react";
+import { type MouseEvent, type ReactNode } from "react";
 
 /*
   Editorial CTA — the signature button of the "After Dark" system: a hard
@@ -22,6 +22,9 @@ type Props = {
   icon?: "plus" | "arrow";
   className?: string;
   onDark?: boolean;
+  /** Optional click handler on the underlying link (e.g. to intercept for a
+      client-side scroll/state change while keeping href as the fallback). */
+  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
 };
 
 function Icon({ icon }: { icon: "plus" | "arrow" }) {
@@ -43,6 +46,7 @@ export default function PillButton({
   icon = "arrow",
   className = "",
   onDark = false,
+  onClick,
 }: Props) {
   const base =
     "inline-flex items-center gap-4 px-6 py-4 text-sm font-bold uppercase tracking-[0.08em] transition-colors duration-200 ease-out";
@@ -56,7 +60,7 @@ export default function PillButton({
         : "border border-[color:var(--ink)] text-ink hover:bg-ink hover:text-white";
 
   return (
-    <Link href={href} className={`${base} ${styles} ${className}`}>
+    <Link href={href} onClick={onClick} className={`${base} ${styles} ${className}`}>
       <span>{children}</span>
       <span>
         <Icon icon={icon} />

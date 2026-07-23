@@ -6,6 +6,7 @@ import PillButton from "./PillButton";
 // import DownloadButtons from "./DownloadButtons";
 import EditorialTag from "./EditorialTag";
 import { useAudience } from "./AudienceProvider";
+import { useVenueContact } from "./useVenueContact";
 
 /*
   "The good stuff" — a full-bleed real photo (Users = good-user, Venues =
@@ -17,6 +18,7 @@ import { useAudience } from "./AudienceProvider";
 export default function GoodStuff() {
   const { audience } = useAudience();
   const isVenue = audience === "venue";
+  const goToVenueContact = useVenueContact();
 
   const copy = isVenue
     ? {
@@ -27,9 +29,9 @@ export default function GoodStuff() {
           "New customers discovering your venue",
         ],
         cta: "Become a partner",
-        // #contact, not /partners: that route 307s to /?view=venue, i.e. the top
-        // of the page the visitor is already on. This goes to the signup form.
-        href: "#contact",
+        // Sets audience to venue and scrolls to the Contact section via
+        // useVenueContact (below); the href is the no-JS / new-tab fallback.
+        href: "/?view=venue#contact",
         bg: "/images/newgood-venue.png",
       }
     : {
@@ -96,7 +98,12 @@ export default function GoodStuff() {
             this can never render a dead link even if the audience gate changes. */}
         {isVenue && copy.href && (
           <div className="mt-10">
-            <PillButton href={copy.href} variant="solid" onDark>
+            <PillButton
+              href={copy.href}
+              variant="solid"
+              onDark
+              onClick={goToVenueContact}
+            >
               {copy.cta}
             </PillButton>
           </div>
