@@ -3,6 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, type MouseEvent } from "react";
 import { useAudience } from "./AudienceProvider";
+import { scrollToIdSettled } from "./hashNav";
 
 /*
   Shared click handler for the "Become a partner" / "Partner with us" CTAs.
@@ -35,15 +36,15 @@ export function useVenueContact() {
       setAudience("venue");
 
       if (pathname === "/") {
-        // A macrotask, not rAF: it fires after React commits the audience swap
-        // (so #contact is measured against the venue layout) AND still runs when
-        // the tab isn't foreground, which rAF does not.
-        window.setTimeout(() => {
-          document
-            .getElementById("contact")
-            ?.scrollIntoView({ behavior: "smooth" });
-        }, 0);
+        // Scroll only once the venue layout has committed — a bare setTimeout(0)
+        // fires before React re-renders the audience swap, so #contact is
+        // measured against the consumer layout (Pricing still present, longer
+        // FAQ) and the scroll lands mid-page. scrollToIdSettled waits for the
+        // committed venue layout via rAF, with a timeout backstop. See hashNav.
+        scrollToIdSettled("contact");
       } else {
+        // Off the home page, route home to the deep link; the venue Contact
+        // section re-scrolls itself once it renders there (see Contact.tsx).
         router.push("/?view=venue#contact");
       }
     },

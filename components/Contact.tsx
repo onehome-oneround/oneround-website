@@ -1,9 +1,11 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import PillButton from "./PillButton";
 import EditorialTag from "./EditorialTag";
 import VenueContactForm from "./VenueContactForm";
 import { useAudience } from "./AudienceProvider";
+import { scrollToIdSettled } from "./hashNav";
 
 /*
   Contact (id="contact") — sits on the held paper ground. Users: editorial head
@@ -17,6 +19,21 @@ import { useAudience } from "./AudienceProvider";
 export default function Contact() {
   const { audience } = useAudience();
   const isVenue = audience === "venue";
+  const didAutoScroll = useRef(false);
+
+  // Land venue partners on this form when they ARRIVE at /?view=venue#contact —
+  // a shared/direct link, or a router.push from another page's "Become a
+  // partner". The browser's on-load hash scroll runs against the SSR consumer
+  // layout, before hydration resolves venue and reflows the sections above
+  // #contact, so it lands mid-page. Re-scroll once the venue Contact has
+  // actually rendered. Guarded to fire once per mount, so it doesn't fight the
+  // audience toggle's scroll-to-top on a later switch.
+  useEffect(() => {
+    if (!isVenue || didAutoScroll.current) return;
+    if (window.location.hash !== "#contact") return;
+    didAutoScroll.current = true;
+    scrollToIdSettled("contact");
+  }, [isVenue]);
 
   if (isVenue) {
     return (

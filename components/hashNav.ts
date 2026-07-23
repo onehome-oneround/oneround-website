@@ -33,3 +33,31 @@ export function scrollToHashId(id: string): boolean {
   history.replaceState(null, "", `#${id}`);
   return true;
 }
+
+/**
+ * Smooth-scroll to `id` AFTER the current layout has settled — used for the
+ * venue "Become a partner" flow. Switching the audience to venue removes/reflows
+ * whole sections above #contact (Pricing drops out, the FAQ shrinks, CTA blocks
+ * appear), so a scroll fired immediately measures #contact against the old
+ * consumer layout and lands on the wrong section. Two rAFs put the scroll past
+ * React's commit and a paint, so it targets the settled venue layout;
+ * `scroll-margin-top` on the target keeps it clear of the sticky header.
+ *
+ * A timeout backstop covers tabs where rAF is throttled or paused (background /
+ * automation), where the rAF chain never fires. `done` guarantees a single
+ * scroll whichever path wins.
+ */
+export function scrollToIdSettled(id: string): void {
+  let done = false;
+  const scroll = () => {
+    if (done) return;
+    const el = document.getElementById(id);
+    if (!el) return;
+    done = true;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+  if (typeof requestAnimationFrame === "function") {
+    requestAnimationFrame(() => requestAnimationFrame(scroll));
+  }
+  window.setTimeout(scroll, 300);
+}
