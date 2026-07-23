@@ -5,6 +5,7 @@ import Image from "next/image";
 // import DownloadButtons from "./DownloadButtons";
 import PillButton from "./PillButton";
 import LaunchCountdown from "./LaunchCountdown";
+import WaitlistCounters from "./WaitlistCounters";
 import WaitlistForm from "./WaitlistForm";
 import { useAudience } from "./AudienceProvider";
 import { useVenueContact } from "./useVenueContact";
@@ -121,7 +122,11 @@ export default function Hero() {
                   All static text in the consumer SSR path, so it can't shift. */}
               {!isVenue && (
                 <div className="mt-6">
-                  <p className="font-display text-3xl font-semibold leading-tight text-white sm:text-4xl">
+                  {/* Live social proof — real waitlist + venue counts, fetched
+                      client-side, faded in when ready. Reserves its height so it
+                      can't shift the offer/form below it. */}
+                  <WaitlistCounters />
+                  <p className="mt-5 font-display text-3xl font-semibold leading-tight text-white sm:text-4xl">
                     First month on us.
                   </p>
                   <p className={`mt-2 text-base leading-relaxed ${soft}`}>
