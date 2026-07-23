@@ -16,6 +16,7 @@ import { hashTarget, scrollToHashId } from "./hashNav";
   so the page ends on a tonal step rather than the old hard cut.
 */
 
+const FACEBOOK = "https://www.facebook.com/oneroundapp";
 const INSTAGRAM = "https://instagram.com/oneroundapp";
 const TIKTOK = "https://tiktok.com/@oneroundapp";
 const EMAIL = "hello@oneround.au";
@@ -120,6 +121,17 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <p className="kicker text-white/45">Follow</p>
             <div className="mt-4 flex gap-3">
+              <a
+                href={FACEBOOK}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="OneRound on Facebook"
+                className="tactile flex h-11 w-11 items-center justify-center border border-white/25 text-white transition-colors hover:border-blue hover:text-blue"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5Z" />
+                </svg>
+              </a>
               <a
                 href={INSTAGRAM}
                 target="_blank"
