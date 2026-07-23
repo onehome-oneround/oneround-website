@@ -5,6 +5,7 @@ import Image from "next/image";
 // import DownloadButtons from "./DownloadButtons";
 import PillButton from "./PillButton";
 import LaunchCountdown from "./LaunchCountdown";
+import WaitlistForm from "./WaitlistForm";
 import { useAudience } from "./AudienceProvider";
 import { useVenueContact } from "./useVenueContact";
 
@@ -112,6 +113,9 @@ export default function Hero() {
                   adding one; the digits are the only new motion. Removes itself
                   entirely once the target passes. */}
               <LaunchCountdown softClassName={soft} />
+              {/* Consumer pre-launch: a waitlist capture under the countdown, so
+                  every visitor can ask to be notified at launch. */}
+              {!isVenue && <WaitlistForm className="mt-6" />}
               {/* The venue CTA stays; the user-side store badges are hidden until
                   launch, so the CTA block only renders on the venue side for now. */}
               {isVenue && (
