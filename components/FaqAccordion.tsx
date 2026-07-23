@@ -1,16 +1,45 @@
-import type { Faq } from "./faqData";
+"use client";
+
+import { useEffect } from "react";
+import { faqAnchorId, type Faq } from "./faqData";
 
 /*
-  Accordion on native <details>/<summary> — accessible, CSS-first, no JS. Editorial
+  Accordion on native <details>/<summary> — accessible, CSS-first. Editorial
   hairline rows: a mono index + a big Fraunces question, with a "+" that rotates
   to "×" when open. Answer in clean grotesque body.
+
+  Each row carries a stable id (faqAnchorId), so a link elsewhere — the pricing
+  card's "Entry into Weekly Wins" — can open a specific question by URL hash. The
+  small effect below is the only JS: it opens (and scrolls to) the matching row
+  on load and on hash change; without it the browser would scroll to a closed
+  row and leave it collapsed.
 */
 
+function openFromHash() {
+  const id = window.location.hash.slice(1);
+  if (!id) return;
+  const el = document.getElementById(id);
+  if (el instanceof HTMLDetailsElement) {
+    el.open = true;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
 export default function FaqAccordion({ items }: { items: Faq[] }) {
+  useEffect(() => {
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
+    return () => window.removeEventListener("hashchange", openFromHash);
+  }, []);
+
   return (
     <div className="border-t border-[color:var(--rule)]">
       {items.map((item, i) => (
-        <details key={item.q} className="group border-b border-[color:var(--rule)]">
+        <details
+          key={item.q}
+          id={faqAnchorId(item.q)}
+          className="group scroll-mt-24 border-b border-[color:var(--rule)]"
+        >
           <summary className="flex cursor-pointer list-none items-center gap-5 py-7 text-left [&::-webkit-details-marker]:hidden">
             <span className="kicker w-10 shrink-0 text-ink-faint">{String(i + 1).padStart(2, "0")}</span>
             <span className="flex-1 font-display text-2xl font-medium leading-tight text-ink transition-colors group-hover:text-[color:var(--accent)] sm:text-3xl">

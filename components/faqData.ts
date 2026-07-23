@@ -13,6 +13,24 @@
 
 export type Faq = { q: string; a: string };
 
+/* Stable anchor id for a FAQ row, so a question can be linked to (and opened) by
+   URL hash — e.g. the pricing card's "Entry into Weekly Wins" link. Kept here so
+   the accordion (which stamps the id) and the linker (which builds the href)
+   derive it the same way. */
+export function faqAnchorId(question: string): string {
+  return (
+    "faq-" +
+    question
+      .toLowerCase()
+      .replace(/[^\w\s]/g, "")
+      .trim()
+      .replace(/\s+/g, "-")
+  );
+}
+
+/* The pricing card links straight to this row. */
+export const WEEKLY_WINS_ANCHOR = faqAnchorId("What are Weekly Wins?");
+
 export const consumerFaqs: Faq[] = [
   {
     q: "What's a Roundie?",
@@ -41,6 +59,10 @@ export const consumerFaqs: Faq[] = [
   {
     q: "Can I see where my friends are going out?",
     a: "Yes. Members mark where they're heading before they head out. Open the app to see where your friends and the wider OneRound crowd are landing that night — no more group-chat scramble.",
+  },
+  {
+    q: "What are Weekly Wins?",
+    a: "Every week, the five members with the most entries win $100 each. You earn an entry every time you select 'going' to a venue in the app before 6pm and actually turn up. Some venues offer 2× entries. The more you go out, the more you win.",
   },
   {
     q: "Do I need to be 18+ to use OneRound?",

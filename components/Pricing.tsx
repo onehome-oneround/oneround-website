@@ -4,6 +4,7 @@
 // import PillButton from "./PillButton";
 import EditorialTag from "./EditorialTag";
 import { useAudience } from "./AudienceProvider";
+import { WEEKLY_WINS_ANCHOR } from "./faqData";
 import {
   Badge,
   Glasses,
@@ -56,11 +57,12 @@ import {
   blue-on-paper contrast carries no information requirement.
 */
 
-const INCLUDED = [
-  "Five Roundies every month",
-  "Exclusive member Deals",
-  "Entry into Weekly Wins",
-  "Cancel anytime",
+const INCLUDED: { label: string; href?: string }[] = [
+  { label: "Five Roundies every month" },
+  { label: "Exclusive member Deals" },
+  // Links to (and opens) the "What are Weekly Wins?" FAQ row.
+  { label: "Entry into Weekly Wins", href: `#${WEEKLY_WINS_ANCHOR}` },
+  { label: "Cancel anytime" },
 ];
 
 /* Fixed 16x16 glyph in a fixed 20px box so the row height can't shift on load. */
@@ -148,11 +150,36 @@ export default function Pricing() {
           <ul className="mt-8">
             {INCLUDED.map((item) => (
               <li
-                key={item}
+                key={item.label}
                 className="flex items-start gap-3 border-t border-[color:var(--rule)] py-4 first:border-t-0 first:pt-0 last:pb-0"
               >
                 <Tick />
-                <span className="text-base leading-relaxed text-ink">{item}</span>
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    className="group inline-flex items-start gap-1.5 text-base leading-relaxed text-ink underline decoration-[color:var(--rule)] decoration-1 underline-offset-4 transition-colors hover:text-[color:var(--accent)] hover:decoration-[color:var(--accent)]"
+                  >
+                    {item.label}
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                      className="mt-1 shrink-0 transition-transform group-hover:translate-x-0.5"
+                    >
+                      <path
+                        d="M4 12h15m-6-6 6 6-6 6"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </a>
+                ) : (
+                  <span className="text-base leading-relaxed text-ink">{item.label}</span>
+                )}
               </li>
             ))}
           </ul>
