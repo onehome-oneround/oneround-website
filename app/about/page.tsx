@@ -7,7 +7,7 @@ import EditorialTag from "@/components/EditorialTag";
 export const metadata: Metadata = {
   title: { absolute: "About | OneRound" },
   description:
-    "Why we built OneRound. Two founders, one problem — going out in Brisbane shouldn't be the same night, every time.",
+    "Why we built OneRound. Two founders, one problem: going out in Brisbane shouldn't be the same night, every time.",
   alternates: { canonical: "https://oneround.au/about" },
 };
 
@@ -16,7 +16,7 @@ const FOUNDERS = [
     index: "01",
     name: "Oscar",
     paragraphs: [
-      "My friends and I always ended up at the same handful of venues. Not because they weren’t great — they are — but because we didn’t have a reason to try somewhere new. Brisbane’s got so much more, and we were missing most of it.",
+      "My friends and I always ended up at the same handful of venues. Not because they weren’t great, they were. We just didn’t have a reason to try somewhere new. Brisbane’s got so much more, and we were missing most of it.",
       "That’s why we built OneRound. Five Roundies a month give you a reason to try somewhere new. Member-only deals make going out cost less. And the app shows you where your mates are already heading. More venues in your mix, more nights that surprise you.",
     ],
   },
@@ -78,15 +78,6 @@ export default function AboutPage() {
                 }
               >
                 <EditorialTag index={f.index} label={f.name} className="text-navy" />
-
-                {/* Photo placeholder — swap when portraits available. Fixed 3:4
-                    ratio so it reserves its space (no CLS) even with no image. */}
-                <div
-                  aria-hidden="true"
-                  className="mt-8 flex aspect-[3/4] w-full max-w-[18.75rem] items-end rounded-[var(--radius-card)] border border-[color:var(--rule)] bg-[color:var(--tint)] p-5"
-                >
-                  <span className="kicker text-navy/50">{f.name}</span>
-                </div>
 
                 <div className="mt-8 max-w-prose font-display text-lg leading-relaxed text-ink-soft sm:text-xl">
                   {f.paragraphs.map((p, j) => (
