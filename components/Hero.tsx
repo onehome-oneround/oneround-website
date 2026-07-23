@@ -113,9 +113,23 @@ export default function Hero() {
                   adding one; the digits are the only new motion. Removes itself
                   entirely once the target passes. */}
               <LaunchCountdown softClassName={soft} />
-              {/* Consumer pre-launch: a waitlist capture under the countdown, so
-                  every visitor can ask to be notified at launch. */}
-              {!isVenue && <WaitlistForm className="mt-6" />}
+              {/* Consumer pre-launch: a launch-offer line then the waitlist
+                  capture, under the countdown, so every visitor can ask to be
+                  notified at launch. The offer is a quiet serif statement, not a
+                  banner — headline white to sit with the masthead, subline in the
+                  same navy/75 as the subhead so it reads as muted supporting copy.
+                  All static text in the consumer SSR path, so it can't shift. */}
+              {!isVenue && (
+                <div className="mt-6">
+                  <p className="font-display text-3xl font-semibold leading-tight text-white sm:text-4xl">
+                    First month on us.
+                  </p>
+                  <p className={`mt-2 text-base leading-relaxed ${soft}`}>
+                    Join the waitlist and your first month of OneRound is free.
+                  </p>
+                  <WaitlistForm className="mt-6" />
+                </div>
+              )}
               {/* The venue CTA stays; the user-side store badges are hidden until
                   launch, so the CTA block only renders on the venue side for now. */}
               {isVenue && (
