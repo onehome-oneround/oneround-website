@@ -21,6 +21,7 @@ const links = [
   { label: "How it works", href: "/#how-it-works" },
   { label: "FAQ", href: "/#faq" },
   { label: "Partnered venues", href: "/partnered-venues" },
+  { label: "About", href: "/about" },
 ];
 
 export default function Nav() {
