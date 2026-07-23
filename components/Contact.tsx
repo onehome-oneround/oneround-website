@@ -21,7 +21,7 @@ export default function Contact() {
   if (isVenue) {
     return (
       <section id="contact" className="scroll-mt-28 bg-[color:var(--paper)] px-5 py-20 sm:px-8 sm:py-24">
-        <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10">
+        <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center lg:gap-10">
           <div className="lg:col-span-5">
             <EditorialTag index="09" label="Contact" className="text-navy" />
             <h2 className="display-section mt-6 text-ink">

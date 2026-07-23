@@ -27,7 +27,7 @@ const HONEYPOT_FIELD = "company_website";
 const WAITLIST_URL = process.env.NEXT_PUBLIC_WAITLIST_URL;
 
 const FIELD_CLASS =
-  "min-h-11 w-full rounded-lg border border-[color:rgba(var(--navy-rgb),0.15)] bg-white px-4 text-base text-[color:var(--navy)] outline-none transition placeholder:text-ink-faint focus:border-[color:rgba(var(--navy-rgb),0.4)] focus:ring-2 focus:ring-[color:rgba(var(--navy-rgb),0.15)]";
+  "min-h-[3.25rem] w-full rounded-lg border border-[color:rgba(var(--navy-rgb),0.15)] bg-white px-4 py-3.5 text-base text-[color:var(--navy)] outline-none transition placeholder:text-ink-faint focus:border-[color:rgba(var(--navy-rgb),0.4)] focus:ring-2 focus:ring-[color:rgba(var(--navy-rgb),0.15)]";
 
 export default function VenueContactForm({ className = "" }: { className?: string }) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">(
@@ -99,7 +99,7 @@ export default function VenueContactForm({ className = "" }: { className?: strin
   const sending = status === "sending";
 
   return (
-    <div className={`min-h-[17.5rem] sm:min-h-[9.5rem] ${className}`}>
+    <div className={`flex min-h-[26rem] flex-col justify-center ${className}`}>
       {status === "success" ? (
         <p
           role="status"
@@ -108,7 +108,7 @@ export default function VenueContactForm({ className = "" }: { className?: strin
           Thanks &mdash; we&rsquo;ll be in touch shortly.
         </p>
       ) : (
-        <form onSubmit={handleSubmit} noValidate>
+        <form onSubmit={handleSubmit} noValidate className="max-w-md">
           {/* Honeypot — off the tab order and the a11y tree; no real user reaches it. */}
           <div aria-hidden="true" className="absolute h-0 w-0 overflow-hidden opacity-0">
             <label htmlFor="company_website">Company website</label>
@@ -121,44 +121,61 @@ export default function VenueContactForm({ className = "" }: { className?: strin
             />
           </div>
 
-          {/* Three fields — a row on desktop where the column is wide enough,
-              stacked on mobile. */}
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-            <input
-              name="venueName"
-              type="text"
-              required
-              placeholder="e.g. The Normanby"
-              aria-label="Venue name"
-              aria-invalid={!!error}
-              className={FIELD_CLASS}
-            />
-            <input
-              name="email"
-              type="email"
-              required
-              placeholder="you@yourvenue.com"
-              aria-label="Email address"
-              autoComplete="email"
-              aria-invalid={!!error}
-              className={FIELD_CLASS}
-            />
-            <input
-              name="phone"
-              type="tel"
-              required
-              placeholder="0400 000 000"
-              aria-label="Phone number"
-              autoComplete="tel"
-              aria-invalid={!!error}
-              className={FIELD_CLASS}
-            />
+          {/* Three fields stacked vertically, each with a mono label above its
+              input — a calm editorial column that fills the height beside the
+              headline rather than crowding one row at the top. */}
+          <div className="flex flex-col gap-5">
+            <div>
+              <label htmlFor="venueName" className="kicker text-ink-faint">
+                Venue name
+              </label>
+              <input
+                id="venueName"
+                name="venueName"
+                type="text"
+                required
+                placeholder="e.g. The Normanby"
+                autoComplete="organization"
+                aria-invalid={!!error}
+                className={`mt-2 ${FIELD_CLASS}`}
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="kicker text-ink-faint">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder="you@yourvenue.com"
+                autoComplete="email"
+                aria-invalid={!!error}
+                className={`mt-2 ${FIELD_CLASS}`}
+              />
+            </div>
+            <div>
+              <label htmlFor="phone" className="kicker text-ink-faint">
+                Phone
+              </label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                required
+                placeholder="0400 000 000"
+                autoComplete="tel"
+                aria-invalid={!!error}
+                className={`mt-2 ${FIELD_CLASS}`}
+              />
+            </div>
           </div>
 
           <button
             type="submit"
             disabled={sending}
-            className="mt-3 flex min-h-11 w-full shrink-0 items-center justify-center rounded-lg bg-navy px-5 text-sm font-bold uppercase tracking-[0.08em] text-white transition-colors hover:bg-[color:var(--navy-hover)] disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto sm:min-w-[13rem]"
+            className="mt-7 flex min-h-[3.25rem] w-full shrink-0 items-center justify-center rounded-lg bg-navy px-5 text-sm font-bold uppercase tracking-[0.08em] text-white transition-colors hover:bg-[color:var(--navy-hover)] disabled:cursor-not-allowed disabled:opacity-70"
           >
             {sending ? "Sending…" : "Apply to partner"}
           </button>
@@ -166,7 +183,7 @@ export default function VenueContactForm({ className = "" }: { className?: strin
           {/* Reserved error slot so an error appearing pushes nothing. */}
           <p
             aria-live="polite"
-            className="min-h-[1.5rem] pt-1.5 text-[0.8125rem] leading-[1.125rem] text-[color:var(--navy)]"
+            className="min-h-[1.5rem] pt-2 text-[0.8125rem] leading-[1.125rem] text-[color:var(--navy)]"
           >
             {error ?? ""}
           </p>
