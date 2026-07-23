@@ -6,6 +6,7 @@ import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import EditorialTag from "@/components/EditorialTag";
+import BrisbaneMap from "@/components/BrisbaneMap";
 import { publicVenues } from "@/components/venues";
 
 export const metadata: Metadata = {
@@ -145,15 +146,26 @@ export default function PartneredVenuesPage() {
       ) : (
       <main
         id="main-content"
-        className="flex flex-1 items-center justify-center bg-[color:var(--paper)] px-5 py-32 text-center sm:px-8"
+        className="flex-1 bg-[color:var(--paper)] px-5 pb-24 pt-32 sm:px-8"
       >
-        <div className="max-w-md">
-          <p className="kicker text-navy">Partnered venues</p>
-          <h1 className="display-section mt-6 text-navy">Coming soon.</h1>
-          <p className="mt-6 text-base leading-relaxed text-ink-soft">
-            We&rsquo;re finalising our launch lineup of Brisbane venues. Check
-            back closer to 10 August.
-          </p>
+        <div className="mx-auto max-w-[72rem]">
+          <div className="text-center">
+            <p className="kicker text-navy">Partnered venues</p>
+            <h1 className="display-section mt-6 text-navy">Coming soon.</h1>
+            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-ink-soft">
+              Our launch lineup goes live in early August. Here&rsquo;s where
+              you&rsquo;ll find us — venue names revealed on launch day.
+            </p>
+          </div>
+
+          {/* Interactive Brisbane map — placeholder pins only. Fixed height so
+              the client-loaded map causes no layout shift. */}
+          <div className="relative mt-12 h-[400px] overflow-hidden rounded-[var(--radius-card)] border border-[color:var(--rule)] sm:mt-14 sm:h-[500px]">
+            <BrisbaneMap />
+            <div className="pointer-events-none absolute left-1/2 top-4 z-[500] -translate-x-1/2 rounded-full bg-navy/90 px-4 py-2 backdrop-blur-sm">
+              <span className="kicker text-white">Venues revealed at launch</span>
+            </div>
+          </div>
         </div>
       </main>
       )}
