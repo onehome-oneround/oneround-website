@@ -149,22 +149,46 @@ export default function PartneredVenuesPage() {
         className="flex-1 bg-[color:var(--paper)] px-5 pb-24 pt-32 sm:px-8"
       >
         <div className="mx-auto max-w-[72rem]">
-          <div className="text-center">
-            <p className="kicker text-navy">Partnered venues</p>
-            <h1 className="display-section mt-6 text-navy">Coming soon.</h1>
-            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-ink-soft">
-              Our launch lineup goes live in early August. Here&rsquo;s where
-              you&rsquo;ll find us — venue names revealed on launch day.
-            </p>
-          </div>
-
-          {/* Interactive Brisbane map — placeholder pins only. Fixed height so
-              the client-loaded map causes no layout shift. */}
-          <div className="relative mt-12 h-[400px] overflow-hidden rounded-[var(--radius-card)] border border-[color:var(--rule)] sm:mt-14 sm:h-[500px]">
-            <BrisbaneMap />
-            <div className="pointer-events-none absolute left-1/2 top-4 z-[500] -translate-x-1/2 rounded-full bg-navy/90 px-4 py-2 backdrop-blur-sm">
-              <span className="kicker text-white">Venues revealed at launch</span>
+          {/* Blurred Brisbane map as a decorative backdrop, with the "Coming
+              soon" content centred on top. Locked height so the client-loaded
+              map shifts nothing (CLS 0). */}
+          <div className="relative min-h-[500px] overflow-hidden rounded-[var(--radius-card)] border border-[color:var(--rule)] sm:min-h-[600px]">
+            {/* Map background — non-interactive, blurred, and extended past the
+                container so the blur's soft edge is clipped rather than haloed. */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -inset-6"
+              style={{ filter: "blur(6px)" }}
+            >
+              <BrisbaneMap />
             </div>
+
+            {/* Soft radial white scrim + centred content: opaque behind the text
+                for legibility, lighter at the edges so the map stays visible. */}
+            <div
+              className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
+              style={{
+                background:
+                  "radial-gradient(ellipse at center, rgba(var(--white-rgb),0.86) 0%, rgba(var(--white-rgb),0.62) 48%, rgba(var(--white-rgb),0.42) 100%)",
+              }}
+            >
+              <p className="kicker text-navy">Partnered venues</p>
+              <h1 className="display-section mt-6 text-navy">Coming soon.</h1>
+              <p className="mt-6 max-w-md text-base leading-relaxed text-ink-soft">
+                Our launch lineup goes live in early August. Venue names revealed
+                on launch day.
+              </p>
+            </div>
+
+            {/* OSM attribution — outside the blur so it stays legible (OSM policy). */}
+            <a
+              href="https://www.openstreetmap.org/copyright"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-2 right-2 z-10 rounded bg-white/85 px-1.5 py-0.5 text-[10px] leading-none text-ink-soft transition-colors hover:text-navy"
+            >
+              &copy; OpenStreetMap contributors
+            </a>
           </div>
         </div>
       </main>

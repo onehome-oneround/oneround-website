@@ -5,15 +5,20 @@ import L from "leaflet";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
 /*
-  Interactive Brisbane map for /partnered-venues. Placeholder pins only — no
-  venue names, tooltips or popups; the real lineup is revealed at launch.
+  Decorative Brisbane map for /partnered-venues. Placeholder pins only — no venue
+  names, tooltips or popups; the real lineup is revealed at launch.
 
   Loaded client-only (see BrisbaneMap.tsx, which dynamic-imports this with
   ssr:false): react-leaflet touches window on import and does not SSR cleanly.
 
-  The OSM tiles keep their own visual identity — only the pins are branded, via a
-  divIcon whose SVG reads --navy / --blue from :root (custom properties inherit
-  down to Leaflet's marker pane). The tiles' attribution stays on (OSM policy).
+  All interaction is off — it renders behind a blurred, pointer-events-none
+  wrapper with the "Coming soon" overlay on top, so the visitor never pans or
+  zooms it. Leaflet's own attribution control is disabled here because the wrapper
+  blur would make it illegible; the page renders a legible OSM attribution link
+  outside the blur instead (see page.tsx).
+
+  Only the pins are branded, via a divIcon whose SVG reads --navy / --blue from
+  :root (custom properties inherit down to Leaflet's marker pane).
 */
 
 const BRISBANE: [number, number] = [-27.47, 153.025];
@@ -47,13 +52,17 @@ export default function InteractiveMap() {
     <MapContainer
       center={BRISBANE}
       zoom={12}
-      scrollWheelZoom={false}
       style={{ height: "100%", width: "100%" }}
+      dragging={false}
+      touchZoom={false}
+      doubleClickZoom={false}
+      scrollWheelZoom={false}
+      boxZoom={false}
+      keyboard={false}
+      zoomControl={false}
+      attributionControl={false}
     >
-      <TileLayer
-        attribution="&copy; OpenStreetMap contributors"
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {PINS.map((position, i) => (
         <Marker key={i} position={position} icon={pinIcon} interactive={false} />
       ))}
