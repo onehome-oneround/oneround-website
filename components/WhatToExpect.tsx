@@ -58,6 +58,16 @@ export default function WhatToExpect() {
               </li>
             ))}
           </ul>
+
+          {/* A quiet continuation of the directory — no rule, no card. The mono
+              label rhymes with the 01/02/03 indices above; the muted list reads
+              as an aspiration, not a current offering. */}
+          <p className="mt-6 flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+            <span className="kicker text-navy/50">Coming soon</span>
+            <span className="text-sm leading-relaxed text-ink-soft">
+              cafes, restaurants, activity venues
+            </span>
+          </p>
         </div>
       </div>
     </section>
