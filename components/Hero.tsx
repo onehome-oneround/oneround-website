@@ -55,8 +55,16 @@ export default function Hero() {
     <section id="get-the-app" className="focus-on-dark relative scroll-mt-16 bg-[color:var(--accent)]">
       <div className="relative z-10">
         <div className="mx-auto grid min-h-[100svh] max-w-[96rem] grid-cols-1 gap-0 px-5 pb-12 pt-20 sm:px-8 lg:grid-cols-12 lg:gap-0 lg:px-0 lg:pb-0 lg:pt-0">
-          {/* LEFT — masthead, headline, subhead, CTAs */}
-          <div className="flex flex-col justify-center lg:col-span-7 lg:py-20 lg:pl-8 lg:pr-12 xl:pl-12">
+          {/* LEFT — masthead, headline, subhead, CTAs.
+              Desktop: TOP-aligned with a fixed top padding, not vertically
+              centred. Centring made the nav-to-headline gap depend on content
+              height, so the taller Users side (countdown + offer + form +
+              counter) rode up under the nav while the shorter Venues side kept
+              its breathing room. Top-aligning both to the same pt gives an
+              identical gap on both audiences; the Users hero simply grows taller
+              past the fold, which is the intended trade. Mobile keeps its
+              content-height centring (a no-op there) and the grid's pt-20. */}
+          <div className="flex flex-col justify-center lg:col-span-7 lg:justify-start lg:pb-20 lg:pl-8 lg:pr-12 lg:pt-[10.25rem] xl:pl-12">
             {/* Headline */}
             <h1 className="display-masthead mt-8 text-white lg:mt-0">
               {isVenue ? (
