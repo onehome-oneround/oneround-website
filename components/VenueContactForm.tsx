@@ -109,15 +109,30 @@ export default function VenueContactForm({ className = "" }: { className?: strin
         </p>
       ) : (
         <form onSubmit={handleSubmit} noValidate className="max-w-md">
-          {/* Honeypot — off the tab order and the a11y tree; no real user reaches it. */}
-          <div aria-hidden="true" className="absolute h-0 w-0 overflow-hidden opacity-0">
-            <label htmlFor="company_website">Company website</label>
+          {/* Honeypot — a bait field a bot fills but a human never sees. Hidden
+              by positioning it far OFF-SCREEN with inline styles (not
+              display:none / opacity:0 / zero-size, which some password managers
+              and accessibility tools ignore and then render), plus out of the
+              tab order and the a11y tree. There is no visible label, so nothing
+              shows even if CSS never loads. A filled value is silently rejected
+              on submit. */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              left: "-9999px",
+              top: "-9999px",
+              width: "1px",
+              height: "1px",
+              overflow: "hidden",
+            }}
+          >
             <input
-              id="company_website"
               name={HONEYPOT_FIELD}
               type="text"
               tabIndex={-1}
               autoComplete="off"
+              aria-hidden="true"
             />
           </div>
 
