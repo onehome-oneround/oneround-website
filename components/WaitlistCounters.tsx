@@ -51,14 +51,14 @@ export default function WaitlistCounters({ className = "" }: { className?: strin
   }, []);
 
   return (
-    <div className={`min-h-[3rem] max-w-md sm:min-h-[1.75rem] ${className}`}>
+    <div className={`min-h-[3.25rem] sm:min-h-[1.75rem] ${className}`}>
       {counts && (
-        <p className="rise text-center text-sm leading-relaxed text-navy/70">
-          <span className="font-semibold text-navy">{counts.venues}</span> venues on board
+        <p className="rise text-[0.8125rem] leading-relaxed text-navy/70">
+          <span className="text-[0.9375rem] font-semibold text-navy">{counts.venues}</span> venues on board
           <span aria-hidden="true" className="px-2 text-navy/40">
             &middot;
           </span>
-          <span className="font-semibold text-navy">{counts.users}</span> Brisbane locals on the waitlist
+          <span className="text-[0.9375rem] font-semibold text-navy">{counts.users}</span> Brisbane locals on the waitlist
         </p>
       )}
     </div>
