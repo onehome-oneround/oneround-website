@@ -122,17 +122,18 @@ export default function Hero() {
                   All static text in the consumer SSR path, so it can't shift. */}
               {!isVenue && (
                 <div className="mt-6">
-                  {/* Live social proof — real waitlist + venue counts, fetched
-                      client-side, faded in when ready. Reserves its height so it
-                      can't shift the offer/form below it. */}
-                  <WaitlistCounters />
-                  <p className="mt-5 font-display text-3xl font-semibold leading-tight text-white sm:text-4xl">
+                  <p className="font-display text-3xl font-semibold leading-tight text-white sm:text-4xl">
                     First month on us.
                   </p>
                   <p className={`mt-2 text-base leading-relaxed ${soft}`}>
                     Join the waitlist and your first month of OneRound is free.
                   </p>
                   <WaitlistForm className="mt-6" />
+                  {/* Live social proof — real waitlist + venue counts, fetched
+                      client-side, faded in when ready. Sits below the form,
+                      centered under it; reserves its height so appearing shifts
+                      nothing (incl. the vertically-centred hero column). */}
+                  <WaitlistCounters className="mt-5" />
                 </div>
               )}
               {/* The venue CTA stays; the user-side store badges are hidden until
