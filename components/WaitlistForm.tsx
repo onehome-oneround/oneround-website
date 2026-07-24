@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 /*
   Pre-launch waitlist capture, under the Hero countdown (consumer path only).
@@ -10,9 +11,13 @@ import { useState } from "react";
   normal cors request is blocked reading the response, and an application/json
   body would trigger a preflight the script can't answer. So this fires a
   "simple request": mode:"no-cors" + text/plain, JSON body unchanged
-  ({ email, submittedAt }); the script reads JSON.parse(e.postData.contents). A
-  no-cors response is opaque, so a resolved fetch is treated as success — the
-  client can't see the status, which is fine for a waitlist ping.
+  ({ name, email, submittedAt }); the script reads JSON.parse(e.postData
+  .contents). A no-cors response is opaque, so a resolved fetch is treated as
+  success — the client can't see the status, which is fine for a waitlist ping.
+
+  First name is collected too: it's shown (first name only) in the live activity
+  ticker on the hero. Validated to letters + basic name punctuation so nothing
+  unsafe reaches that public display; the privacy line links to the policy.
 
   If the URL isn't set yet, the form still renders; a submit logs a dev warning
   and shows the error state rather than throwing.
@@ -22,8 +27,15 @@ import { useState } from "react";
 */
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Letters (any script) plus the punctuation real first names use — spaces,
+// hyphens, apostrophes. No digits or other symbols, so the value is safe to
+// render in the public activity ticker. Length is capped separately.
+const NAME = /^[\p{L}][\p{L} '’-]*$/u;
 const HONEYPOT_FIELD = "company_website";
 const WAITLIST_URL = process.env.NEXT_PUBLIC_WAITLIST_URL;
+
+const FIELD_CLASS =
+  "min-h-11 w-full rounded-lg border border-[color:rgba(var(--navy-rgb),0.15)] bg-[color:var(--paper)] px-4 text-base text-[color:var(--navy)] outline-none transition placeholder:text-ink-faint focus:border-[color:rgba(var(--navy-rgb),0.4)] focus:ring-2 focus:ring-[color:rgba(var(--navy-rgb),0.15)]";
 
 export default function WaitlistForm({ className = "" }: { className?: string }) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">(
@@ -34,6 +46,7 @@ export default function WaitlistForm({ className = "" }: { className?: string })
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
     const honeypot = String(data.get(HONEYPOT_FIELD) ?? "").trim();
 
@@ -44,6 +57,10 @@ export default function WaitlistForm({ className = "" }: { className?: string })
       return;
     }
 
+    if (!name || name.length > 40 || !NAME.test(name)) {
+      setError("Enter your first name (letters only).");
+      return;
+    }
     if (!email || !EMAIL.test(email)) {
       setError("Enter a valid email address.");
       return;
@@ -68,7 +85,11 @@ export default function WaitlistForm({ className = "" }: { className?: string })
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify({ email, submittedAt: new Date().toISOString() }),
+        body: JSON.stringify({
+          name,
+          email,
+          submittedAt: new Date().toISOString(),
+        }),
       });
       setStatus("success");
     } catch {
@@ -80,7 +101,7 @@ export default function WaitlistForm({ className = "" }: { className?: string })
   const sending = status === "sending";
 
   return (
-    <div className={`min-h-[7.5rem] sm:min-h-[4.5rem] ${className}`}>
+    <div className={`min-h-[13.5rem] sm:min-h-[10rem] ${className}`}>
       {status === "success" ? (
         <p
           role="status"
@@ -89,7 +110,7 @@ export default function WaitlistForm({ className = "" }: { className?: string })
           You&rsquo;re on the list. We&rsquo;ll email you when we launch.
         </p>
       ) : (
-        <form onSubmit={handleSubmit} noValidate>
+        <form onSubmit={handleSubmit} noValidate className="max-w-md">
           {/* Honeypot — a bait field a bot fills but a human never sees. Hidden
               by positioning it far OFF-SCREEN with inline styles (not
               display:none / opacity:0 / zero-size, which some password managers
@@ -117,7 +138,19 @@ export default function WaitlistForm({ className = "" }: { className?: string })
             />
           </div>
 
-          <div className="flex max-w-md flex-col gap-2 sm:flex-row sm:gap-3">
+          <input
+            name="name"
+            type="text"
+            required
+            maxLength={40}
+            placeholder="Sarah"
+            aria-label="First name"
+            autoComplete="given-name"
+            aria-invalid={!!error}
+            className={FIELD_CLASS}
+          />
+
+          <div className="mt-2 flex flex-col gap-2 sm:flex-row sm:gap-3">
             <input
               name="email"
               type="email"
@@ -126,7 +159,7 @@ export default function WaitlistForm({ className = "" }: { className?: string })
               aria-label="Email address"
               autoComplete="email"
               aria-invalid={!!error}
-              className="min-h-11 w-full rounded-lg border border-[color:rgba(var(--navy-rgb),0.15)] bg-[color:var(--paper)] px-4 text-base text-[color:var(--navy)] outline-none transition placeholder:text-ink-faint focus:border-[color:rgba(var(--navy-rgb),0.4)] focus:ring-2 focus:ring-[color:rgba(var(--navy-rgb),0.15)]"
+              className={FIELD_CLASS}
             />
             <button
               type="submit"
@@ -143,6 +176,18 @@ export default function WaitlistForm({ className = "" }: { className?: string })
             className="min-h-[1.5rem] pt-1.5 text-[0.8125rem] leading-[1.125rem] text-[color:var(--navy)]"
           >
             {error ?? ""}
+          </p>
+
+          {/* Privacy notice — the name feeds the public activity ticker. */}
+          <p className="text-[0.8125rem] leading-[1.125rem] text-navy/60">
+            By joining, you agree to our{" "}
+            <Link
+              href="/privacy"
+              className="underline decoration-[color:rgba(var(--navy-rgb),0.3)] underline-offset-2 transition-colors hover:text-navy hover:decoration-navy"
+            >
+              Privacy Policy
+            </Link>
+            .
           </p>
         </form>
       )}

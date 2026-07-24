@@ -145,6 +145,10 @@ export default function PrivacyPage() {
               choose to provide.
             </p>
             <p>
+              <strong>When you join our waitlist (via our website):</strong>{" "}
+              your first name and email address.
+            </p>
+            <p>
               <strong>
                 When you sign up as a venue partner (via our website or admin
                 portal):
@@ -203,6 +207,10 @@ export default function PrivacyPage() {
               <li>
                 To operate our marketing website and understand how it is used,
                 so we can improve it
+              </li>
+              <li>
+                To display recent signups (first name only) on our website as
+                social proof of the growing community
               </li>
               <li>
                 To advertise OneRound to potential members through platforms such
@@ -430,6 +438,12 @@ export default function PrivacyPage() {
               To exercise any of these rights, contact us at{" "}
               <a href="mailto:hello@oneround.au?subject=Privacy%20question">hello@oneround.au</a>. We aim to
               respond within 30 days.
+            </p>
+            <p>
+              If you&rsquo;d prefer your first name not appear on our
+              website&rsquo;s public activity feed, contact{" "}
+              <a href="mailto:hello@oneround.au?subject=Activity%20feed%20opt-out">hello@oneround.au</a>{" "}
+              and we&rsquo;ll remove or anonymise it.
             </p>
 
             <hr />
