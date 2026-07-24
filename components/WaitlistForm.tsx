@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 
 /*
   Pre-launch waitlist capture, under the Hero countdown (consumer path only).
@@ -101,7 +100,7 @@ export default function WaitlistForm({ className = "" }: { className?: string })
   const sending = status === "sending";
 
   return (
-    <div className={`min-h-[13.5rem] sm:min-h-[10rem] ${className}`}>
+    <div className={`min-h-[11.5rem] sm:min-h-[8rem] ${className}`}>
       {status === "success" ? (
         <p
           role="status"
@@ -176,18 +175,6 @@ export default function WaitlistForm({ className = "" }: { className?: string })
             className="min-h-[1.5rem] pt-1.5 text-[0.8125rem] leading-[1.125rem] text-[color:var(--navy)]"
           >
             {error ?? ""}
-          </p>
-
-          {/* Privacy notice — the name feeds the public activity ticker. */}
-          <p className="text-[0.8125rem] leading-[1.125rem] text-navy/60">
-            By joining, you agree to our{" "}
-            <Link
-              href="/privacy"
-              className="underline decoration-[color:rgba(var(--navy-rgb),0.3)] underline-offset-2 transition-colors hover:text-navy hover:decoration-navy"
-            >
-              Privacy Policy
-            </Link>
-            .
           </p>
         </form>
       )}

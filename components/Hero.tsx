@@ -130,17 +130,14 @@ export default function Hero() {
                   All static text in the consumer SSR path, so it can't shift. */}
               {!isVenue && (
                 <div className="mt-6">
-                  <p className="font-display text-3xl font-semibold leading-tight text-white sm:text-4xl">
-                    First month on us.
-                  </p>
-                  <p className={`mt-2 text-base leading-relaxed ${soft}`}>
+                  {/* The offer subline is now the direct intro to the form. */}
+                  <p className={`text-base leading-relaxed ${soft}`}>
                     Join the waitlist and your first month of OneRound is free.
                   </p>
-                  <WaitlistForm className="mt-6" />
-                  {/* Live social proof — real waitlist + venue counts, fetched
-                      client-side, faded in when ready. Sits below the form,
-                      centered under it; reserves its height so appearing shifts
-                      nothing (incl. the vertically-centred hero column). */}
+                  <WaitlistForm className="mt-5" />
+                  {/* Live signup ticker — recent first names only, fetched
+                      client-side, faded in when ready. Reserves its height so
+                      appearing shifts nothing. */}
                   <WaitlistCounters className="mt-5" />
                 </div>
               )}

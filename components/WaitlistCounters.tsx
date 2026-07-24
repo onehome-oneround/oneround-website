@@ -3,22 +3,21 @@
 import { useEffect, useState } from "react";
 
 /*
-  Live social proof under the Hero waitlist form (consumer path only).
+  Live signup ticker under the Hero waitlist form (consumer path only).
 
   A single GET to the Google Apps Script webhook (NEXT_PUBLIC_WAITLIST_URL),
-  which returns { users, venues, recentSignups: [{ name, timestamp }] }. Fetched
-  once per page session (module cache) and faded in on success; silently absent
-  while loading or on ANY error (network, CORS, non-2xx, bad JSON, missing env)
-  — a broken row is worse than none.
+  which returns { users, venues, recentSignups: [{ name, timestamp }] }. We only
+  use recentSignups here — the users/venues aggregate counts are intentionally
+  not displayed. Fetched once per page session (module cache); silently absent
+  while loading, on ANY error (network, CORS, non-2xx, bad JSON, missing env),
+  or when there are no recent signups.
 
-  The row ROTATES every 5s between:
-    slot 0 — the counter ("X venues on board · Y Brisbane locals on the waitlist")
-    slot 1..N — each recent signup ("Name just joined the waitlist · 5 min ago")
-  If recentSignups is empty there's nothing to rotate, so the counter just sits.
-  Each slot is keyed so it re-mounts and replays the .rise fade on change.
+  It ROTATES every 5s through the recent signups, one at a time, shown as
+  "<Name> just joined the waitlist · <time ago>". One entry just sits; two or
+  more rotate. Each slot is keyed so it re-mounts and replays the .rise fade.
 
   CLS: the wrapper reserves its height from the first render (one line at sm+, up
-  to two when the counter wraps on a narrow column), so nothing shifts as the row
+  to two if a long name wraps on a narrow column), so nothing shifts as the row
   appears or rotates.
 */
 
@@ -26,12 +25,11 @@ const WAITLIST_URL = process.env.NEXT_PUBLIC_WAITLIST_URL;
 const ROTATE_MS = 5000;
 
 type Signup = { name: string; timestamp: string };
-type Data = { users: number; venues: number; recentSignups: Signup[] };
 
 // Session cache — fetch once, reuse across re-renders and the audience toggle
 // remounting the Hero subtree. Module scope so it isn't a React dep, keeping the
 // fetch effect's dependency array empty (fetch strictly on mount).
-let cache: Data | null = null;
+let cache: Signup[] | null = null;
 
 /* "just now" (<60s), "X min ago" (<60m), "X hour(s) ago" (<24h),
    "yesterday" (24-48h), "X days ago" (>48h). null if the timestamp is unparseable. */
@@ -52,7 +50,7 @@ function timeAgo(iso: string): string | null {
 }
 
 export default function WaitlistCounters({ className = "" }: { className?: string }) {
-  const [data, setData] = useState<Data | null>(cache);
+  const [signups, setSignups] = useState<Signup[] | null>(cache);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -62,14 +60,7 @@ export default function WaitlistCounters({ className = "" }: { className?: strin
       try {
         const res = await fetch(WAITLIST_URL, { method: "GET" });
         if (!res.ok) return;
-        const raw = (await res.json()) as {
-          users?: unknown;
-          venues?: unknown;
-          recentSignups?: unknown;
-        };
-        const users = Number(raw?.users);
-        const venues = Number(raw?.venues);
-        if (!Number.isFinite(users) || !Number.isFinite(venues)) return;
+        const raw = (await res.json()) as { recentSignups?: unknown };
         const recentSignups = Array.isArray(raw?.recentSignups)
           ? raw.recentSignups
               .filter(
@@ -80,8 +71,8 @@ export default function WaitlistCounters({ className = "" }: { className?: strin
               )
               .map((s) => ({ name: s.name, timestamp: s.timestamp }))
           : [];
-        cache = { users, venues, recentSignups };
-        if (active) setData(cache);
+        cache = recentSignups;
+        if (active) setSignups(cache);
       } catch {
         /* network / CORS / bad JSON — stay silently hidden */
       }
@@ -91,60 +82,38 @@ export default function WaitlistCounters({ className = "" }: { className?: strin
     };
   }, []);
 
-  // Counter is slot 0; each recent signup follows.
-  const slotCount = data ? 1 + data.recentSignups.length : 0;
+  const count = signups?.length ?? 0;
 
   useEffect(() => {
-    if (slotCount <= 1) return; // nothing to rotate
+    if (count <= 1) return; // one entry just sits; nothing to rotate
     const id = window.setInterval(() => {
-      setIndex((i) => (i + 1) % slotCount);
+      setIndex((i) => (i + 1) % count);
     }, ROTATE_MS);
     return () => window.clearInterval(id);
-  }, [slotCount]);
+  }, [count]);
 
-  const numClass = "text-[0.9375rem] font-semibold text-navy";
-  const dot = (
-    <span aria-hidden="true" className="px-2 text-navy/40">
-      &middot;
-    </span>
-  );
-
-  let slot: React.ReactNode = null;
-  if (data) {
-    const i = slotCount > 0 ? index % slotCount : 0;
-    if (i === 0) {
-      slot = (
-        <>
-          <span className={numClass}>{data.venues}</span> venues on board
-          {dot}
-          <span className={numClass}>{data.users}</span> Brisbane locals on the waitlist
-        </>
-      );
-    } else {
-      const s = data.recentSignups[i - 1];
-      const ago = timeAgo(s.timestamp);
-      slot = (
-        <>
-          <span className={numClass}>{s.name}</span> just joined the waitlist
-          {ago && (
-            <>
-              {dot}
-              {ago}
-            </>
-          )}
-        </>
-      );
-    }
-  }
+  const current = count > 0 && signups ? signups[index % count] : null;
+  const ago = current ? timeAgo(current.timestamp) : null;
 
   return (
     <div className={`min-h-[3.25rem] sm:min-h-[1.75rem] ${className}`}>
-      {data && (
+      {current && (
         <p
           key={index}
           className="rise text-[0.8125rem] leading-relaxed text-navy/70"
         >
-          {slot}
+          <span className="text-[0.9375rem] font-semibold text-navy">
+            {current.name}
+          </span>{" "}
+          just joined the waitlist
+          {ago && (
+            <>
+              <span aria-hidden="true" className="px-2 text-navy/40">
+                &middot;
+              </span>
+              {ago}
+            </>
+          )}
         </p>
       )}
     </div>
