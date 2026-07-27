@@ -35,7 +35,13 @@ import { useConsent } from "./ConsentProvider";
 */
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
-const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+// Meta Pixel — hardcoded to the pixel that is connected to the ad account, so it
+// can't drift from a stale NEXT_PUBLIC_META_PIXEL_ID in Vercel (the previous
+// pixel could not be located and was replaced). A pixel ID is public — it ships
+// in the client bundle either way — so there's no reason to keep it in an env
+// var it can silently disagree with. This value wins over any Vercel env var;
+// the old NEXT_PUBLIC_META_PIXEL_ID can be removed there.
+const META_PIXEL_ID = "2159363064621090";
 
 const isProduction = process.env.NODE_ENV === "production";
 
