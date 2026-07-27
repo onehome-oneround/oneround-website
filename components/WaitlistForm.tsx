@@ -90,6 +90,11 @@ export default function WaitlistForm({ className = "" }: { className?: string })
           submittedAt: new Date().toISOString(),
         }),
       });
+      // Meta Pixel Lead — fired ONLY here, on a genuine submitted signup: not on
+      // page load, validation errors, the no-URL error, or the honeypot/bot path
+      // (which shows success but never reaches this request). Optional-chained so
+      // it's a no-op when the pixel isn't loaded (no consent / dev).
+      window.fbq?.("track", "Lead");
       setStatus("success");
     } catch {
       setError("Something went wrong. Try again in a moment.");

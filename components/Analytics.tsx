@@ -44,7 +44,7 @@ import { useConsent } from "./ConsentProvider";
 // property), which is why the intended property showed "Data collection isn't
 // active" — the site was sending to the wrong measurement ID.
 const GA_ID = "G-JJHG3QRX7L";
-const META_PIXEL_ID = "2159363064621090";
+const META_PIXEL_ID = "1695580208228754";
 
 const isProduction = process.env.NODE_ENV === "production";
 
