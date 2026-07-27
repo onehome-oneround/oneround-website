@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 /*
@@ -38,9 +38,18 @@ declare global {
 
 export default function PageViewTracker() {
   const pathname = usePathname();
+  const firstRun = useRef(true);
 
   useEffect(() => {
     if (!pathname) return;
+    // The base init scripts already send the FIRST page view (GA via
+    // gtag('config'), Meta via fbq('track','PageView')). Skip this tracker's
+    // initial run so that first load isn't counted twice; fire only on the
+    // subsequent client-side route changes the init scripts don't see.
+    if (firstRun.current) {
+      firstRun.current = false;
+      return;
+    }
     window.gtag?.("event", "page_view", { page_path: pathname });
     window.fbq?.("track", "PageView");
   }, [pathname]);

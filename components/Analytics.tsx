@@ -34,17 +34,16 @@ import { useConsent } from "./ConsentProvider";
   dropped from page_path.
 */
 
-// GA4 + Meta Pixel — both hardcoded to the correct properties so they can't
-// drift from a stale Vercel env var. These IDs are public (they ship in the
-// client bundle either way), so there's no reason to keep them in env vars they
-// can silently disagree with. These values WIN over any NEXT_PUBLIC_GA_ID /
-// NEXT_PUBLIC_META_PIXEL_ID in Vercel, which can be removed there.
-//
-// GA4 was previously env-driven and resolved to G-JFXWF3G989 (a different
-// property), which is why the intended property showed "Data collection isn't
-// active" — the site was sending to the wrong measurement ID.
+// GA4 measurement ID — hardcoded to the intended property. (Env-driving it once
+// resolved to the wrong property, G-JFXWF3G989, which showed "Data collection
+// isn't active".)
 const GA_ID = "G-JJHG3QRX7L";
-const META_PIXEL_ID = "1695580208228754";
+// Meta Pixel — sourced ONLY from NEXT_PUBLIC_META_PIXEL_ID, no hardcoded
+// default. The var MUST keep the NEXT_PUBLIC_ prefix to be inlined for the
+// browser; set it in Vercel (the correct dataset is 2159363064621090). If it's
+// unset, the metaEnabled guard below leaves the pixel off rather than
+// initialising fbq against "undefined".
+const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
 const isProduction = process.env.NODE_ENV === "production";
 
