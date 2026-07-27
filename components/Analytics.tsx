@@ -34,13 +34,16 @@ import { useConsent } from "./ConsentProvider";
   dropped from page_path.
 */
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
-// Meta Pixel — hardcoded to the pixel that is connected to the ad account, so it
-// can't drift from a stale NEXT_PUBLIC_META_PIXEL_ID in Vercel (the previous
-// pixel could not be located and was replaced). A pixel ID is public — it ships
-// in the client bundle either way — so there's no reason to keep it in an env
-// var it can silently disagree with. This value wins over any Vercel env var;
-// the old NEXT_PUBLIC_META_PIXEL_ID can be removed there.
+// GA4 + Meta Pixel — both hardcoded to the correct properties so they can't
+// drift from a stale Vercel env var. These IDs are public (they ship in the
+// client bundle either way), so there's no reason to keep them in env vars they
+// can silently disagree with. These values WIN over any NEXT_PUBLIC_GA_ID /
+// NEXT_PUBLIC_META_PIXEL_ID in Vercel, which can be removed there.
+//
+// GA4 was previously env-driven and resolved to G-JFXWF3G989 (a different
+// property), which is why the intended property showed "Data collection isn't
+// active" — the site was sending to the wrong measurement ID.
+const GA_ID = "G-JJHG3QRX7L";
 const META_PIXEL_ID = "2159363064621090";
 
 const isProduction = process.env.NODE_ENV === "production";
