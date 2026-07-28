@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.oneround",
+      "sha256_cert_fingerprints": [
+        "E0:FE:5E:2C:3D:39:94:41:E2:70:69:68:D3:F5:7A:F5:38:97:B0:C4:60:42:1B:3A:AA:B3:04:2E:3A:39:66:3F"
+      ]
+    }
+  }
+]
