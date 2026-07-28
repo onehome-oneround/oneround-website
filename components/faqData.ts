@@ -11,7 +11,13 @@
    components/Pricing.tsx renders it too, and the two sit within a screen of
    each other. */
 
-export type Faq = { q: string; a: string };
+export type Faq = {
+  q: string;
+  a: string;
+  /* Optional inline link: the first occurrence of `text` within `a` is rendered
+     as a link to `href` (see FaqAccordion). */
+  link?: { text: string; href: string };
+};
 
 /* Stable anchor id for a FAQ row, so a question can be linked to (and opened) by
    URL hash — e.g. the pricing card's "Entry into Weekly Wins" link. Kept here so
@@ -62,7 +68,8 @@ export const consumerFaqs: Faq[] = [
   },
   {
     q: "What are Weekly Wins?",
-    a: "Every week, the five members with the most entries win $100 each. You earn an entry every time you select 'going' to a venue in the app before 6pm and actually turn up. Some venues offer 2× entries. The more you go out, the more you win.",
+    a: "Every week, five members win $100 each in a random draw. You earn an entry every time you tap 'going' to a venue in the app before 6pm and actually turn up — plus one entry for every friend you refer who subscribes. Some venues offer 2× entries. The more entries you have, the better your chances. See our Weekly Wins Terms for the full rules.",
+    link: { text: "Weekly Wins Terms", href: "/weekly-wins-terms" },
   },
   {
     q: "Do I need to be 18+ to use OneRound?",

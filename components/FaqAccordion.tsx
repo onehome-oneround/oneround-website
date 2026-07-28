@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
+import Link from "next/link";
 import { faqAnchorId, type Faq } from "./faqData";
 
 /*
@@ -14,6 +15,31 @@ import { faqAnchorId, type Faq } from "./faqData";
   on load and on hash change; without it the browser would scroll to a closed
   row and leave it collapsed.
 */
+
+/* Render an answer, turning each occurrence of `link.text` into a link to
+   `link.href`. Plain string when the item has no link. */
+function Answer({ item }: { item: Faq }) {
+  if (!item.link) return <>{item.a}</>;
+  const { text, href } = item.link;
+  const parts = item.a.split(text);
+  return (
+    <>
+      {parts.map((part, i) => (
+        <Fragment key={i}>
+          {part}
+          {i < parts.length - 1 && (
+            <Link
+              href={href}
+              className="accent-text font-medium underline decoration-1 underline-offset-2 transition-opacity hover:opacity-80"
+            >
+              {text}
+            </Link>
+          )}
+        </Fragment>
+      ))}
+    </>
+  );
+}
 
 function openFromHash() {
   const id = window.location.hash.slice(1);
@@ -52,7 +78,7 @@ export default function FaqAccordion({ items }: { items: Faq[] }) {
             </span>
           </summary>
           <p className="max-w-2xl pb-8 pl-[3.75rem] text-base leading-relaxed text-ink-soft">
-            {item.a}
+            <Answer item={item} />
           </p>
         </details>
       ))}
