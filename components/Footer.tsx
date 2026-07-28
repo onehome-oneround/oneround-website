@@ -105,6 +105,9 @@ export default function Footer() {
                 <Link href="/venue-terms" className="font-display text-lg text-white/85 transition-colors hover:text-blue">Venue Terms</Link>
               </li>
               <li>
+                <Link href="/weekly-wins-terms" className="font-display text-lg text-white/85 transition-colors hover:text-blue">Weekly Wins Terms</Link>
+              </li>
+              <li>
                 {/* Reopens the consent card so a visitor can revisit their
                     tracking choice. A button, not a link — it changes state. */}
                 <button
