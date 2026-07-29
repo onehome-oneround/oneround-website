@@ -73,7 +73,7 @@ export const consumerFaqs: Faq[] = [
   },
   {
     q: "Do I need to be 18+ to use OneRound?",
-    a: "Yes. Membership is 18+, and we verify your age at signup. Venues will check ID at service, same as anywhere else. Not every Roundie is a drink — plenty are food, entry, or non-alcoholic — but the membership itself is over-18 only.",
+    a: "Yes. Membership is 18+ and you confirm your age when you sign up. Venues will check ID at service, same as anywhere else. Not every Roundie is a drink — plenty are food, entry, or non-alcoholic — but the membership itself is over-18 only. Falsely representing your age is an offence under liquor licensing laws.",
   },
   {
     q: "Which venues are on OneRound?",
