@@ -11,6 +11,28 @@ export const metadata: Metadata = {
 export default function VenueTermsPage() {
   return (
     <LegalPage title="Terms and conditions - venues">
+      <h2>About us and what we do</h2>
+      <p>
+        OneRound is an online platform and mobile application that provides
+        members with information about hospitality offers and discounts,
+        including identifying the venues around you that will shout you a drink
+        in return for a Roundie.
+      </p>
+      <p>
+        To the extent that information presented to members may be regarded as
+        advertising, the presentation of that information is not undertaken by or
+        on behalf of any participating venue, and participating venues have no
+        authority to either prevent, compel or allow OneRound to provide
+        information to members.
+      </p>
+      <p>
+        For the avoidance of doubt, OneRound does not act as agent for, is not in
+        partnership with and does not contract with participating venues. We do
+        not take or receive or place orders for liquor. We represent you, our
+        members, and research and present information to you about participating
+        venues and their services and offers.
+      </p>
+
       <h3>Definitions</h3>
       <p>In these terms and conditions:</p>
       <p>“Member” means a paid-up subscriber to the Service;</p>
@@ -79,6 +101,13 @@ export default function VenueTermsPage() {
       <p>
         Only one (1) Roundie may be used/accepted during any 12 hour period. The
         OneRound app is designed to ensure compliance with this requirement.
+      </p>
+      <p>
+        Venues are required to offer a minimum of 25 Roundies per open day. This
+        is the venue&rsquo;s daily capacity commitment to the OneRound member
+        network. Venues may offer more Roundies on any given day at their
+        discretion, but must not fall below this daily minimum without prior
+        arrangement with OneRound.
       </p>
 
       <h3>Information gathering and venue dashboard</h3>
