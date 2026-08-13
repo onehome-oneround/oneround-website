@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import PillButton from "./PillButton";
-// HIDDEN until launch - re-enable: app store links (user-side Good Stuff CTA)
-// import DownloadButtons from "./DownloadButtons";
+import DownloadButtons from "./DownloadButtons";
 import EditorialTag from "./EditorialTag";
 import { useAudience } from "./AudienceProvider";
 import { useVenueContact } from "./useVenueContact";
@@ -92,35 +91,29 @@ export default function GoodStuff() {
           ))}
         </ul>
 
-        {/* The venue partner button stays; the user-side store badges are hidden
-            until launch, so the CTA only renders on the venue side for now.
-            Guard on copy.href too: the consumer copy carries an empty href, so
-            this can never render a dead link even if the audience gate changes. */}
-        {isVenue && copy.href && (
+        {/* CTA. Consumer gets the store badges (OneRound is live); venue keeps
+            the partner button. Guard the venue side on copy.href too: the
+            consumer copy carries an empty href, so this can never render a dead
+            link even if the audience gate changes. The dark photo slab means the
+            badges use the white (onDark) colourway. */}
+        {!isVenue ? (
           <div className="mt-10">
-            <PillButton
-              href={copy.href}
-              variant="solid"
-              onDark
-              onClick={goToVenueContact}
-            >
-              {copy.cta}
-            </PillButton>
+            <DownloadButtons onDark />
           </div>
+        ) : (
+          copy.href && (
+            <div className="mt-10">
+              <PillButton
+                href={copy.href}
+                variant="solid"
+                onDark
+                onClick={goToVenueContact}
+              >
+                {copy.cta}
+              </PillButton>
+            </div>
+          )
         )}
-        {/* HIDDEN until launch - re-enable: app store links (user-side Good Stuff CTA).
-            To restore, replace the venue-only block above with this ternary
-            (and re-enable the DownloadButtons import):
-        <div className="mt-10">
-          {isVenue ? (
-            <PillButton href={copy.href} variant="solid" onDark>
-              {copy.cta}
-            </PillButton>
-          ) : (
-            <DownloadButtons />
-          )}
-        </div>
-        */}
       </div>
     </section>
   );

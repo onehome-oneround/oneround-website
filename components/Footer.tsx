@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
+import DownloadButtons from "./DownloadButtons";
 import { useAudience } from "./AudienceProvider";
 import { useConsent } from "./ConsentProvider";
 import { hashTarget, scrollToHashId } from "./hashNav";
@@ -68,6 +69,8 @@ export default function Footer() {
             <p className="mt-5 max-w-xs text-sm text-white/60">
               OneRound. {tagline}
             </p>
+            {/* Download badges — white (onDark) colourway for the navy slab. */}
+            <DownloadButtons className="mt-6" onDark />
           </div>
 
           <nav className="lg:col-span-3" aria-label="Footer">

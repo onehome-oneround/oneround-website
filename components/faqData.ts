@@ -84,8 +84,8 @@ export const consumerFaqs: Faq[] = [
     a: "Yes. No lock-in, no minimum term. Cancel from the app in two taps.",
   },
   {
-    q: "When does OneRound launch?",
-    a: "Early August 2026 in Brisbane. Sign up now to be first in.",
+    q: "Is OneRound available yet?",
+    a: "Yes — OneRound is live in Brisbane. Download it free from the App Store or Google Play, subscribe, and get five Roundies a month at Brisbane's best venues.",
   },
 ];
 

@@ -1,12 +1,8 @@
 "use client";
 
 import Image from "next/image";
-// HIDDEN until launch - re-enable: app store links (user-side hero CTA)
-// import DownloadButtons from "./DownloadButtons";
+import DownloadButtons from "./DownloadButtons";
 import PillButton from "./PillButton";
-import LaunchCountdown from "./LaunchCountdown";
-import WaitlistCounters from "./WaitlistCounters";
-import WaitlistForm from "./WaitlistForm";
 import { useAudience } from "./AudienceProvider";
 import { useVenueContact } from "./useVenueContact";
 
@@ -38,17 +34,18 @@ export default function Hero() {
 
   // On the blue slab, secondary text is navy for AA contrast; on navy, it's white.
   const soft = isVenue ? "text-white/72" : "text-navy/75";
-  // HIDDEN until launch - re-enable: app store links (used by the user-side "Free download" line)
-  // Users side is navy-on-blue: at the kicker's 11px/700, navy/60 measures 3.16:1
-  // and navy/80 only reaches 4.49:1 — both under WCAG AA's 4.5:1, so it runs at
-  // full navy (5.61:1). Venues is white-on-navy and clears it at /60 (7.19:1).
-  // const meta = isVenue ? "text-white/60" : "text-navy";
+  // The "Live in Brisbane" / "Free download" mono lines that bracket the store
+  // badges. Users side is navy-on-blue: at the kicker's 11px/700, navy/60
+  // measures 3.16:1 and navy/80 only reaches 4.49:1 — both under WCAG AA's
+  // 4.5:1, so it runs at full navy (5.61:1). Venues is white-on-navy and clears
+  // it at /60 (7.19:1).
+  const meta = isVenue ? "text-white/60" : "text-navy";
   // The accent word sits in the OPPOSITE brand colour to the slab.
   const accentColor = isVenue ? "var(--blue)" : "var(--navy)";
 
   return (
-    // id is the target of the Pricing section's "Get Started" CTA — at launch
-    // the store badges appear in this hero, so that CTA can point straight at them.
+    // id="get-the-app" is a stable anchor for the hero store badges, kept so
+    // any "get the app" link (nav, deep link) can jump straight here.
     // No py-* here (unlike the py-20 sm:py-24 section rhythm) is intentional: the
     // hero is a full-viewport masthead sized by min-h-[100svh] + the inner grid's
     // own padding, so it's an exception to the rhythm alongside Marquee/Footer.
@@ -58,12 +55,11 @@ export default function Hero() {
           {/* LEFT — masthead, headline, subhead, CTAs.
               Desktop: TOP-aligned with a fixed top padding, not vertically
               centred. Centring made the nav-to-headline gap depend on content
-              height, so the taller Users side (countdown + offer + form +
-              counter) rode up under the nav while the shorter Venues side kept
-              its breathing room. Top-aligning both to the same pt gives an
-              identical gap on both audiences; the Users hero simply grows taller
-              past the fold, which is the intended trade. Mobile keeps its
-              content-height centring (a no-op there) and the grid's pt-20. */}
+              height, so whichever audience had the taller CTA column rode up
+              under the nav while the shorter one kept its breathing room.
+              Top-aligning both to the same pt gives an identical gap on both.
+              Mobile keeps its content-height centring (a no-op there) and the
+              grid's pt-20. */}
           <div className="flex flex-col justify-center lg:col-span-7 lg:justify-start lg:pb-20 lg:pl-8 lg:pr-12 lg:pt-[10.25rem] xl:pl-12">
             {/* Headline */}
             <h1 className="display-masthead mt-8 text-white lg:mt-0">
@@ -115,34 +111,19 @@ export default function Hero() {
               <p className={`text-base font-medium leading-relaxed sm:text-lg ${soft}`}>
                 {subhead}
               </p>
-              {/* Launch countdown. Sits here so it occupies the space the store
-                  badges will take once the launch guard lifts — it counts down
-                  to, and is replaced by, the thing below it. Inside this `rise`
-                  wrapper so it inherits the existing load reveal rather than
-                  adding one; the digits are the only new motion. Removes itself
-                  entirely once the target passes. */}
-              <LaunchCountdown softClassName={soft} />
-              {/* Consumer pre-launch: a launch-offer line then the waitlist
-                  capture, under the countdown, so every visitor can ask to be
-                  notified at launch. The offer is a quiet serif statement, not a
-                  banner — headline white to sit with the masthead, subline in the
-                  same navy/75 as the subhead so it reads as muted supporting copy.
-                  All static text in the consumer SSR path, so it can't shift. */}
+              {/* Consumer: OneRound is live, so the store badges are the primary
+                  CTA. "Live in Brisbane" is the status kicker (it replaced the
+                  pre-launch countdown that used to sit here); "Free download /
+                  iOS + Android" is the offer detail under the badges. All static
+                  text in the consumer SSR path, so it can't shift. */}
               {!isVenue && (
                 <div className="mt-6">
-                  {/* The offer subline is now the direct intro to the form. */}
-                  <p className={`text-base leading-relaxed ${soft}`}>
-                    Join the waitlist and your first month of OneRound is free.
-                  </p>
-                  <WaitlistForm className="mt-5" />
-                  {/* Live signup ticker — recent first names only, fetched
-                      client-side, faded in when ready. Reserves its height so
-                      appearing shifts nothing. */}
-                  <WaitlistCounters className="mt-5" />
+                  <p className={`kicker ${meta}`}>Live in Brisbane</p>
+                  <DownloadButtons className="mt-4" focusWhite />
+                  <p className={`kicker mt-4 ${meta}`}>Free download / iOS + Android</p>
                 </div>
               )}
-              {/* The venue CTA stays; the user-side store badges are hidden until
-                  launch, so the CTA block only renders on the venue side for now. */}
+              {/* Venue: the partner CTA, not the consumer store badges. */}
               {isVenue && (
                 <div className="mt-6 flex flex-col gap-3">
                   <PillButton
@@ -155,22 +136,6 @@ export default function Hero() {
                   </PillButton>
                 </div>
               )}
-              {/* HIDDEN until launch - re-enable: app store links (user-side hero CTA).
-                  To restore, replace the venue-only block above with this ternary
-                  (and re-enable the DownloadButtons import + `meta` const):
-              <div className="mt-6 flex flex-col gap-3">
-                {isVenue ? (
-                  <PillButton href="#contact" variant="solid" onDark>
-                    Become a partner for free
-                  </PillButton>
-                ) : (
-                  <>
-                    <DownloadButtons />
-                    <p className={`kicker ${meta}`}>Free download / iOS + Android</p>
-                  </>
-                )}
-              </div>
-              */}
             </div>
           </div>
 

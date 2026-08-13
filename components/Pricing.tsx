@@ -1,7 +1,6 @@
 "use client";
 
-// Hidden pre-launch — restore with the Get Started CTA in the card below.
-// import PillButton from "./PillButton";
+import DownloadButtons from "./DownloadButtons";
 import EditorialTag from "./EditorialTag";
 import { useAudience } from "./AudienceProvider";
 import { WEEKLY_WINS_ANCHOR } from "./faqData";
@@ -184,20 +183,9 @@ export default function Pricing() {
             ))}
           </ul>
 
-          {/* Hidden pre-launch — restore once app store links are live. The CTA
-              points at the hero (#get-the-app); at launch the store badges live
-              there, so it can re-point straight at them. Full card width, fixed
-              height so it can't reflow as the font loads. To restore, re-enable
-              the PillButton import above and put this back after the list:
-
-              <PillButton
-                href="#get-the-app"
-                variant="solid"
-                className="mt-8 h-14 w-full justify-center"
-              >
-                Get Started
-              </PillButton>
-          */}
+          {/* OneRound is live: the card closes on the store badges. Navy (light-
+              slab) colourway, since the card is white. */}
+            <DownloadButtons className="mt-8" center />
             </div>
 
             {/* Trust markers, centred under the card. Two only — more would read

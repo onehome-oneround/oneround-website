@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
   const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
 
   const url = isIOS
-    ? "https://apps.apple.com/in/app/oneround/id6761165688"
+    ? "https://apps.apple.com/au/app/oneround/id6761165688"
     : "https://play.google.com/store/apps/details?id=com.oneround";
 
   return NextResponse.redirect(url, 302);
