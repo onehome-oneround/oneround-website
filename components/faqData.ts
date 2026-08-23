@@ -68,7 +68,7 @@ export const consumerFaqs: Faq[] = [
   },
   {
     q: "What are Weekly Wins?",
-    a: "Every week, five members win $100 each in a random draw. You earn an entry every time you tap 'going' to a venue in the app before 6pm and actually turn up — plus one entry for every friend you refer who subscribes. Some venues offer 2× entries. The more entries you have, the better your chances. See our Weekly Wins Terms for the full rules.",
+    a: "Every week, five members win $100 each in a random draw. You earn an entry every time you tap 'going' to a venue in the app before 6pm and actually turn up — plus one entry for every friend you refer who subscribes. Some venues offer 2× entries. The more entries you have, the better your chances. See our Weekly Wins Terms for the full rules. The first Weekly Wins draw will be held on Monday 14 September 2026, and weekly every Monday thereafter.",
     link: { text: "Weekly Wins Terms", href: "/weekly-wins-terms" },
   },
   {

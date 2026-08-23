@@ -30,8 +30,8 @@ export default function WeeklyWinsTermsPage() {
             <p className="kicker text-ink-faint">Legal / Weekly Wins Terms</p>
             <h1 className="display-section mt-4 text-ink">Weekly Wins Terms</h1>
             <div className="mt-5 space-y-1 font-mono text-[0.8125rem] tracking-[0.02em] text-ink-faint">
-              <p>Effective date: 10 August 2026</p>
-              <p>Last updated: 28 July 2026</p>
+              <p>Effective date: 7 September 2026</p>
+              <p>Last updated: 23 August 2026</p>
             </div>
           </header>
 
@@ -61,7 +61,7 @@ export default function WeeklyWinsTermsPage() {
             <hr />
             <h2>Duration of the Promotion</h2>
             <p>
-              The promotion commences at 10:00am on Monday 10 August 2026 with
+              The promotion commences at 10:00am on Monday 7 September 2026 with
               entries for each weekly draw accruing from 10:00am each Monday until
               12 midnight the following Sunday (&ldquo;the weekly prize
               period&rdquo;).
