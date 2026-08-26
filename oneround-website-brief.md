@@ -199,7 +199,7 @@ Reachable from splash, nav toggle, and "Run a venue?" links. Venue + investor cr
 
 ### FAQ copy (use in the home-page FAQ accordion — NOT a separate page)
 - **What is OneRound?** OneRound is a social nightlife app that shows you where the night's headed and rewards you for getting out. See where your friends and the crowd are going in real time, claim a free item every day at participating venues with Roundies, and unlock exclusive Deals.
-- **Is OneRound free?** The app is free to download, and the social side — seeing where everyone's headed — is always free. Roundies and Deals are part of OneRound membership, which is $12/month, with monthly and annual options. Keep an eye out for our one-month-free codes to try everything at no cost.
+- **Is OneRound free?** The app is free to download, and the social side — seeing where everyone's headed — is always free. Roundies and Deals are part of OneRound membership, which is $9.99/month, with monthly and annual options. Keep an eye out for our one-month-free codes to try everything at no cost.
 - **What's a Roundie?** A Roundie is one free food or drink item you can claim each day at a participating venue. It's your daily reason to head out and discover somewhere new — an actual item on us, not a discount.
 - **How do I claim a Roundie?** Check the venue's Roundie menu in the app, scan your unique Roundie code, tell the venue what you'd like from the menu, and enjoy your complimentary item.
 - **How often can I claim?** One Roundie per day.

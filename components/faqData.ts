@@ -6,7 +6,7 @@
    so both inherit the post-hydration content swap documented in AGENTS.md
    rather than introducing a new mechanism.
 
-   Pricing ($11.99/month) also appears in the Pricing section directly above the
+   Pricing ($9.99/month) also appears in the Pricing section directly above the
    FAQ on the home page. If the price changes, change it in BOTH places —
    components/Pricing.tsx renders it too, and the two sit within a screen of
    each other. */
@@ -48,7 +48,7 @@ export const consumerFaqs: Faq[] = [
   },
   {
     q: "How much does OneRound cost?",
-    a: "$11.99 a month. A single outing with a Roundie will return more than your membership, the rest of the month is upside.",
+    a: "$9.99 a month. A single outing with a Roundie will return more than your membership, the rest of the month is upside.",
   },
   {
     q: "How do I redeem a Roundie?",

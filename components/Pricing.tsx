@@ -33,7 +33,7 @@ import {
   pointer-events-none where it overlaps content.
 
   Consumer only. Venues join free ("Free to join" / "Become a partner for free"),
-  so a $11.99 membership price on the venue side would be wrong. Like Contact and
+  so a $9.99 membership price on the venue side would be wrong. Like Contact and
   GoodStuff this branches on audience, inheriting the known post-hydration content
   swap documented in AGENTS.md rather than adding a new one.
 
@@ -137,7 +137,7 @@ export default function Pricing() {
               className="font-display text-navy"
               style={{ fontSize: "clamp(3rem, 8vw, 4.5rem)", lineHeight: "0.9", fontWeight: 600 }}
             >
-              $11.99
+              $9.99
             </span>
             <span className="kicker text-ink-soft">per month</span>
           </div>
