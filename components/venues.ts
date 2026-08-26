@@ -23,7 +23,7 @@ export const venues: Venue[] = [
   {
     name: "Eclipse",
     slug: "eclipse",
-    suburb: "[?]",
+    suburb: "Fortitude Valley",
     logo: { src: "/venues/eclipse.png", w: 1000, h: 500 },
     confirmed: true,
   },
@@ -37,14 +37,15 @@ export const venues: Venue[] = [
   {
     name: "Last Man Standing",
     slug: "last-man-standing",
-    suburb: "[?]",
+    suburb: "Fortitude Valley",
+    // TODO: Replace this venue photo with the confirmed Last Man Standing logo.
     logo: { src: "/venues/last-man-standing.png", w: 1000, h: 500 },
     confirmed: true,
   },
   {
     name: "Pawn & Co.",
     slug: "pawn-and-co",
-    suburb: "[?]",
+    suburb: "Fortitude Valley",
     logo: { src: "/venues/pawn-and-co.png", w: 1000, h: 500 },
     confirmed: true,
   },
@@ -79,14 +80,14 @@ export const venues: Venue[] = [
   {
     name: "Summa House",
     slug: "summa-house",
-    suburb: "[?]",
+    suburb: "Fortitude Valley",
     logo: { src: "/venues/summa-house.jpg", w: 1000, h: 500 },
     confirmed: true,
   },
   {
     name: "The Magee",
     slug: "the-magee",
-    suburb: "[?]",
+    suburb: "Red Hill",
     logo: { src: "/venues/the-magee.png", w: 1000, h: 500 },
     confirmed: true,
   },
@@ -107,7 +108,7 @@ export const venues: Venue[] = [
   {
     name: "Warehouse 25",
     slug: "warehouse-25",
-    suburb: "[?]",
+    suburb: "Bowen Hills",
     logo: { src: "/venues/warehouse-25.jpg", w: 1000, h: 500 },
     confirmed: true,
   },

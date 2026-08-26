@@ -8,6 +8,14 @@ import Footer from "@/components/Footer";
 import EditorialTag from "@/components/EditorialTag";
 import { publicVenues } from "@/components/venues";
 
+const paddedLogoSlugs = new Set([
+  "eclipse",
+  "pawn-and-co",
+  "sugar-nightclub",
+  "summa-house",
+  "pop-world-nightclub",
+]);
+
 export const metadata: Metadata = {
   title: "Partnered venues",
   description:
@@ -53,20 +61,19 @@ export default function PartneredVenuesPage() {
         {/* Venue grid */}
         <section className="bg-white px-5 pb-24 sm:px-8 sm:pb-28">
           <div className="mx-auto grid max-w-[1200px] grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
-            {publicVenues.map((v, i) => (
-              <article key={v.slug} className="group flex h-[22rem] flex-col items-center rounded-xl border border-[#E5E7EB] bg-[color:var(--paper)] p-6 text-center">
-                <div className="relative flex h-[140px] w-full shrink-0 items-center justify-center overflow-hidden">
+            {publicVenues.map((v) => (
+              <article key={v.slug} className="group flex flex-col items-center rounded-xl border border-[#E5E7EB] bg-white p-4 text-center">
+                <div className="relative flex h-[120px] w-full shrink-0 items-center justify-center overflow-hidden">
                   <Image
                     src={v.logo.src}
                     alt={`${v.name} logo`}
                     width={v.logo.w}
                     height={v.logo.h}
-                    className="max-h-[100px] w-auto max-w-[80%] object-contain"
+                    className={`max-h-[90px] w-auto max-w-[80%] object-contain ${paddedLogoSlugs.has(v.slug) ? "p-3" : ""}`}
                   />
                 </div>
-                <div className="mt-4 flex flex-1 flex-col items-center">
-                  <span className="kicker text-navy">{String(i + 1).padStart(2, "0")}</span>
-                  <h2 className="mt-4 text-lg font-bold leading-tight text-navy">{v.name}</h2>
+                <div className="mt-4 flex flex-col items-center">
+                  <h2 className="text-lg font-bold leading-tight text-navy">{v.name}</h2>
                   <p className="mt-1 text-sm italic text-ink-soft">{v.suburb}</p>
                 </div>
               </article>
