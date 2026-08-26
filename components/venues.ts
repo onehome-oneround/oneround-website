@@ -49,7 +49,7 @@ export const venues: Venue[] = [
   {
     name: "Johnny Ringo's",
     slug: "johnny-ringos",
-    suburb: "Fortitude Valley",
+    suburb: "Brisbane City",
     logo: { src: "/venues/johnny-ringos.png", w: 1254, h: 1254 },
     tile: { src: "/venues/tiles/johnny-ringos.jpg", bg: "#fefefe" },
     confirmed: true,
@@ -119,7 +119,7 @@ export const venues: Venue[] = [
   {
     name: "The Magee",
     slug: "the-magee",
-    suburb: "Red Hill",
+    suburb: "Fortitude Valley",
     logo: { src: "/venues/the-magee.png", w: 1448, h: 1086 },
     tile: { src: "/venues/tiles/the-magee.png", bg: "#0d341c" },
     confirmed: true,
@@ -127,7 +127,7 @@ export const venues: Venue[] = [
   {
     name: "The Normanby",
     slug: "the-normanby",
-    suburb: "Paddington",
+    suburb: "Red Hill",
     logo: { src: "/venues/the-normanby.png", w: 447, h: 447 },
     tile: { src: "/venues/tiles/the-normanby.png", bg: "#000000" },
     confirmed: true,
@@ -135,7 +135,7 @@ export const venues: Venue[] = [
   {
     name: "Viscosity",
     slug: "viscosity",
-    suburb: "CBD",
+    suburb: "Fortitude Valley",
     logo: { src: "/venues/viscosity.png", w: 1254, h: 1254 },
     tile: { src: "/venues/tiles/viscosity.jpg", bg: "#000000" },
     confirmed: true,
@@ -143,7 +143,7 @@ export const venues: Venue[] = [
   {
     name: "Warehouse 25",
     slug: "warehouse-25",
-    suburb: "Bowen Hills",
+    suburb: "Milton",
     logo: { src: "/venues/warehouse-25.jpg", w: 447, h: 447 },
     tile: { src: "/venues/tiles/warehouse-25.png", bg: "#081b17" },
     confirmed: true,
