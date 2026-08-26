@@ -21,13 +21,6 @@ export type Venue = {
 
 export const venues: Venue[] = [
   {
-    name: "Brookfield General Store",
-    slug: "brookfield-general-store",
-    suburb: "Brookfield",
-    logo: { src: "/venues/brookfield-general-store.png", w: 1000, h: 500 },
-    confirmed: true,
-  },
-  {
     name: "Eclipse",
     slug: "eclipse",
     suburb: "[?]",
@@ -59,14 +52,14 @@ export const venues: Venue[] = [
     name: "Pig N Whistle Brunswick Street",
     slug: "pig-n-whistle-brunswick-street",
     suburb: "Fortitude Valley",
-    logo: { src: "/venues/pig-n-whistle-brunswick-street.png", w: 1000, h: 500 },
+    logo: { src: "/venues/pig-n-whistle-brunswick-street.jpg", w: 1000, h: 500 },
     confirmed: true,
   },
   {
     name: "Pig N Whistle South Bank",
     slug: "pig-n-whistle-south-bank",
     suburb: "South Bank",
-    logo: { src: "/venues/pig-n-whistle-south-bank.png", w: 1000, h: 500 },
+    logo: { src: "/venues/pig-n-whistle-south-bank.jpg", w: 1000, h: 500 },
     confirmed: true,
   },
   {
@@ -80,7 +73,14 @@ export const venues: Venue[] = [
     name: "Sugar Nightclub",
     slug: "sugar-nightclub",
     suburb: "Fortitude Valley",
-    logo: { src: "/venues/sugar-nightclub.png", w: 1000, h: 500 },
+    logo: { src: "/venues/sugar-nightclub.jpg", w: 1000, h: 500 },
+    confirmed: true,
+  },
+  {
+    name: "Summa House",
+    slug: "summa-house",
+    suburb: "[?]",
+    logo: { src: "/venues/summa-house.jpg", w: 1000, h: 500 },
     confirmed: true,
   },
   {
@@ -108,7 +108,14 @@ export const venues: Venue[] = [
     name: "Warehouse 25",
     slug: "warehouse-25",
     suburb: "[?]",
-    logo: { src: "/venues/warehouse-25.png", w: 1000, h: 500 },
+    logo: { src: "/venues/warehouse-25.jpg", w: 1000, h: 500 },
+    confirmed: true,
+  },
+  {
+    name: "Brookfield General Store",
+    slug: "brookfield-general-store",
+    suburb: "Brookfield",
+    logo: { src: "/venues/brookfield-general-store.png", w: 1000, h: 500 },
     confirmed: true,
   },
 ];

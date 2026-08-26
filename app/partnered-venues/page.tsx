@@ -11,7 +11,7 @@ import { publicVenues } from "@/components/venues";
 export const metadata: Metadata = {
   title: "Partnered venues",
   description:
-    "Meet OneRound's 13 launch partners across Brisbane. Redeem five Roundies a month, unlock exclusive Deals, and see where everyone's headed.",
+    "Meet OneRound's 14 launch partners across Brisbane. Redeem five Roundies a month, unlock exclusive Deals, and see where everyone's headed.",
   alternates: { canonical: "https://oneround.au/partnered-venues" },
 };
 
@@ -43,7 +43,7 @@ export default function PartneredVenuesPage() {
               Partnered <span className="italic accent-text">venues.</span>
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
-              13 launch partners across Brisbane, with more added all the time. Redeem
+              14 launch partners across Brisbane, with more added all the time. Redeem
               Roundies on us each month, unlock exclusive Deals, and see where
               everyone&rsquo;s headed.
             </p>
@@ -52,24 +52,22 @@ export default function PartneredVenuesPage() {
 
         {/* Venue grid */}
         <section className="bg-white px-5 pb-24 sm:px-8 sm:pb-28">
-          <div className="mx-auto grid max-w-[96rem] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mx-auto grid max-w-[1200px] grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
             {publicVenues.map((v, i) => (
-              <article key={v.slug} className="group flex min-h-[18rem] flex-col justify-between border border-[color:var(--rule)] bg-white p-6">
-                <div className="relative flex h-36 w-full items-center justify-center overflow-hidden">
+              <article key={v.slug} className="group flex h-[22rem] flex-col items-center rounded-xl border border-[#E5E7EB] bg-[color:var(--paper)] p-6 text-center">
+                <div className="relative flex h-[140px] w-full shrink-0 items-center justify-center overflow-hidden">
                   <Image
                     src={v.logo.src}
                     alt={`${v.name} logo`}
                     width={v.logo.w}
                     height={v.logo.h}
-                    className="max-h-32 w-auto max-w-full object-contain"
+                    className="max-h-[100px] w-auto max-w-[80%] object-contain"
                   />
                 </div>
-                <div className="mt-6">
-                  <div className="flex items-baseline justify-between border-t border-[color:var(--rule)] pt-4">
-                    <span className="kicker text-navy">{String(i + 1).padStart(2, "0")}</span>
-                  </div>
-                  <h2 className="mt-4 font-display text-2xl font-semibold leading-tight text-ink">{v.name}</h2>
-                  <p className="mt-2 text-sm text-ink-soft">{v.suburb}</p>
+                <div className="mt-4 flex flex-1 flex-col items-center">
+                  <span className="kicker text-navy">{String(i + 1).padStart(2, "0")}</span>
+                  <h2 className="mt-4 text-lg font-bold leading-tight text-navy">{v.name}</h2>
+                  <p className="mt-1 text-sm italic text-ink-soft">{v.suburb}</p>
                 </div>
               </article>
             ))}
