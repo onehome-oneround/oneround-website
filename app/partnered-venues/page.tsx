@@ -8,20 +8,21 @@ import Footer from "@/components/Footer";
 import EditorialTag from "@/components/EditorialTag";
 import { publicVenues } from "@/components/venues";
 
-const paddedLogoSlugs = new Set([
-  "eclipse",
-  "pawn-and-co",
-  "sugar-nightclub",
-  "summa-house",
-  "pop-world-nightclub",
-]);
-
 export const metadata: Metadata = {
   title: "Partnered venues",
   description:
     "Meet OneRound's 14 launch partners across Brisbane. Redeem five Roundies a month, unlock exclusive Deals, and see where everyone's headed.",
   alternates: { canonical: "https://oneround.au/partnered-venues" },
 };
+
+const darkLogoSlugs = new Set([
+  "eclipse",
+  "pawn-and-co",
+  "sugar-nightclub",
+  "summa-house",
+  "pop-world-nightclub",
+  "the-normanby",
+]);
 
 export default function PartneredVenuesPage() {
   return (
@@ -60,24 +61,26 @@ export default function PartneredVenuesPage() {
 
         {/* Venue grid */}
         <section className="bg-white px-5 pb-24 sm:px-8 sm:pb-28">
-          <div className="mx-auto grid max-w-[1200px] grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
-            {publicVenues.map((v) => (
-              <article key={v.slug} className="group flex flex-col items-center rounded-xl border border-[#E5E7EB] bg-white p-4 text-center">
-                <div className="relative flex h-[120px] w-full shrink-0 items-center justify-center overflow-hidden">
-                  <Image
-                    src={v.logo.src}
-                    alt={`${v.name} logo`}
-                    width={v.logo.w}
-                    height={v.logo.h}
-                    className={`max-h-[90px] w-auto max-w-[80%] object-contain ${paddedLogoSlugs.has(v.slug) ? "p-3" : ""}`}
-                  />
-                </div>
-                <div className="mt-4 flex flex-col items-center">
-                  <h2 className="text-lg font-bold leading-tight text-navy">{v.name}</h2>
-                  <p className="mt-1 text-sm italic text-ink-soft">{v.suburb}</p>
-                </div>
-              </article>
-            ))}
+          <div className="mx-auto grid max-w-[1200px] grid-cols-2 items-stretch gap-5 sm:grid-cols-3 lg:grid-cols-4">
+            {publicVenues.map((v) => {
+              return (
+                <article key={v.slug} className="group flex h-full flex-col items-center rounded-xl bg-white p-5 text-center shadow-[0_1px_3px_rgba(0,0,0,0.08),0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(0,0,0,0.10)]">
+                  <div className="relative flex h-[160px] w-full shrink-0 items-center justify-center overflow-hidden">
+                    <Image
+                      src={v.logo.src}
+                      alt={`${v.name} logo`}
+                      width={v.logo.w}
+                      height={v.logo.h}
+                      className={`max-h-[130px] w-auto max-w-[90%] object-contain ${darkLogoSlugs.has(v.slug) ? "bg-white p-2" : ""}`}
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col items-center">
+                    <h2 className="mt-3 text-base font-bold leading-tight text-navy">{v.name}</h2>
+                    <p className="mt-1 text-[13px] text-ink-soft">{v.suburb}</p>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </section>
 
