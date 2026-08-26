@@ -16,18 +16,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://oneround.au/partnered-venues" },
 };
 
-// A tile whose own background is near-white bleeds into the white page, so it
-// needs a hairline to hold its edge. Dark tiles define their own edge, and a
-// border on those would only draw a box around nothing. Threshold is relative
-// luminance, so the two cream Pig N Whistle tiles count as light too.
-function needsEdge(bg: string) {
-  const n = parseInt(bg.slice(1), 16);
-  const r = (n >> 16) & 255;
-  const g = (n >> 8) & 255;
-  const b = n & 255;
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 200;
-}
-
 export default function PartneredVenuesPage() {
   return (
     <>
@@ -67,15 +55,19 @@ export default function PartneredVenuesPage() {
           different logo shapes and baked-in background colours read as one grid.
           The box is reserved by aspect-ratio and painted in the tile's own
           background colour, so nothing shifts and no dark tile flashes white.
+          One border wraps the whole card and a divider separates the logo from
+          the caption, so a near-white tile keeps its edge against the page
+          without needing a rule of its own.
         */}
         <section className="bg-white px-5 pb-24 sm:px-8 sm:pb-28">
           <ul className="mx-auto grid max-w-[96rem] grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {publicVenues.map((v, i) => (
-              <li key={v.slug} className="group flex h-full flex-col">
+              <li
+                key={v.slug}
+                className="flex h-full flex-col overflow-hidden rounded-xl border border-black/10 transition-transform duration-200 ease-out hover:-translate-y-1"
+              >
                 <div
-                  className={`relative aspect-[4/3] w-full overflow-hidden rounded-xl transition-transform duration-200 ease-out group-hover:-translate-y-1 ${
-                    needsEdge(v.tile.bg) ? "ring-1 ring-inset ring-black/15" : ""
-                  }`}
+                  className="relative aspect-[4/3] w-full"
                   style={{ backgroundColor: v.tile.bg }}
                 >
                   <Image
@@ -87,7 +79,7 @@ export default function PartneredVenuesPage() {
                     preload={i < 5}
                   />
                 </div>
-                <div className="mt-3 flex-1 rounded-lg border border-black/10 px-3 py-2.5">
+                <div className="flex-1 border-t border-black/10 px-3 py-2.5">
                   <h2 className="text-[15px] font-bold leading-snug text-navy">{v.name}</h2>
                   <p className="mt-0.5 text-[13px] text-ink-soft">{v.suburb}</p>
                 </div>
