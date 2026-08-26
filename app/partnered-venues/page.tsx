@@ -8,21 +8,13 @@ import Footer from "@/components/Footer";
 import EditorialTag from "@/components/EditorialTag";
 import { publicVenues } from "@/components/venues";
 
+const count = publicVenues.length;
+
 export const metadata: Metadata = {
   title: "Partnered venues",
-  description:
-    "Meet OneRound's 14 launch partners across Brisbane. Redeem five Roundies a month, unlock exclusive Deals, and see where everyone's headed.",
+  description: `Meet OneRound's ${count} launch partners across Brisbane. Redeem five Roundies a month, unlock exclusive Deals, and see where everyone's headed.`,
   alternates: { canonical: "https://oneround.au/partnered-venues" },
 };
-
-const darkLogoSlugs = new Set([
-  "eclipse",
-  "pawn-and-co",
-  "sugar-nightclub",
-  "summa-house",
-  "pop-world-nightclub",
-  "the-normanby",
-]);
 
 export default function PartneredVenuesPage() {
   return (
@@ -52,36 +44,40 @@ export default function PartneredVenuesPage() {
               Partnered <span className="italic accent-text">venues.</span>
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
-              14 launch partners across Brisbane, with more added all the time. Redeem
-              Roundies on us each month, unlock exclusive Deals, and see where
-              everyone&rsquo;s headed.
+              {`${count} launch partners across Brisbane, with more added all the time. Redeem Roundies on us each month, unlock exclusive Deals, and see where everyone’s headed.`}
             </p>
           </div>
         </section>
 
-        {/* Venue grid */}
+        {/*
+          Venue grid. Every tile is an identical 4:3 box filled edge to edge
+          (`object-cover` over a pre-generated 4:3 asset), so the venues' wildly
+          different logo shapes and baked-in background colours read as one grid.
+          The box is reserved by aspect-ratio and painted in the tile's own
+          background colour, so nothing shifts and no dark tile flashes white.
+        */}
         <section className="bg-white px-5 pb-24 sm:px-8 sm:pb-28">
-          <div className="mx-auto grid max-w-[1200px] grid-cols-2 items-stretch gap-5 sm:grid-cols-3 lg:grid-cols-4">
-            {publicVenues.map((v) => {
-              return (
-                <article key={v.slug} className="group flex h-full flex-col items-center rounded-xl bg-white p-5 text-center shadow-[0_1px_3px_rgba(0,0,0,0.08),0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(0,0,0,0.10)]">
-                  <div className="relative flex h-[160px] w-full shrink-0 items-center justify-center overflow-hidden">
-                    <Image
-                      src={v.logo.src}
-                      alt={`${v.name} logo`}
-                      width={v.logo.w}
-                      height={v.logo.h}
-                      className={`max-h-[130px] w-auto max-w-[90%] object-contain ${darkLogoSlugs.has(v.slug) ? "bg-white p-2" : ""}`}
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col items-center">
-                    <h2 className="mt-3 text-base font-bold leading-tight text-navy">{v.name}</h2>
-                    <p className="mt-1 text-[13px] text-ink-soft">{v.suburb}</p>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
+          <ul className="mx-auto grid max-w-[96rem] grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            {publicVenues.map((v, i) => (
+              <li key={v.slug} className="group">
+                <div
+                  className="relative aspect-[4/3] w-full overflow-hidden rounded-xl ring-1 ring-inset ring-black/10 transition-transform duration-200 ease-out group-hover:-translate-y-1"
+                  style={{ backgroundColor: v.tile.bg }}
+                >
+                  <Image
+                    src={v.tile.src}
+                    alt={`${v.name} logo`}
+                    fill
+                    sizes="(min-width: 1280px) 18vw, (min-width: 1024px) 23vw, (min-width: 640px) 31vw, 45vw"
+                    className="object-cover"
+                    preload={i < 5}
+                  />
+                </div>
+                <h2 className="mt-3 text-[15px] font-bold leading-snug text-navy">{v.name}</h2>
+                <p className="mt-0.5 text-[13px] text-ink-soft">{v.suburb}</p>
+              </li>
+            ))}
+          </ul>
         </section>
 
         {/* Closing — navy slab */}
