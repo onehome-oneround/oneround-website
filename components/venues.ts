@@ -58,11 +58,14 @@ export const venues: Venue[] = [
     name: "Last Man Standing",
     slug: "last-man-standing",
     suburb: "Fortitude Valley",
-    // TODO: This is a photo of the venue interior, not a logo — it is the only
-    // asset supplied. It is the one tile in the grid that isn't a brand mark.
-    // Replace with the confirmed Last Man Standing logo when it arrives.
-    logo: { src: "/venues/last-man-standing.png", w: 1249, h: 844 },
-    tile: { src: "/venues/tiles/last-man-standing.jpg", bg: "#140700" },
+    // Supplied at 167x148, the lowest-resolution asset in the set: the tile
+    // scales it 1.88x, so it is a touch soft on high-DPI screens. Swap in a
+    // larger original if one turns up. (This replaced a photo of the venue
+    // interior that stood in for the logo until the real badge arrived.)
+    logo: { src: "/venues/last-man-standing.jpg", w: 167, h: 148 },
+    // Distinct filename from the tile this replaced: the optimiser and any CDN
+    // cache derivatives by URL, so reusing the old name serves the stale image.
+    tile: { src: "/venues/tiles/last-man-standing-logo.jpg", bg: "#ffffff" },
     confirmed: true,
   },
   {
