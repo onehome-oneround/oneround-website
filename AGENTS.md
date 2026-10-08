@@ -46,14 +46,30 @@ profile with empty storage, so they always see the consumer path and report
 CLS 0. Reproduce it by setting `localStorage['oneround-audience'] = 'venue'`
 and reloading.
 
-## LAUNCH BLOCKER: privacy policy vs. analytics and the venue form
+## CLOSED (Oct 2026): privacy policy vs. analytics and the venue form
 
-GA4 and the Meta Pixel are installed and will fire the moment anything runs
-with `NODE_ENV=production` and the IDs set (`components/Analytics.tsx`). The
-venue signup form now collects **name, email and phone directly** and posts them
-to `/api/venue-signup`. The privacy policy at `app/privacy/page.tsx` has not been
-updated to cover either. **Do not put the site in front of real user traffic
-until it is.** This is a legal and contractual gap, not a tidy-up.
+**This blocker has been addressed. The sections below are kept as the reasoning
+behind the current wording, not as outstanding work — check the policy before
+acting on them.**
+
+`app/privacy/page.tsx` now has a "Cookies, analytics, and advertising" section
+naming Google Analytics 4, the Meta Pixel and Google Tag Manager, what each
+collects, the consent gate, the opt-out links, and the fact that data goes
+offshore. "What personal information we collect" covers the venue partner form
+(venue name, contact person, email, phone, venue type, message). The providers
+table lists Google LLC, Meta Platforms and the rest.
+
+Consent is enforced in code, not just described: `ConsentProvider` gates
+`Analytics` and `GoogleTagManager`, both of which render nothing until the
+visitor accepts, and nothing outside production. Verified end to end — no
+tracking request fires on a fresh visit or after Decline.
+
+**Still outstanding:** a lawyer's review before public launch, and the
+governance point that GTM is a container — whoever holds that account can add
+tags with no change to this repo, so this codebase is no longer a complete
+record of what loads. The policy commits to updating it when a new tag collects
+personal information; someone has to actually watch the container for that to
+be true.
 
 **The form makes this sharper than analytics alone.** Trackers collect
 behavioural data a visitor might not notice; a form is the visitor deliberately
@@ -66,15 +82,13 @@ staying silent: it is an explicit representation that the policy governs the
 submission, which makes the ACL misleading-conduct exposure below more direct,
 not less. Either the policy describes the form or that line should not ship.
 
-**The problem is the policy's own wording.** It is generic boilerplate that
-mentions no analytics, cookies, third parties or tracking, while making
-affirmative promises the trackers contradict — that purposes will be
-identified "before or at the time of collecting personal information", and
-that collection happens "by lawful and fair means and, where appropriate, with
-the knowledge or consent of the individual concerned". The Meta Pixel fires on
-page load and sends browsing behaviour to a third party who can re-identify the
-visitor against their account. No purpose is identified and no knowledge is
-given.
+**What the problem WAS (now fixed).** The policy used to be generic boilerplate
+mentioning no analytics, cookies, third parties or tracking, while promising
+that purposes are identified "before or at the time of collecting personal
+information" and that collection happens "with the knowledge or consent of the
+individual concerned" — promises the trackers contradicted. That gap is what
+the disclosure section and the consent gate were built to close. Do not re-raise
+it as an open issue without reading `app/privacy/page.tsx` first.
 
 **The real exposure is Australian consumer law, not GDPR.** GDPR turns on
 targeting (Art 3(2)); a Brisbane-only venue app does not target the EEA, so
@@ -98,11 +112,9 @@ disclosing cookie and analytics use. Even at zero legal risk, breaching these
 risks pixel or account disablement — which would break exactly the paid
 campaigns the install exists to enable.
 
-**What to add.** An "Analytics and advertising" section that names Google
-Analytics 4 and the Meta Pixel, describes what each collects (page views,
-device and browser information, IP address, and for Meta an identifier that
-can be matched to a Facebook account), states the purpose (measuring site
-usage and supporting advertising), and links the opt-outs:
+**What was added** (all of this is now live in `app/privacy/page.tsx`): a
+"Cookies, analytics, and advertising" section naming each tool, what it
+collects, the purpose, the consent mechanism, and the opt-outs:
 
   - GA:   https://tools.google.com/dlpage/gaoptout
   - Meta: https://www.facebook.com/settings?tab=ads

@@ -29,7 +29,7 @@ const PROVIDERS = [
   {
     provider: "Google LLC",
     purpose:
-      "Website analytics (subject to your consent) and Google Play billing on Android",
+      "Website analytics and tag management (subject to your consent), and Google Play billing on Android",
     location: "United States",
   },
   {
@@ -65,7 +65,7 @@ export default function PrivacyPage() {
             <h1 className="display-section mt-4 text-ink">Privacy Policy</h1>
             <div className="mt-5 space-y-1 font-mono text-[0.8125rem] tracking-[0.02em] text-ink-faint">
               <p>Effective date: 10 August 2026</p>
-              <p>Last updated: 20 July 2026</p>
+              <p>Last updated: 8 October 2026</p>
             </div>
           </header>
 
@@ -254,22 +254,50 @@ export default function PrivacyPage() {
                 relevant audiences on Facebook and Instagram, and measure whether
                 those ads are working. Sends browsing data to Meta Platforms, Inc.
               </li>
+              <li>
+                <strong>Google Tag Manager</strong> — a container we use to manage
+                the tags on our website. It loads the tools above and may load
+                additional measurement or advertising tags from time to time. It is
+                administered on our behalf by our marketing provider. Where a new
+                tag collects personal information, we will update this policy.
+              </li>
             </ul>
             <p>
-              Both tools set cookies on your device and transfer data to servers
+              These tools set cookies on your device and transfer data to servers
               outside Australia.
             </p>
             <p>
               <strong>Your consent.</strong> On your first visit, we ask for your
-              consent before loading Google Analytics or the Meta Pixel. If you
-              decline, neither tool loads and no analytics or advertising cookies
-              are set. You can change your mind at any time by clicking “
+              consent before loading any of these tools. If you decline, none of
+              them load and no analytics or advertising cookies are set. You can
+              change your mind at any time by clicking “
               <strong>Cookie preferences</strong>” in our website footer, or by
               blocking cookies at the browser level.
             </p>
             <p>
               We also store a small preference in your browser to remember your
               consent choice, so we do not ask you again.
+            </p>
+            <p>
+              <strong>Opting out with the providers.</strong> As well as declining
+              here, you can opt out directly. Google offers a browser add-on that
+              disables Google Analytics at{" "}
+              <a
+                href="https://tools.google.com/dlpage/gaoptout"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                tools.google.com/dlpage/gaoptout
+              </a>
+              , and you can manage how Meta uses your data for advertising at{" "}
+              <a
+                href="https://www.facebook.com/settings?tab=ads"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                facebook.com/settings?tab=ads
+              </a>
+              .
             </p>
 
             <hr />
