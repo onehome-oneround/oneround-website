@@ -5,6 +5,7 @@ import { AudienceProvider } from "@/components/AudienceProvider";
 import { ConsentProvider } from "@/components/ConsentProvider";
 import ConsentGate from "@/components/ConsentGate";
 import Analytics from "@/components/Analytics";
+import GoogleTagManager from "@/components/GoogleTagManager";
 
 /*
   Typography — "After Dark broadsheet" editorial system. Three families:
@@ -147,6 +148,12 @@ export default function RootLayout({
               components/Analytics.tsx for the three guards and why paid ads
               depend on this staying live. */}
           <Analytics />
+          {/* Google Tag Manager container GTM-KNJS4FTW, managed by the marketing
+              agency. Gated on consent, production and a container ID exactly like
+              Analytics above. Note the tags INSIDE the container are managed
+              off-repo, so this line is not the full picture of what loads; see
+              components/GoogleTagManager.tsx. */}
+          <GoogleTagManager />
         </ConsentProvider>
       </body>
     </html>
