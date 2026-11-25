@@ -34,13 +34,11 @@ export function faqAnchorId(question: string): string {
   );
 }
 
-/* The pricing card links straight to this row. */
-export const WEEKLY_WINS_ANCHOR = faqAnchorId("What are Weekly Wins?");
 
 export const consumerFaqs: Faq[] = [
   {
     q: "What's a Roundie?",
-    a: "A Roundie is one item on us at a partnered venue — a drink, a snack, entry, whatever the venue's put on the menu. Some are standalone, some are paired with a small purchase. Members get five a month, one per outing.",
+    a: "A Roundie is one item on us at a partnered venue — a drink, a snack, entry, whatever the venue's put on the menu. Some are standalone, some are paired with a small purchase. Members get a new Roundie every 12 hours.",
   },
   {
     q: "How is a Roundie different from a Deal?",
@@ -55,21 +53,16 @@ export const consumerFaqs: Faq[] = [
     a: "Open the app at the venue. Tap the 'Redeem Roundie' button on the home screen — or head to the venue's Roundies menu and pick the one you want. A QR code shows on your phone, the venue's staff scans it, and the item's yours.",
   },
   {
-    q: "Can I use more than one Roundie in a day?",
-    a: "One Roundie per member per day, across all venues. Keeps things fair for members and venues.",
+    q: "How often can I use a Roundie?",
+    a: "Once you redeem a Roundie, your next one is ready 12 hours later, at any venue. Keeps things fair for members and venues.",
   },
   {
-    q: "What if I don't use all five in a month?",
-    a: "Roundies reset at the start of each month — they don't roll over.",
+    q: "Can a venue run out of Roundies?",
+    a: "Yes. Each venue sets how many Roundies it offers each day, and the app shows how many are left, so get in early at the popular spots.",
   },
   {
     q: "Can I see where my friends are going out?",
     a: "Yes. Members mark where they're heading before they head out. Open the app to see where your friends and the wider OneRound crowd are landing that night — no more group-chat scramble.",
-  },
-  {
-    q: "What are Weekly Wins?",
-    a: "Every week, five members win $100 each in a random draw. You earn an entry every time you tap 'going' to a venue in the app before 6pm and actually turn up — plus one entry for every friend you refer who subscribes. Some venues offer 2× entries. The more entries you have, the better your chances. See our Weekly Wins Terms for the full rules. The first Weekly Wins draw will be held on Monday 11 January 2027, and weekly every Monday thereafter.",
-    link: { text: "Weekly Wins Terms", href: "/weekly-wins-terms" },
   },
   {
     q: "Do I need to be 18+ to use OneRound?",
@@ -85,7 +78,7 @@ export const consumerFaqs: Faq[] = [
   },
   {
     q: "Is OneRound available yet?",
-    a: "Yes — OneRound is live in Brisbane. Download it free from the App Store or Google Play, subscribe, and get five Roundies a month at Brisbane's best venues.",
+    a: "Yes — OneRound is live in Brisbane. Download it free from the App Store or Google Play, subscribe, and get a new Roundie every 12 hours at Brisbane's best venues.",
   },
 ];
 
@@ -116,7 +109,7 @@ export const venueFaqs: Faq[] = [
   },
   {
     q: "Is this legal?",
-    a: "Yes. OneRound was built with a liquor licensing lawyer and raised directly with OLGR. They can't endorse any program, but raised no issues with ours. Because members pay a subscription, a Roundie is a reward they've already bought — not alcohol promoted to the public. RSA obligations are unchanged, and one Roundie per member per day means nobody stacks free drinks.",
+    a: "Yes. OneRound was built with a liquor licensing lawyer and raised directly with OLGR. They can't endorse any program, but raised no issues with ours. Because members pay a subscription, a Roundie is a reward they've already bought — not alcohol promoted to the public. RSA obligations are unchanged, and a 12-hour gap between each member's Roundies means nobody stacks free drinks.",
   },
   {
     q: "How does OneRound bring me new customers?",

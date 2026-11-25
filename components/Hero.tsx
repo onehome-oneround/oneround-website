@@ -86,10 +86,10 @@ export default function Hero() {
               ) : (
                 <>
                   <span className="mask">
-                    <i style={{ ["--d" as string]: "0.05s" }}>Five Rounds.</i>
+                    <i style={{ ["--d" as string]: "0.05s" }}>Your round.</i>
                   </span>
                   <span className="mask">
-                    <i style={{ ["--d" as string]: "0.16s" }}>Every month.</i>
+                    <i style={{ ["--d" as string]: "0.16s" }}>Every day.</i>
                   </span>
                   <span className="mask">
                     <i style={{ ["--d" as string]: "0.27s" }}>

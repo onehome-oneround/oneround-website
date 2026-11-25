@@ -11,7 +11,7 @@ import ClosingHeadline from "@/components/ClosingHeadline";
 export const metadata: Metadata = {
   title: "How Social works",
   description:
-    "See where your friends and the wider community are heading, pick your spot, and find your vibe. Members go in the draw for weekly cash and prizes with Weekly Wins.",
+    "See where your friends and the wider community are heading, pick your spot, and find your vibe.",
   alternates: { canonical: "https://oneround.au/how-social-works" },
 };
 
@@ -31,18 +31,18 @@ const steps: Step[] = [
     title: "See where your friends and the wider community are heading",
     body: "Open the app to see where your friends and the wider community are heading, so you can plan where to go.",
     visual: "phone",
-    src: "/images/map-social.png",
-    w: 3375,
-    h: 4219,
+    src: "/images/app-home.png",
+    w: 1600,
+    h: 2000,
   },
   {
     n: "02",
-    title: "Pick where you're going and show up, and as a member go in the draw for weekly cash and prizes",
-    body: "Choose your spot and show up. Members who show up go in the draw for weekly cash and prizes — Weekly Wins is part of membership.",
+    title: "Pick where you're going and show up",
+    body: "Mark the venue you're heading to so your mates can see, then show up. Members can see when friends are redeeming Roundies around town.",
     visual: "phone",
-    src: "/images/going-social.png",
-    w: 3375,
-    h: 4219,
+    src: "/images/app-social.png",
+    w: 1600,
+    h: 2000,
   },
   {
     n: "03",

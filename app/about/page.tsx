@@ -17,7 +17,7 @@ const FOUNDERS = [
     name: "Oscar",
     paragraphs: [
       "My friends and I always ended up at the same handful of venues. Not because they weren’t great, they were. We just didn’t have a reason to try somewhere new. Brisbane’s got so much more, and we were missing most of it.",
-      "That’s why we built OneRound. Five Roundies a month give you a reason to try somewhere new. Member-only deals make going out cost less. And the app shows you where your mates are already heading. More venues in your mix, more nights that surprise you.",
+      "That’s why we built OneRound. A new Roundie every 12 hours gives you a reason to try somewhere new. Member-only deals make going out cost less. And the app shows you where your mates are already heading. More venues in your mix, more nights that surprise you.",
     ],
   },
   {

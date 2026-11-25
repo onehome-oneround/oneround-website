@@ -108,9 +108,6 @@ export default function Footer() {
                 <Link href="/venue-terms" className="font-display text-lg text-white/85 transition-colors hover:text-blue">Venue Terms</Link>
               </li>
               <li>
-                <Link href="/weekly-wins-terms" className="font-display text-lg text-white/85 transition-colors hover:text-blue">Weekly Wins Terms</Link>
-              </li>
-              <li>
                 <Link href="/bar-tab-giveaway-terms" className="font-display text-lg text-white/85 transition-colors hover:text-blue">Bar Tab Giveaway Terms</Link>
               </li>
               <li>

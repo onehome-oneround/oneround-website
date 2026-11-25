@@ -12,7 +12,7 @@ import { useAudience } from "./AudienceProvider";
 type Tone = "navy" | "blue" | "tint" | "white";
 
 const USER_WORDS = [
-  "Five Roundies a month",
+  "A new Roundie every 12 hours",
   "Exclusive deals",
   "See where everyone's going",
   "Your reason to get out",

@@ -36,7 +36,7 @@ export default function GoodStuff() {
     : {
         heading: "The good stuff.",
         lines: [
-          "Five Roundies a month",
+          "A new Roundie every 12 hours",
           "Exclusive Deals you won't find elsewhere",
           "See where your friends and the crowd are headed",
         ],
