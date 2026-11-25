@@ -3,7 +3,6 @@
 import DownloadButtons from "./DownloadButtons";
 import EditorialTag from "./EditorialTag";
 import { useAudience } from "./AudienceProvider";
-import { WEEKLY_WINS_ANCHOR } from "./faqData";
 import {
   Badge,
   Glasses,
@@ -37,7 +36,7 @@ import {
   GoodStuff this branches on audience, inheriting the known post-hydration content
   swap documented in AGENTS.md rather than adding a new one.
 
-  Voice: value line matches Features ("Five on us, every month.") — short warm
+  Voice: value line matches Features ("A new one every 12 hours.") — short warm
   fragments, no numbers, price framed against the reward it buys (a drink on us).
   No maths, no "4× return". The list claims only paid membership features, led by
   Roundies then Deals. Weekly Wins is a membership perk too (the app confirms it's
@@ -57,10 +56,8 @@ import {
 */
 
 const INCLUDED: { label: string; href?: string }[] = [
-  { label: "Five Roundies every month" },
+  { label: "A new Roundie every 12 hours" },
   { label: "Exclusive member Deals" },
-  // Links to (and opens) the "What are Weekly Wins?" FAQ row.
-  { label: "Entry into Weekly Wins", href: `#${WEEKLY_WINS_ANCHOR}` },
   { label: "Cancel anytime" },
 ];
 
@@ -143,7 +140,7 @@ export default function Pricing() {
           </div>
 
           <p className="mt-5 font-display text-2xl font-semibold leading-snug text-navy sm:text-[1.75rem]">
-            Less than a schooner. Five on us, every month.
+            Less than a schooner. A new round on us every 12 hours.
           </p>
 
           <ul className="mt-8">

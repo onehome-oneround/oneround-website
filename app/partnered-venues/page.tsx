@@ -12,7 +12,7 @@ const count = publicVenues.length;
 
 export const metadata: Metadata = {
   title: "Partnered venues",
-  description: `Meet OneRound's ${count} launch partners across Brisbane. Redeem five Roundies a month, unlock exclusive Deals, and see where everyone's headed.`,
+  description: `Meet OneRound's ${count} launch partners across Brisbane. Redeem a Roundie every 12 hours, unlock exclusive Deals, and see where everyone's headed.`,
   alternates: { canonical: "https://oneround.au/partnered-venues" },
 };
 

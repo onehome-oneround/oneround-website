@@ -11,7 +11,7 @@ import ClosingHeadline from "@/components/ClosingHeadline";
 export const metadata: Metadata = {
   title: "How Roundies work",
   description:
-    "A Roundie is a food or drink item that's on us at a participating venue. Membership gives you five a month, one per outing. Select from the Roundie menu, scan, and enjoy.",
+    "A Roundie is a food or drink item that's on us at a participating venue. Membership gives you a new one every 12 hours. Select from the Roundie menu, scan, and enjoy.",
   alternates: { canonical: "https://oneround.au/how-roundies-work" },
 };
 
@@ -29,19 +29,19 @@ const steps: Step[] = [
     title: "Browse the Roundie menu",
     body: "Open the app and browse the venue's Roundie menu to see what's on offer, and find the item you want.",
     visual: "phone",
-    src: "/images/menu-round.png",
+    src: "/images/app-rewards.png",
   },
   {
     n: "02",
     title: "Order and scan",
-    body: "At the venue, let the staff know what you'd like, then scan your unique code to redeem it. Quick and contactless, one per outing.",
+    body: "At the venue, let the staff know what you'd like, then scan your unique code to redeem it. Quick and contactless.",
     visual: "phone",
     src: "/images/qr-round.png",
   },
   {
     n: "03",
     title: "Enjoy",
-    body: "Grab your item on us and enjoy. That's one of your five Roundies this month, come back for the next.",
+    body: "Grab your item on us and enjoy. Your next Roundie is ready 12 hours later.",
     visual: "photo",
     src: "/images/enjoy-round.png",
   },
@@ -73,8 +73,8 @@ export default function HowRoundiesWorkPage() {
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
               A Roundie is one item on us at a partnered venue — a drink, a snack,
-              entry, whatever the venue puts on the menu. Members get five a month,
-              one per outing. Here is all there is to it.
+              entry, whatever the venue puts on the menu. Members get a new one
+              every 12 hours. Here is all there is to it.
             </p>
           </div>
         </section>
@@ -213,7 +213,7 @@ export default function HowRoundiesWorkPage() {
             {/* HIDDEN until launch - re-enable: app store links ("Get the app" kicker) */}
             {/* <p className="kicker text-white/60">Get the app</p> */}
             <ClosingHeadline
-              users={{ lead: "Five on us,", accent: "every month." }}
+              users={{ lead: "A round on us,", accent: "every 12 hours." }}
               venues={{ lead: "Bring people through", accent: "your door." }}
             />
             <div className="mt-10 flex flex-col gap-4 border-t border-white/25 pt-10 sm:flex-row sm:items-center sm:justify-between">

@@ -77,10 +77,10 @@ export default function FeatureSpotlight() {
           {/* real app mockup — transparent PNG, no box/backing behind it */}
           <div className="relative mx-auto w-full max-w-[360px] sm:max-w-[440px] lg:max-w-[520px]">
             <Image
-              src="/images/venmap-mock.png"
-              alt="OneRound map of where the crowd is heading"
-              width={3375}
-              height={4219}
+              src="/images/app-home.png"
+              alt="OneRound home screen showing this week's hot spots"
+              width={1600}
+              height={2000}
               sizes="(max-width: 1024px) 80vw, 520px"
               className="h-auto w-full"
               style={{ objectFit: "contain" }}
